@@ -32,15 +32,29 @@
 
     <!-- Hero Section -->
     <section class="hero" id="inicio">
+        <div class="hero-slider">
+            <div class="slide active" style="background-image: url('img/hero-bg.jpg');"></div>
+            <div class="slide" style="background-image: url('img/NUR.jpg');"></div>
+            <div class="slide" style="background-image: url('img/SPA.jpg');"></div>
+        </div>
         <div class="container">
             <div class="hero-content">
                 <h1>Votre nouvelle destination Simracing à Nivelles</h1>
-                <p>Faites la course sur des simulateurs professionnels, détendez-vous dans notre bar et stylisez votre voiture dans notre atelier de décoration..</p>
+                <p>Faites la course sur des simulateurs professionnels, détendez-vous dans notre bar et stylisez votre voiture dans notre atelier de décoration.</p>
                 <div class="hero-buttons">
                     <a href="#contacto" class="btn btn-primary">Réservez</a>
                     <a href="#servicios" class="btn btn-outline">services</a>
                 </div>
             </div>
+        </div>
+        <div class="hero-nav">
+            <button class="prev-slide">❮</button>
+            <div class="slide-dots">
+                <span class="dot active" data-slide="0"></span>
+                <span class="dot" data-slide="1"></span>
+                <span class="dot" data-slide="2"></span>
+            </div>
+            <button class="next-slide">❯</button>
         </div>
         <div class="hero-overlay"></div>
     </section>
@@ -153,10 +167,10 @@
                 <div class="footer-links">
                     <h4>LIENS RAPIDES</h4>
                     <ul>
-                        <li><a href="#inicio">Accueil</a></li>
-                        <li><a href="#servicios">Services</a></li>
-                        <li><a href="#galeria">Galerie</a></li>
-                        <li><a href="#contacto">Contact</a></li>
+                        <li><a href="index.html#inicio">Accueil</a></li>
+                        <li><a href="index.html#servicios">Services</a></li>
+                        <li><a href="index.html#galeria">Galerie</a></li>
+                        <li><a href="contacto.html">Contact</a></li>
                     </ul>
                 </div>
                 <div class="footer-contact">
@@ -399,5 +413,7 @@
             });
         });
     </script>
+    <!-- Hero Slider Script -->
+    <script src="js/hero-slider.js"></script>
 </body>
 </html>
