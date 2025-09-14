@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const nextBtn = document.querySelector('.next-slide');
     let currentSlide = 0;
     let slideInterval;
-    const slideDuration = 5000; // 5 segundos
+    const slideDuration = 5000; // 5     segundos
 
     // Función para mostrar una diapositiva específica
     function showSlide(index) {
