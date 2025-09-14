@@ -49,6 +49,77 @@ app.get('/favicon.ico', (req, res) => {
     res.status(204).end();
 });
 
+// Ruta para manejar el envío del formulario de contacto
+app.post('/api/contact', async (req, res) => {
+    console.log('=== SOLICITUD DE CONTACTO RECIBIDA ===');
+    console.log('Datos del formulario:', JSON.stringify(req.body, null, 2));
+    
+    try {
+        // Validar los datos del formulario
+        const { 
+            profileType, 
+            contactReason, 
+            firstName, 
+            lastName, 
+            email, 
+            phone, 
+            country, 
+            province, 
+            city, 
+            postalCode, 
+            subject, 
+            message 
+        } = req.body;
+
+        // Validaciones básicas
+        if (!profileType || !contactReason || !firstName || !lastName || !email || !subject || !message) {
+            return res.status(400).json({ 
+                success: false, 
+                message: 'Por favor, complete todos los campos obligatorios.' 
+            });
+        }
+
+        // Validar formato de email
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(email)) {
+            return res.status(400).json({ 
+                success: false, 
+                message: 'Por favor, proporcione un correo electrónico válido.' 
+            });
+        }
+
+        // Aquí iría la lógica para guardar en la base de datos
+        // Por ejemplo:
+        /*
+        const [result] = await pool.query(
+            `INSERT INTO contact_submissions 
+            (profile_type, contact_reason, first_name, last_name, email, phone, 
+             country, province, city, postal_code, subject, message, created_at)
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, NOW())`,
+            [profileType, contactReason, firstName, lastName, email, phone, 
+             country, province, city, postalCode, subject, message]
+        );
+        */
+
+        // Enviar notificación por correo electrónico (opcional)
+        // Aquí iría el código para enviar un correo electrónico
+
+        console.log('Mensaje de contacto guardado correctamente');
+        
+        res.status(200).json({ 
+            success: true, 
+            message: '¡Mensaje enviado con éxito! Nos pondremos en contacto contigo pronto.' 
+        });
+
+    } catch (error) {
+        console.error('Error al procesar el formulario de contacto:', error);
+        res.status(500).json({ 
+            success: false, 
+            message: 'Error al procesar el formulario. Por favor, inténtelo de nuevo más tarde.'
+        });
+    }
+});
+
 // Logging de todas las peticiones
 app.use((req, res, next) => {
     console.log(`[${new Date().toISOString()}] ${req.method} ${req.url}`);
