@@ -285,10 +285,10 @@ window.addEventListener('load', () => {
 window.addEventListener('scroll', () => {
     const header = document.querySelector('.header');
     if (window.scrollY > 100) {
-        header.style.background = 'rgba(29, 53, 87, 0.98)';
+        header.style.background = 'rgba(0, 0, 0, 0.98)';
         header.style.padding = '15px 0';
     } else {
-        header.style.background = 'rgba(29, 53, 87, 0.95)';
+        header.style.background = 'rgba(0, 0, 0, 0.95)';
         header.style.padding = '20px 0';
     }
 });

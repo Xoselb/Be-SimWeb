@@ -13,8 +13,8 @@
     --text-color: #333;
     --text-light: #f8f9fa;
     --transition: all 0.3s ease;
-    --success-color: #28a745;
-    --error-color: #dc3545;
+    --success-color: #00ff3c;
+    --error-color: #ff0019;
     --border-color: #ddd;
     --border-radius: 8px;
     --box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
