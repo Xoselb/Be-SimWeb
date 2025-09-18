@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EB Simracing - Track Days</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="css/styles.css">
+    <style>
+        .car-card {
+            background: #000;
+            border: 2px solid #FFF200;
+            border-radius: 10px;
+            padding: 30px;
+            margin-bottom: 40px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            transition: all 0.3s ease;
+        }
+        
+        .car-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 0 20px rgba(255, 242, 0, 0.4);
+        }
+        
+        .car-image {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+        
+        .car-specs {
+            width: 100%;
+            margin: 20px 0;
+        }
+        
+        .car-specs li {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 0;
+            border-bottom: 1px solid #333;
+        }
+        
+        .car-specs li:last-child {
+            border-bottom: none;
+        }
+        
+        .spec-name {
+            color: #FFF200;
+        }
+        
+        .price-tag {
+            font-size: 1.5rem;
+            color: #FFF200;
+            margin: 20px 0;
+            font-weight: bold;
+        }
+        
+        .track-days-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        @media (min-width: 992px) {
+            .track-days-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <h1>EB <span>Simracing</span></h1>
+            </div>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="index.html">Accueil</a></li>
+                    <li><a href="index.html#servicios">Services</a></li>
+                    <li><a href="index.html#galeria">Galerie</a></li>
+                    <li><a href="contacto.html">Contact</a></li>
+                    <li><a href="#login">Membres</a></li>
+                </ul>
+            </nav>
+            <div class="mobile-menu-btn">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="service-hero" style="background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('img/track-hero.jpg') no-repeat center center/cover;">
+        <div class="container">
+            <h1>TRACK DAYS</h1>
+            <p>Vivez des sensations fortes au volant de véritables bolides de course</p>
+        </div>
+    </section>
+
+    <!-- Track Days Content -->
+    <section class="service-content">
+        <div class="container">
+            <div class="service-description">
+                <h2>Vivez l'expérience ultime sur circuit</h2>
+                <p>Découvrez notre sélection exclusive de véhicules de course et de sport préparés pour la piste. Que vous soyez un pilote expérimenté ou un passionné en quête de sensations fortes, nos Track Days sont faits pour vous. Encadrés par des professionnels, vous pourrez repousser vos limites dans un environnement sécurisé.</p>
+            </div>
+            
+            <div class="track-days-grid">
+                <!-- FunCup -->
+                <div class="car-card">
+                    <h3>FunCup</h3>
+                    <img src="img/FUNCUP2.jpeg" alt="FunCup" class="car-image">
+                    <p>La FunCup est la voiture idéale pour s'initier au pilotage sur circuit. Robuste et maniable, elle offre des sensations pures dans un cadre sécurisé.</p>
+                    
+                    <ul class="car-specs">
+                        <li><span class="spec-name">Moteur:</span> 2.0L atmosphérique</li>
+                        <li><span class="spec-name">Puissance:</span> 180 cv</li>
+                        <li><span class="spec-name">Poids:</span> 650 kg</li>
+                        <li><span class="spec-name">Vitesse max:</span> 220 km/h</li>
+                    </ul>
+                    
+                    <div class="price-tag">À partir de 299€</div>
+                    <a href="contacto.html" class="btn btn-primary">RÉSERVER MAINTENANT</a>
+                </div>
+                
+                <!-- C1 -->
+                <div class="car-card">
+                    <h3>Citroën C1 Cup</h3>
+                    <img src="img/c1-cup.jpg" alt="Citroën C1 Cup" class="car-image">
+                    <p>La C1 Cup offre un excellent rapport performance/prix. Idéale pour les pilotes souhaitant s'initier à la compétition.</p>
+                    
+                    <ul class="car-specs">
+                        <li><span class="spec-name">Moteur:</span> 1.0L 3-cylindres</li>
+                        <li><span class="spec-name">Puissance:</span> 120 ch</li>
+                        <li><span class="spec-name">Poids:</span> 800 kg</li>
+                        <li><span class="spec-name">Vitesse max:</span> 180 km/h</li>
+                    </ul>
+                    
+                    <div class="price-tag">À partir de 199€</div>
+                    <a href="contacto.html" class="btn btn-primary">RÉSERVER MAINTENANT</a>
+                </div>
+                
+                <!-- Porsche 718 Turbo S -->
+                <div class="car-card">
+                    <h3>Porsche 718 Turbo S</h3>
+                    <img src="img/porsche-718.jpg" alt="Porsche 718 Turbo S" class="car-image">
+                    <p>La Porsche 718 Turbo S incarne l'excellence allemande. Un pur-sang de course offrant des performances exceptionnelles.</p>
+                    
+                    <ul class="car-specs">
+                        <li><span class="spec-name">Moteur:</span> 2.5L 4-cylindres turbo</li>
+                        <li><span class="spec-name">Puissance:</span> 420 ch</li>
+                        <li><span class="spec-name">Poids:</span> 1,395 kg</li>
+                        <li><span class="spec-name">Vitesse max:</span> 3.4s</li>
+                    </ul>
+                    
+                    <div class="price-tag">À partir de 599€</div>
+                    <a href="contacto.html" class="btn btn-primary">RÉSERVER MAINTENANT</a>
+                </div>
+            </div>
+            
+            <div class="cta-section" style="margin-top: 60px;">
+                <h2>PRÊT À VIVRE L'EXPÉRIENCE ?</h2>
+                <p>Réservez dès maintenant votre session et découvrez les sensations uniques du pilotage sur circuit.</p>
+                <a href="contacto.html" class="btn btn-primary">NOUS CONTACTER</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-about">
+                    <h3><span class="eb-text">EB</span> <span class="simracing-text">Simracing</span></h3>
+                    <p>Votre destination ultime pour le simracing à Nivelles. Expérience, compétition et passion du sport automobile.</p>
+                </div>
+                <div class="footer-links">
+                    <h4>LIENS RAPIDES</h4>
+                    <ul>
+                        <li><a href="index.html">Accueil</a></li>
+                        <li><a href="index.html#servicios">Services</a></li>
+                        <li><a href="index.html#galerie">Galerie</a></li>
+                        <li><a href="contacto.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-contact">
+                    <h4>CONTACT</h4>
+                    <p><i class="fas fa-map-marker-alt"></i> RUE DE LA MAÎTRISE 4, 1400 Nivelles</p>
+                    <p><i class="fas fa-phone"></i> +32 123 45 67 89</p>
+                    <p><i class="fas fa-envelope"></i> info@ebsimracing.com</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 EB Simracing. Tous droits réservés.</p>
+                <div class="social-links">
+                    <a href="https://www.facebook.com/beracingkart/"><i class="fab fa-facebook"></i></a>
+                    <a href="https://www.instagram.com/eb.racing.events/"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/hero-slider.js"></script>
+    <script src="js/index.js"></script>
+</body>
+</html>

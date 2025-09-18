@@ -471,6 +471,72 @@ img {
     padding: 0 20px;
 }
 
+.track-days-cta {
+    display: block;
+    background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), 
+                url('../img/FUNCUP1.jpeg') no-repeat center center/cover;
+    padding: 80px 20px;
+    margin: 60px 0;
+    text-align: center;
+    border-radius: 10px;
+    max-width: 1010px;
+    margin-left: auto;
+    margin-right: auto;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    border: 2px solid #FFF200;
+}
+
+.track-days-cta:hover {
+    transform: translateY(-5px);
+    border-color: #FFF200;
+    box-shadow: 0 0 20px #FFF200;
+}
+
+.track-days-content {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.track-days-content p {
+    color: #fff;
+    font-size: 1.3rem;
+    margin-bottom: 30px;
+    line-height: 1.6;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8);
+}
+
+/* Estilos para el botón dentro del enlace */
+.track-days-cta .btn-wide {
+    padding: 15px 40px;
+    font-size: 1.1rem;
+    min-width: 250px;
+    background-color: rgba(0, 0, 0, 0.8);
+    border: 2px solid #FFF200;
+    color: #FFF200;
+    transition: all 0.3s ease;
+    display: inline-block;
+    text-transform: uppercase;
+    font-weight: bold;
+    letter-spacing: 1px;
+    text-decoration: none;
+}
+
+.track-days-cta .btn-wide:hover {
+    background-color: #FFF200;
+    color: #000;
+    transform: translateY(-3px);
+}
+
+/* Asegurarse de que el enlace no tenga subrayado */
+.track-days-cta, 
+.track-days-cta:hover, 
+.track-days-cta:focus, 
+.track-days-cta:active {
+    text-decoration: none;
+    outline: none;
+}
+
 .service-card {
     background: black;
     padding: 30px;
