@@ -3,9 +3,10 @@ document.addEventListener('DOMContentLoaded', function() {
     const dots = document.querySelectorAll('.dot');
     const prevBtn = document.querySelector('.prev-slide');
     const nextBtn = document.querySelector('.next-slide');
+    const heroTexts = document.querySelectorAll('.hero-text');
     let currentSlide = 0;
     let slideInterval;
-    const slideDuration = 5000; // 5     segundos
+    const slideDuration = 10000; // 10 segundos
 
     // Función para mostrar una diapositiva específica
     function showSlide(index) {
@@ -17,6 +18,34 @@ document.addEventListener('DOMContentLoaded', function() {
         currentSlide = (index + slides.length) % slides.length;
         slides[currentSlide].classList.add('active');
         dots[currentSlide].classList.add('active');
+        
+        // Actualizar el texto según la diapositiva actual
+        updateHeroText(currentSlide);
+    }
+    
+    // Función para actualizar el texto del héroe según la diapositiva
+    function updateHeroText(slideIndex) {
+        // Ocultar todos los textos
+        heroTexts.forEach(text => {
+            text.classList.remove('active');
+        });
+        
+        // Determinar qué texto mostrar basado en el índice de la diapositiva
+        let textIndex = 0;
+        if (slideIndex === 0 || slideIndex === 1) {
+            textIndex = 0; // Simracing
+        } else if (slideIndex === 2 || slideIndex === 3) {
+            textIndex = 1; // Taller
+        } else if (slideIndex === 4 || slideIndex === 5) {
+            textIndex = 2; // Track Days
+        } else {
+            textIndex = 0; // Por defecto
+        }
+        
+        // Mostrar el texto correspondiente
+        if (heroTexts[textIndex]) {
+            heroTexts[textIndex].classList.add('active');
+        }
     }
 
     // Función para ir a la siguiente diapositiva

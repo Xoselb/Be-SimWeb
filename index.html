@@ -43,8 +43,46 @@
         </div>
         <div class="container">
             <div class="hero-content">
-                <h1>Votre nouvelle destination Simracing à Nivelles</h1>
-                <p>Faites la course sur des simulateurs professionnels, détendez-vous dans notre bar et stylisez votre voiture dans notre atelier de décoration.</p>
+                <div class="hero-texts">
+                    <!-- Texto para simuladores (hero-bg.jpg y NUR.jpg) -->
+                    <div class="hero-text active" data-slides="0,1">
+                        <h1 style="color: white !important; line-height: 1.3;">
+                            <span style="display: block; margin-bottom: 0.5em;">Votre nouvelle destination</span>
+                            <span style="display: block;">
+                                <span style="color: #FFF200 !important;">SIMRACING</span>
+                                <span style="color: white !important;"> à </span>
+                                <span style="color: #FFF200 !important;">NIVELLES</span>
+                            </span>
+                        </h1>
+                        <p>Faites la course sur des simulateurs professionnels de pointe, vivez l'expérience ultime de course automobile.</p>
+                    </div>
+                    
+                    <!-- Texto para taller (SPA.jpg y RAT.jpg) -->
+                    <div class="hero-text" data-slides="2,3">
+                        <h1 style="color: white !important; line-height: 1.3;">
+                            <span style="display: block; margin-bottom: 0.5em;">Personnalisez votre</span>
+                            <span style="display: block;">
+                                <span style="color: #FFF200 !important;">EXPÉRIENCE</span>
+                                <span style="color: white !important;"> de </span>
+                                <span style="color: #FFF200 !important;">COURSE</span>
+                            </span>
+                        </h1>
+                        <p>Notre atelier de personnalisation vous permet de créer une expérience de course unique et personnalisée.</p>
+                    </div>
+                    
+                    <!-- Texto para track days (F125.jpg y F1TRA.jpg) -->
+                    <div class="hero-text" data-slides="4,5">
+                        <h1 style="color: white !important; line-height: 1.3;">
+                            <span style="display: block; margin-bottom: 0.5em;">Vivez des journées</span>
+                            <span style="display: block;">
+                                <span style="color: #FFF200 !important;">D'ADRÉNALINE</span>
+                                <span style="color: white !important;"> sur </span>
+                                <span style="color: #FFF200 !important;">MESURE</span>
+                            </span>
+                        </h1>
+                        <p>Découvrez nos formules de Track Days pour des expériences de conduite inoubliables sur les circuits légendaires.</p>
+                    </div>
+                </div>
                 <div class="hero-buttons">
                     <a href="#contacto" class="btn btn-primary">Réservez</a>
                     <a href="#servicios" class="btn btn-outline">services</a>
@@ -436,7 +474,20 @@
             });
         });
     </script>
-    <!-- Hero Slider Script -->
+    <script src="js/login.js"></script>
+    <script src="js/registro.js"></script>
+    <script src="js/perfil.js"></script>
+    <script src="js/citas.js"></script>
+    <script src="js/contacto.js"></script>
     <script src="js/hero-slider.js"></script>
+    <script>
+        // Asegurarse de que el primer texto esté visible al cargar la página
+        document.addEventListener('DOMContentLoaded', function() {
+            const firstText = document.querySelector('.hero-text');
+            if (firstText) {
+                firstText.classList.add('active');
+            }
+        });
+    </script>
 </body>
 </html>
