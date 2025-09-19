@@ -12,7 +12,8 @@
             position: fixed;
             bottom: 30px;
             right: 30px;
-            background: #FFF200;
+            background: #FFF;
+            border: 2px solid #FFF200;
             color: #000;
             width: 60px;
             height: 60px;
@@ -30,14 +31,14 @@
 
         .floating-buy-btn:hover {
             transform: scale(1.1);
-            background: #ffeb3b;
+            background: #FFF200;
         }
 
         .floating-buy-btn .tooltip {
             position: absolute;
             right: 70px;
             background: #333;
-            color: white;
+            color: #000;
             padding: 5px 10px;
             border-radius: 5px;
             font-size: 0.9rem;
@@ -57,27 +58,35 @@
             bottom: 20px;
             left: 50%;
             transform: translateX(-50%);
-            background: rgba(0,0,0,0.7);
-            color: white;
+            background: rgba(0, 0, 0, 0.6);
+            border: 2px solid #FFF200;
+            color: #ffffff;
             padding: 5px 15px;
-            border-radius: 20px;
+            border-radius: 8px;
             font-size: 0.9rem;
             z-index: 10;
         }
 
         /* Estilos específicos para la página de FunCup */
+        /* Asegurar que el body no tenga márgenes que causen espacios blancos */
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #000;
+        }
+
         .car-hero {
             position: relative;
             height: 60vh;
             min-height: 500px;
             background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), 
-                        url('img/FUNCUP1.jpeg') no-repeat center center/cover;
+                        url('img/FUNCUP5.jpeg') no-repeat center center/cover;
             display: flex;
             align-items: center;
             justify-content: center;
             text-align: center;
             color: white;
-            margin-bottom: 50px;
+            margin-bottom: 25px;
         }
 
         .car-hero-content h1 {
@@ -93,6 +102,14 @@
             margin: 0 auto 30px;
         }
 
+        /* Contenedor principal con fondo negro */
+        .main-content {
+            background-color: #000;
+            color: #fff;
+            padding: 25px 0 40px 0;
+            margin-top: 0;
+        }
+
         /* Estilos para el carrusel */
         .carousel-container {
             max-width: 1000px;
@@ -100,8 +117,10 @@
             position: relative;
             overflow: hidden;
             border-radius: 10px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
             transition: all 0.3s ease;
+            background-color: #000;
+            border: 1px solid #333;
         }
         
         .carousel-container:hover {
@@ -137,9 +156,9 @@
         }
 
         .carousel-btn {
-            background: rgba(255, 255, 255, 0.3);
-            border: none;
-            color: white;
+            background: #000000;
+            border: 2px solid #FFF200;
+            color: #FFF200;
             width: 50px;
             height: 50px;
             border-radius: 50%;
@@ -152,12 +171,13 @@
         }
 
         .carousel-btn:hover {
-            background: rgba(255, 255, 255, 0.5);
+            background: #FFF200;
+            color: #000000;
         }
 
         /* Especificaciones técnicas */
         .specs-section {
-            background: #f8f9fa;
+            background: #000000;
             padding: 60px 0;
         }
 
@@ -171,14 +191,15 @@
         }
 
         .spec-card {
-            background: white;
+            background: rgb(0, 0, 0);
+            border: 2px solid #FFF200;
             padding: 30px;
             border-radius: 10px;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
         }
 
         .spec-card h3 {
-            color: #333;
+            color: #FFF200;
             margin-bottom: 20px;
             padding-bottom: 10px;
             border-bottom: 2px solid #FFF200;
@@ -190,16 +211,16 @@
             display: flex;
             justify-content: space-between;
             padding-bottom: 10px;
-            border-bottom: 1px solid #eee;
+            border-bottom: 1px solid #333;
         }
 
         .spec-name {
             font-weight: 600;
-            color: #555;
+            color: #ffffff;
         }
 
         .spec-value {
-            color: #222;
+            color: #ffffff;
             font-weight: 500;
         }
 
@@ -228,6 +249,13 @@
             margin-bottom: 30px;
         }
 
+        /* DETAIL INFO */
+        .detailed-info {
+            background: #000;
+            padding: 60px 0;
+            color: white;
+            text-align: center;
+        }
         /* Responsive */
         /* Estilos responsivos */
         @media (max-width: 768px) {
@@ -291,119 +319,97 @@
         </div>
     </section>
 
-    <!-- Carrusel de imágenes -->
-    <div class="carousel-container">
-        <div class="carousel" id="imageCarousel">
-            <img src="img/FUNCUP1.jpeg" alt="FunCup Vue avant">
-            <img src="img/FUNCUP2.jpeg" alt="FunCup Vue latérale">
-            <img src="img/FUNCUP3.jpeg" alt="FunCup Intérieur">
-            <img src="img/FUNCUP4.jpeg" alt="FunCup Détail moteur">
-            <img src="img/FUNCUP5.jpeg" alt="FunCup Sur piste">
+    <!-- Contenido principal con fondo negro -->
+    <div class="main-content">
+        <!-- Carrusel de imágenes -->
+        <div class="carousel-container">
+            <div class="carousel" id="imageCarousel">
+                <img src="img/FUNCUP6.jpeg" alt="FunCup">
+                <img src="img/FUNCUP1.jpeg" alt="FunCup">
+                <img src="img/FUNCUP4.jpeg" alt="FunCup">
+                <img src="img/FUNCUP5.jpeg" alt="FunCup">
+            </div>
+            <div class="carousel-nav">
+                <button class="carousel-btn" id="prevBtn" aria-label="Image précédente"><i class="fas fa-chevron-left"></i></button>
+                <button class="carousel-btn" id="nextBtn" aria-label="Image suivante"><i class="fas fa-chevron-right"></i></button>
+            </div>
+            <div class="image-counter" id="imageCounter">1/4</div>
         </div>
-        <div class="carousel-nav">
-            <button class="carousel-btn" id="prevBtn" aria-label="Image précédente"><i class="fas fa-chevron-left"></i></button>
-            <button class="carousel-btn" id="nextBtn" aria-label="Image suivante"><i class="fas fa-chevron-right"></i></button>
-        </div>
-        <div class="image-counter" id="imageCounter">1/5</div>
+
+        <!-- Especificaciones técnicas -->
+        <section class="specs-section">
+            <div class="container">
+                <h2 class="section-title">SPÉCIFICATIONS TECHNIQUES</h2>
+                <div class="specs-grid">
+                    <div class="spec-card">
+                        <h3>Moteur</h3>
+                        <div class="spec-item">
+                            <span class="spec-name">Type</span>
+                            <span class="spec-value">4 cylindres en ligne</span>
+                        </div>
+                        <div class="spec-item">
+                            <span class="spec-name">Cylindrée</span>
+                            <span class="spec-value">2.0L atmosphérique</span>
+                        </div>
+                        <div class="spec-item">
+                            <span class="spec-name">Puissance</span>
+                            <span class="spec-value">180 cv @ 6,500 tr/min</span>
+                        </div>
+                        <div class="spec-item">
+                            <span class="spec-name">Couple</span>
+                            <span class="spec-value">220 Nm @ 4,500 tr/min</span>
+                        </div>
+                    </div>
+
+                    <div class="spec-card">
+                        <h3>Performances</h3>
+                        <div class="spec-item">
+                            <span class="spec-name">Vitesse maximale</span>
+                            <span class="spec-value">200 km/h</span>
+                        </div>
+                        <div class="spec-item">
+                            <span class="spec-name">0-100 km/h</span>
+                            <span class="spec-value">4.9 secondes</span>
+                        </div>
+                        <div class="spec-item">
+                            <span class="spec-name">Freinage 100-0 km/h</span>
+                            <span class="spec-value">32 mètres</span>
+                        </div>
+                        <div class="spec-item">
+                            <span class="spec-name">Poids à vide</span>
+                            <span class="spec-value">750 kg</span>
+                        </div>
+                    </div>
+
+                    <div class="spec-card">
+                        <h3>Châssis</h3>
+                        <div class="spec-item">
+                            <span class="spec-name">Type</span>
+                            <span class="spec-value">Châssis tubulaire</span>
+                        </div>
+                        <div class="spec-item">
+                            <span class="spec-name">Suspension</span>
+                            <span class="spec-value">Double triangulation</span>
+                        </div>
+                        <div class="spec-item">
+                            <span class="spec-name">Freins AV/AR</span>
+                            <span class="spec-value">Disques ventilés 280mm</span>
+                        </div>
+                        <div class="spec-item">
+                            <span class="spec-name">Pneumatiques</span>
+                            <span class="spec-value">Slicks compétition</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Botón flotante de compra -->
+        <a href="contacto.html" class="floating-buy-btn" id="floatingBuyBtn">
+            <i class="fas fa-shopping-cart"></i>
+            <span class="tooltip">Réserver maintenant</span>
+        </a>
     </div>
-
-    <!-- Botón flotante de compra -->
-    <a href="contacto.html" class="floating-buy-btn" id="floatingBuyBtn">
-        <i class="fas fa-shopping-cart"></i>
-        <span class="tooltip">Réserver maintenant</span>
-    </a>
-
-    <!-- Información detallada del vehículo -->
-    <section class="detailed-info">
-        <div class="container">
-            <h2 class="section-title">DÉTAILS TECHNIQUES</h2>
-            <div class="info-grid">
-                <div class="info-block">
-                    <h3><i class="fas fa-tachometer-alt"></i> Performances</h3>
-                    <p>La FunCup est conçue pour offrir des performances exceptionnelles sur piste. Son moteur 2.0L atmosphérique délivre une puissance impressionnante de 180 chevaux, permettant d'atteindre une vitesse maximale de 220 km/h. L'accélération de 0 à 100 km/h se fait en seulement 4,9 secondes, grâce à un poids contenu de 650 kg.</p>
-                    
-                    <h3><i class="fas fa-cogs"></i> Transmission</h3>
-                    <p>Boîte de vitesses séquentielle à 6 rapports avec palettes au volant. Transmission aux roues arrière pour une expérience de conduite dynamique et engageante. Différentiel autobloquant réglable pour une meilleure sortie de virage.</p>
-                </div>
-                
-                <div class="info-block">
-                    <h3><i class="fas fa-car-crash"></i> Sécurité</h3>
-                    <p>Structure monocoque en acier renforcé avec arceau de sécurité intégré. Système d'extincteur automatique, coupe-batterie et réservoir de carburant de sécurité. Siège baquet homologué FIA avec harnais 6 points.</p>
-                    
-                    <h3><i class="fas fa-tools"></i> Entretien</h3>
-                    <p>Moteur conçu pour la compétition avec des intervalles de révision de 30 heures de fonctionnement. Châssis et composants inspectés après chaque session. Assistance technique disponible sur tous les circuits partenaires.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Especificaciones técnicas -->
-    <section class="specs-section">
-        <div class="container">
-            <h2 class="section-title">SPÉCIFICATIONS TECHNIQUES</h2>
-            <div class="specs-grid">
-                <div class="spec-card">
-                    <h3>Moteur</h3>
-                    <div class="spec-item">
-                        <span class="spec-name">Type</span>
-                        <span class="spec-value">4 cylindres en ligne</span>
-                    </div>
-                    <div class="spec-item">
-                        <span class="spec-name">Cylindrée</span>
-                        <span class="spec-value">2.0L atmosphérique</span>
-                    </div>
-                    <div class="spec-item">
-                        <span class="spec-name">Puissance</span>
-                        <span class="spec-value">180 cv @ 6,500 tr/min</span>
-                    </div>
-                    <div class="spec-item">
-                        <span class="spec-name">Couple</span>
-                        <span class="spec-value">220 Nm @ 4,500 tr/min</span>
-                    </div>
-                </div>
-
-                <div class="spec-card">
-                    <h3>Performances</h3>
-                    <div class="spec-item">
-                        <span class="spec-name">Vitesse maximale</span>
-                        <span class="spec-value">220 km/h</span>
-                    </div>
-                    <div class="spec-item">
-                        <span class="spec-name">0-100 km/h</span>
-                        <span class="spec-value">4.9 secondes</span>
-                    </div>
-                    <div class="spec-item">
-                        <span class="spec-name">Freinage 100-0 km/h</span>
-                        <span class="spec-value">32 mètres</span>
-                    </div>
-                    <div class="spec-item">
-                        <span class="spec-name">Poids à vide</span>
-                        <span class="spec-value">650 kg</span>
-                    </div>
-                </div>
-
-                <div class="spec-card">
-                    <h3>Châssis</h3>
-                    <div class="spec-item">
-                        <span class="spec-name">Type</span>
-                        <span class="spec-value">Châssis tubulaire</span>
-                    </div>
-                    <div class="spec-item">
-                        <span class="spec-name">Suspension</span>
-                        <span class="spec-value">Double triangulation</span>
-                    </div>
-                    <div class="spec-item">
-                        <span class="spec-name">Freins AV/AR</span>
-                        <span class="spec-value">Disques ventilés 280mm</span>
-                    </div>
-                    <div class="spec-item">
-                        <span class="spec-name">Pneumatiques</span>
-                        <span class="spec-value">Slicks compétition</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
 
     <!-- Experiencia de conducción -->
     <section class="experience-section">
@@ -441,8 +447,8 @@
                 <div class="footer-contact">
                     <h4>Contact</h4>
                     <p><i class="fas fa-map-marker-alt"></i> Rue de la Piste, 1400 Nivelles</p>
-                    <p><i class="fas fa-phone"></i> +32 123 45 67 89</p>
-                    <p><i class="fas fa-envelope"></i> info@eb-simracing.be</p>
+                    <p><i class="fas fa-phone"></i> +32 495 57 92 78</p>
+                    <p><i class="fas fa-envelope"></i> ebracingevents@gmail.com</p>
                 </div>
             </div>
             <div class="footer-bottom">
