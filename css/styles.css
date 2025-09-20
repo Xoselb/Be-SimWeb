@@ -541,6 +541,7 @@ img {
     background: black;
     padding: 30px;
     border-radius: 10px;
+    color: #FFFFFF;
     border: 2px solid #FFF200; /* Bordure jaune */
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
     transition: all 0.3s ease;
@@ -592,7 +593,8 @@ img {
 .service-card h3 {
     font-size: 1.5rem;
     margin-bottom: 15px;
-    color: #ffffff; /* Couleur du texte en jaune pour contraster avec le fond noir */
+    color: #FFFFFF;
+    transition: color 0.3s ease;
 }
 
 .service-card:hover h3 {
@@ -1963,8 +1965,25 @@ input[type="date"]:not(:placeholder-shown) + .date-label {
 
 .feature-card i {
     font-size: 2.5rem;
-    color: #ffffff;
+    color: #FFF200;
     margin-bottom: 20px;
+}
+
+.feature-card h2 {
+    color: #FFF200;
+}
+
+.feature-card p {
+    color: #FFFFFF;
+    margin-bottom: 20px;
+}
+
+.feature-card:hover h2 {
+    color: #FFF200;
+}
+
+.feature-card:hover p {
+    color: #FFFFFF;
 }
 
 .menu-section {
