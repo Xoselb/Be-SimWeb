@@ -19,6 +19,8 @@
             transition: all 0.3s ease;
             position: relative;
             overflow: hidden;
+            height: 100%;
+            box-sizing: border-box;
         }
         
         .car-card:hover {
@@ -34,9 +36,18 @@
             margin-bottom: 20px;
         }
         
+        .car-card p {
+            margin: 15px 0;
+            text-align: center;
+            line-height: 1.6;
+            flex-grow: 1;
+            margin-bottom: 0;
+        }
+        
         .car-specs {
             width: 100%;
             margin: 20px 0;
+            flex-grow: 1;
         }
         
         .car-specs li {
@@ -57,28 +68,34 @@
         .price-tag {
             font-size: 1.5rem;
             color: #FFF200;
-            margin: 15px 0;
+            margin: 15px 0 25px 0;
             font-weight: bold;
+            width: 100%;
+            text-align: center;
         }
         
         .car-buttons {
             display: flex;
             gap: 15px;
             width: 100%;
-            margin-top: 15px;
+            margin-top: auto;
+            padding-top: 20px;
         }
         
         .btn-details, .btn-buy {
             flex: 1;
             padding: 12px 15px;
-            border: none;
             border-radius: 5px;
             font-weight: 600;
             text-align: center;
             cursor: pointer;
             transition: all 0.3s ease;
             text-decoration: none;
-            display: inline-block;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 44px;
+            line-height: 1;
         }
         
         .btn-details {
@@ -168,8 +185,8 @@
                     
                     <ul class="car-specs">
                         <li><span class="spec-name">Moteur:</span> 2.0L atmosphérique</li>
-                        <li><span class="spec-name">Puissance:</span> 180 cv</li>
-                        <li><span class="spec-name">Poids:</span> 650 kg</li>
+                        <li><span class="spec-name">Puissance:</span> 180 CV</li>
+                        <li><span class="spec-name">Poids:</span> 650 KG</li>
                         <li><span class="spec-name">Vitesse max:</span> 220 km/h</li>
                     </ul>
                     
@@ -188,8 +205,8 @@
                     
                     <ul class="car-specs">
                         <li><span class="spec-name">Moteur:</span> 1.0L 3-cylindres</li>
-                        <li><span class="spec-name">Puissance:</span> 70 ch</li>
-                        <li><span class="spec-name">Poids:</span> 850 kg</li>
+                        <li><span class="spec-name">Puissance:</span> 70 CV</li>
+                        <li><span class="spec-name">Poids:</span> 850 KG</li>
                         <li><span class="spec-name">Vitesse max:</span> 150 km/h</li>
                     </ul>
                     
@@ -208,8 +225,8 @@
                     
                     <ul class="car-specs">
                         <li><span class="spec-name">Moteur:</span> 2.5L TURBO</li>
-                        <li><span class="spec-name">Puissance:</span> 350 cv</li>
-                        <li><span class="spec-name">Poids:</span> 1,300 kg</li>
+                        <li><span class="spec-name">Puissance:</span> 350 CV</li>
+                        <li><span class="spec-name">Poids:</span> 1,300 KG</li>
                         <li><span class="spec-name">Vitesse max:</span> 305 km/h</li>
                     </ul>
                     

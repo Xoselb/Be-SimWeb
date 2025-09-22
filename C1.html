@@ -7,6 +7,64 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="css/styles.css">
     <style>
+        /* Sección de wallpapers */
+        .wallpapers-section {
+            background-color: #000;
+            padding: 60px 0;
+            text-align: center;
+        }
+        
+        .wallpapers-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .wallpapers-title {
+            color: #FFF200;
+            font-size: 2.2rem;
+            margin-bottom: 40px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        
+        .wallpapers-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+            margin-top: 30px;
+        }
+        
+        .wallpaper-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 15px 30px;
+            background-color: #000;
+            color: #FFF200;
+            border: 2px solid #FFF200;
+            border-radius: 5px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            min-width: 250px;
+        }
+        
+        .wallpaper-btn i {
+            margin-right: 10px;
+            font-size: 1.3rem;
+        }
+        
+        .wallpaper-btn:hover {
+            background-color: #FFF200;
+            color: #000;
+            transform: translateY(-3px);
+            box-shadow: 0 0px 15px #FFF200;
+        }
+        
         /* Botón de compra flotante */
         .floating-buy-btn {
             position: fixed;
@@ -418,6 +476,21 @@
             <p>La Citroën C1 est une véritable pépite pour les amateurs de sensations fortes. Sa légèreté et son agilité en font une voiture extrêmement amusante à piloter, idéale pour apprendre les bases du pilotage sportif. Son moteur vif et sa boîte de vitesses précise vous offrent un contrôle total sur la piste.</p>
             <p>Grâce à son châssis renforcé et ses suspensions réglables, le C1 Racing reste précis et prévisible dans les virages, tout en restant accessible aux pilotes de tous niveaux. C'est le véhicule parfait pour découvrir les joies du pilotage sur circuit dans des conditions optimales de sécurité et de performance.</p>
             <a href="contacto.html" class="btn btn-primary">RÉSERVER UNE SESSION</a>
+        </div>
+    </section>
+
+    <!-- Sección de Wallpapers -->
+    <section class="wallpapers-section">
+        <div class="wallpapers-container">
+            <h2 class="wallpapers-title">TÉLÉCHARGER NOS WALLPAPERS</h2>
+            <div class="wallpapers-buttons">
+                <a href="img/wallpapers/C1PC.zip" class="wallpaper-btn" download="C1-Wallpapers-PC">
+                    <i class="fas fa-desktop"></i> Wallpapers PC
+                </a>
+                <a href="img/wallpapers/C1M.zip" class="wallpaper-btn" download="C1-Wallpapers-Mobile">
+                    <i class="fas fa-mobile-alt"></i> Wallpapers Mobile
+                </a>
+            </div>
         </div>
     </section>
 
