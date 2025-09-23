@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EB Simracing - Matériel de Simulation</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="css/styles.css">
+    <style>
+        /* Estilos generales */
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #000;
+            color: #fff;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        .header {
+            background-color: #000;
+            padding: 20px 0;
+            border-bottom: 2px solid #FFF200;
+        }
+
+        .logo h1 {
+            color: #fff;
+            margin: 0;
+            font-size: 2rem;
+        }
+
+        .logo span {
+            color: #FFF200;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), 
+                        url('img/NUR.jpg') no-repeat center center/cover;
+            height: 60vh;
+            display: flex;
+            align-items: center;
+            text-align: center;
+            color: #fff;
+            margin-bottom: 60px;
+        }
+
+        .hero-content h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            color: #FFF200;
+            text-transform: uppercase;
+        }
+
+        .hero-content p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        /* Sección de Equipamiento Principal */
+        .main-equipment {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            color: #FFF200;
+            font-size: 2.5rem;
+            margin-bottom: 60px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .equipment-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 60px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .equipment-item {
+            background: #111;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+
+        .equipment-img {
+            width: 100%;
+            height: 500px;
+            object-fit: cover;
+            border-bottom: 3px solid #FFF200;
+        }
+
+        .equipment-content {
+            padding: 30px;
+        }
+
+        .equipment-title {
+            color: #FFF200;
+            font-size: 2rem;
+            margin: 0 0 20px 0;
+        }
+
+        .equipment-desc {
+            color: #ddd;
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 25px;
+        }
+
+        .specs-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .spec-item {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 15px;
+            border-radius: 5px;
+            text-align: center;
+        }
+
+        .spec-value {
+            color: #FFF200;
+            font-size: 1.5rem;
+            font-weight: bold;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .spec-label {
+            color: #aaa;
+            font-size: 0.9rem;
+        }
+
+        /* Sección de Componentes */
+        .components-section {
+            padding: 80px 0;
+            background-color: #0a0a0a;
+        }
+
+        .components-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .component-card {
+            background: #111;
+            border-radius: 10px;
+            overflow: hidden;
+            transition: transform 0.3s ease;
+            border: 1px solid #222;
+        }
+
+        .component-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 20px rgba(255, 242, 0, 0.1);
+        }
+
+        .component-img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-bottom: 2px solid #FFF200;
+        }
+
+        .component-content {
+            padding: 20px;
+        }
+
+        .component-title {
+            color: #FFF200;
+            margin: 0 0 10px 0;
+            font-size: 1.3rem;
+        }
+
+        .component-brand {
+            color: #888;
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        .component-desc {
+            color: #bbb;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        /* Footer */
+        .footer {
+            background-color: #000;
+            color: #fff;
+            padding: 60px 0 20px;
+            border-top: 2px solid #FFF200;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-about h3 {
+            color: #FFF200;
+            margin-top: 0;
+        }
+
+        .footer-links h4, .footer-contact h4 {
+            color: #FFF200;
+            margin-top: 0;
+            margin-bottom: 20px;
+        }
+
+        .footer-links ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links a {
+            color: #fff;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: #FFF200;
+        }
+
+        .footer-contact p {
+            margin: 10px 0;
+            display: flex;
+            align-items: center;
+        }
+
+        .footer-contact i {
+            margin-right: 10px;
+            color: #FFF200;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #222;
+            font-size: 0.9rem;
+            color: #888;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+            
+            .equipment-img {
+                height: 350px;
+            }
+            
+            .specs-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .specs-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .equipment-img {
+                height: 250px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <h1>EB <span>Simracing</span></h1>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>MATÉRIEL DE SIMULATION</h1>
+                <p>Découvrez l'équipement de pointe qui alimente notre expérience de simulation ultime</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Equipamiento Principal -->
+    <section class="main-equipment">
+        <div class="container">
+            <h2 class="section-title">NOTRE CONFIGURATION PRINCIPALE</h2>
+            
+            <div class="equipment-grid">
+                <!-- Base Simucube 2 Pro -->
+                <div class="equipment-item">
+                    <img src="img/SimCubePro2.jpg" alt="Base Simucube 2 Pro" class="equipment-img">
+                    <div class="equipment-content">
+                        <h3 class="equipment-title">Base SimCube 2 PRO</h3>
+                        <p class="equipment-desc">
+                            La base de direction Simucube 2 Pro représente le summum de la technologie de retour de force. 
+                            Son moteur sans balai haute performance offre une réponse instantanée et des détails de force 
+                            incroyablement précis, reproduisant fidèlement les sensations de conduite réelle.
+                        </p>
+                        <div class="specs-grid">
+                            <div class="spec-item">
+                                <span class="spec-value">25 Nm</span>
+                                <span class="spec-label">Couple Max</span>
+                            </div>
+                            <div class="spec-item">
+                                <span class="spec-value">0.00006°</span>
+                                <span class="spec-label">Résolution</span>
+                            </div>
+                            <div class="spec-item">
+                                <span class="spec-value">480 Hz</span>
+                                <span class="spec-label">Taux de Rafraîchissement</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Volante Cube Controls -->
+                <div class="equipment-item">
+                    <img src="img/VSimCube.png" alt="Volante Cube Controls" class="equipment-img">
+                    <div class="equipment-content">
+                        <h3 class="equipment-title">VOLANTE CUBE CONTROLS</h3>
+                        <p class="equipment-desc">
+                            Conçu pour les pilotes professionnels, ce volant allie légèreté et robustesse. 
+                            Sa construction en fibre de carbone et ses commandes haptiques offrent un retour tactile précis, 
+                            tandis que son écran intégré affiche des données de télémétrie en temps réel.
+                        </p>
+                        <div class="specs-grid">
+                            <div class="spec-item">
+                                <span class="spec-value">24</span>
+                                <span class="spec-label">Boutons Program.</span>
+                            </div>
+                            <div class="spec-item">
+                                <span class="spec-value">OLED 1.3"</span>
+                                <span class="spec-label">Écran Intégré</span>
+                            </div>
+                            <div class="spec-item">
+                                <span class="spec-value">980g</span>
+                                <span class="spec-label">Poids</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Pedales Heusinkveld -->
+                <div class="equipment-item">
+                    <img src="img/PHEUSINKVELDU.jpg" alt="Pedales Heusinkveld" class="equipment-img">
+                    <div class="equipment-content">
+                        <h3 class="equipment-title">PÉDALES HEUSINKVELD ULTIMATE+</h3>
+                        <p class="equipment-desc">
+                            Le système de pédales le plus avancé du marché, utilisé par les équipes de course professionnelles. 
+                            Construction entièrement en acier inoxydable avec des cellules de charge à haute précision 
+                            pour un contrôle absolu de l'accélération et du freinage.
+                        </p>
+                        <div class="specs-grid">
+                            <div class="spec-item">
+                                <span class="spec-value">200kg</span>
+                                <span class="spec-label">Force Max Frein</span>
+                            </div>
+                            <div class="spec-item">
+                                <span class="spec-value">16-bit</span>
+                                <span class="spec-label">Résolution</span>
+                            </div>
+                            <div class="spec-item">
+                                <span class="spec-value">Ajustable</span>
+                                <span class="spec-label">Positionnement</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Componentes -->
+    <section class="components-section">
+        <div class="container">
+            <h2 class="section-title">COMPOSANTS PRINCIPAUX</h2>
+            
+            <div class="components-grid">
+                <!-- Componente 1 -->
+                <div class="component-card">
+                    <img src="img/simucube-motor.jpg" alt="Moteur Simucube" class="component-img">
+                    <div class="component-content">
+                        <h3 class="component-title">Moteur Mige</h3>
+                        <span class="component-brand">Simucube</span>
+                        <p class="component-desc">Moteur sans balais haute performance offrant un couple exceptionnel et une réponse ultra-rapide pour une expérience de conduite réaliste.</p>
+                    </div>
+                </div>
+
+                <!-- Componente 2 -->
+                <div class="component-card">
+                    <img src="img/handbrake.jpg" alt="Frein à main" class="component-img">
+                    <div class="component-content">
+                        <h3 class="component-title">Frein à Main Hydraulique</h3>
+                        <span class="component-brand">Heusinkveld</span>
+                        <p class="component-desc">Système de frein à main hydraulique avec capteur de position pour un contrôle précis dans les dérapages contrôlés.</p>
+                    </div>
+                </div>
+
+                <!-- Componente 3 -->
+                <div class="component-card">
+                    <img src="img/shifter.jpg" alt="Levier de vitesses" class="component-img">
+                    <div class="component-content">
+                        <h3 class="component-title">Levier Séquentiel</h3>
+                        <span class="component-brand">Simagic</span>
+                        <p class="component-desc">Levier de vitesses séquentiel à course courte avec retour de force réglable pour des changements de rapport précis et rapides.</p>
+                    </div>
+                </div>
+
+                <!-- Componente 4 -->
+                <div class="component-card">
+                    <img src="img/pedal-plate.jpg" alt="Plaque de pédales" class="component-img">
+                    <div class="component-content">
+                        <h3 class="component-title">Plaque de Pédales</h3>
+                        <span class="component-brand">Trak Racer</span>
+                        <p class="component-desc">Plateforme réglable en acier pour un positionnement personnalisé des pédales selon les préférences du pilote.</p>
+                    </div>
+                </div>
+
+                <!-- Componente 5 -->
+                <div class="component-card">
+                    <img src="img/button-box.jpg" alt="Boîtier de commandes" class="component-img">
+                    <div class="component-content">
+                        <h3 class="component-title">Boîtier de Contrôle</h3>
+                        <span class="component-brand">SimRacingBay</span>
+                        <p class="component-desc">Unité de commande supplémentaire avec interrupteurs rotatifs et boutons programmables pour un accès rapide aux fonctions du simulateur.</p>
+                    </div>
+                </div>
+
+                <!-- Componente 6 -->
+                <div class="component-card">
+                    <img src="img/cockpit.jpg" alt="Châssis de simulation" class="component-img">
+                    <div class="component-content">
+                        <h3 class="component-title">Châssis Pro</h3>
+                        <span class="component-brand">Next Level Racing</span>
+                        <p class="component-desc">Structure en acier robuste offrant une stabilité maximale même lors des manœuvres les plus agressives.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-about">
+                    <h3>À PROPOS DE NOUS</h3>
+                    <p>EB Simracing offre une expérience de simulation de course ultime avec du matériel professionnel et une expertise inégalée.</p>
+                </div>
+                <div class="footer-links">
+                    <h4>LIENS RAPIDES</h4>
+                    <ul>
+                        <li><a href="index.html">Accueil</a></li>
+                        <li><a href="simulateurs.html">Simulateurs</a></li>
+                        <li><a href="track-days.html">Track Days</a></li>
+                        <li><a href="contacto.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-contact">
+                    <h4>CONTACT</h4>
+                    <p><i class="fas fa-map-marker-alt"></i> Rue de la Piste, 1400 Nivelles</p>
+                    <p><i class="fas fa-phone"></i> +32 495 57 92 78</p>
+                    <p><i class="fas fa-envelope"></i> ebracingevents@gmail.com</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 EB Simracing. Tous droits réservés.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
