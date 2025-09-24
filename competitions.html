@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="css/styles.css">
     <style>
-        /* Estilos específicos para la página de competiciones */
+        /* Styles spécifiques pour la page des compétitions */
         :root {
             --primary: #FFF200;
             --dark: #121212;
@@ -17,7 +17,7 @@
             --transition: all 0.3s ease;
         }
         
-        /* Asegurar que no haya márgenes ni rellenos en el body y html */
+        /* S'assurer qu'il n'y a pas de marges ni de remplissage dans le body et html */
         html, body {
             margin: 0;
             padding: 0;
@@ -27,7 +27,7 @@
             background-color: #000000;
         }
         
-        /* Asegurar que el contenedor principal ocupe todo el ancho */
+        /* S'assurer que le conteneur principal occupe toute la largeur */
         body > .container,
         .events-grid,
         .events {
@@ -85,8 +85,8 @@
         
         .event-card:hover {
             transform: translateY(-10px);
-            box-shadow: 0 10px 25px rgba(255, 242, 0, 0.2);
-            border-color: var(--primary);
+            box-shadow: 0 0px 15px #FFF200;
+            border-color: #FFF200;
         }
         
         .event-image {
@@ -360,6 +360,50 @@
             margin-top: 60px;
         }
         
+        /* Estilos para los indicadores de tipo de evento */
+        .event-category-container {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 12px;
+            flex-wrap: wrap;
+        }
+        
+        .event-category {
+            display: inline-block;
+            background-color: rgba(255, 242, 0, 0.1);
+            color: var(--primary);
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin: 0;
+        }
+        
+        .event-type {
+            display: inline-block;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin: 0;
+        }
+        
+        .event-type.irl {
+            background-color: rgba(231, 76, 60, 0.1);
+            color: #e74c3c;
+            border: 1px solid #e74c3c;
+        }
+        
+        .event-type.sim {
+            background-color: rgba(52, 152, 219, 0.1);
+            color: #3498db;
+            border: 1px solid #3498db;
+        }
+        
         .podium-place {
             display: flex;
             align-items: center;
@@ -467,56 +511,12 @@
     <section class="events">
         <div class="container">
             <div class="events-grid">
-                <!-- Event 1 - Terminé -->
-                <div class="event-card" 
-                     data-event-id="zandvoort-24h-2023"
-                     data-start-date="2023-09-23T15:00:00"
-                     data-end-date="2023-09-24T15:00:00"
-                     data-image="img/WINZAND.JPG"
-                     data-title="24h de Zandvoort - FunCup"
-                     data-category="Endurance"
-                     data-status="completed"
-                     data-podium='{"1": {"name": "Equipo #32", "time": "24:12:45.321"}, "2": {"name": "Equipo #15", "time": "+2 Laps"}, "3": {"name": "Equipo #07", "time": "+3 Laps"}}'>
-                    <div class="event-image" style="background-image: url('img/WINZAND.JPG');">
-                        <span class="event-date">23 SEPT 2023</span>
-                        <div class="countdown-timer"></div>
-                    </div>
-                    <div class="event-content">
-                        <span class="event-category">Endurance</span>
-                        <h3 class="event-title">24h de Zandvoort - FunCup</h3>
-                        <div class="event-meta">
-                            <span><i class="fas fa-flag-checkered"></i> 1 Course</span>
-                            <span><i class="fas fa-users"></i> 12/15 Équipes</span>
-                            <span class="event-status status-completed">Terminé</span>
-                        </div>
-                        <p class="event-description">Course d'endurance sur le mythique circuit de Zandvoort avec des FunCup. Épreuve par équipe de 2 à 4 pilotes.</p>
-                        <a href="#" class="btn-competition">Voir les résultats</a>
-                        <a href="#" class="btn-competition btn-outline">Résumé</a>
-                        <div class="podium">
-                            <div class="podium-step">
-                                <div class="podium-place">1</div>
-                                <div class="podium-driver">Equipo #32</div>
-                                <div class="podium-time">24:12:45.321</div>
-                            </div>
-                            <div class="podium-step">
-                                <div class="podium-place">2</div>
-                                <div class="podium-driver">Equipo #15</div>
-                                <div class="podium-time">+2 Laps</div>
-                            </div>
-                            <div class="podium-step">
-                                <div class="podium-place">3</div>
-                                <div class="podium-driver">Equipo #07</div>
-                                <div class="podium-time">+3 Laps</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
 
                 <!-- Event 2 - Semaine prochaine -->
                 <div class="event-card" 
                      data-event-id="gt3-sprint-spa-2025"
                      data-start-date="2025-09-24T08:30:00"
-                     data-end-date="2025-09-24T18:00:00"
+                     data-end-date="2025-09-24T19:00:00"
                      data-image="img/SGT3SPA.jpg"
                      data-title="Sprint GT3 Series - SPA"
                      data-category="GT3 Sprint"
@@ -527,7 +527,10 @@
                         <div class="countdown-timer"></div>
                     </div>
                     <div class="event-content">
-                        <span class="event-category">GT3 Sprint</span>
+                        <div class="event-category-container">
+                            <span class="event-category">GT4 Sprint</span>
+                            <span class="event-type sim">SIM</span>
+                        </div>
                         <h3 class="event-title">Sprint GT3 Series - SPA</h3>
                         <div class="event-meta">
                             <span><i class="fas fa-flag-checkered"></i> 2 Courses</span>
@@ -536,7 +539,7 @@
                         </div>
                         <p class="event-description">Deux courses sprint sur le mythique circuit de Spa-Francorchamps. Qualifications et courses le même jour.</p>
                         <a href="#" class="btn-competition">S'inscrire</a>
-                        <a href="championship-details.html" class="btn-competition btn-outline">Règlement</a>
+                        <a href="GT3SPRINT.html" class="btn-competition btn-outline">Règlement</a>
                     </div>
                 </div>
 
@@ -555,7 +558,10 @@
                         <div class="countdown-timer"></div>
                     </div>
                     <div class="event-content">
-                        <span class="event-category">Endurance</span>
+                        <div class="event-category-container">
+                            <span class="event-category">Endurance</span>
+                            <span class="event-type irl">IRL</span>
+                        </div>
                         <h3 class="event-title">6h du Nürburgring - GT3</h3>
                         <div class="event-meta">
                             <span><i class="fas fa-flag-checkered"></i> 1 Course</span>
@@ -577,13 +583,16 @@
                      data-title="Grand Prix de Monaco"
                      data-category="F1 2023"
                      data-status="upcoming"
-                     data-podium='{"1": {"name": "Piloto F1 #1", "time": "1:30:45.123"}, "2": {"name": "Piloto F1 #2", "time": "+12.345"}, "3": {"name": "Piloto F1 #3", "time": "+15.678"}}'>
+                     data-podium='{"1": {"name": "Pilote F1 #1", "time": "1:30:45.123"}, "2": {"name": "Pilote F1 #2", "time": "+12.345"}, "3": {"name": "Pilote F1 #3", "time": "+15.678"}}'>
                     <div class="event-image" style="background-image: url('img/F12023MON.jpg');">
                         <span class="event-date">14 OCT 2025</span>
                         <div class="countdown-timer"></div>
                     </div>
                     <div class="event-content">
-                        <span class="event-category">F1 2023</span>
+                        <div class="event-category-container">
+                            <span class="event-category">F1 2023</span>
+                            <span class="event-type sim">SIM</span>
+                        </div>
                         <h3 class="event-title">Grand Prix de Monaco</h3>
                         <div class="event-meta">
                             <span><i class="fas fa-flag-checkered"></i> 1 Grand Prix</span>
@@ -599,92 +608,23 @@
         </div>
     </section>
 
-    <!-- Sección de Carreras Terminadas -->
+    <!-- Section des Courses Terminées -->
     <section class="past-events">
         <div class="container">
-            <h2>Carreras Terminadas</h2>
+            <h2>Courses Terminées</h2>
             <div class="events-grid">
-                <!-- Carrera Terminada 1 -->
+                <!-- Course Terminée 1 -->
                 <div class="past-event-card">
                     <div class="past-event-image" style="background-image: url('img/WINZAND.JPG');">
                         <span class="past-event-date">23 SEP 2023</span>
                     </div>
                     <div class="past-event-content">
+                        <div class="event-category-container">
+                            <span class="event-category">Endurance</span>
+                            <span class="event-type irl">IRL</span>
+                        </div>
                         <h3 class="past-event-title">24h de Zandvoort - FunCup</h3>
-                        <div class="podium">
-                            <div class="podium-step">
-                                <div class="podium-place">1</div>
-                                <div class="podium-driver">Equipo #32</div>
-                                <div class="podium-time">24:12:45.321</div>
-                            </div>
-                            <div class="podium-step">
-                                <div class="podium-place">2</div>
-                                <div class="podium-driver">Equipo #15</div>
-                                <div class="podium-time">+2 Laps</div>
-                            </div>
-                            <div class="podium-step">
-                                <div class="podium-place">3</div>
-                                <div class="podium-driver">Equipo #07</div>
-                                <div class="podium-time">+3 Laps</div>
-                            </div>
-                        </div>
-                        <a href="#" class="btn-competition btn-outline">Ver Clasificación Completa</a>
-                    </div>
-                </div>
-
-                <!-- Carrera Terminada 2 -->
-                <div class="past-event-card">
-                    <div class="past-event-image" style="background-image: url('img/SPRINTSPA.jpg');">
-                        <span class="past-event-date">15 JUN 2023</span>
-                    </div>
-                    <div class="past-event-content">
-                        <h3 class="past-event-title">Sprint GT3 Series - SPA</h3>
-                        <div class="podium">
-                            <div class="podium-step">
-                                <div class="podium-place">1</div>
-                                <div class="podium-driver">Carlos S.</div>
-                                <div class="podium-time">2:01:45.123</div>
-                            </div>
-                            <div class="podium-step">
-                                <div class="podium-place">2</div>
-                                <div class="podium-driver">María L.</div>
-                                <div class="podium-time">+12.456</div>
-                            </div>
-                            <div class="podium-step">
-                                <div class="podium-place">3</div>
-                                <div class="podium-driver">David M.</div>
-                                <div class="podium-time">+15.789</div>
-                            </div>
-                        </div>
-                        <a href="#" class="btn-competition btn-outline">Ver Clasificación Completa</a>
-                    </div>
-                </div>
-
-                <!-- Carrera Terminada 3 -->
-                <div class="past-event-card">
-                    <div class="past-event-image" style="background-image: url('img/6HGT3NUR.jpeg');">
-                        <span class="past-event-date">20 MAY 2023</span>
-                    </div>
-                    <div class="past-event-content">
-                        <h3 class="past-event-title">6h del Nürburgring - GT3</h3>
-                        <div class="podium">
-                            <div class="podium-step">
-                                <div class="podium-place">1</div>
-                                <div class="podium-driver">Equipo #45</div>
-                                <div class="podium-time">6:02:34.567</div>
-                            </div>
-                            <div class="podium-step">
-                                <div class="podium-place">2</div>
-                                <div class="podium-driver">Equipo #12</div>
-                                <div class="podium-time">+1:23.456</div>
-                            </div>
-                            <div class="podium-step">
-                                <div class="podium-place">3</div>
-                                <div class="podium-driver">Equipo #33</div>
-                                <div class="podium-time">+1:45.678</div>
-                            </div>
-                        </div>
-                        <a href="#" class="btn-competition btn-outline">Ver Clasificación Completa</a>
+                        <a href="#" class="btn-competition btn-outline">Voir le Classement Complet</a>
                     </div>
                 </div>
             </div>
@@ -736,13 +676,13 @@
                 const seconds = Math.floor((timeDiff % (1000 * 60)) / 1000);
                 
                 if (days > 0) {
-                    return `COMMENCE DANS ${days}J ${hours}H`;
+                    return `${days}J ${hours}H`;
                 } else if (hours > 0) {
-                    return `COMMENCE DANS ${hours}H ${minutes}M`;
+                    return `${hours}H ${minutes}M`;
                 } else if (minutes > 0) {
-                    return `COMMENCE DANS ${minutes}M ${seconds}S`;
+                    return `${minutes}M ${seconds}S`;
                 } else {
-                    return `COMMENCE DANS ${seconds}S`;
+                    return `${seconds}S`;
                 }
             }
 
@@ -753,49 +693,59 @@
                 
                 eventCards.forEach(card => {
                     const startDate = new Date(card.getAttribute('data-start-date'));
-                    const timeDiff = startDate - now;
+                    const endDate = card.getAttribute('data-end-date') ? new Date(card.getAttribute('data-end-date')) : null;
                     const timerElement = card.querySelector('.countdown-timer');
                     
-                    // Mostrar siempre el contador, incluso si el evento ya pasó
+                    // Mostrar siempre el contador
                     timerElement.style.display = 'block';
-                    
-                    // Si el evento ya pasó
-                    if (timeDiff <= 0) {
-                        timerElement.textContent = 'TERMINÉ';
-                        timerElement.style.background = 'rgba(0, 0, 0, 0.9)';
-                        timerElement.classList.add('active');
-                        return;
-                    }
-                    
-                    // Mostrar cuenta regresiva para eventos futuros
-                    timerElement.textContent = formatTimeRemaining(timeDiff);
                     timerElement.classList.add('active');
                     
-                    // Resaltar según la proximidad del evento
-                    const hoursDiff = timeDiff / (1000 * 60 * 60);
-                    if (hoursDiff < 24) {
-                        // Rojo para menos de 24 horas
-                        timerElement.style.background = 'rgba(231, 76, 60, 0.9)';
+                    // Estado 1: Antes de la carrera
+                    if (now < startDate) {
+                        const timeToStart = startDate - now;
+                        timerElement.textContent = `COMMENCE DANS ${formatTimeRemaining(timeToStart)}`;
+                        
+                        // Resaltar según la proximidad del evento
+                        const hoursDiff = timeToStart / (1000 * 60 * 60);
+                        if (hoursDiff < 24) {
+                            // Rojo para menos de 24 horas
+                            timerElement.style.background = 'rgba(231, 76, 60, 0.9)';
+                            timerElement.style.fontWeight = '700';
+                        } else if (hoursDiff < 48) {
+                            // Naranja para menos de 48 horas
+                            timerElement.style.background = 'rgba(230, 126, 34, 0.9)';
+                            timerElement.style.fontWeight = '600';
+                        } else {
+                            // Negro para más de 48 horas
+                            timerElement.style.background = 'rgba(0, 0, 0, 0.9)';
+                            timerElement.style.fontWeight = '500';
+                        }
+                    } 
+                    // État 2 : Pendant la course
+                    else if (endDate && now < endDate) {
+                        const timeToEnd = endDate - now;
+                        timerElement.textContent = `SE TERMINE DANS ${formatTimeRemaining(timeToEnd)}`;
+                        timerElement.style.background = 'rgba(46, 204, 113, 0.9)';
                         timerElement.style.fontWeight = '700';
-                    } else if (hoursDiff < 48) {
-                        // Naranja para menos de 48 horas
-                        timerElement.style.background = 'rgba(230, 126, 34, 0.9)';
-                        timerElement.style.fontWeight = '600';
-                    } else {
-                        // Negro para más de 48 horas
+                    }
+                    // État 3 : Après la course
+                    else {
+                        timerElement.textContent = 'TERMINÉ';
                         timerElement.style.background = 'rgba(0, 0, 0, 0.9)';
-                        timerElement.style.fontWeight = '500';
+                        timerElement.style.fontWeight = '700';
                     }
                 });
             }
             
-            // Función para crear una tarjeta de carrera terminada
+            // Fonction pour créer une carte de course terminée
             function createPastEventCard(eventElement) {
                 const eventData = {
                     id: eventElement.dataset.eventId || 'event-' + Date.now(),
-                    title: eventElement.dataset.title || 'Carrera sin título',
+                    title: eventElement.dataset.title || 'Course sans titre',
                     date: eventElement.querySelector('.event-date').textContent,
                     image: eventElement.dataset.image || '',
+                    category: eventElement.dataset.category || '',
+type: eventElement.dataset.type || 'sim', // Par défaut SIM si non spécifié
                     podium: eventElement.dataset.podium ? JSON.parse(eventElement.dataset.podium) : null
                 };
 
@@ -803,27 +753,21 @@
                 pastEventCard.className = 'past-event-card';
                 pastEventCard.dataset.eventId = eventData.id;
                 
-                let podiumHTML = '';
-                if (eventData.podium) {
-                    podiumHTML = `
-                        <div class="podium">
-                            ${[1, 2, 3].map(pos => `
-                                <div class="podium-step">
-                                    <div class="podium-place">${pos}</div>
-                                    <div class="podium-driver">${eventData.podium[pos]?.name || 'N/A'}</div>
-                                    <div class="podium-time">${eventData.podium[pos]?.time || ''}</div>
-                                </div>
-                            `).join('')}
-                        </div>`;
-                }
+                // Se eliminó el podio según lo solicitado
+
+                const typeText = eventData.type.toUpperCase() === 'IRL' ? 'IRL' : 'SIM';
+                const typeClass = eventData.type.toLowerCase();
 
                 pastEventCard.innerHTML = `
                     <div class="past-event-image" style="background-image: url('${eventData.image}');">
                         <span class="past-event-date">${eventData.date}</span>
                     </div>
                     <div class="past-event-content">
+                        <div class="event-category-container">
+                            <span class="event-category">${eventData.category}</span>
+                            <span class="event-type ${typeClass}">${typeText}</span>
+                        </div>
                         <h3 class="past-event-title">${eventData.title}</h3>
-                        ${podiumHTML}
                         <a href="#" class="btn-competition btn-outline">Ver Clasificación Completa</a>
                     </div>
                 `;
