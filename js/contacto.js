@@ -192,10 +192,19 @@ document.addEventListener('DOMContentLoaded', function() {
             const result = await response.json();
             
             if (response.ok) {
-                // Mostrar mensaje de éxito
-                showSuccessMessage('¡Mensaje enviado con éxito! Nos pondremos en contacto contigo pronto.');
-                // Reiniciar formulario
-                contactForm.reset();
+                // Redirigir a la página de pago con los datos necesarios
+                const params = new URLSearchParams({
+                    nombre: formObject.firstName + ' ' + formObject.lastName,
+                    email: formObject.email,
+                    telefono: formObject.phone || '',
+                    fecha_reserva: new Date().toISOString().split('T')[0],
+                    vehiculo: 'Coche de prueba', // Esto debería venir del formulario de reserva
+                    paquete: 'Paquete Básico', // Esto debería venir del formulario de reserva
+                    precio: '299', // Esto debería venir del formulario de reserva
+                    notas: formObject.message || ''
+                });
+                
+                window.location.href = `pago.html?${params.toString()}`;
             } else {
                 throw new Error(result.message || 'Error al enviar el mensaje');
             }

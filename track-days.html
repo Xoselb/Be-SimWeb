@@ -6,6 +6,8 @@
     <title>EB Simracing - Track Days</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <link rel="stylesheet" href="css/booking.css">
     <style>
         .car-card {
             background: #000;
@@ -174,6 +176,8 @@
             <div class="service-description">
                 <h2>Vivez l'expérience ultime sur circuit</h2>
                 <p>Découvrez notre sélection exclusive de véhicules de course et de sport préparés pour la piste. Que vous soyez un pilote expérimenté ou un passionné en quête de sensations fortes, nos Track Days sont faits pour vous. Encadrés par des professionnels, vous pourrez repousser vos limites dans un environnement sécurisé.</p>
+                
+                <!-- El formulario se ha movido al modal -->
             </div>
             
             <div class="track-days-grid">
@@ -193,7 +197,7 @@
                     <div class="price-tag">À PARTIR DE 120€</div>
                     <div class="car-buttons">
                         <a href="FunCup.html" class="btn-details">VOIR PLUS</a>
-                        <a href="contacto.html" class="btn-buy">RÉSERVER</a>
+                        <a href="pago.html?vehiculo=FunCup&precio=120" class="btn-buy">RÉSERVER</a>
                     </div>
                 </div>
                 
@@ -213,7 +217,7 @@
                     <div class="price-tag">À PARTIR DE 90€</div>
                     <div class="car-buttons">
                         <a href="C1.html" class="btn-details">VOIR PLUS</a>
-                        <a href="contacto.html" class="btn-buy">RÉSERVER</a>
+                        <a href="pago.html?vehiculo=C1&precio=90" class="btn-buy">RÉSERVER</a>
                     </div>
                 </div>
                 
@@ -233,7 +237,7 @@
                     <div class="price-tag">À PARTIR DE 250€</div>
                     <div class="car-buttons">
                         <a href="Porsche718.html" class="btn-details">VOIR PLUS</a>
-                        <a href="contacto.html" class="btn-buy">RÉSERVER</a>
+                        <a href="pago.html?vehiculo=Porsche718&precio=250" class="btn-buy">RÉSERVER</a>
                     </div>
                 </div>
             </div>
@@ -278,11 +282,110 @@
                     <a href="#"><i class="fab fa-youtube"></i></a>
                     <a href="#"><i class="fab fa-twitter"></i></a>
                 </div>
-            </div>
-        </div>
     </footer>
 
+    <!-- Modal de Reserva -->
+    <div id="booking-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <div class="booking-container">
+                <form id="booking-form" class="booking-form">
+                    <input type="hidden" id="selected-vehicle" name="vehicle">
+                    
+                    <div class="form-group">
+                        <label for="name">Nombre completo</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="phone">Teléfono</label>
+                        <input type="tel" id="phone" name="phone" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="date">Fecha deseada</label>
+                        <input type="date" id="date" name="date" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="vehicle-display">Vehículo seleccionado</label>
+                        <input type="text" id="vehicle-display" class="vehicle-display" readonly>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Paquete</label>
+                        <div class="package-options">
+                            <label class="package-option">
+                                <input type="radio" name="package" value="basic" required>
+                                <span class="package-name">Básico</span>
+                                <span class="package-desc">30 min de pista</span>
+                                <span class="package-price">299€</span>
+                            </label>
+                            <label class="package-option">
+                                <input type="radio" name="package" value="premium">
+                                <span class="package-name">Premium</span>
+                                <span class="package-desc">1 hora de pista + instructor</span>
+                                <span class="package-price">499€</span>
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="notes">Notas adicionales</label>
+                        <textarea id="notes" name="notes" rows="3"></textarea>
+                    </div>
+                    
+                    <!-- Sección de pago -->
+                    <div class="form-group">
+                        <label>Método de pago</label>
+                        <div class="payment-methods">
+                            <label class="payment-method">
+                                <input type="radio" name="payment-method" value="card" required>
+                                <i class="fas fa-credit-card"></i>
+                                <span>Tarjeta de crédito/débito</span>
+                            </label>
+                            <label class="payment-method">
+                                <input type="radio" name="payment-method" value="paypal">
+                                <i class="fab fa-cc-paypal"></i>
+                                <span>PayPal</span>
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <div class="form-actions">
+                        <button type="submit" class="btn btn-primary">Pagar ahora</button>
+                    </div>
+                    
+                    <div id="loading-indicator" style="display: none;">
+                        <p>Procesando tu pago...</p>
+                        <div class="spinner"></div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script type="module">
+        // El manejo del modal ahora está en bookingManager.js
+    </script>
+    <!-- Scripts -->
     <script src="js/hero-slider.js"></script>
-    <script src="js/index.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script type="module">
+        // Importar e inicializar el gestor de reservas
+        import BookingManager from './js/odoo/bookingManager.js';
+        
+        // Inicializar cuando el DOM esté listo
+        document.addEventListener('DOMContentLoaded', () => {
+            window.bookingManager = new BookingManager();
+            console.log('BookingManager inicializado');
+        });
+    </script>
+    <script src="js/main.js"></script>
 </body>
 </html>
