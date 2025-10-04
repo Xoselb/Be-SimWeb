@@ -40,38 +40,25 @@
         </div>
     </section>
 
-    <!-- Odoo Product Card -->
+    <!-- Contenedor de Productos Odoo -->
     <div class="odoo-container">
         <div class="products-grid">
-            <!-- T-Shirt Product -->
-            <div class="product-card">
-                <div class="product-image" style="background-image: url('https://eb-simracingmerch.odoo.com/web/image/product.template/5/image_1024');"></div>
-                <div class="product-info">
-                    <div class="product-category">T-shirt</div>
-                    <h3 class="product-title">T-shirt EB Simracing</h3>
-                    <div class="product-description">
-                        T-shirt officiel EB Simracing - 100% coton - Couleur noire avec logo brodé
-                    </div>
-                    <div class="product-price">29,99 €</div>
-                    <a href="https://eb-simracingmerch.odoo.com/shop/t-shirt-eb-simracing-5" 
-                       class="btn-add-to-cart" 
-                       target="_blank">
-                        Voir le produit
-                    </a>
-                </div>
-            </div>
+            <!-- Los productos se cargarán aquí dinámicamente -->
         </div>
     </div>
 
 
+    <!-- Scripts de integración con Odoo -->
+    <script src="js/odoo-service.js"></script>
+    <script src="js/cart.js"></script>
+    
+    <!-- Smooth scrolling para enlaces internos -->
     <script>
-        // Smooth scrolling for anchor links
         document.addEventListener('DOMContentLoaded', function() {
-            // Smooth scroll for anchor links
             document.querySelectorAll('a[href^="#"]').forEach(anchor => {
                 anchor.addEventListener('click', function (e) {
                     const href = this.getAttribute('href');
-                    if (href !== '#') {
+                    if (href !== '#' && !href.startsWith('http')) {
                         e.preventDefault();
                         const target = document.querySelector(href);
                         if (target) {
