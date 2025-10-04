@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Boutique Officielle - EB Simracing</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/merch.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <h1>EB <span>Simracing</span></h1>
+            </div>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="index.html">Accueil</a></li>
+                    <li><a href="simulateurs.html">Simulateurs</a></li>
+                    <li><a href="competitions.html">Compétitions</a></li>
+                    <li><a href="track-days.html">Track Days</a></li>
+                    <li><a href="merch.html" class="active">Boutique</a></li>
+                    <li><a href="contacto.html">Contact</a></li>
+                    <li><a href="#login">Membres</a></li>
+                </ul>
+            </nav>
+            <div class="mobile-menu-btn">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="merch-hero">
+        <div class="container">
+            <h1>BOUTIQUE OFFICIELLE</h1>
+            <p>Découvrez notre collection exclusive de vêtements et accessoires EB Simracing</p>
+        </div>
+    </section>
+
+    <!-- Contenedor de Productos Odoo -->
+    <div class="odoo-container">
+        <div class="products-grid">
+            <!-- Los productos se cargarán aquí dinámicamente -->
+        </div>
+    </div>
+
+
+    <!-- Scripts de integración con Odoo -->
+    <script src="js/odoo-service.js"></script>
+    <script src="js/cart.js"></script>
+    
+    <!-- Smooth scrolling para enlaces internos -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    const href = this.getAttribute('href');
+                    if (href !== '#' && !href.startsWith('http')) {
+                        e.preventDefault();
+                        const target = document.querySelector(href);
+                        if (target) {
+                            target.scrollIntoView({
+                                behavior: 'smooth',
+                                block: 'start'
+                            });
+                        }
+                    }
+                });
+            });
+        });
+    </script>
+
+    <!-- Odoo eCommerce Script (commented out for future reference) -->
+    <!--
+    <script src="https://eb-racing-events.odoo.com/odoo/web/static/lib/owl/owl.js"></script>
+    <script src="https://eb-racing-events.odoo.com/odoo/web/static/src/js/framework/core/class.js"></script>
+    <script src="https://eb-racing-events.odoo.com/odoo/web/static/src/js/framework/core/utils.js"></script>
+    <script src="https://eb-racing-events.odoo.com/odoo/web/static/src/js/framework/core/bus/bus.js"></script>
+    <script src="https://eb-racing-events.odoo.com/odoo/web/static/src/js/framework/core/translation.js"></script>
+    <script src="https://eb-racing-events.odoo.com/odoo/web/static/src/js/framework/core/class_extension.js"></script>
+    <script src="https://eb-racing-events.odoo.com/odoo/web/static/src/js/framework/core/registry.js"></script>
+    <script src="https://eb-racing-events.odoo.com/odoo/web/static/src/js/framework/core/mixins.js"></script>
+    <script src="https://eb-racing-events.odoo.com/odoo/web/static/src/js/framework/core/widget.js"></script>
+    <script src="https://eb-racing-events.odoo.com/odoo/website/static/src/js/website.js"></script>
+    <script src="https://eb-racing-events.odoo.com/odoo/website_sale/static/src/js/website_sale.js"></script>
+    -->
+
+    <!-- Include footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <h2>EB <span>Simracing</span></h2>
+                    <p>Votre destination ultime pour le simracing de compétition.</p>
+                </div>
+                <div class="footer-links">
+                    <h3>Liens rapides</h3>
+                    <ul>
+                        <li><a href="index.html">Accueil</a></li>
+                        <li><a href="simulateurs.html">Simulateurs</a></li>
+                        <li><a href="competitions.html">Compétitions</a></li>
+                        <li><a href="track-days.html">Track Days</a></li>
+                        <li><a href="merch.html">Boutique</a></li>
+                        <li><a href="contacto.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-contact">
+                    <h3>Contactez-nous</h3>
+                    <p><i class="fas fa-map-marker-alt"></i> RUE DE LA MAÎTRISE 4, 1400 Nivelles</p>
+                    <p><i class="fas fa-phone"></i> +32 495 57 92 78</p>
+                    <p><i class="fas fa-envelope"></i> ebracingevents@gmail.com</p>
+                    <div class="social-links">
+                        <a href="https://www.facebook.com/beracingkart/"><i class="fab fa-facebook"></i></a>
+                        <a href="https://www.instagram.com/eb.racing.events/"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 EB Simracing. Tous droits réservés.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        document.querySelector('.mobile-menu-btn').addEventListener('click', function() {
+            document.querySelector('.main-nav').classList.toggle('active');
+        });
+    </script>
+</body>
+</html>
