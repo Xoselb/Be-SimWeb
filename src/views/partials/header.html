@@ -1,0 +1,153 @@
+<header class="main-header">
+    <div class="container">
+        <div class="header-content">
+            <!-- Logo -->
+            <div class="logo">
+                <a href="/" class="logo-link">
+                    <img src="/images/logo.png" alt="Eb_SimWeb Logo" class="logo-img">
+                    <span class="logo-text">Eb_SimWeb</span>
+                </a>
+            </div>
+            
+            <!-- Navegación principal -->
+            <nav class="main-nav">
+                <ul class="nav-list">
+                    <li class="nav-item">
+                        <a href="/" class="nav-link {% if current_page == 'home' %}active{% endif %}">
+                            Inicio
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/simuladores" class="nav-link {% if current_page == 'simulators' %}active{% endif %}">
+                            Simuladores
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/competiciones" class="nav-link {% if current_page == 'competitions' %}active{% endif %}">
+                            Competiciones
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/track-days" class="nav-link {% if current_page == 'track-days' %}active{% endif %}">
+                            Track Days
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/tienda" class="nav-link {% if current_page == 'store' %}active{% endif %}">
+                            Tienda
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/contacto" class="nav-link {% if current_page == 'contact' %}active{% endif %}">
+                            Contacto
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+            
+            <!-- Acciones de usuario -->
+            <div class="user-actions">
+                {% if user %}
+                    <div class="user-dropdown">
+                        <button class="user-btn" id="userMenuBtn">
+                            <span class="user-avatar">
+                                <img src="{{ user.avatar || '/images/default-avatar.png' }}" alt="{{ user.name }}">
+                            </span>
+                            <span class="user-name">{{ user.name }}</span>
+                        </button>
+                        <div class="dropdown-menu" id="userDropdown">
+                            <a href="/perfil" class="dropdown-item">
+                                <i class="icon-user"></i> Mi Perfil
+                            </a>
+                            <a href="/mis-reservas" class="dropdown-item">
+                                <i class="icon-calendar"></i> Mis Reservas
+                            </a>
+                            <a href="/configuracion" class="dropdown-item">
+                                <i class="icon-settings"></i> Configuración
+                            </a>
+                            <div class="dropdown-divider"></div>
+                            <a href="/logout" class="dropdown-item">
+                                <i class="icon-log-out"></i> Cerrar Sesión
+                            </a>
+                        </div>
+                    </div>
+                {% else %}
+                    <div class="auth-buttons">
+                        <a href="/login" class="btn btn-outline">Iniciar Sesión</a>
+                        <a href="/registro" class="btn btn-primary">Registrarse</a>
+                    </div>
+                {% endif %}
+                
+                <!-- Botón de menú móvil -->
+                <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Menú">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Menú móvil -->
+    <div class="mobile-menu" id="mobileMenu">
+        <div class="mobile-menu-content">
+            <div class="mobile-menu-header">
+                <div class="logo">
+                    <a href="/" class="logo-link">
+                        <img src="/images/logo.png" alt="Eb_SimWeb Logo" class="logo-img">
+                        <span class="logo-text">Eb_SimWeb</span>
+                    </a>
+                </div>
+                <button class="close-menu-btn" id="closeMenuBtn" aria-label="Cerrar menú">
+                    &times;
+                </button>
+            </div>
+            <nav class="mobile-nav">
+                <ul class="mobile-nav-list">
+                    <li class="mobile-nav-item">
+                        <a href="/" class="mobile-nav-link">Inicio</a>
+                    </li>
+                    <li class="mobile-nav-item">
+                        <a href="/simuladores" class="mobile-nav-link">Simuladores</a>
+                    </li>
+                    <li class="mobile-nav-item">
+                        <a href="/competiciones" class="mobile-nav-link">Competiciones</a>
+                    </li>
+                    <li class="mobile-nav-item">
+                        <a href="/track-days" class="mobile-nav-link">Track Days</a>
+                    </li>
+                    <li class="mobile-nav-item">
+                        <a href="/tienda" class="mobile-nav-link">Tienda</a>
+                    </li>
+                    <li class="mobile-nav-item">
+                        <a href="/contacto" class="mobile-nav-link">Contacto</a>
+                    </li>
+                    {% if not user %}
+                        <li class="mobile-nav-item">
+                            <a href="/login" class="mobile-nav-link">Iniciar Sesión</a>
+                        </li>
+                        <li class="mobile-nav-item">
+                            <a href="/registro" class="mobile-nav-link">Registrarse</a>
+                        </li>
+                    {% endif %}
+                </ul>
+                {% if user %}
+                <div class="mobile-user-menu">
+                    <a href="/perfil" class="mobile-user-link">
+                        <i class="icon-user"></i> Mi Perfil
+                    </a>
+                    <a href="/mis-reservas" class="mobile-user-link">
+                        <i class="icon-calendar"></i> Mis Reservas
+                    </a>
+                    <a href="/configuracion" class="mobile-user-link">
+                        <i class="icon-settings"></i> Configuración
+                    </a>
+                    <a href="/logout" class="mobile-user-link">
+                        <i class="icon-log-out"></i> Cerrar Sesión
+                    </a>
+                </div>
+                {% endif %}
+            </nav>
+        </div>
+    </div>
+</header>
