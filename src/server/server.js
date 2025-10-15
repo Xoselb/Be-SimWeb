@@ -1,6 +1,6 @@
-// [CAMBIAR] Configuración del servidor de producción
+// [CAMBIAR] Configuración del servidor de production
 // ===============================================
-// Importación de dependencias
+// Importation des dépendances
 const express = require('express');
 const cors = require('cors');
 const bcrypt = require('bcrypt');
@@ -9,6 +9,9 @@ const cookieParser = require('cookie-parser');
 const path = require('path');
 const fs = require('fs');
 const https = require('https');
+
+// Création de l'application Express
+const app = express();
 
 // [CAMBIAR] Middlewares de seguridad
 // ================================
