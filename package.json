@@ -6,9 +6,9 @@
   "scripts": {
     "start": "node server/server.js",
     "dev": "nodemon server/server.js",
-    "test": "cross-env NODE_ENV=test jest --detectOpenHandles --forceExit",
-    "test:watch": "cross-env NODE_ENV=test jest --watch",
-    "test:coverage": "cross-env NODE_ENV=test jest --coverage"
+    "test": "cross-env NODE_ENV=test jest --config=config/jest/jest.config.js --detectOpenHandles --forceExit",
+    "test:watch": "cross-env NODE_ENV=test jest --config=config/jest/jest.config.js --watch",
+    "test:coverage": "cross-env NODE_ENV=test jest --config=config/jest/jest.config.js --coverage"
   },
   "dependencies": {
     "bcrypt": "^5.1.0",
@@ -30,5 +30,9 @@
     "jest": "^30.2.0",
     "nodemon": "^2.0.22",
     "supertest": "^7.1.4"
+  },
+  "jest": {
+    "preset": "@shelf/jest-mongodb",
+    "testEnvironment": "node"
   }
 }

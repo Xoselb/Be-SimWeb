@@ -3,7 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="/public/img/Aurora_Interactive.png" type="image/png">
     <title>EB Simracing - FunCup</title>
+    <link rel="icon" href="/public/img/Aurora_Interactive.png" type="image/png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="css/styles.css">
     <style>
@@ -138,7 +140,7 @@
             height: 60vh;
             min-height: 500px;
             background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), 
-                        url('img/FUNCUP5.jpeg') no-repeat center center/cover;
+                        url('img/C1.JPG') no-repeat center center/cover;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -344,6 +346,129 @@
                 height: 300px;
             }
         }
+
+        /* Estilos para los botones flotantes */
+        .floating-buttons-container {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 1000;
+        }
+
+        .floating-buttons-container:hover .floating-btn,
+        .floating-buttons-container:hover .floating-buy-btn {
+            background: #FFF200;
+            color: #000;
+            transform: translateY(-3px);
+        }
+
+        .floating-buy-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #000;
+            border: 2px solid #FFF200;
+            color: #FFF200;
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            position: absolute;
+            bottom: 0; /* Mismo nivel que el botón de texto */
+            right: 0;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+            cursor: pointer;
+        }
+
+        .floating-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #000;
+            border: 2px solid #FFF200;
+            color: #FFF200;
+            border-radius: 0 50px 50px 0;
+            padding: 0 25px 0 20px;
+            height: 60px;
+            min-width: 180px; /* Ancho mínimo para el texto */
+            text-decoration: none;
+            transition: all 0.3s ease;
+            position: relative;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+            cursor: pointer;
+            margin-left: auto;
+            text-align: center;
+            padding-right: 75px; /* Espacio extra a la derecha */
+        }
+
+        .floating-btn:hover, .floating-buy-btn:hover {
+            background: #FFF200;
+            color: #000;
+            transform: translateY(-3px);
+        }
+
+        .floating-btn .floating-btn-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .floating-btn .bold-text {
+            font-weight: bold;
+            font-size: 1rem;
+            line-height: 1.2;
+        }
+
+        .floating-btn .normal-text {
+            font-size: 0.9rem;
+            line-height: 1.2;
+        }
+
+        .floating-btn .tooltip,
+        .floating-buy-btn .tooltip {
+            position: absolute;
+            right: 80px;
+            background: #333;
+            color: #fff;
+            padding: 5px 10px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            white-space: nowrap;
+            opacity: 0;
+            transition: opacity 0.3s;
+            pointer-events: none;
+        }
+
+        .floating-buttons-container:hover .tooltip {
+            opacity: 1;
+        }
+
+        /* Ajustes responsivos */
+        @media (max-width: 768px) {
+            .floating-buttons-container {
+                bottom: 20px;
+                right: 20px;
+                flex-direction: column-reverse;
+                align-items: flex-end;
+            }
+            
+            .floating-btn, .floating-buy-btn {
+                width: 50px;
+                height: 50px;
+                padding: 0;
+                overflow: hidden;
+            }
+            
+            .floating-btn .floating-btn-content {
+                display: none;
+            }
+            
+            .tooltip {
+                display: none;
+            }
+        }
     </style>
 </head>
 <body>
@@ -464,11 +589,18 @@
             </div>
         </section>
 
-        <!-- Botón flotante de compra -->
-        <a href="#" class="floating-buy-btn book-now" id="floatingBuyBtn" data-vehicle-name="FunCup" data-vehicle-id="funcup">
-            <i class="fas fa-shopping-cart"></i>
-            <span class="tooltip">Résérver maintenant</span>
-        </a>
+        <!-- Botones flotantes -->
+        <div class="floating-buttons-container">
+            <a href="#reservation" class="floating-btn floating-info" id="floatingInfoBtn">
+                <div class="floating-btn-content">
+                    <span class="bold-text">PRIX</span>
+                    <span class="normal-text">À partir de 90€</span>
+                </div>
+            </a>
+            <a href="#reservation" class="floating-buy-btn book-now" id="floatingBuyBtn" data-vehicle-name="Citroën C1" data-vehicle-id="c1">
+                <i class="fas fa-shopping-cart"></i>
+            </a>
+        </div>
     </div>
 
     <!-- Experiencia de conducción -->
