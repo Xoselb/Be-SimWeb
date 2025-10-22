@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="/public/img/Aurora_Interactive.png" type="image/png">
+    <title>Galerie - EB Simracing</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightgallery/2.7.2/css/lightgallery-bundle.min.css">
+    <link rel="stylesheet" href="css/styles.css">
+    <style>
+        /* Global Styles */
+        body {
+            background-color: #000000;
+            color: #ffffff;
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+        }
+        
+        /* Header Styles */
+        .header {
+            background-color: #000000;
+            padding: 15px 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid #333;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo h1 {
+            color: #FFF200;
+            margin: 0;
+            font-size: 1.8rem;
+        }
+        
+        .logo span {
+            color: #ffffff;
+        }
+        
+        .main-nav ul {
+            list-style: none;
+            display: flex;
+            gap: 25px;
+            margin: 0;
+            padding: 0;
+        }
+        
+        .main-nav a {
+            color: #ffffff;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        .main-nav a:hover,
+        .main-nav a.active {
+            color: #FFF200;
+        }
+        
+        /* Gallery Styles */
+        .gallery-container {
+            padding: 100px 20px 50px;
+            max-width: 1200px;
+            margin: 0 auto;
+            background-color: #000000;
+            min-height: 100vh;
+        }
+        
+        .gallery-title {
+            color: #FFF200;
+            text-align: center;
+            margin-bottom: 40px;
+            font-size: 2.5rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            position: relative;
+            padding-bottom: 15px;
+        }
+        
+        .gallery-title:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background: #FFF200;
+        }
+        
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(9, 1fr);
+            gap: 8px;
+            padding: 8px;
+            margin: 0;
+            width: 100%;
+            box-sizing: border-box;
+        }
+        
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 10spx;
+            aspect-ratio: 1;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            border: 1px solid #333;
+            background-color: #1a1a1a;
+            margin: 0;
+            padding: 0;
+            width: 100%;
+        }
+        
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+            display: block;
+        }
+        
+        .gallery-item:hover {
+            opacity: 0.9;
+            transform: scale(1.01);
+            z-index: 1;
+        }
+        
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+        
+        /* Lightbox custom styles */
+        .lg-backdrop {
+            background-color: rgba(0, 0, 0, 0.95) !important;
+        }
+        
+        .lg-actions .lg-next, 
+        .lg-actions .lg-prev {
+            background-color: rgba(0, 0, 0, 0.5);
+            border-radius: 50%;
+            width: 44px;
+            height: 44px;
+            line-height: 44px;
+            text-align: center;
+            color: white;
+            border: 2px solid #FFF200;
+        }
+        
+        .lg-actions .lg-next:hover, 
+        .lg-actions .lg-prev:hover {
+            background-color: #FFF200;
+            color: #000;
+        }
+        
+        .lg-toolbar {
+            background-color: rgba(0, 0, 0, 0.6) !important;
+        }
+        
+        .lg-sub-html {
+            background-color: rgba(0, 0, 0, 0.7);
+            padding: 15px;
+            text-align: center;
+            color: white;
+        }
+        
+        @media (max-width: 1200px) {
+            .gallery-grid {
+                grid-template-columns: repeat(6, 1fr);
+                gap: 6px;
+                padding: 6px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .gallery-grid {
+                grid-template-columns: repeat(5, 1fr);
+                gap: 4px;
+                padding: 4px;
+            }
+            
+            .main-nav {
+                display: none;
+            }
+            
+            .gallery-container {
+                padding: 70px 0 0;
+            }
+            
+            .gallery-title {
+                font-size: 2rem;
+                margin-bottom: 30px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <h1>EB <span>Simracing</span></h1>
+            </div>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="index.html#inicio">Accueil</a></li>
+                    <li><a href="index.html#servicios">Services</a></li>
+                    <li><a href="galerie.html" class="active">Galerie</a></li>
+                    <li><a href="index.html#testimonios">Témoignages</a></li>
+                    <li><a href="merch.html">Boutique</a></li>
+                    <li><a href="contacto.html">Contact</a></li>
+                    <li><a href="#login">Membres</a></li>
+                </ul>
+            </nav>
+            <div class="mobile-menu-btn">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </header>
+
+    <!-- Gallery Section -->
+    <section class="gallery-container">
+        <h1 class="gallery-title">Notre Galerie</h1>
+        <div class="gallery-grid" id="lightgallery">
+            <!-- Images will be added here by JavaScript -->
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <h2>EB <span>Simracing</span></h2>
+                    <p>Votre centre de simulation automobile de référence</p>
+                </div>
+                <div class="footer-links">
+                    <h3>Liens rapides</h3>
+                    <ul>
+                        <li><a href="index.html#inicio">Accueil</a></li>
+                        <li><a href="index.html#servicios">Services</a></li>
+                        <li><a href="galerie.html">Galerie</a></li>
+                        <li><a href="index.html#testimonios">Témoignages</a></li>
+                        <li><a href="merch.html">Boutique</a></li>
+                        <li><a href="contacto.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-contact">
+                    <h3>Contact</h3>
+                    <p><i class="fas fa-map-marker-alt"></i> Adresse de l'entreprise</p>
+                    <p><i class="fas fa-phone"></i> +33 1 23 45 67 89</p>
+                    <p><i class="fas fa-envelope"></i> contact@eb-simracing.com</p>
+                    <div class="social-links">
+                        <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 EB Simracing. Tous droits réservés.</p>
+                <div class="legal-links">
+                    <a href="#">Mentions légales</a>
+                    <span>|</span>
+                    <a href="#">Politique de confidentialité</a>
+                    <span>|</span>
+                    <a href="#">CGV</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lightgallery/2.7.2/lightgallery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lightgallery/2.7.2/plugins/zoom/lg-zoom.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lightgallery/2.7.2/plugins/fullscreen/lg-fullscreen.min.js"></script>
+    <script>
+        // Array of gallery images
+        const galleryImages = [
+            'img/GALERIE/GALERIE1.jpeg',
+            'img/GALERIE/GALERIE2.jpeg',
+            'img/GALERIE/GALERIE3.jpeg',
+            'img/GALERIE/GALERIE4.jpeg',
+            'img/GALERIE/GALERIE5.jpeg',
+            'img/GALERIE/GALERIE6.jpeg',
+            'img/GALERIE/GALERIE7.jpeg',
+            'img/GALERIE/GALERIE8.jpeg',
+            'img/GALERIE/GALERIE9.jpeg',
+            'img/GALERIE/GALERIE10.jpeg',
+            'img/GALERIE/GALERIE11.jpeg',
+            'img/GALERIE/GALERIE12.jpeg',
+            'img/GALERIE/GALERIE13.jpeg',
+            'img/GALERIE/GALERIE14.jpeg',
+            'img/GALERIE/GALERIE15.jpeg',
+            'img/GALERIE/GALERIE16.jpeg',
+            'img/GALERIE/GALERIE17.jpeg',
+            'img/GALERIE/GALERIE18.jpeg',
+            'img/GALERIE/GALERIE19.jpeg',
+            'img/GALERIE/GALERIE20.jpeg',
+            'img/GALERIE/GALERIE21.jpeg',
+            'img/GALERIE/GALERIE22.jpeg',
+            'img/GALERIE/GALERIE23.jpeg',
+            'img/GALERIE/GALERIE24.jpeg',
+            'img/GALERIE/GALERIE25.jpeg',
+            'img/GALERIE/GALERIE26.jpeg',
+            'img/GALERIE/GALERIE27.jpeg',
+            'img/GALERIE/GALERIE28.jpeg',
+            'img/GALERIE/GALERIE29.jpeg',
+            'img/GALERIE/GALERIE30.jpeg',
+            'img/GALERIE/GALERIE31.jpeg',
+            'img/GALERIE/GALERIE32.jpeg',
+            'img/GALERIE/GALERIE33.jpeg',
+            'img/GALERIE/GALERIE34.jpeg',
+            'img/GALERIE/GALERIE35.jpeg',
+            'img/GALERIE/GALERIE36.jpeg',
+            'img/GALERIE/GALERIE37.jpeg',
+            'img/GALERIE/GALERIE38.jpeg',
+            'img/GALERIE/GALERIE39.jpeg',
+            'img/GALERIE/GALERIE40.jpeg',
+            'img/GALERIE/GALERIE41.jpeg',
+            'img/GALERIE/GALERIE42.jpeg',
+            'img/GALERIE/GALERIE43.jpeg',
+            'img/GALERIE/GALERIE44.jpeg',
+            'img/GALERIE/GALERIE45.jpeg',
+            'img/GALERIE/GALERIE46.jpeg',
+            'img/GALERIE/GALERIE47.jpeg',
+            'img/GALERIE/GALERIE48.jpeg',
+            'img/GALERIE/GALERIE49.jpeg',
+            'img/GALERIE/GALERIE50.jpeg',
+            'img/GALERIE/GALERIE51.jpeg',
+            'img/GALERIE/GALERIE52.jpeg',
+            'img/GALERIE/GALERIE53.jpeg',
+            'img/GALERIE/GALERIE54.jpeg'
+        ];
+
+        // Function to initialize the gallery
+        function initGallery() {
+            const galleryGrid = document.getElementById('lightgallery');
+            
+            // Add images to the gallery
+            galleryImages.forEach((image, index) => {
+                const galleryItem = document.createElement('a');
+                galleryItem.href = image;
+                galleryItem.className = 'gallery-item';
+                galleryItem.setAttribute('data-sub-html', `Image ${index + 1}`);
+                
+                const img = document.createElement('img');
+                img.src = image;
+                img.alt = `Galerie image ${index + 1}`;
+                img.loading = 'lazy';
+                
+                galleryItem.appendChild(img);
+                galleryGrid.appendChild(galleryItem);
+            });
+
+            // Initialize lightGallery
+            lightGallery(document.getElementById('lightgallery'), {
+                selector: '.gallery-item',
+                download: false,
+                counter: true,
+                getCaptionFromTitleOrAlt: true,
+                youtubePlayerParams: {
+                    modestbranding: 1,
+                    showinfo: 0,
+                    rel: 0
+                },
+                vimeoPlayerParams: {
+                    byline: 0,
+                    portrait: 0,
+                    color: 'FFF200'
+                }
+            });
+        }
+
+        // Initialize the gallery when the page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            initGallery();
+            
+            // Mobile menu toggle
+            const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+            if (mobileMenuBtn) {
+                mobileMenuBtn.addEventListener('click', function() {
+                    document.querySelector('.main-nav').classList.toggle('active');
+                    this.classList.toggle('active');
+                });
+            }
+        });
+    </script>
+</body>
+</html>

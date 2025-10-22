@@ -222,6 +222,50 @@ img {
     transform: translateX(3px);
 }
 
+/* Gallery card styles */
+.gallery-card {
+    padding: 0;
+    margin: 0;
+    position: relative;
+    width: 100%;
+    height: 250px;
+    border-radius: 10px;
+    overflow: hidden;
+    border: 2px solid #FFF200;
+    transition: all 0.3s ease;
+}
+
+.gallery-card-link {
+    display: block;
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    margin: 0;
+    text-decoration: none;
+    color: inherit;
+    overflow: hidden;
+}
+
+.gallery-card-link:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 0 15px #FFF200;
+    border-radius: 10px;
+}
+
+.gallery-image {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    display: block;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.gallery-card-link:hover .gallery-image {
+    transform: scale(1.1);
+}
+
 /* 
  * =============================================
  * 3. HEADER Y NAVEGACIÓN
