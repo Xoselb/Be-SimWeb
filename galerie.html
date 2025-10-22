@@ -169,10 +169,47 @@
         }
         
         .lg-sub-html {
-            background-color: rgba(0, 0, 0, 0.7);
-            padding: 15px;
-            text-align: center;
+            display: none !important; /* Cache complètement le texte sous l'image */
+        }
+        
+        /* Assure que le conteneur du lightbox occupe tout l'espace */
+        .lg-outer .lg-img-wrap {
+            padding: 0;
+        }
+        
+        /* Ajuste la taille de l'image pour qu'elle s'affiche correctement */
+        .lg-image {
+            max-height: 100vh !important;
+            width: auto !important;
+            margin: 0 auto;
+        }
+        
+        /* Bouton de téléchargement */
+        .lg-download-button {
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: rgba(0, 0, 0, 0.5);
+            border: 2px solid #FFF200;
             color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 1080;
+            transition: all 0.3s ease;
+        }
+        
+        .lg-download-button:hover {
+            background: #FFF200;
+            color: black;
+        }
+        
+        .lg-download-button i {
+            font-size: 24px;
         }
         
         @media (max-width: 1200px) {
@@ -286,7 +323,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/lightgallery/2.7.2/plugins/zoom/lg-zoom.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/lightgallery/2.7.2/plugins/fullscreen/lg-fullscreen.min.js"></script>
     <script>
-        // Array of gallery images
+        // ¡¡AGREGAR LAS NUEVAS IMAGENES!!
         const galleryImages = [
             'img/GALERIE/GALERIE1.jpeg',
             'img/GALERIE/GALERIE2.jpeg',
@@ -364,12 +401,55 @@
                 galleryGrid.appendChild(galleryItem);
             });
 
-            // Initialize lightGallery
-            lightGallery(document.getElementById('lightgallery'), {
+            // Initialize lightGallery with custom download button
+            const gallery = lightGallery(document.getElementById('lightgallery'), {
                 selector: '.gallery-item',
-                download: false,
-                counter: true,
-                getCaptionFromTitleOrAlt: true,
+                download: true,
+                counter: false,
+                getCaptionFromTitleOrAlt: false,
+                addClass: 'custom-download-gallery',
+                appendSubHtmlTo: '.lg-item',
+                subHtmlSelectorRelative: true,
+                onAfterSlide: function(event) {
+                    // Remove any existing download button
+                    const existingButton = document.querySelector('.lg-download-button');
+                    if (existingButton) {
+                        existingButton.remove();
+                    }
+                    
+                    // Create and append download button
+                    const downloadButton = document.createElement('div');
+                    downloadButton.className = 'lg-download-button';
+                    downloadButton.title = 'Télécharger';
+                    downloadButton.innerHTML = '<i class="fas fa-download"></i>';
+                    
+                    // Add click handler for download
+                    downloadButton.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        const currentItem = gallery.index;
+                        const imgSrc = galleryItems[currentItem].getAttribute('href');
+                        const link = document.createElement('a');
+                        link.href = imgSrc;
+                        link.download = imgSrc.split('/').pop();
+                        document.body.appendChild(link);
+                        link.click();
+                        document.body.removeChild(link);
+                    });
+                    
+                    // Add button to the lightbox
+                    const lgContent = document.querySelector('.lg-outer .lg-content');
+                    if (lgContent) {
+                        lgContent.appendChild(downloadButton);
+                    }
+                },
+                onCloseAfter: function() {
+                    // Clean up download button when closing
+                    const downloadButton = document.querySelector('.lg-download-button');
+                    if (downloadButton) {
+                        downloadButton.remove();
+                    }
+                },
                 youtubePlayerParams: {
                     modestbranding: 1,
                     showinfo: 0,
