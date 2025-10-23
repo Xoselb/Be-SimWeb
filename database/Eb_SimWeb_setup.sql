@@ -57,7 +57,7 @@ CREATE TABLE IF NOT EXISTS `password_resets` (
 -- La contraseña es 'Admin123!'
 INSERT INTO `users` (`email`, `password`, `first_name`, `last_name`, `role`, `is_active`) 
 VALUES (
-    'admin@empresa.com', 
+    'ebracingevents@gmail.com', 
     '$2b$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 
     'Administrador', 
     'Sistema', 
