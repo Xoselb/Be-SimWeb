@@ -8,22 +8,37 @@
     <link rel="icon" href="/public/img/Aurora_Interactive.png" type="image/png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/Membres/perfil.css">
 </head>
 <body>
-    <!-- Header -->
     <header class="header">
         <div class="container">
             <div class="logo">
-                <h1>EB <span>Simracing</span></h1>
+                <a href="index.html"><h1>EB <span>Simracing</span></h1></a>
             </div>
             <nav class="main-nav">
                 <ul>
                     <li><a href="index.html#inicio">Accueil</a></li>
                     <li><a href="index.html#servicios">Services</a></li>
-                    <li><a href="index.html#galeria">Galerie</a></li>
+                    <li><a href="galerie.html">Galerie</a></li>
                     <li><a href="merch.html">Boutique</a></li>
                     <li><a href="contacto.html">Contact</a></li>
-                    <li><a href="#login">Membres</a></li>
+                    <li class="nav-user" id="navUser" style="display: none;">
+                        <div class="user-avatar" id="userMenuBtn">
+                            <img src="img/default-avatar.png" alt="Profil" id="userAvatar">
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="user-dropdown" id="userDropdown">
+                            <a href="perfil.html" class="active"><i class="fas fa-user"></i> Mon Profil</a>
+                            <a href="mes-reservations.html"><i class="fas fa-calendar-alt"></i> Mes réservations</a>
+                            <a href="parametres.html"><i class="fas fa-cog"></i> Paramètres</a>
+                            <div class="dropdown-divider"></div>
+                            <a href="#" id="logoutBtn"><i class="fas fa-sign-out-alt"></i> Déconnexion</a>
+                        </div>
+                    </li>
+                    <li class="nav-login" id="navLogin">
+                        <a href="login.html" class="btn-login">Connexion</a>
+                    </li>
                 </ul>
             </nav>
             <div class="mobile-menu-btn">
@@ -86,8 +101,8 @@
                     </div>
                 </div>
                 <div class="hero-buttons">
-                    <a href="#login" class="btn btn-primary">Se connecter</a>
-                    <a href="#register" class="btn btn-outline">Créer un compte</a>
+                    <a href="login.html" class="btn btn-primary">Se connecter</a>
+                    <a href="register.html" class="btn btn-outline">Créer un compte</a>
                 </div>
             </div>
         </div>
@@ -492,5 +507,68 @@
             }
         });
     </script>
+    
+    <script src="js/auth.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Check authentication status
+        function checkAuth() {
+            const isLoggedIn = window.auth && window.auth.isAuthenticated();
+            
+            if (isLoggedIn) {
+                // Show user menu
+                const navUser = document.getElementById('navUser');
+                const navLogin = document.getElementById('navLogin');
+                if (navUser) navUser.style.display = 'block';
+                if (navLogin) navLogin.style.display = 'none';
+                
+                // Load user data
+                const userData = window.auth.getCurrentUser();
+                const userAvatar = document.getElementById('userAvatar');
+                if (userData && userData.avatar && userAvatar) {
+                    userAvatar.src = userData.avatar;
+                }
+            }
+        }
+        
+        // Handle dropdown menu
+        const userMenuBtn = document.getElementById('userMenuBtn');
+        const userDropdown = document.getElementById('userDropdown');
+        
+        if (userMenuBtn && userDropdown) {
+            userMenuBtn.addEventListener('click', function(e) {
+                e.stopPropagation();
+                userDropdown.classList.toggle('show');
+            });
+            
+            // Close menu when clicking outside
+            document.addEventListener('click', function() {
+                userDropdown.classList.remove('show');
+            });
+            
+            // Prevent menu from closing when clicking inside
+            userDropdown.addEventListener('click', function(e) {
+                e.stopPropagation();
+            });
+        }
+        
+        // Handle logout
+        const logoutBtn = document.getElementById('logoutBtn');
+        if (logoutBtn) {
+            logoutBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                if (window.auth && typeof window.auth.logout === 'function') {
+                    window.auth.logout();
+                } else {
+                    // Fallback in case auth.js is not loaded
+                    window.location.href = 'login.html';
+                }
+            });
+        }
+        
+        // Check authentication on page load
+        checkAuth();
+    });
+</script>
 </body>
 </html>
