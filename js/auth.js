@@ -2,12 +2,12 @@
 
 // Credenciales de prueba
 const TEST_USER = {
-    email: 'xoselito2007@gmail.com',
-    password: 'Larroy2007',
+    email: 'test@example.com',
+    password: 'password123',
     id: 1001,
-    firstName: 'Xosé Ramón',
-    lastName: 'Larroy Becerra',
-    phone: '+34699757247',
+    firstName: 'Test',
+    lastName: 'User',
+    phone: '+34123456789',
     avatar: 'img/EVAN.png'
 };
 
