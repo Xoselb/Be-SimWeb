@@ -52,10 +52,66 @@
     <!-- Gallery Section -->
     <section class="gallery-container">
         <h1 class="gallery-title">Notre Galerie</h1>
-        <div class="gallery-grid" id="lightgallery">
+        <div class="gallery-grid" id="gallery">
             <!-- Images will be added here by JavaScript -->
         </div>
     </section>
+    
+    <!-- Simple Lightbox CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/simplelightbox/2.14.2/simple-lightbox.min.css" />
+    <style>
+        .gallery-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+            width: 100%;
+        }
+        
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(9, 1fr);
+            gap: 15px;
+            margin: 0 auto;
+            max-width: 100%;
+        }
+        
+        /* For mobile */
+        @media (max-width: 768px) {
+            .gallery-grid {
+                grid-template-columns: repeat(5, 1fr);
+                gap: 10px;
+                width: 100%;
+            }
+            
+            .gallery-item {
+                height: 200px; /* Slightly smaller on mobile */
+            }
+        }
+        
+        /* Ensure exactly 9 items per row on desktop */
+        @media (min-width: 1200px) {
+            .gallery-grid {
+                grid-template-columns: repeat(9, 1fr);
+                max-width: 100%;
+            }
+        }
+        .gallery-item {
+            width: 100%;
+            height: 250px;
+            overflow: hidden;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+        .gallery-item:hover img {
+            transform: scale(1.05);
+        }
+    </style>
 
     <!-- Footer -->
     <footer class="footer">
@@ -95,10 +151,8 @@
         </div>
     </footer>
 
-    <!-- Scripts -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/lightgallery/2.7.2/lightgallery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/lightgallery/2.7.2/plugins/zoom/lg-zoom.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/lightgallery/2.7.2/plugins/fullscreen/lg-fullscreen.min.js"></script>
+    <!-- Simple Lightbox JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/simplelightbox/2.14.2/simple-lightbox.jquery.min.js"></script>
     <script>
         // ¡¡AGREGAR LAS NUEVAS IMAGENES!!
         const galleryImages = [
@@ -160,83 +214,31 @@
 
         // Function to initialize the gallery
         function initGallery() {
-            const galleryGrid = document.getElementById('lightgallery');
+            const galleryGrid = document.getElementById('gallery');
+            galleryGrid.innerHTML = ''; // Clear existing content
             
             // Add images to the gallery
             galleryImages.forEach((image, index) => {
                 const galleryItem = document.createElement('a');
                 galleryItem.href = image;
                 galleryItem.className = 'gallery-item';
-                galleryItem.setAttribute('data-sub-html', `Image ${index + 1}`);
+                galleryItem.setAttribute('data-lightbox', 'gallery');
+                galleryItem.setAttribute('data-title', `Image ${index + 1}`);
                 
                 const img = document.createElement('img');
                 img.src = image;
-                img.alt = `Galerie image ${index + 1}`;
+                img.alt = `Image ${index + 1}`;
                 img.loading = 'lazy';
                 
                 galleryItem.appendChild(img);
                 galleryGrid.appendChild(galleryItem);
             });
 
-            // Initialize lightGallery with custom download button
-            const gallery = lightGallery(document.getElementById('lightgallery'), {
-                selector: '.gallery-item',
-                download: true,
-                counter: false,
-                getCaptionFromTitleOrAlt: false,
-                addClass: 'custom-download-gallery',
-                appendSubHtmlTo: '.lg-item',
-                subHtmlSelectorRelative: true,
-                onAfterSlide: function(event) {
-                    // Remove any existing download button
-                    const existingButton = document.querySelector('.lg-download-button');
-                    if (existingButton) {
-                        existingButton.remove();
-                    }
-                    
-                    // Create and append download button
-                    const downloadButton = document.createElement('div');
-                    downloadButton.className = 'lg-download-button';
-                    downloadButton.title = 'Télécharger';
-                    downloadButton.innerHTML = '<i class="fas fa-download"></i>';
-                    
-                    // Add click handler for download
-                    downloadButton.addEventListener('click', function(e) {
-                        e.preventDefault();
-                        e.stopPropagation();
-                        const currentItem = gallery.index;
-                        const imgSrc = galleryItems[currentItem].getAttribute('href');
-                        const link = document.createElement('a');
-                        link.href = imgSrc;
-                        link.download = imgSrc.split('/').pop();
-                        document.body.appendChild(link);
-                        link.click();
-                        document.body.removeChild(link);
-                    });
-                    
-                    // Add button to the lightbox
-                    const lgContent = document.querySelector('.lg-outer .lg-content');
-                    if (lgContent) {
-                        lgContent.appendChild(downloadButton);
-                    }
-                },
-                onCloseAfter: function() {
-                    // Clean up download button when closing
-                    const downloadButton = document.querySelector('.lg-download-button');
-                    if (downloadButton) {
-                        downloadButton.remove();
-                    }
-                },
-                youtubePlayerParams: {
-                    modestbranding: 1,
-                    showinfo: 0,
-                    rel: 0
-                },
-                vimeoPlayerParams: {
-                    byline: 0,
-                    portrait: 0,
-                    color: 'FFF200'
-                }
+            // Initialize Simple Lightbox
+            const lightbox = new SimpleLightbox('.gallery-item', {
+                captionsData: 'alt',
+                captionDelay: 250,
+                download: true
             });
         }
 

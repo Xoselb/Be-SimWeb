@@ -2,13 +2,13 @@
 
 // Credenciales de prueba
 const TEST_USER = {
-    email: 'test@example.com',
-    password: 'password123',
+    email: 'xoselito2007@gmail.com',
+    password: 'Larroy2007',
     id: 1001,
-    firstName: 'Test',
-    lastName: 'User',
-    phone: '+34123456789',
-    avatar: 'img/default-avatar.png'
+    firstName: 'Xosé Ramón',
+    lastName: 'Larroy Becerra',
+    phone: '+34699757247',
+    avatar: 'img/EVAN.png'
 };
 
 // Inicializar el usuario de prueba si no existe
