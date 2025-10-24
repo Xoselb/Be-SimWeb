@@ -57,6 +57,9 @@
             </div>
             <h1 id="profileName">Nom d'utilisateur</h1>
             <p id="profileEmail">email@example.com</p>
+            <div class="user-role" id="userRole">
+                <span class="role-badge">Rôle</span>
+            </div>
         </div>
 
         <div class="profile-content">
@@ -146,25 +149,51 @@
             if (navLogin) navLogin.style.display = 'none';
             
             // Cargar datos del usuario
-            const userData = window.auth.getCurrentUser();
-            
-            // Rellenar formulario con datos del usuario
-            if (userData) {
-                // Actualizar perfil
-                document.getElementById('firstName').value = userData.firstName || '';
-                document.getElementById('lastName').value = userData.lastName || '';
-                document.getElementById('email').value = userData.email || '';
-                document.getElementById('phone').value = userData.phone || '';
-                document.getElementById('profileName').textContent = 
-                    (userData.firstName || '') + ' ' + (userData.lastName || '');
-                document.getElementById('profileEmail').textContent = userData.email || '';
-                
-                // Actualizar avatares
-                if (userData.avatar) {
-                    document.getElementById('profileAvatar').src = userData.avatar;
-                    document.getElementById('userAvatar').src = userData.avatar;
+            function loadUserData() {
+                const userData = JSON.parse(localStorage.getItem('userData') || '{}');
+                if (userData) {
+                    document.getElementById('profileName').textContent = `${userData.firstName || ''} ${userData.lastName || ''}`.trim() || 'Utilisateur';
+                    document.getElementById('profileEmail').textContent = userData.email || 'email@example.com';
+                    document.getElementById('firstName').value = userData.firstName || '';
+                    document.getElementById('lastName').value = userData.lastName || '';
+                    document.getElementById('email').value = userData.email || '';
+                    document.getElementById('phone').value = userData.phone || '';
+                    
+                    // Mostrar el rol del usuario en francés
+                    const roleElement = document.getElementById('userRole');
+                    if (roleElement) {
+                        // Mapeo de roles a sus versiones en francés
+                        const roleMap = {
+                            'propriétaire': 'Propriétaire',
+                            'modérateur': 'Modérateur',
+                            'administrateur': 'Administrateur',
+                            'premium': 'Membre Premium',
+                            'utilisateur': 'Utilisateur',
+                            // Mantener compatibilidad con roles antiguos
+                            'dueño': 'Propriétaire',
+                            'dev': 'Modérateur',
+                            'admin': 'Administrateur',
+                            'vip': 'Membre Premium',
+                            'usuario': 'Utilisateur'
+                        };
+                        
+                        const role = userData.role || 'utilisateur';
+                        const roleClass = role === 'propriétaire' ? 'dueño' : 
+                                        role === 'modérateur' ? 'dev' :
+                                        role === 'administrateur' ? 'admin' :
+                                        role === 'premium' ? 'vip' : 'usuario';
+                        
+                        const roleText = roleMap[role] || 'Utilisateur';
+                        roleElement.innerHTML = `<span class="role-badge role-${roleClass}">${roleText}</span>`;
+                    }
+                    
+                    if (userData.avatar) {
+                        document.getElementById('profileAvatar').src = userData.avatar;
+                        document.getElementById('userAvatar').src = userData.avatar;
+                    }
                 }
             }
+            loadUserData();
             
             // Manejar la subida de avatar
             document.getElementById('avatarUpload').addEventListener('change', function(e) {
@@ -177,7 +206,7 @@
                         document.getElementById('userAvatar').src = avatarUrl;
                         
                         // Actualizar la imagen en el localStorage
-                        const userData = window.auth.getCurrentUser();
+                        const userData = JSON.parse(localStorage.getItem('userData') || '{}');
                         userData.avatar = avatarUrl;
                         localStorage.setItem('userData', JSON.stringify(userData));
                     };

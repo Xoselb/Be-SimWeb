@@ -43,6 +43,54 @@ input, select, textarea {
 .profile-header {
     text-align: center;
     margin-bottom: 40px;
+    position: relative;
+}
+
+/* ROLES */
+.user-role {
+    margin-top: 15px;
+}
+
+.role-badge {
+    display: inline-block;
+    padding: 6px 16px;
+    border-radius: 10px;
+    font-size: 1rem;
+    font-weight: 800;
+    text-transform: capitalize;
+    letter-spacing: 0.5px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.role-dueño {
+    background: linear-gradient(135deg, #ffd700, #d4af37);
+    color: #000 !important;
+    border: 1px solid #ffd700;
+    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+}
+
+.role-admin {
+    background: linear-gradient(135deg, #ff6b35, #e94f37);
+    color: white !important;
+    border: 1px solid #e94f37;
+}
+
+.role-dev {
+    background: linear-gradient(135deg, #1e88e5, #1565c0);
+    color: white !important;
+    border: 1px solid #1565c0;
+}
+
+.role-vip {
+    background: linear-gradient(135deg, #9c27b0, #7b1fa2);
+    color: white !important;
+    border: 1px solid #7b1fa2;
+}
+
+.role-usuario {
+    background: linear-gradient(135deg, #757575, #616161);
+    color: white !important;
+    border: 1px solid #616161;
 }
 
 .profile-avatar {
