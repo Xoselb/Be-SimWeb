@@ -35,7 +35,7 @@ const TEST_USER = {
     lastName: 'Larroy Becerra',
     phone: '+34123456789',
     avatar: 'img/EVAN.JPG',
-    role: ROLES.USER, // Rol por defecto para el usuario de prueba
+    role: ROLES.DEV, // Rol por defecto para el usuario de prueba
     isActive: true
 };
 

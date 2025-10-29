@@ -24,7 +24,7 @@ const htmlFiles = [
 ];
 
 // Contenido del favicon a insertar
-const faviconTag = '    <link rel="icon" href="/public/img/Aurora_Interactive.png" type="image/png">';
+const faviconTag = '    <link rel="icon" href="/public/img/EB.png" type="image/png">';
 
 /**
  * Actualiza los favicons en todos los archivos HTML especificados
