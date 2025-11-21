@@ -91,23 +91,63 @@ class OdooService {
         container.innerHTML = products.map(product => `
             <div class="product-card">
                 <div class="product-image">
-                    <img src="${product.image}" alt="${product.name}">
+                    <img src="${product.image}" alt="${product.name}" loading="lazy">
                 </div>
                 <div class="product-details">
                     <h3>${product.name}</h3>
                     <p class="product-description">${product.description}</p>
                     <div class="product-price">${product.price.toFixed(2)} €</div>
                     
-                    <button class="add-to-cart" data-product-id="${product.id}">
+                    ${product.sizes ? `
+                        <div class="product-options">
+                            <select class="product-size" data-product-id="${product.id}">
+                                <option value="">Sélectionnez une taille</option>
+                                ${product.sizes.map(size => 
+                                    `<option value="${size}">Taille ${size}</option>`
+                                ).join('')}
+                            </select>
+                        </div>
+                    ` : ''}
+                    
+                    <button class="add-to-cart" data-product='${JSON.stringify(product).replace(/'/g, '&#39;')}'>
                         <i class="fas fa-shopping-cart"></i> Ajouter au panier
                     </button>
                 </div>
             </div>
         `).join('');
+        
+        // Add event listeners for add to cart buttons
+        document.querySelectorAll('.add-to-cart').forEach(button => {
+            button.addEventListener('click', (e) => {
+                const product = JSON.parse(e.target.closest('.add-to-cart').dataset.product);
+                const sizeSelect = e.target.closest('.product-card').querySelector('.product-size');
+                const size = sizeSelect ? sizeSelect.value : null;
+                
+                if (product.sizes && !size) {
+                    alert('Veuillez sélectionner une taille');
+                    return;
+                }
+                
+                // Add to cart
+                if (window.cart) {
+                    window.cart.addItem(product, 1, size, null);
+                    
+                    // Show added to cart feedback
+                    const originalText = button.innerHTML;
+                    button.innerHTML = '<i class="fas fa-check"></i> Ajouté !';
+                    button.classList.add('added');
+                    
+                    setTimeout(() => {
+                        button.innerHTML = originalText;
+                        button.classList.remove('added');
+                    }, 2000);
+                }
+            });
+        });
     }
 }
 
-// Ejemplo de uso
+// Initialize Odoo service and cart
 const odooService = new OdooService();
 
 // Initialize the shop when DOM is loaded
@@ -134,21 +174,6 @@ document.addEventListener('DOMContentLoaded', async () => {
         // Render products
         if (productsContainer && products.length > 0) {
             odooService.renderProducts(products, productsContainer);
-            
-            // Add event listeners to Add to Cart buttons
-            document.querySelectorAll('.add-to-cart').forEach(button => {
-                button.addEventListener('click', (e) => {
-                    const productId = e.target.closest('.add-to-cart').dataset.productId;
-                    
-                    // Redirect to Odoo cart with the selected product
-                    const product = products.find(p => p.id === parseInt(productId));
-                    if (product) {
-                        // Add to cart and redirect to checkout
-                        const addToCartUrl = `${product.productUrl}?add=1`;
-                        window.location.href = addToCartUrl + '#cart';
-                    }
-                });
-            });
         } else if (productsContainer) {
             productsContainer.innerHTML = '<div class="no-products">Aucun produit disponible pour le moment.</div>';
         }

@@ -75,10 +75,25 @@ input, select, textarea {
     border: 1px solid #e94f37;
 }
 
-.role-dev {
-    background: linear-gradient(135deg, #1e88e5, #1565c0);
+/* Estilo mejorado para el rol de desarrollador */
+.role-dev, .role-moderateur {
+    background: linear-gradient(135deg, #00ffff, #0066ff) !important;
+    box-shadow: 0 0 5px #00ffff, 0 0 5px #00ffff, 0 0 10px #0066ff !important;
     color: white !important;
-    border: 1px solid #1565c0;
+    border: 1px solid #1565c0 !important;
+    text-shadow: 0 0 5px rgba(0, 0, 0, 0.7) !important;
+    position: relative;
+    z-index: 1;
+    animation: glow 2s ease-in-out infinite alternate;
+}
+
+@keyframes glow {
+    from {
+        box-shadow: 0 0 10px #00ffff, 0 0 20px #00ffff, 0 0 30px #0066ff;
+    }
+    to {
+        box-shadow: 0 0 15px #00ffff, 0 0 30px #00ffff, 0 0 45px #0066ff;
+    }
 }
 
 .role-vip {

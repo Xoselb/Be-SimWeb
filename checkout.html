@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Finaliser la Commande - EB Simracing</title>
+    <link rel="icon" href="/public/img/EB.png" type="image/png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/merch.css?v=1.3">
+    <link rel="stylesheet" href="css/cart.css?v=1.1">
+    <style>
+        .checkout-container {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+        
+        .checkout-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            margin-top: 40px;
+        }
+        
+        .checkout-section {
+            background: linear-gradient(135deg, #1a1a1a, #2a2a2a);
+            border: 2px solid #333;
+            border-radius: 15px;
+            padding: 30px;
+        }
+        
+        .section-title {
+            color: #FFF200;
+            font-size: 1.5rem;
+            margin-bottom: 25px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            color: #fff;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+        
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 12px 15px;
+            background: linear-gradient(135deg, #2a2a2a, #3a3a3a);
+            border: 2px solid #444;
+            border-radius: 10px;
+            color: #fff;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+        
+        .form-group input:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: #FFF200;
+            box-shadow: 0 0 0 3px rgba(255, 242, 0, 0.1);
+        }
+        
+        .order-summary {
+            background: linear-gradient(135deg, #0a0a0a, #1a1a1a);
+            border: 2px solid #FFF200;
+            border-radius: 15px;
+            padding: 25px;
+        }
+        
+        .summary-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+            color: #fff;
+        }
+        
+        .summary-total {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 2px solid #333;
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #FFF200;
+        }
+        
+        .payment-methods {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-top: 25px;
+        }
+        
+        .payment-button {
+            padding: 15px 20px;
+            border: none;
+            border-radius: 10px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+        
+        .paypal-button {
+            background: linear-gradient(135deg, #ffc439, #ff9900);
+            color: #000;
+        }
+        
+        .paypal-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255, 196, 57, 0.3);
+        }
+        
+        .bancontact-button {
+            background: linear-gradient(135deg, #00549f, #003d73);
+            color: #fff;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .bancontact-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 84, 159, 0.3);
+        }
+        
+        .coming-soon-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.8);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #FFF200;
+            font-weight: bold;
+            font-size: 1.1rem;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+        
+        .bancontact-button:hover .coming-soon-overlay {
+            opacity: 1;
+        }
+        
+        .cart-items {
+            margin-bottom: 20px;
+        }
+        
+        .cart-item {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 15px;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+        }
+        
+        .cart-item-image {
+            width: 60px;
+            height: 60px;
+            object-fit: cover;
+            border-radius: 8px;
+        }
+        
+        .cart-item-details {
+            flex: 1;
+            color: #fff;
+        }
+        
+        .cart-item-name {
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+        
+        .cart-item-options {
+            font-size: 0.9rem;
+            color: #aaa;
+            margin-bottom: 5px;
+        }
+        
+        .cart-item-price {
+            color: #FFF200;
+            font-weight: 600;
+        }
+        
+        @media (max-width: 768px) {
+            .checkout-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+            
+            .checkout-container {
+                margin: 20px auto;
+                padding: 0 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+<!-- Header -->
+<header class="header">
+    <div class="container">
+        <div class="logo">
+            <a href="index.html"><img src="/public/img/EB SIMRACING(Solo-White).png" alt="EB Simracing" class="logo-img"></a>
+        </div>
+        <nav class="nav">
+            <ul>
+                <li><a href="index.html">Accueil</a></li>
+                <li><a href="merch.html">Boutique</a></li>
+                <li><a href="cart.html" class="cart-link">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="cart-count">0</span>
+                </a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<main class="checkout-container">
+    <div class="page-header">
+        <h1>Finaliser la Commande</h1>
+        <p>Veuillez compléter vos informations pour finaliser votre achat</p>
+    </div>
+
+    <div class="checkout-grid">
+        <!-- Información del cliente -->
+        <div class="checkout-section">
+            <h2 class="section-title">
+                <i class="fas fa-user"></i>
+                Informations de livraison
+            </h2>
+            
+            <form id="checkout-form">
+                <div class="form-group">
+                    <label for="firstName">Prénom *</label>
+                    <input type="text" id="firstName" name="firstName" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="lastName">Nom *</label>
+                    <input type="text" id="lastName" name="lastName" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="email">Email *</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="phone">Téléphone *</label>
+                    <input type="tel" id="phone" name="phone" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="address">Adresse *</label>
+                    <input type="text" id="address" name="address" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="city">Ville *</label>
+                    <input type="text" id="city" name="city" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="postalCode">Code Postal *</label>
+                    <input type="text" id="postalCode" name="postalCode" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="country">Pays *</label>
+                    <select id="country" name="country" required>
+                        <option value="">Sélectionner un pays</option>
+                        <option value="BE">Belgique</option>
+                        <option value="FR">France</option>
+                        <option value="NL">Pays-Bas</option>
+                        <option value="LU">Luxembourg</option>
+                        <option value="DE">Allemagne</option>
+                    </select>
+                </div>
+            </form>
+        </div>
+
+        <!-- Resumen del pedido -->
+        <div class="checkout-section">
+            <h2 class="section-title">
+                <i class="fas fa-shopping-bag"></i>
+                Récapitulatif de la commande
+            </h2>
+            
+            <div class="order-summary">
+                <div class="cart-items" id="cart-items">
+                    <!-- Los items del carrito se cargarán aquí -->
+                </div>
+                
+                <div class="summary-item">
+                    <span>Sous-total</span>
+                    <span id="subtotal">0.00 €</span>
+                </div>
+                
+                <div class="summary-item">
+                    <span>Livraison</span>
+                    <span id="shipping">5.00 €</span>
+                </div>
+                
+                <div class="summary-item">
+                    <span>TVA (21%)</span>
+                    <span id="tax">0.00 €</span>
+                </div>
+                
+                <div class="summary-total">
+                    <span>Total</span>
+                    <span id="total">0.00 €</span>
+                </div>
+            </div>
+            
+            <!-- Métodos de pago -->
+            <div class="payment-methods">
+                <button class="payment-button paypal-button" id="paypal-button">
+                    <i class="fab fa-paypal"></i>
+                    Payer avec PayPal
+                </button>
+                
+                <button class="payment-button bancontact-button" id="bancontact-button">
+                    <i class="fas fa-credit-card"></i>
+                    Payer avec Bancontact
+                    <div class="coming-soon-overlay">Bientôt disponible</div>
+                </button>
+            </div>
+        </div>
+    </div>
+</main>
+
+<!-- Scripts -->
+<script src="js/services/cartService.js"></script>
+<script src="js/cart.js"></script>
+<script>
+    // Cargar items del carrito
+    document.addEventListener('DOMContentLoaded', function() {
+        loadCartItems();
+        updateOrderSummary();
+        initializePaymentMethods();
+    });
+
+    function loadCartItems() {
+        const cartItems = document.getElementById('cart-items');
+        const cart = window.cart ? window.cart.getCart() : [];
+        
+        if (cart.length === 0) {
+            cartItems.innerHTML = '<p style="color: #aaa; text-align: center;">Votre panier est vide</p>';
+            return;
+        }
+        
+        cartItems.innerHTML = cart.map(item => `
+            <div class="cart-item">
+                <img src="${item.image}" alt="${item.name}" class="cart-item-image">
+                <div class="cart-item-details">
+                    <div class="cart-item-name">${item.name}</div>
+                    <div class="cart-item-options">
+                        ${item.size ? `Taille: ${item.size}` : ''}
+                        ${item.color ? ` | Couleur: ${item.color}` : ''}
+                        | Quantité: ${item.quantity}
+                    </div>
+                    <div class="cart-item-price">${(item.price * item.quantity).toFixed(2)} €</div>
+                </div>
+            </div>
+        `).join('');
+    }
+
+    function updateOrderSummary() {
+        const cart = window.cart ? window.cart.getCart() : [];
+        const subtotal = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+        const shipping = subtotal > 0 ? 5.00 : 0;
+        const tax = subtotal * 0.21;
+        const total = subtotal + shipping + tax;
+        
+        document.getElementById('subtotal').textContent = `${subtotal.toFixed(2)} €`;
+        document.getElementById('shipping').textContent = `${shipping.toFixed(2)} €`;
+        document.getElementById('tax').textContent = `${tax.toFixed(2)} €`;
+        document.getElementById('total').textContent = `${total.toFixed(2)} €`;
+    }
+
+    function initializePaymentMethods() {
+        // PayPal button
+        document.getElementById('paypal-button').addEventListener('click', function() {
+            if (validateForm()) {
+                processPayPalPayment();
+            }
+        });
+
+        // Bancontact button - solo mostrar mensaje
+        document.getElementById('bancontact-button').addEventListener('click', function(e) {
+            e.preventDefault();
+            showNotification('Bancontact sera bientôt disponible!', 'info');
+        });
+    }
+
+    function validateForm() {
+        const form = document.getElementById('checkout-form');
+        const requiredFields = form.querySelectorAll('[required]');
+        
+        for (let field of requiredFields) {
+            if (!field.value.trim()) {
+                field.focus();
+                showNotification('Veuillez compléter tous les champs obligatoires', 'error');
+                return false;
+            }
+        }
+        
+        return true;
+    }
+
+    function processPayPalPayment() {
+        const cart = window.cart ? window.cart.getCart() : [];
+        const subtotal = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+        const shipping = subtotal > 0 ? 5.00 : 0;
+        const tax = subtotal * 0.21;
+        const total = subtotal + shipping + tax;
+        
+        // Aquí iría la integración real con PayPal
+        // Por ahora, simulamos el proceso
+        showNotification('Redirection vers PayPal...', 'success');
+        
+        // Simulación de redirección a PayPal
+        setTimeout(() => {
+            showNotification('Paiement PayPal simulé avec succès!', 'success');
+            // Aquí redirigiríamos a una página de confirmación
+            setTimeout(() => {
+                window.location.href = 'order-confirmation.html';
+            }, 2000);
+        }, 2000);
+    }
+
+    function showNotification(message, type = 'info') {
+        // Crear notificación
+        const notification = document.createElement('div');
+        notification.className = `notification ${type}`;
+        notification.textContent = message;
+        notification.style.cssText = `
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 15px 20px;
+            border-radius: 10px;
+            color: white;
+            font-weight: 600;
+            z-index: 1000;
+            transform: translateX(100%);
+            transition: transform 0.3s ease;
+        `;
+        
+        // Colores según tipo
+        const colors = {
+            success: 'linear-gradient(135deg, #10b981, #059669)',
+            error: 'linear-gradient(135deg, #ef4444, #dc2626)',
+            info: 'linear-gradient(135deg, #3b82f6, #2563eb)'
+        };
+        
+        notification.style.background = colors[type] || colors.info;
+        
+        document.body.appendChild(notification);
+        
+        // Mostrar animación
+        setTimeout(() => {
+            notification.style.transform = 'translateX(0)';
+        }, 100);
+        
+        // Ocultar después de 3 segundos
+        setTimeout(() => {
+            notification.style.transform = 'translateX(100%)';
+            setTimeout(() => {
+                document.body.removeChild(notification);
+            }, 300);
+        }, 3000);
+    }
+</script>
+</body>
+</html>

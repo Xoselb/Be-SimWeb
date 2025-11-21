@@ -7,6 +7,7 @@
     <title>EB Simracing - Centre de simulation</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/cart.css?v=1.1">
     <link rel="stylesheet" href="css/Membres/perfil.css">
 </head>
 <body>
@@ -22,6 +23,30 @@
                     <li><a href="galerie.html">Galerie</a></li>
                     <li><a href="merch.html">Boutique</a></li>
                     <li><a href="contacto.html">Contact</a></li>
+                    <li class="nav-cart">
+                        <a href="#" class="cart-icon" id="cart-icon">
+                            <i class="fas fa-shopping-cart"></i>
+                            <span class="cart-count">0</span>
+                        </a>
+                        <div class="cart-dropdown" id="cart-dropdown">
+                            <div class="cart-header">
+                                <span>Mon Panier</span>
+                                <span class="cart-count-header">0</span>
+                            </div>
+                            <div class="cart-items" id="cart-items">
+                                <!-- Cart items will be loaded here -->
+                            </div>
+                            <div class="cart-footer">
+                                <div class="cart-total">
+                                    <span>Total:</span>
+                                    <span id="cart-total">0.00 €</span>
+                                </div>
+                                <button class="checkout-btn" id="checkout-btn">
+                                    <i class="fas fa-credit-card"></i> Voir le panier
+                                </button>
+                            </div>
+                        </div>
+                    </li>
                     <li class="nav-user" id="navUser" style="display: none;">
                         <div class="user-avatar" id="userMenuBtn">
                             <img src="img/default-avatar.png" alt="Profil" id="userAvatar">
@@ -29,6 +54,7 @@
                         </div>
                         <div class="user-dropdown" id="userDropdown">
                             <a href="perfil.html" class="active"><i class="fas fa-user"></i> Mon Profil</a>
+                            <a href="cart.html"><i class="fas fa-shopping-cart"></i> Mon Panier</a>
                             <a href="mes-reservations.html"><i class="fas fa-calendar-alt"></i> Mes réservations</a>
                             <a href="parametres.html"><i class="fas fa-cog"></i> Paramètres</a>
                             <div class="dropdown-divider"></div>
@@ -448,6 +474,7 @@
         </div>
     </div>
 
+    <script src="/js/odoo-auth.js"></script>
     <script src="js/index.js"></script>
     <script>
         // Add event listeners for terms and privacy links
@@ -567,6 +594,55 @@
         // Check authentication on page load
         checkAuth();
     });
+
+    // Control del anuncio lateral
+    document.addEventListener('DOMContentLoaded', function() {
+        const adContainer = document.querySelector('.sidebar-ad-container');
+        const ad = document.querySelector('.sidebar-ad');
+        const closeBtn = document.querySelector('.ad-close-btn');
+        const toggleBtn = document.querySelector('.ad-toggle-btn');
+        
+        // Ocultar anuncio por defecto
+        ad.classList.add('hidden');
+        toggleBtn.classList.remove('hidden');
+        
+        // Cerrar anuncio
+        closeBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            ad.classList.add('hidden');
+            toggleBtn.classList.remove('hidden');
+            localStorage.setItem('adHidden', 'true');
+        });
+        
+        // Mostrar anuncio
+        toggleBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            ad.classList.remove('hidden');
+            toggleBtn.classList.add('hidden');
+            localStorage.setItem('adHidden', 'false');
+            // Aplicar animación al mostrar
+            ad.style.animation = 'slideIn 0.5s ease-out forwards';
+        });
+    });
 </script>
+
+<!-- Anuncio lateral mejorado -->
+<div class="sidebar-ad-container">
+    <button class="ad-toggle-btn hidden" aria-label="Mostrar anuncio">
+        <i class="fas fa-chevron-left"></i>
+    </button>
+    <div class="sidebar-ad">
+        <button class="ad-close-btn" aria-label="Cerrar anuncio">
+            <i class="fas fa-times"></i>
+        </button>
+        <a href="#" target="_blank" rel="noopener noreferrer">
+            <img src="/public/img/ads/EUROPEAN_FUN_CUP.png" alt="Anuncio promocional">
+        </a>
+    </div>
+</div>
+
+<!-- Cart Scripts -->
+<script src="js/services/cartService.js"></script>
+<script src="js/cart.js"></script>
 </body>
 </html>

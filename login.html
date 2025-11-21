@@ -247,17 +247,35 @@
         submitBtn.disabled = true;
         
         // Usar el sistema de autenticación
-        setTimeout(() => {
-            const loginSuccess = window.auth.handleLogin(email.value, password.value);
+        try {
+            // Mostrar estado de carga
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Connexion...';
+            submitBtn.disabled = true;
             
-            if (!loginSuccess) {
-                showError('Email ou mot de passe incorrect');
+            // Llamar a handleLogin
+            const result = window.auth.handleLogin(email.value, password.value);
+            
+            // Manejar la promesa devuelta por handleLogin
+            Promise.resolve(result).then(response => {
+                console.log('Inicio de sesión exitoso:', response);
+                // Redirigir al usuario después de un inicio de sesión exitoso
+                window.location.href = 'index.html';
+            }).catch(error => {
+                console.error('Error en el inicio de sesión:', error);
+                showError(error.message || 'Email ou mot de passe incorrect');
                 email.style.borderColor = '#ff6b6b';
                 password.style.borderColor = '#ff6b6b';
+            }).finally(() => {
+                // Restaurar el botón
                 submitBtn.innerHTML = originalText;
                 submitBtn.disabled = false;
-            }
-        }, 500);
+            });
+        } catch (error) {
+            console.error('Error inesperado:', error);
+            showError('Error inesperado. Por favor, inténtalo de nuevo.');
+            submitBtn.innerHTML = originalText;
+            submitBtn.disabled = false;
+        }
     });
 
     // Manejar el menú móvil

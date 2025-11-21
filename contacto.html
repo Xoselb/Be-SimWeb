@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="css/styles.css">
     <link rel="stylesheet" href="css/Membres/perfil.css">
+    <link rel="stylesheet" href="css/cart.css">
 </head>
 <body>
     <!-- Header -->
@@ -16,7 +17,7 @@
 <header class="header">
     <div class="container">
         <div class="logo">
-            <a href="index.html"><h1>EB <span>Simracing</span></h1></a>
+            <a href="index.html"><img src="/public/img/EB SIMRACING(Solo-White).png" alt="EB Simracing" class="logo-img"></a>
         </div>
         <nav class="main-nav">
             <ul>
@@ -25,6 +26,30 @@
                 <li><a href="galerie.html">Galerie</a></li>
                 <li><a href="merch.html">Boutique</a></li>
                 <li><a href="contacto.html">Contact</a></li>
+                <li class="nav-cart">
+                    <a href="#" class="cart-icon" id="cart-icon">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span class="cart-count">0</span>
+                    </a>
+                    <div class="cart-dropdown" id="cart-dropdown">
+                        <div class="cart-header">
+                            <span>Mon Panier</span>
+                            <span class="cart-count-header">0</span>
+                        </div>
+                        <div class="cart-items" id="cart-items">
+                            <!-- Cart items will be loaded here -->
+                        </div>
+                        <div class="cart-footer">
+                            <div class="cart-total">
+                                <span>Total:</span>
+                                <span id="cart-total">0.00 €</span>
+                            </div>
+                            <button class="checkout-btn" id="checkout-btn">
+                                <i class="fas fa-credit-card"></i> Voir le panier
+                            </button>
+                        </div>
+                    </div>
+                </li>
                 <li class="nav-user" id="navUser" style="display: none;">
                     <div class="user-avatar" id="userMenuBtn">
                         <img src="img/default-avatar.png" alt="Profil" id="userAvatar">
@@ -252,6 +277,8 @@
     </footer>
 
     <script src="js/contacto.js"></script>
+    <script src="js/services/cartService.js"></script>
+    <script src="js/cart.js"></script>
     <script src="js/auth.js"></script>
 </body>
 </html>

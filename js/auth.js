@@ -109,6 +109,11 @@ function handleLogin(email, password) {
         localStorage.setItem('userToken', 'dummy-token');
         localStorage.setItem('userData', JSON.stringify(userData));
         
+        // Disparar evento de login
+        document.dispatchEvent(new CustomEvent('auth:login', { 
+            detail: { user: userData } 
+        }));
+        
         // Redirigir al inicio
         window.location.href = 'index.html';
         return true;
@@ -131,8 +136,18 @@ function getCurrentUser() {
 
 // Función para cerrar sesión
 function logout() {
+    const userData = getCurrentUser();
+    
+    // Eliminar datos de sesión
     localStorage.removeItem('userToken');
     localStorage.removeItem('userData');
+    
+    // Disparar evento de logout
+    document.dispatchEvent(new CustomEvent('auth:logout', { 
+        detail: { user: userData } 
+    }));
+    
+    // Redirigir al login
     window.location.href = 'login.html';
 }
 

@@ -10,13 +10,14 @@
     <link rel="stylesheet" href="css/styles.css">
     <link rel="stylesheet" href="css/TrackDays/C1.css">
     <link rel="stylesheet" href="css/Membres/perfil.css">
+    <link rel="stylesheet" href="css/cart.css">
 </head>
 <body>  
 <!-- Header -->
 <header class="header">
     <div class="container">
         <div class="logo">
-            <a href="index.html"><h1>EB <span>Simracing</span></h1></a>
+            <a href="index.html"><img src="/public/img/EB SIMRACING(Solo-White).png" alt="EB Simracing" class="logo-img"></a>
         </div>
         <nav class="main-nav">
             <ul>
@@ -25,6 +26,30 @@
                 <li><a href="galerie.html">Galerie</a></li>
                 <li><a href="merch.html">Boutique</a></li>
                 <li><a href="contacto.html">Contact</a></li>
+                <li class="nav-cart">
+                    <a href="#" class="cart-icon" id="cart-icon">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span class="cart-count">0</span>
+                    </a>
+                    <div class="cart-dropdown" id="cart-dropdown">
+                        <div class="cart-header">
+                            <span>Mon Panier</span>
+                            <span class="cart-count-header">0</span>
+                        </div>
+                        <div class="cart-items" id="cart-items">
+                            <!-- Cart items will be loaded here -->
+                        </div>
+                        <div class="cart-footer">
+                            <div class="cart-total">
+                                <span>Total:</span>
+                                <span id="cart-total">0.00 €</span>
+                            </div>
+                            <button class="checkout-btn" id="checkout-btn">
+                                <i class="fas fa-credit-card"></i> Voir le panier
+                            </button>
+                        </div>
+                    </div>
+                </li>
                 <li class="nav-user" id="navUser" style="display: none;">
                     <div class="user-avatar" id="userMenuBtn">
                         <img src="img/default-avatar.png" alt="Profil" id="userAvatar">
@@ -142,12 +167,57 @@
             </div>
         </section>
 
+<!-- Sección de Precios de Circuitos -->
+<section class="circuit-pricing-section">
+    <div class="container">
+        <h2 class="section-title">TARIFS SPÉCIAUX</h2>
+        <div class="pricing-table-container">
+            <table class="pricing-table">
+                <thead>
+                    <tr>
+                        <th>Circuit</th>
+                        <th>30 min</th>
+                        <th>1 heure</th>
+                        <th>Demi - Jourgnee</th>
+                        <th>Journee Complete</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Mettet</td>
+                        <td>175€</td>
+                        <td>300€</td>
+                        <td>1000€</td>
+                        <td>1750€</td>
+                    </tr>
+                    <tr>
+                        <td>Zolder</td>
+                        <td>350€</td>
+                        <td>575€</td>
+                        <td>1550€</td>
+                        <td>2550€</td>
+                    </tr>
+                    <tr>
+                        <td>Spa Francorchamps</td>
+                        <td>400€</td>
+                        <td>620€</td>
+                        <td>1600€</td>
+                        <td>2620€</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <p class="pricing-note">* Les prix incluent l'équipement de sécurité et l'instruction professionnelle.</p>
+        <p class="pricing-note">** Réservation en ligne disponible jusqu'à 24h avant la date souhaitée.</p>
+    </div>
+</section>
+    
         <!-- Botones flotantes -->
         <div class="floating-buttons-container">
             <a href="#reservation" class="floating-btn floating-info" id="floatingInfoBtn">
                 <div class="floating-btn-content">
                     <span class="bold-text">PRIX</span>
-                    <span class="normal-text">À partir de 90€</span>
+                    <span class="normal-text">À partir de 175€</span>
                 </div>
             </a>
             <a href="#reservation" class="floating-buy-btn book-now" id="floatingBuyBtn" data-vehicle-name="Citroën C1" data-vehicle-id="c1">
@@ -354,5 +424,9 @@
             window.addEventListener('resize', updateCarousel);
         });
     </script>
+    <script src="js/services/cartService.js"></script>
+    <script src="js/cart.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/header.js"></script>
 </body>
 </html>

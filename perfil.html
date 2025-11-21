@@ -13,7 +13,7 @@
     <header class="header">
         <div class="container">
             <div class="logo">
-                <a href="index.html"><h1>EB <span>Simracing</span></h1></a>
+                <a href="index.html"><img src="/public/img/EB SIMRACING(Solo-White).png" alt="EB Simracing" class="logo-img"></a>
             </div>
             <nav class="main-nav">
                 <ul>
@@ -108,6 +108,7 @@
     </main>
 
     <script src="js/auth.js"></script>
+    <script src="js/perfil.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             // Mobile menu functionality
@@ -165,24 +166,26 @@
                         // Mapeo de roles a sus versiones en francés
                         const roleMap = {
                             'propriétaire': 'Propriétaire',
-                            'modérateur': 'Modérateur',
+                            'modérateur': 'Developer',
                             'administrateur': 'Administrateur',
                             'premium': 'Membre Premium',
                             'utilisateur': 'Utilisateur',
                             // Mantener compatibilidad con roles antiguos
                             'dueño': 'Propriétaire',
-                            'dev': 'Modérateur',
+                            'dev': 'Developer',  // Cambiado de 'Modérateur' a 'Developer' para consistencia
                             'admin': 'Administrateur',
                             'vip': 'Membre Premium',
                             'usuario': 'Utilisateur'
                         };
                         
                         const role = userData.role || 'utilisateur';
+                        // Mapeo consistente de roles a clases CSS
                         const roleClass = role === 'propriétaire' ? 'dueño' : 
-                                        role === 'modérateur' ? 'dev' :
+                                        (role === 'modérateur' || role === 'dev') ? 'dev' :
                                         role === 'administrateur' ? 'admin' :
                                         role === 'premium' ? 'vip' : 'usuario';
                         
+                        // Usar el mapeo de roles para el texto mostrado
                         const roleText = roleMap[role] || 'Utilisateur';
                         roleElement.innerHTML = `<span class="role-badge role-${roleClass}">${roleText}</span>`;
                     }
