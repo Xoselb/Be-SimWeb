@@ -398,13 +398,13 @@
     <script src="js/hero-slider.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
     <script type="module">
-        // Importar e inicializar el gestor de reservas
-        import BookingManager from './js/odoo/bookingManager.js';
-        
-        // Inicializar cuando el DOM esté listo
-        document.addEventListener('DOMContentLoaded', () => {
-            window.bookingManager = new BookingManager();
-            console.log('BookingManager inicializado');
+        // Importar e inicializar el gestor de reservas local
+        import('./js/bookingManager.js').then(() => {
+            // Inicializar cuando el DOM esté listo
+            document.addEventListener('DOMContentLoaded', () => {
+                window.bookingManager = new BookingManager();
+                console.log('BookingManager inicializado');
+            });
         });
     </script>
     <script src="js/main.js"></script>

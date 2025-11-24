@@ -27,29 +27,66 @@ const ROLE_LEVELS = {
 };
 
 // Credenciales de prueba
-const TEST_USER = {
-    email: 'test@example.com',
-    password: 'password123',
-    id: 1001,
-    firstName: 'Xosé Ramón',
-    lastName: 'Larroy Becerra',
-    phone: '+34123456789',
-    avatar: 'img/EVAN.JPG',
-    role: ROLES.DEV, // Rol por defecto para el usuario de prueba
-    isActive: true
-};
+const TEST_USERS = [
+    {
+        email: 'owner@ebsimracing.com',
+        password: 'owner123',
+        id: 1001,
+        name: 'Owner EB',
+        role: 'owner',
+        membership: 'owner',
+        isActive: true
+    },
+    {
+        email: 'vip@ebsimracing.com',
+        password: 'vip123',
+        id: 1002,
+        name: 'VIP Member',
+        role: ROLES.VIP,
+        membership: 'vip',
+        isActive: true
+    },
+    {
+        email: 'member@ebsimracing.com',
+        password: 'member123',
+        id: 1003,
+        name: 'Regular Member',
+        role: ROLES.USER,
+        membership: 'member',
+        isActive: true
+    },
+    {
+        email: 'test@example.com',
+        password: 'password123',
+        id: 1004,
+        firstName: 'Xosé Ramón',
+        lastName: 'Larroy Becerra',
+        name: 'Xosé Ramón Larroy Becerra',
+        phone: '+34123456789',
+        avatar: 'img/EVAN.JPG',
+        role: ROLES.DEV,
+        membership: 'member',
+        isActive: true
+    }
+];
 
-// Inicializar el usuario de prueba si no existe
+const TEST_USER = TEST_USERS[0]; // Default to owner for testing
+
+// Inicializar los usuarios de prueba si no existen
 function initializeTestUser() {
     const users = JSON.parse(localStorage.getItem('users') || '[]');
-    const testUserExists = users.some(user => user.email === TEST_USER.email);
     
-    if (!testUserExists) {
-        // No almacenamos la contraseña en texto plano en producción
-        const { password, ...userWithoutPassword } = TEST_USER;
-        users.push(userWithoutPassword);
-        localStorage.setItem('users', JSON.stringify(users));
-    }
+    TEST_USERS.forEach(testUser => {
+        const testUserExists = users.some(user => user.email === testUser.email);
+        
+        if (!testUserExists) {
+            // No almacenamos la contraseña en texto plano en producción
+            const { password, ...userWithoutPassword } = testUser;
+            users.push(userWithoutPassword);
+        }
+    });
+    
+    localStorage.setItem('users', JSON.stringify(users));
     
     // Inicializar roles si no existen
     if (!localStorage.getItem('roles')) {

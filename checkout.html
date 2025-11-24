@@ -1,235 +1,29 @@
-<!DOCTYPE html>
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Finaliser la Commande - EB Simracing</title>
-    <link rel="icon" href="/public/img/EB.png" type="image/png">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link rel="stylesheet" href="css/styles.css">
-    <link rel="stylesheet" href="css/merch.css?v=1.3">
-    <link rel="stylesheet" href="css/cart.css?v=1.1">
-    <style>
-        .checkout-container {
-            max-width: 1200px;
-            margin: 40px auto;
-            padding: 0 20px;
-        }
-        
-        .checkout-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 40px;
-            margin-top: 40px;
-        }
-        
-        .checkout-section {
-            background: linear-gradient(135deg, #1a1a1a, #2a2a2a);
-            border: 2px solid #333;
-            border-radius: 15px;
-            padding: 30px;
-        }
-        
-        .section-title {
-            color: #FFF200;
-            font-size: 1.5rem;
-            margin-bottom: 25px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        
-        .form-group {
-            margin-bottom: 20px;
-        }
-        
-        .form-group label {
-            display: block;
-            color: #fff;
-            margin-bottom: 8px;
-            font-weight: 500;
-        }
-        
-        .form-group input,
-        .form-group select {
-            width: 100%;
-            padding: 12px 15px;
-            background: linear-gradient(135deg, #2a2a2a, #3a3a3a);
-            border: 2px solid #444;
-            border-radius: 10px;
-            color: #fff;
-            font-size: 1rem;
-            transition: all 0.3s ease;
-        }
-        
-        .form-group input:focus,
-        .form-group select:focus {
-            outline: none;
-            border-color: #FFF200;
-            box-shadow: 0 0 0 3px rgba(255, 242, 0, 0.1);
-        }
-        
-        .order-summary {
-            background: linear-gradient(135deg, #0a0a0a, #1a1a1a);
-            border: 2px solid #FFF200;
-            border-radius: 15px;
-            padding: 25px;
-        }
-        
-        .summary-item {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 15px;
-            color: #fff;
-        }
-        
-        .summary-total {
-            display: flex;
-            justify-content: space-between;
-            margin-top: 20px;
-            padding-top: 20px;
-            border-top: 2px solid #333;
-            font-size: 1.2rem;
-            font-weight: bold;
-            color: #FFF200;
-        }
-        
-        .payment-methods {
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-            margin-top: 25px;
-        }
-        
-        .payment-button {
-            padding: 15px 20px;
-            border: none;
-            border-radius: 10px;
-            font-size: 1rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-        }
-        
-        .paypal-button {
-            background: linear-gradient(135deg, #ffc439, #ff9900);
-            color: #000;
-        }
-        
-        .paypal-button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(255, 196, 57, 0.3);
-        }
-        
-        .bancontact-button {
-            background: linear-gradient(135deg, #00549f, #003d73);
-            color: #fff;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .bancontact-button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(0, 84, 159, 0.3);
-        }
-        
-        .coming-soon-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(0, 0, 0, 0.8);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #FFF200;
-            font-weight: bold;
-            font-size: 1.1rem;
-            opacity: 0;
-            pointer-events: none;
-            transition: opacity 0.3s ease;
-        }
-        
-        .bancontact-button:hover .coming-soon-overlay {
-            opacity: 1;
-        }
-        
-        .cart-items {
-            margin-bottom: 20px;
-        }
-        
-        .cart-item {
-            display: flex;
-            gap: 15px;
-            margin-bottom: 15px;
-            padding: 15px;
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 10px;
-        }
-        
-        .cart-item-image {
-            width: 60px;
-            height: 60px;
-            object-fit: cover;
-            border-radius: 8px;
-        }
-        
-        .cart-item-details {
-            flex: 1;
-            color: #fff;
-        }
-        
-        .cart-item-name {
-            font-weight: 600;
-            margin-bottom: 5px;
-        }
-        
-        .cart-item-options {
-            font-size: 0.9rem;
-            color: #aaa;
-            margin-bottom: 5px;
-        }
-        
-        .cart-item-price {
-            color: #FFF200;
-            font-weight: 600;
-        }
-        
-        @media (max-width: 768px) {
-            .checkout-grid {
-                grid-template-columns: 1fr;
-                gap: 30px;
-            }
-            
-            .checkout-container {
-                margin: 20px auto;
-                padding: 0 15px;
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="css/checkout.css">
 </head>
 <body>
 <!-- Header -->
 <header class="header">
     <div class="container">
-        <div class="logo">
-            <a href="index.html"><img src="/public/img/EB SIMRACING(Solo-White).png" alt="EB Simracing" class="logo-img"></a>
+        <div class="nav-container">
+            <div class="logo">
+                <a href="index.html"><img src="/public/img/EB SIMRACING(Solo-White).png" alt="EB Simracing"></a>
+            </div>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="index.html#inicio">Accueil</a></li>
+                    <li><a href="index.html#servicios">Services</a></li>
+                    <li><a href="index.html#simuladores">Simulateurs</a></li>
+                    <li><a href="merch.html">Boutique</a></li>
+                    <li><a href="index.html#contacto">Contact</a></li>
+                </ul>
+            </nav>
         </div>
-        <nav class="nav">
-            <ul>
-                <li><a href="index.html">Accueil</a></li>
-                <li><a href="merch.html">Boutique</a></li>
-                <li><a href="cart.html" class="cart-link">
-                    <i class="fas fa-shopping-cart"></i>
-                    <span class="cart-count">0</span>
-                </a></li>
-            </ul>
-        </nav>
     </div>
 </header>
 
@@ -301,33 +95,11 @@
         <div class="checkout-section">
             <h2 class="section-title">
                 <i class="fas fa-shopping-bag"></i>
-                Récapitulatif de la commande
+                Total de la commande
             </h2>
             
-            <div class="order-summary">
-                <div class="cart-items" id="cart-items">
-                    <!-- Los items del carrito se cargarán aquí -->
-                </div>
-                
-                <div class="summary-item">
-                    <span>Sous-total</span>
-                    <span id="subtotal">0.00 €</span>
-                </div>
-                
-                <div class="summary-item">
-                    <span>Livraison</span>
-                    <span id="shipping">5.00 €</span>
-                </div>
-                
-                <div class="summary-item">
-                    <span>TVA (21%)</span>
-                    <span id="tax">0.00 €</span>
-                </div>
-                
-                <div class="summary-total">
-                    <span>Total</span>
-                    <span id="total">0.00 €</span>
-                </div>
+            <div class="cart-items" id="cart-items">
+                <!-- Los items del carrito se cargarán aquí -->
             </div>
             
             <!-- Métodos de pago -->
@@ -342,6 +114,12 @@
                     Payer avec Bancontact
                     <div class="coming-soon-overlay">Bientôt disponible</div>
                 </button>
+                
+                <button class="payment-button card-button" id="card-button">
+                    <i class="fab fa-cc-visa"></i>
+                    Payer avec Visa/Mastercard
+                    <div class="coming-soon-overlay">Bientôt disponible</div>
+                </button>
             </div>
         </div>
     </div>
@@ -350,145 +128,290 @@
 <!-- Scripts -->
 <script src="js/services/cartService.js"></script>
 <script src="js/cart.js"></script>
+<script src="js/auth.js"></script>
+<script src="js/header.js"></script>
+<script src="js/paymentService.js"></script>
 <script>
-    // Cargar items del carrito
-    document.addEventListener('DOMContentLoaded', function() {
-        loadCartItems();
-        updateOrderSummary();
-        initializePaymentMethods();
-    });
-
-    function loadCartItems() {
-        const cartItems = document.getElementById('cart-items');
-        const cart = window.cart ? window.cart.getCart() : [];
-        
-        if (cart.length === 0) {
-            cartItems.innerHTML = '<p style="color: #aaa; text-align: center;">Votre panier est vide</p>';
-            return;
+    // Sistema de Checkout - Funcionalidad Principal
+    class CheckoutSystem {
+        constructor() {
+            this.cartService = null;
+            this.authService = null;
+            this.paymentService = null;
+            this.init();
         }
-        
-        cartItems.innerHTML = cart.map(item => `
-            <div class="cart-item">
-                <img src="${item.image}" alt="${item.name}" class="cart-item-image">
-                <div class="cart-item-details">
-                    <div class="cart-item-name">${item.name}</div>
-                    <div class="cart-item-options">
-                        ${item.size ? `Taille: ${item.size}` : ''}
-                        ${item.color ? ` | Couleur: ${item.color}` : ''}
-                        | Quantité: ${item.quantity}
-                    </div>
-                    <div class="cart-item-price">${(item.price * item.quantity).toFixed(2)} €</div>
-                </div>
-            </div>
-        `).join('');
-    }
 
-    function updateOrderSummary() {
-        const cart = window.cart ? window.cart.getCart() : [];
-        const subtotal = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-        const shipping = subtotal > 0 ? 5.00 : 0;
-        const tax = subtotal * 0.21;
-        const total = subtotal + shipping + tax;
-        
-        document.getElementById('subtotal').textContent = `${subtotal.toFixed(2)} €`;
-        document.getElementById('shipping').textContent = `${shipping.toFixed(2)} €`;
-        document.getElementById('tax').textContent = `${tax.toFixed(2)} €`;
-        document.getElementById('total').textContent = `${total.toFixed(2)} €`;
-    }
+        async init() {
+            // Esperar a que todos los servicios estén disponibles
+            await this.waitForServices();
+            
+            // Inicializar el sistema
+            this.loadCart();
+            this.setupEventListeners();
+            this.checkAuthentication();
+        }
 
-    function initializePaymentMethods() {
-        // PayPal button
-        document.getElementById('paypal-button').addEventListener('click', function() {
-            if (validateForm()) {
-                processPayPalPayment();
+        async waitForServices() {
+            const maxAttempts = 50;
+            let attempts = 0;
+
+            while (attempts < maxAttempts) {
+                if (window.cartService && window.auth && window.paymentService) {
+                    this.cartService = window.cartService;
+                    this.authService = window.auth;
+                    this.paymentService = window.paymentService;
+                    console.log('Todos los servicios están disponibles');
+                    return;
+                }
+                
+                await new Promise(resolve => setTimeout(resolve, 100));
+                attempts++;
             }
-        });
 
-        // Bancontact button - solo mostrar mensaje
-        document.getElementById('bancontact-button').addEventListener('click', function(e) {
-            e.preventDefault();
-            showNotification('Bancontact sera bientôt disponible!', 'info');
-        });
-    }
+            throw new Error('No se pudieron cargar los servicios necesarios');
+        }
 
-    function validateForm() {
-        const form = document.getElementById('checkout-form');
-        const requiredFields = form.querySelectorAll('[required]');
-        
-        for (let field of requiredFields) {
-            if (!field.value.trim()) {
-                field.focus();
-                showNotification('Veuillez compléter tous les champs obligatoires', 'error');
+        loadCart() {
+            console.log('=== LOAD CART START ===');
+            
+            // Forzar carga del carrito desde localStorage
+            if (this.cartService) {
+                this.cartService.loadCartFromStorage();
+                
+                const cart = this.cartService.cart;
+                console.log('Carrito cargado:', cart);
+                console.log('Longitud del carrito:', cart.length);
+                
+                // Si el carrito está vacío, intentar cargar directamente desde localStorage
+                if (cart.length === 0) {
+                    console.log('Carrito vacío, intentando cargar directamente desde localStorage...');
+                    const user = this.authService ? this.authService.getCurrentUser() : null;
+                    const cartKey = user ? `cart_${user.id}` : 'guest_cart';
+                    const savedCart = localStorage.getItem(cartKey);
+                    
+                    if (savedCart) {
+                        try {
+                            const parsedCart = JSON.parse(savedCart);
+                            console.log('Carrito encontrado en localStorage:', parsedCart);
+                            
+                            // Asignar directamente al carrito del servicio
+                            this.cartService.cart = parsedCart;
+                            console.log('Carrito asignado manualmente:', this.cartService.cart);
+                        } catch (error) {
+                            console.error('Error parseando carrito:', error);
+                        }
+                    }
+                }
+                
+                // Actualizar UI con el carrito final
+                this.updateCartDisplay(this.cartService.cart);
+            } else {
+                console.error('CartService no está disponible');
+            }
+        }
+
+        updateCartDisplay(cart) {
+            const cartItems = document.getElementById('cart-items');
+            
+            if (!cartItems) return;
+
+            if (cart.length === 0) {
+                cartItems.innerHTML = `
+                    <div class="empty-cart">
+                        <i class="fas fa-shopping-cart"></i>
+                        <h3>Votre panier est vide</h3>
+                        <p>Ajoutez des produits à votre panier pour continuer</p>
+                        <a href="merch.html" class="btn-primary">
+                            <i class="fas fa-shopping-bag"></i>
+                            Continuer vos achats
+                        </a>
+                    </div>
+                `;
+                
+                // Ocultar métodos de pago
+                document.querySelector('.payment-methods').style.display = 'none';
+                return;
+            }
+
+            // Mostrar items del carrito
+            cartItems.innerHTML = cart.map(item => `
+                <div class="cart-item">
+                    <img src="${item.image || '/public/img/default-product.png'}" alt="${item.name}" class="cart-item-image">
+                    <div class="cart-item-details">
+                        <div class="cart-item-name">${item.name}</div>
+                        <div class="cart-item-options">
+                            ${item.size ? `Taille: ${item.size}` : ''}
+                            ${item.color ? ` | Couleur: ${item.color}` : ''}
+                            | Quantité: ${item.quantity}
+                        </div>
+                        <div class="cart-item-price">${(item.price * item.quantity).toFixed(2)} €</div>
+                    </div>
+                </div>
+            `).join('');
+
+            // Mostrar métodos de pago
+            document.querySelector('.payment-methods').style.display = 'flex';
+        }
+
+        setupEventListeners() {
+            // PayPal button
+            const paypalBtn = document.getElementById('paypal-button');
+            if (paypalBtn) {
+                paypalBtn.addEventListener('click', () => this.handlePayPalPayment());
+            }
+
+            // Bancontact button
+            const bancontactBtn = document.getElementById('bancontact-button');
+            if (bancontactBtn) {
+                bancontactBtn.addEventListener('click', () => this.handleComingSoon('Bancontact'));
+            }
+
+            // Card button
+            const cardBtn = document.getElementById('card-button');
+            if (cardBtn) {
+                cardBtn.addEventListener('click', () => this.handleComingSoon('Carte bancaire'));
+            }
+        }
+
+        checkAuthentication() {
+            if (this.authService.isAuthenticated()) {
+                const userData = this.authService.getUserData();
+                if (userData) {
+                    this.prefillForm(userData);
+                }
+            }
+        }
+
+        prefillForm(userData) {
+            const fields = {
+                firstName: userData.firstName || userData.name?.split(' ')[0],
+                lastName: userData.lastName || userData.name?.split(' ')[1],
+                email: userData.email,
+                phone: userData.phone
+            };
+
+            Object.entries(fields).forEach(([fieldId, value]) => {
+                const element = document.getElementById(fieldId);
+                if (element && value) {
+                    element.value = value;
+                }
+            });
+
+            // Prefill address if available
+            if (userData.address) {
+                const addressField = document.getElementById('address');
+                const cityField = document.getElementById('city');
+                const postalCodeField = document.getElementById('postalCode');
+                const countryField = document.getElementById('country');
+
+                if (userData.address.street && addressField) addressField.value = userData.address.street;
+                if (userData.address.city && cityField) cityField.value = userData.address.city;
+                if (userData.address.postalCode && postalCodeField) postalCodeField.value = userData.address.postalCode;
+                if (userData.address.country && countryField) countryField.value = userData.address.country;
+            }
+        }
+
+        validateForm() {
+            const requiredFields = ['firstName', 'lastName', 'email', 'phone', 'address', 'city', 'postalCode', 'country'];
+            
+            for (const fieldId of requiredFields) {
+                const field = document.getElementById(fieldId);
+                if (!field || !field.value.trim()) {
+                    this.showNotification(`Veuillez remplir le champ ${fieldId}`, 'error');
+                    if (field) field.focus();
+                    return false;
+                }
+            }
+
+            // Validar email
+            const emailField = document.getElementById('email');
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(emailField.value)) {
+                this.showNotification('Veuillez entrer une adresse email valide', 'error');
+                emailField.focus();
                 return false;
             }
+
+            return true;
         }
-        
-        return true;
-    }
 
-    function processPayPalPayment() {
-        const cart = window.cart ? window.cart.getCart() : [];
-        const subtotal = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-        const shipping = subtotal > 0 ? 5.00 : 0;
-        const tax = subtotal * 0.21;
-        const total = subtotal + shipping + tax;
-        
-        // Aquí iría la integración real con PayPal
-        // Por ahora, simulamos el proceso
-        showNotification('Redirection vers PayPal...', 'success');
-        
-        // Simulación de redirección a PayPal
-        setTimeout(() => {
-            showNotification('Paiement PayPal simulé avec succès!', 'success');
-            // Aquí redirigiríamos a una página de confirmación
+        async handlePayPalPayment() {
+            if (!this.validateForm()) return;
+
+            try {
+                const customerInfo = this.getCustomerInfo();
+                const cart = this.cartService.cart;
+                const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+
+                const orderData = {
+                    orderId: 'order_' + Date.now(),
+                    customerInfo,
+                    items: cart,
+                    total,
+                    method: 'paypal'
+                };
+
+                // Procesar pago con PayPal
+                const result = await this.paymentService.processPayPalPayment(orderData);
+                
+                if (result.success) {
+                    this.showNotification('Paiement PayPal traité avec succès!', 'success');
+                    this.clearCartAndRedirect(orderData.orderId, 'paypal');
+                } else {
+                    this.showNotification(result.error || 'Erreur lors du paiement PayPal', 'error');
+                }
+
+            } catch (error) {
+                console.error('Error procesando pago PayPal:', error);
+                this.showNotification('Erreur lors du traitement du paiement PayPal', 'error');
+            }
+        }
+
+        handleComingSoon(method) {
+            this.showNotification(`Paiement par ${method} sera bientôt disponible!`, 'info');
+        }
+
+        getCustomerInfo() {
+            return {
+                firstName: document.getElementById('firstName').value,
+                lastName: document.getElementById('lastName').value,
+                email: document.getElementById('email').value,
+                phone: document.getElementById('phone').value,
+                address: document.getElementById('address').value,
+                city: document.getElementById('city').value,
+                postalCode: document.getElementById('postalCode').value,
+                country: document.getElementById('country').value
+            };
+        }
+
+        clearCartAndRedirect(orderId, method) {
+            // Limpiar carrito
+            this.cartService.clearCart();
+            
+            // Redirigir a página de confirmación
             setTimeout(() => {
-                window.location.href = 'order-confirmation.html';
+                window.location.href = `order-confirmation.html?order_id=${orderId}&method=${method}`;
             }, 2000);
-        }, 2000);
+        }
+
+        showNotification(message, type = 'info') {
+            const notification = document.createElement('div');
+            notification.className = `notification ${type}`;
+            notification.textContent = message;
+            
+            document.body.appendChild(notification);
+            
+            // Ocultar después de 3 segundos
+            setTimeout(() => {
+                notification.remove();
+            }, 3000);
+        }
     }
 
-    function showNotification(message, type = 'info') {
-        // Crear notificación
-        const notification = document.createElement('div');
-        notification.className = `notification ${type}`;
-        notification.textContent = message;
-        notification.style.cssText = `
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            padding: 15px 20px;
-            border-radius: 10px;
-            color: white;
-            font-weight: 600;
-            z-index: 1000;
-            transform: translateX(100%);
-            transition: transform 0.3s ease;
-        `;
-        
-        // Colores según tipo
-        const colors = {
-            success: 'linear-gradient(135deg, #10b981, #059669)',
-            error: 'linear-gradient(135deg, #ef4444, #dc2626)',
-            info: 'linear-gradient(135deg, #3b82f6, #2563eb)'
-        };
-        
-        notification.style.background = colors[type] || colors.info;
-        
-        document.body.appendChild(notification);
-        
-        // Mostrar animación
-        setTimeout(() => {
-            notification.style.transform = 'translateX(0)';
-        }, 100);
-        
-        // Ocultar después de 3 segundos
-        setTimeout(() => {
-            notification.style.transform = 'translateX(100%)';
-            setTimeout(() => {
-                document.body.removeChild(notification);
-            }, 300);
-        }, 3000);
-    }
+    // Inicializar el sistema cuando el DOM esté listo
+    document.addEventListener('DOMContentLoaded', () => {
+        new CheckoutSystem();
+    });
 </script>
 </body>
 </html>
