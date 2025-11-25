@@ -102,6 +102,22 @@
                 <!-- Los items del carrito se cargarán aquí -->
             </div>
             
+            <!-- Total del carrito -->
+            <div class="cart-total" id="cart-total">
+                <div class="total-row">
+                    <span>Sous-total:</span>
+                    <span id="subtotal">0.00 €</span>
+                </div>
+                <div class="total-row">
+                    <span>Livraison:</span>
+                    <span id="shipping">Gratuite</span>
+                </div>
+                <div class="total-row total-final">
+                    <span>Total:</span>
+                    <span id="total-amount">Total: 0.00 €</span>
+                </div>
+            </div>
+            
             <!-- Métodos de pago -->
             <div class="payment-methods">
                 <button class="payment-button paypal-button" id="paypal-button">
@@ -212,6 +228,7 @@
 
         updateCartDisplay(cart) {
             const cartItems = document.getElementById('cart-items');
+            const cartTotal = document.getElementById('cart-total');
             
             if (!cartItems) return;
 
@@ -228,7 +245,8 @@
                     </div>
                 `;
                 
-                // Ocultar métodos de pago
+                // Ocultar total y métodos de pago
+                if (cartTotal) cartTotal.style.display = 'none';
                 document.querySelector('.payment-methods').style.display = 'none';
                 return;
             }
@@ -248,6 +266,19 @@
                     </div>
                 </div>
             `).join('');
+
+            // Calcular y mostrar totales
+            if (cartTotal) {
+                const subtotal = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+                const shipping = subtotal > 50 ? 0 : subtotal > 0 ? 5.99 : 0;
+                const total = subtotal + shipping;
+
+                document.getElementById('subtotal').textContent = `${subtotal.toFixed(2)} €`;
+                document.getElementById('shipping').textContent = shipping === 0 ? 'Gratuite' : `${shipping.toFixed(2)} €`;
+                document.getElementById('total-amount').textContent = `${total.toFixed(2)} €`;
+                
+                cartTotal.style.display = 'block';
+            }
 
             // Mostrar métodos de pago
             document.querySelector('.payment-methods').style.display = 'flex';

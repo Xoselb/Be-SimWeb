@@ -150,6 +150,35 @@ body {
     margin-bottom: 20px;
 }
 
+/* Cart Total */
+.cart-total {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 10px;
+    padding: 20px;
+    margin: 20px 0;
+}
+
+.total-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.total-row:last-child {
+    border-bottom: none;
+}
+
+.total-final {
+    font-weight: 700;
+    font-size: 1.2rem;
+    color: #FFF200;
+    border-top: 2px solid rgba(255, 242, 0, 0.3);
+    margin-top: 10px;
+    padding-top: 15px;
+}
+
 .cart-item {
     display: flex;
     gap: 15px;
