@@ -263,6 +263,11 @@
             text-transform: uppercase;
         }
         
+        .status-registration {
+            background-color: rgba(0, 200, 83, 0.2);
+            color: #00c853;
+        }
+        
         .status-upcoming {
             background-color: rgba(0, 200, 83, 0.2);
             color: #00c853;
@@ -599,7 +604,7 @@
                         <div class="event-meta">
                             <span><i class="fas fa-fire"></i> 3 Rounds</span>
                             <span><i class="fas fa-users"></i> 16/20 Pilotes</span>
-                            <span class="event-status status-upcoming">Inscriptions ouvertes</span>
+                            <span class="event-status status-registration">Inscriptions ouvertes</span>
                         </div>
                         <p class="event-description">Championnat de drift sur circuits spécialisés. Jugement sur ligne, angle et style. Juges professionnels.</p>
                         <a href="#" class="btn-competition">S'inscrire</a>
@@ -663,7 +668,7 @@
                         <div class="event-meta">
                             <span><i class="fas fa-moon"></i> 12h Course</span>
                             <span><i class="fas fa-users"></i> 18/24 Pilotes</span>
-                            <span class="event-status status-upcoming">Inscriptions ouvertes</span>
+                            <span class="event-status status-registration">Inscriptions ouvertes</span>
                         </div>
                         <p class="event-description">Course nocturne de 12 heures sur Le Mans. Vision réduite, gestion phares, stratégie nuit.</p>
                         <a href="#" class="btn-competition">S'inscrire</a>
@@ -727,7 +732,7 @@
                         <div class="event-meta">
                             <span><i class="fas fa-truck"></i> 5 Tonnes</span>
                             <span><i class="fas fa-users"></i> 16/20 Pilotes</span>
-                            <span class="event-status status-upcoming">Inscriptions ouvertes</span>
+                            <span class="event-status status-registration">Inscriptions ouvertes</span>
                         </div>
                         <p class="event-description">Championnat de camions de course. Poids de 5 tonnes, 1000+ chevaux. Courses sur circuits européens.</p>
                         <a href="#" class="btn-competition">S'inscrire</a>
@@ -791,7 +796,7 @@
                         <div class="event-meta">
                             <span><i class="fas fa-route"></i> Rally Raid</span>
                             <span><i class="fas fa-users"></i> 20/25 Pilotes</span>
-                            <span class="event-status status-upcoming">Inscriptions ouvertes</span>
+                            <span class="event-status status-registration">Inscriptions ouvertes</span>
                         </div>
                         <p class="event-description">Finale du championnat tout-terrain. Navigation, points de passage, conditions extrêmes. 4x4 et buggies.</p>
                         <a href="#" class="btn-competition">S'inscrire</a>
@@ -989,10 +994,26 @@ type: eventElement.dataset.type || 'sim', // Par défaut SIM si non spécifié
                 const pastEventsContainer = document.querySelector('.past-events .events-grid');
                 
                 eventCards.forEach(card => {
+                    const startDate = card.dataset.startDate ? new Date(card.dataset.startDate) : null;
                     const endDate = card.dataset.endDate ? new Date(card.dataset.endDate) : null;
                     const statusElement = card.querySelector('.event-status');
                     
-                    if (endDate && now > endDate && !card.dataset.processed) {
+                    // 1 hora antes del evento: cambiar a "Bientôt"
+                    if (startDate && now >= new Date(startDate.getTime() - 60 * 60 * 1000) && now < startDate) {
+                        if (statusElement && !statusElement.classList.contains('status-ongoing')) {
+                            statusElement.textContent = 'Bientôt';
+                            statusElement.className = 'event-status status-ongoing';
+                        }
+                    }
+                    // Durante el evento: cambiar a "En cours"
+                    else if (startDate && endDate && now >= startDate && now <= endDate) {
+                        if (statusElement) {
+                            statusElement.textContent = 'En cours';
+                            statusElement.className = 'event-status status-ongoing';
+                        }
+                    }
+                    // Después del evento: mover a terminadas
+                    else if (endDate && now > endDate && !card.dataset.processed) {
                         // Marcar como terminada
                         card.dataset.processed = 'true';
                         if (statusElement) {
