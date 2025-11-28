@@ -22,6 +22,14 @@ const showRegister = document.getElementById('showRegister');
 const showLogin = document.getElementById('showLogin');
 const closeModal = document.querySelector('.close-modal');
 
+console.log('=== ELEMENTOS DEL DOM ENCONTRADOS ===');
+console.log('loginModal:', loginModal);
+console.log('loginForm:', loginForm);
+console.log('registerForm:', registerForm);
+console.log('showRegister:', showRegister);
+console.log('showLogin:', showLogin);
+console.log('closeModal:', closeModal);
+
 // Abrir modal de login
 document.querySelectorAll('[href="#login"]').forEach(btn => {
     btn.addEventListener('click', (e) => {
@@ -60,25 +68,40 @@ showLogin.addEventListener('click', (e) => {
 });
 
 // API URL - Ajusta según tu configuración
-const API_URL = 'http://localhost:3306/api';
+const API_URL = 'http://localhost:3000/api';
 
 // Mostrar mensaje de error
 function showError(element, message) {
+    // Eliminar mensajes de error anteriores
+    clearErrors();
+    
     const errorDiv = document.createElement('div');
     errorDiv.className = 'error-message';
     errorDiv.textContent = message;
-    errorDiv.style.color = 'var(--primary-color)';
-    errorDiv.style.fontSize = '0.8rem';
-    errorDiv.style.marginTop = '5px';
+    errorDiv.style.color = '#e74c3c'; // Rojo brillante
+    errorDiv.style.fontSize = '0.9rem';
+    errorDiv.style.fontWeight = 'bold';
+    errorDiv.style.marginTop = '10px';
+    errorDiv.style.padding = '8px 12px';
+    errorDiv.style.backgroundColor = '#ffebee'; // Fondo rojo claro
+    errorDiv.style.border = '1px solid #e74c3c';
+    errorDiv.style.borderRadius = '4px';
+    errorDiv.style.textAlign = 'center';
     
-    // Eliminar mensajes de error anteriores
-    const existingError = element.parentNode.querySelector('.error-message');
-    if (existingError) {
-        existingError.remove();
+    // Agregar después del formulario o del elemento
+    if (element.tagName === 'FORM') {
+        element.appendChild(errorDiv);
+    } else {
+        element.parentNode.appendChild(errorDiv);
     }
     
-    element.parentNode.appendChild(errorDiv);
-    element.focus();
+    // Hacer scroll al error
+    errorDiv.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    
+    // Enfocar el elemento
+    if (element.tagName !== 'FORM') {
+        element.focus();
+    }
 }
 
 // Eliminar mensajes de error
@@ -87,39 +110,114 @@ function clearErrors() {
 }
 
 // Envío de formulario de inicio de sesión
-loginForm.addEventListener('submit', async (e) => {
-    e.preventDefault();
-    clearErrors();
-    
-    const email = document.getElementById('loginEmail').value.trim();
-    const password = document.getElementById('loginPassword').value;
-    
-    try {
-        const response = await fetch(`${API_URL}/login`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({ email, password })
-        });
+if (loginForm) {
+    console.log('Agregando event listener al loginForm');
+    loginForm.addEventListener('submit', async (e) => {
+        console.log('=== FORM SUBMIT DETECTADO ===');
+        e.preventDefault();
+        clearErrors();
         
-        const data = await response.json();
+        const email = document.getElementById('loginEmail').value.trim();
+        const password = document.getElementById('loginPassword').value;
         
-        if (!response.ok) {
-            throw new Error(data.error || 'Error al iniciar sesión');
+        console.log('=== INICIANDO PROCESO DE LOGIN ===');
+        console.log('Email:', email);
+        console.log('Password:', password ? '***' : '(vacío)');
+        console.log('API_URL:', API_URL);
+        
+        // Validaciones de seguridad
+        if (!email || !password) {
+            console.log('ERROR: Email o password vacíos');
+            showError(loginForm, 'Por favor, completa todos los campos');
+            return;
         }
         
-        // Guardar información del usuario (en un caso real, guardarías un token JWT)
-        localStorage.setItem('user', JSON.stringify(data.user));
+        // Sanitizar entradas
+        const sanitizedEmail = window.security ? window.security.sanitizeInput(email) : email;
+        const sanitizedPassword = window.security ? window.security.sanitizeInput(password) : password;
         
-        // Redirigir al usuario
-        window.location.href = 'perfil.html';
+        // Validar formato de email
+        if (window.security && !window.security.validateEmail(sanitizedEmail)) {
+            console.log('ERROR: Email inválido');
+            showError(loginForm, 'Por favor, introduce un email válido');
+            return;
+        }
         
-    } catch (error) {
-        console.error('Error:', error);
-        showError(loginForm, error.message || 'Error al iniciar sesión. Inténtalo de nuevo.');
-    }
-});
+        // Rate limiting simple
+        if (!window.security) {
+            console.log('WARNING: Sistema de seguridad no disponible');
+        }
+        
+        try {
+            console.log('Enviando solicitud a:', `${API_URL}/login`);
+            console.log('Body enviado:', JSON.stringify({ email: sanitizedEmail, password: sanitizedPassword }));
+            
+            const response = await fetch(`${API_URL}/login`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-Requested-With': 'XMLHttpRequest', // Protección CSRF básica
+                },
+                body: JSON.stringify({ email: sanitizedEmail, password: sanitizedPassword })
+            });
+            
+            console.log('Respuesta recibida - Status:', response.status);
+            console.log('Headers de respuesta:', [...response.headers.entries()]);
+            
+            const data = await response.json();
+            console.log('Respuesta del servidor:', data);
+            console.log('response.ok:', response.ok);
+            console.log('data.success:', data.success);
+            
+            // Verificar si la respuesta es exitosa
+            if (!response.ok || !data.success) {
+                console.log('Login fallido:', data.error || 'Credenciales incorrectas');
+                // Mostrar error al usuario
+                showError(loginForm, data.error || 'Correo electrónico o contraseña incorrectos');
+                return; // Detener ejecución aquí, no redirigir
+            }
+            
+            // Si llegamos aquí, el login fue exitoso
+            console.log('Login exitoso, procesando respuesta...');
+            console.log('data.user:', data.user);
+            console.log('data.token:', data.token);
+            
+            // Guardar sesión de forma segura
+            if (window.security) {
+                window.security.saveSession(data.token, data.user);
+            } else {
+                // Fallback
+                localStorage.setItem('user', JSON.stringify(data.user));
+                localStorage.setItem('token', data.token);
+            }
+            
+            console.log('Sesión guardada de forma segura');
+            
+            // Disparar evento de login para actualizar la UI
+            console.log('Disparando evento auth:login...');
+            document.dispatchEvent(new CustomEvent('auth:login', { 
+                detail: { user: data.user } 
+            }));
+            
+            // Cerrar el modal
+            console.log('Cerrando modal...');
+            loginModal.classList.remove('active');
+            document.body.style.overflow = 'auto';
+            
+            // Redirigir al usuario solo si todo fue exitoso
+            console.log('Redirigiendo a perfil.html...');
+            window.location.href = 'pages/auth/perfil.html';
+            
+        } catch (error) {
+            console.error('Error en el login:', error);
+            console.error('Stack trace:', error.stack);
+            // Mostrar error al usuario y no redirigir
+            showError(loginForm, error.message || 'Error al iniciar sesión. Inténtalo de nuevo.');
+        }
+    });
+} else {
+    console.log('ERROR: loginForm no encontrado');
+}
 
 // Envío de formulario de registro
 registerForm.addEventListener('submit', async (e) => {
@@ -221,7 +319,7 @@ registerForm.addEventListener('submit', async (e) => {
                 closeLoginModal();
                 
                 // Redirigir al perfil
-                window.location.href = 'perfil.html';
+                window.location.href = 'pages/auth/perfil.html';
             } else {
                 console.error('No se recibió token en la respuesta:', data);
                 throw new Error('Error en la autenticación: no se recibió token');
@@ -290,5 +388,144 @@ window.addEventListener('scroll', () => {
     } else {
         header.style.background = 'rgba(0, 0, 0, 0.95)';
         header.style.padding = '20px 0';
+    }
+});
+
+// Verificar estado de autenticación al cargar la página
+function checkAuthStatus() {
+    console.log('=== VERIFICANDO ESTADO DE AUTENTICACIÓN ===');
+    
+    // Usar el sistema de seguridad si está disponible
+    const isAuthenticated = window.security ? window.security.isTokenValid() : 
+                           (localStorage.getItem('token') && localStorage.getItem('user'));
+    
+    console.log('Usuario autenticado:', isAuthenticated);
+    
+    if (isAuthenticated) {
+        // El usuario está autenticado
+        const userData = window.security ? window.security.getCurrentUser() : 
+                        JSON.parse(localStorage.getItem('user'));
+        
+        console.log('Datos del usuario:', userData);
+        
+        // Ocultar botón de login
+        const navLogin = document.getElementById('navLogin');
+        const navUser = document.getElementById('navUser');
+        
+        console.log('Elementos navLogin:', navLogin);
+        console.log('Elementos navUser:', navUser);
+        
+        if (navLogin) {
+            navLogin.style.display = 'none';
+            console.log('Botón de login ocultado');
+        }
+        if (navUser) {
+            navUser.style.display = 'block';
+            console.log('Perfil de usuario mostrado');
+            
+            // Actualizar nombre de usuario
+            const userNameElement = navUser.querySelector('.user-name');
+            if (userNameElement && userData) {
+                userNameElement.textContent = `${userData.firstName} ${userData.lastName}`;
+                console.log('Nombre de usuario actualizado:', `${userData.firstName} ${userData.lastName}`);
+            }
+            
+            // Actualizar avatar si existe
+            const userAvatar = navUser.querySelector('.user-avatar img');
+            if (userAvatar && userData && userData.avatar) {
+                userAvatar.src = userData.avatar;
+                console.log('Avatar actualizado:', userData.avatar);
+            }
+        }
+        
+        console.log('Usuario autenticado exitosamente');
+    } else {
+        console.log('Usuario no autenticado');
+    }
+}
+
+// Escuchar eventos de autenticación
+document.addEventListener('auth:login', (event) => {
+    console.log('Login event received:', event.detail);
+    checkAuthStatus();
+});
+
+document.addEventListener('auth:logout', (event) => {
+    console.log('Logout event received:', event.detail);
+    // Mostrar botón de login y ocultar perfil
+    const navLogin = document.getElementById('navLogin');
+    const navUser = document.getElementById('navUser');
+    
+    if (navLogin) navLogin.style.display = 'block';
+    if (navUser) navUser.style.display = 'none';
+});
+
+// Evento de logout
+const logoutBtn = document.getElementById('logoutBtn');
+if (logoutBtn) {
+    logoutBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        
+        // Usar el sistema de seguridad si está disponible
+        if (window.security) {
+            window.security.logout();
+        } else {
+            // Fallback
+            localStorage.removeItem('user');
+            localStorage.removeItem('token');
+            
+            // Disparar evento de logout
+            document.dispatchEvent(new CustomEvent('auth:logout', { 
+                detail: {} 
+            }));
+            
+            // Redirigir al inicio
+            window.location.href = '../../index.html';
+        }
+    });
+}
+
+// Verificar autenticación al cargar la página
+document.addEventListener('DOMContentLoaded', () => {
+    console.log('DOM cargado, verificando autenticación...');
+    setTimeout(checkAuthStatus, 100); // Pequeño retraso para asegurar que todo esté listo
+    
+    // Manejar el menú dropdown del perfil
+    const userMenuBtn = document.getElementById('userMenuBtn');
+    const userDropdown = document.getElementById('userDropdown');
+    
+    if (userMenuBtn && userDropdown) {
+        console.log('Elementos del menú encontrados:', userMenuBtn, userDropdown);
+        
+        userMenuBtn.addEventListener('click', function(e) {
+            console.log('Clic en el perfil detectado');
+            e.stopPropagation();
+            userDropdown.classList.toggle('show');
+            console.log('Clase show toggled:', userDropdown.classList.contains('show'));
+        });
+        
+        // Cerrar menú al hacer clic fuera
+        document.addEventListener('click', function() {
+            console.log('Clic fuera detectado, cerrando menú');
+            userDropdown.classList.remove('show');
+        });
+        
+        // Evitar que el menú se cierre al hacer clic dentro
+        userDropdown.addEventListener('click', function(e) {
+            console.log('Clic dentro del menú');
+            e.stopPropagation();
+        });
+    } else {
+        console.log('No se encontraron los elementos del menú:', userMenuBtn, userDropdown);
+    }
+    
+    // Fallback adicional para el login - Event listener directo
+    const loginFormAlt = document.getElementById('loginForm');
+    if (loginFormAlt) {
+        console.log('Agregando fallback event listener al loginForm');
+        loginFormAlt.addEventListener('submit', function(e) {
+            console.log('=== FALLBACK FORM SUBMIT DETECTADO ===');
+            // No prevenir el comportamiento por defecto para ver qué pasa
+        });
     }
 });

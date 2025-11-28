@@ -1,0 +1,382 @@
+/* ===================================
+   CUSTOM LIGHTBOX - EB RACING GALLERY
+   =================================== */
+
+/* Lightbox Container */
+.custom-lightbox {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at center, rgba(0, 0, 0, 0.98) 0%, rgba(0, 0, 0, 0.95) 100%);
+    z-index: 9999;
+    opacity: 0;
+    transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    backdrop-filter: blur(10px);
+}
+
+.custom-lightbox.active {
+    display: flex;
+    opacity: 1;
+}
+
+/* Lightbox Content Container */
+.lightbox-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    position: relative;
+    animation: fadeInScale 0.4s ease-out;
+}
+
+@keyframes fadeInScale {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* Main Image */
+.lightbox-image {
+    max-width: 90%;
+    max-height: 90%;
+    object-fit: contain;
+    border-radius: 12px;
+    box-shadow: 
+        0 0 60px rgba(255, 241, 0, 0.4),
+        0 10px 40px rgba(0, 0, 0, 0.8),
+        inset 0 0 20px rgba(255, 241, 0, 0.1);
+    transform: scale(0.95);
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    filter: brightness(1.05) contrast(1.1);
+}
+
+.custom-lightbox.active .lightbox-image {
+    transform: scale(1);
+}
+
+/* Navigation Buttons */
+.lightbox-nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: linear-gradient(135deg, rgba(255, 241, 0, 0.95) 0%, rgba(255, 241, 0, 0.85) 100%);
+    color: #000;
+    border: 2px solid rgba(255, 241, 0, 0.3);
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 20px;
+    font-weight: bold;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 10000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 
+        0 8px 25px rgba(255, 241, 0, 0.3),
+        0 4px 12px rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(10px);
+}
+
+.lightbox-nav:hover {
+    background: linear-gradient(135deg, #FFF200 0%, #FFF200 100%);
+    transform: translateY(-50%) scale(1.15) rotate(5deg);
+    box-shadow: 
+        0 12px 35px rgba(255, 241, 0, 0.5),
+        0 6px 18px rgba(0, 0, 0, 0.6);
+    border-color: #FFF200;
+}
+
+.lightbox-nav:active {
+    transform: translateY(-50%) scale(1.05) rotate(2deg);
+}
+
+.lightbox-prev {
+    left: 30px;
+}
+
+.lightbox-next {
+    right: 30px;
+}
+
+/* Close Button */
+.lightbox-close {
+    position: absolute;
+    top: 25px;
+    right: 25px;
+    background: linear-gradient(135deg, rgba(255, 241, 0, 0.95) 0%, rgba(255, 241, 0, 0.85) 100%);
+    color: #000;
+    border: 2px solid rgba(255, 241, 0, 0.3);
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 18px;
+    font-weight: bold;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 10000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 
+        0 6px 20px rgba(255, 241, 0, 0.3),
+        0 3px 10px rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(10px);
+}
+
+.lightbox-close:hover {
+    background: linear-gradient(135deg, #FFF200 0%, #FFF200 100%);
+    transform: scale(1.2) rotate(90deg);
+    box-shadow: 
+        0 8px 25px rgba(255, 241, 0, 0.5),
+        0 4px 15px rgba(0, 0, 0, 0.6);
+    border-color: #FFF200;
+}
+
+/* Download Button */
+.lightbox-download {
+    position: absolute;
+    top: 25px;
+    left: 25px;
+    background: linear-gradient(135deg, rgba(255, 241, 0, 0.95) 0%, rgba(255, 241, 0, 0.85) 100%);
+    color: #000;
+    border: 2px solid rgba(255, 241, 0, 0.3);
+    padding: 12px 20px;
+    border-radius: 25px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 600;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 10000;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    box-shadow: 
+        0 6px 20px rgba(255, 241, 0, 0.3),
+        0 3px 10px rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(10px);
+}
+
+.lightbox-download:hover {
+    background: linear-gradient(135deg, #FFF200 0%, #FFF200 100%);
+    transform: translateY(-2px) scale(1.05);
+    box-shadow: 
+        0 8px 25px rgba(255, 241, 0, 0.5),
+        0 4px 15px rgba(0, 0, 0, 0.6);
+    border-color: #FFF200;
+}
+
+.lightbox-download i {
+    font-size: 16px;
+}
+
+/* Info Panel */
+.lightbox-info {
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: linear-gradient(135deg, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0.8) 100%);
+    color: #FFF200;
+    padding: 15px 30px;
+    border-radius: 30px;
+    font-size: 16px;
+    font-weight: 600;
+    border: 2px solid #FFF200;
+    box-shadow: 
+        0 8px 25px rgba(255, 241, 0, 0.3),
+        0 4px 15px rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(10px);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    animation: slideUpFade 0.4s ease-out;
+}
+
+@keyframes slideUpFade {
+    from {
+        opacity: 0;
+        transform: translateX(-50%) translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(-50%) translateY(0);
+    }
+}
+
+/* Loading State */
+.lightbox-loading {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 60px;
+    height: 60px;
+    border: 4px solid rgba(255, 241, 0, 0.2);
+    border-top: 4px solid #FFF200;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: translate(-50%, -50%) rotate(0deg); }
+    100% { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+/* Progress Indicator */
+.lightbox-progress {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 3px;
+    background: linear-gradient(90deg, #FFF200 0%, rgba(255, 241, 0, 0.6) 100%);
+    transition: width 0.3s ease;
+    border-radius: 0 3px 3px 0;
+}
+
+/* Keyboard Shortcuts Hint */
+.lightbox-hints {
+    position: absolute;
+    bottom: 30px;
+    left: 80%;
+    transform: translateX(-50%);
+    background: rgba(0, 0, 0, 0.8);
+    color: #FFF200;
+    padding: 10px 15px;
+    border-radius: 8px;
+    font-size: 12px;
+    border: 1px solid rgba(255, 241, 0, 0.3);
+    opacity: 0.7;
+    transition: opacity 0.3s ease;
+}
+
+.lightbox-hints:hover {
+    opacity: 1;
+}
+
+.lightbox-hints kbd {
+    background: rgba(255, 241, 0, 0.2);
+    padding: 2px 6px;
+    border-radius: 4px;
+    border: 1px solid #FFF200;
+    margin: 0 2px;
+    font-family: monospace;
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+    .lightbox-nav {
+        width: 45px;
+        height: 45px;
+        font-size: 16px;
+    }
+    
+    .lightbox-prev {
+        left: 15px;
+    }
+    
+    .lightbox-next {
+        right: 15px;
+    }
+    
+    .lightbox-close {
+        width: 40px;
+        height: 40px;
+        font-size: 14px;
+        top: 15px;
+        right: 15px;
+    }
+    
+    .lightbox-download {
+        padding: 8px 12px;
+        font-size: 12px;
+        top: 15px;
+        left: 15px;
+    }
+    
+    .lightbox-info {
+        bottom: 20px;
+        padding: 10px 20px;
+        font-size: 14px;
+    }
+    
+    .lightbox-image {
+        max-width: 95%;
+        max-height: 85%;
+        border-radius: 8px;
+    }
+    
+    .lightbox-hints {
+        display: none;
+    }
+}
+
+@media (max-width: 480px) {
+    .lightbox-nav {
+        width: 40px;
+        height: 40px;
+        font-size: 14px;
+    }
+    
+    .lightbox-prev {
+        left: 10px;
+    }
+    
+    .lightbox-next {
+        right: 10px;
+    }
+    
+    .lightbox-download span {
+        display: none;
+    }
+    
+    .lightbox-info {
+        font-size: 12px;
+        padding: 8px 16px;
+    }
+}
+
+/* High DPI / Retina Support */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+    .lightbox-nav,
+    .lightbox-close,
+    .lightbox-download {
+        border-width: 1px;
+    }
+}
+
+/* Reduced Motion Support */
+@media (prefers-reduced-motion: reduce) {
+    .custom-lightbox,
+    .lightbox-image,
+    .lightbox-nav,
+    .lightbox-close,
+    .lightbox-download,
+    .lightbox-info {
+        transition: none;
+        animation: none;
+    }
+}
+
+/* Dark Mode Support */
+@media (prefers-color-scheme: dark) {
+    .custom-lightbox {
+        background: radial-gradient(circle at center, rgba(0, 0, 0, 0.99) 0%, rgba(0, 0, 0, 0.97) 100%);
+    }
+}
+
+/* Print Styles */
+@media print {
+    .custom-lightbox {
+        display: none !important;
+    }
+}

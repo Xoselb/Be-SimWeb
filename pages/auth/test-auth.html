@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <!-- Security Headers -->
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    <meta http-equiv="X-Frame-Options" content="DENY">
+    <meta http-equiv="X-XSS-Protection" content="1; mode=block">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; font-src 'self'; connect-src 'self' http://localhost:3000;">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test de Autenticación</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        .section { margin: 20px 0; padding: 15px; border: 1px solid #ccc; }
+        button { padding: 10px 20px; margin: 5px; }
+        .success { color: green; }
+        .error { color: red; }
+    </style>
+</head>
+<body>
+    <h1>Test de Autenticación</h1>
+    
+    <div class="section">
+        <h2>Estado Actual</h2>
+        <div id="status"></div>
+    </div>
+    
+    <div class="section">
+        <h2>Acciones</h2>
+        <button onclick="checkStorage()">Verificar localStorage</button>
+        <button onclick="testLogin()">Test Login API</button>
+        <button onclick="clearStorage()">Limpiar Storage</button>
+        <button onclick="testUI()">Test UI Update</button>
+    </div>
+    
+    <div class="section">
+        <h2>Logs</h2>
+        <div id="logs"></div>
+    </div>
+
+    <script>
+        const API_URL = 'http://localhost:3000/api';
+        
+        function log(message, type = 'info') {
+            const logsDiv = document.getElementById('logs');
+            const logEntry = document.createElement('div');
+            logEntry.className = type;
+            logEntry.textContent = `[${new Date().toLocaleTimeString()}] ${message}`;
+            logsDiv.appendChild(logEntry);
+            logsDiv.scrollTop = logsDiv.scrollHeight;
+        }
+        
+        function updateStatus() {
+            const statusDiv = document.getElementById('status');
+            const token = localStorage.getItem('token');
+            const user = localStorage.getItem('user');
+            
+            let html = '<h3>LocalStorage:</h3>';
+            html += `<p>Token: ${token ? '✅ Existe' : '❌ No existe'}</p>`;
+            html += `<p>Usuario: ${user ? '✅ Existe' : '❌ No existe'}</p>`;
+            
+            if (user) {
+                try {
+                    const userData = JSON.parse(user);
+                    html += '<h3>Datos del Usuario:</h3>';
+                    html += `<ul>`;
+                    html += `<li>ID: ${userData.id}</li>`;
+                    html += `<li>Email: ${userData.email}</li>`;
+                    html += `<li>Nombre: ${userData.firstName} ${userData.lastName}</li>`;
+                    html += `</ul>`;
+                } catch (e) {
+                    html += `<p class="error">Error al parsear usuario: ${e.message}</p>`;
+                }
+            }
+            
+            statusDiv.innerHTML = html;
+        }
+        
+        function checkStorage() {
+            log('Verificando localStorage...');
+            updateStatus();
+        }
+        
+        async function testLogin() {
+            log('Iniciando test de login...');
+            
+            try {
+                const response = await fetch(`${API_URL}/login`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ 
+                        email: 'test@example.com', 
+                        password: 'password123' 
+                    })
+                });
+                
+                const data = await response.json();
+                log(`Respuesta: ${response.status} - ${JSON.stringify(data)}`, response.ok ? 'success' : 'error');
+                
+                if (response.ok) {
+                    localStorage.setItem('user', JSON.stringify(data.user));
+                    localStorage.setItem('token', data.token);
+                    log('Datos guardados en localStorage', 'success');
+                    updateStatus();
+                }
+            } catch (error) {
+                log(`Error: ${error.message}`, 'error');
+            }
+        }
+        
+        function clearStorage() {
+            log('Limpiando localStorage...');
+            localStorage.removeItem('user');
+            localStorage.removeItem('token');
+            updateStatus();
+        }
+        
+        function testUI() {
+            log('Test de actualización de UI...');
+            
+            // Simular el código de checkAuthStatus
+            const token = localStorage.getItem('token');
+            const user = localStorage.getItem('user');
+            
+            if (token && user) {
+                try {
+                    const userData = JSON.parse(user);
+                    log(`Usuario autenticado: ${userData.firstName} ${userData.lastName}`, 'success');
+                    
+                    // Verificar elementos del DOM (simulado)
+                    log('Buscando elementos navLogin y navUser...');
+                    const navLogin = document.getElementById('navLogin');
+                    const navUser = document.getElementById('navUser');
+                    
+                    log(`navLogin encontrado: ${!!navLogin}`);
+                    log(`navUser encontrado: ${!!navUser}`);
+                    
+                    if (navLogin) {
+                        navLogin.style.display = 'none';
+                        log('navLogin ocultado');
+                    }
+                    if (navUser) {
+                        navUser.style.display = 'block';
+                        log('navUser mostrado');
+                    }
+                } catch (e) {
+                    log(`Error: ${e.message}`, 'error');
+                }
+            } else {
+                log('Usuario no autenticado', 'error');
+            }
+        }
+        
+        // Actualizar estado al cargar
+        updateStatus();
+        log('Página de test cargada');
+    </script>
+
+    <!-- Sistema de seguridad -->
+    <script src="/assets/scripts/security.js"></script>
+    <script src="/assets/scripts/auth.js"></script>
+</body>
+</html>

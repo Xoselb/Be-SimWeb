@@ -2,10 +2,10 @@
   "name": "simracing-website",
   "version": "1.0.0",
   "description": "Sitio web de simracing con autenticación de usuarios",
-  "main": "server/server.js",
+  "main": "src/server/server.js",
   "scripts": {
-    "start": "node server/server.js",
-    "dev": "nodemon server/server.js",
+    "start": "node src/server/server.js",
+    "dev": "nodemon src/server/server.js",
     "test": "cross-env NODE_ENV=test jest --config=config/jest/jest.config.js --detectOpenHandles --forceExit",
     "test:watch": "cross-env NODE_ENV=test jest --config=config/jest/jest.config.js --watch",
     "test:coverage": "cross-env NODE_ENV=test jest --config=config/jest/jest.config.js --coverage"

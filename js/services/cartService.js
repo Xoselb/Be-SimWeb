@@ -7,7 +7,13 @@ class CartService {
 
     // Cargar carrito desde localStorage
     loadCartFromStorage() {
-        const user = window.auth.getCurrentUser();
+        let user = null;
+        try {
+            user = window.auth && window.auth.getCurrentUser ? window.auth.getCurrentUser() : null;
+        } catch (e) {
+            console.log('Error obteniendo usuario:', e);
+        }
+        
         const cartKey = user ? `cart_${user.id}` : 'guest_cart';
         const savedCart = localStorage.getItem(cartKey);
         this.cart = savedCart ? JSON.parse(savedCart) : [];
@@ -16,7 +22,13 @@ class CartService {
 
     // Guardar carrito en localStorage
     saveCartToStorage() {
-        const user = window.auth.getCurrentUser();
+        let user = null;
+        try {
+            user = window.auth && window.auth.getCurrentUser ? window.auth.getCurrentUser() : null;
+        } catch (e) {
+            console.log('Error obteniendo usuario:', e);
+        }
+        
         const cartKey = user ? `cart_${user.id}` : 'guest_cart';
         localStorage.setItem(cartKey, JSON.stringify(this.cart));
         

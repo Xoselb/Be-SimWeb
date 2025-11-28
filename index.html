@@ -1,28 +1,34 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
+    <!-- Security Headers -->
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    <meta http-equiv="X-Frame-Options" content="DENY">
+    <meta http-equiv="X-XSS-Protection" content="1; mode=block">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com; img-src 'self' data: https:; font-src 'self' https://cdnjs.cloudflare.com; connect-src 'self' http://localhost:3000;">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href="/public/img/EB.png" type="image/png">
-    <title>EB Simracing - Centre de simulation</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link rel="stylesheet" href="css/styles.css">
-    <link rel="stylesheet" href="css/cart.css?v=1.1">
-    <link rel="stylesheet" href="css/Membres/perfil.css">
+    <link rel="icon" href="/assets/images/EB.png" type="image/png">
+    <title>EB Racing - Page d'accueil</title>
+    <link rel="icon" href="/img/EB.png" type="image/png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="/css/shop/cart.css?v=1.1">
+    <link rel="stylesheet" href="/css/user/perfil.css">
 </head>
 <body>
     <header class="header">
         <div class="container">
             <div class="logo">
-                <a href="index.html"><img src="/public/img/EB SIMRACING(Solo-White).png" alt="EB Simracing" class="logo-img"></a>
+                <a href="#"><img src="/img/EB RACING(Solo-White).png" alt="EB Racing" class="logo-img"></a>
             </div>
             <nav class="main-nav">
                 <ul>
-                    <li><a href="index.html#inicio">Accueil</a></li>
-                    <li><a href="index.html#servicios">Services</a></li>
-                    <li><a href="galerie.html">Galerie</a></li>
-                    <li><a href="merch.html">Boutique</a></li>
-                    <li><a href="contacto.html">Contact</a></li>
+                    <li><a href="#inicio">Accueil</a></li>
+                    <li><a href="#servicios">Services</a></li>
+                    <li><a href="pages/info/galerie.html">Galerie</a></li>
+                    <li><a href="pages/shop/merch.html">Boutique</a></li>
+                    <li><a href="pages/info/contacto.html">Contact</a></li>
                     <li class="nav-cart">
                         <a href="#" class="cart-icon" id="cart-icon">
                             <i class="fas fa-shopping-cart"></i>
@@ -49,20 +55,20 @@
                     </li>
                     <li class="nav-user" id="navUser" style="display: none;">
                         <div class="user-avatar" id="userMenuBtn">
-                            <img src="img/default-avatar.png" alt="Profil" id="userAvatar">
+                            <img src="/img/user/EB_Default_Avatar.png" alt="Profil" id="userAvatar">
                             <i class="fas fa-chevron-down"></i>
                         </div>
                         <div class="user-dropdown" id="userDropdown">
-                            <a href="perfil.html" class="active"><i class="fas fa-user"></i> Mon Profil</a>
-                            <a href="cart.html"><i class="fas fa-shopping-cart"></i> Mon Panier</a>
-                            <a href="reservations.html"><i class="fas fa-calendar-alt"></i> Réservations</a>
-                            <a href="parametres.html"><i class="fas fa-cog"></i> Paramètres</a>
+                            <a href="pages/auth/perfil.html" class="active"><i class="fas fa-user"></i> Mon Profil</a>
+                            <a href="pages/shop/cart.html"><i class="fas fa-shopping-cart"></i> Mon Panier</a>
+                            <a href="pages/user/mes-reservations.html"><i class="fas fa-calendar-alt"></i> Réservations</a>
+                            <a href="pages/user/confirmacion.html"><i class="fas fa-cog"></i> Paramètres</a>
                             <div class="dropdown-divider"></div>
                             <a href="#" id="logoutBtn"><i class="fas fa-sign-out-alt"></i> Déconnexion</a>
                         </div>
                     </li>
                     <li class="nav-login" id="navLogin">
-                        <a href="login.html" class="btn-login">Connexion</a>
+                        <a href="pages/auth/login.html" class="btn-login">Connexion</a>
                     </li>
                 </ul>
             </nav>
@@ -75,13 +81,13 @@
     <!-- Hero Section -->
     <section class="hero" id="inicio">
         <div class="hero-slider">
-            <div class="slide active" style="background-image: url('img/hero-bg.jpg');"></div>
-            <div class="slide" style="background-image: url('img/NUR.jpg');"></div>
-            <div class="slide" style="background-image: url('img/SPA.jpg');"></div>
-            <div class="slide" style="background-image: url('img/RAT.jpg');"></div>
-            <div class="slide" style="background-image: url('img/BAH.jpg');"></div>
-            <div class="slide" style="background-image: url('img/F125.jpg');"></div>
-            <div class="slide" style="background-image: url('img/F1TRA.jpg');"></div>
+            <div class="slide active" style="background-image: url('/img/HERO/hero-bg.JPG');"></div>
+            <div class="slide" style="background-image: url('/img/HERO/NUR.jpg');"></div>
+            <div class="slide" style="background-image: url('/img/HERO/SPA.jpg');"></div>
+            <div class="slide" style="background-image: url('/img/HERO/RAT.jpg');"></div>
+            <div class="slide" style="background-image: url('/img/HERO/BAH.jpg');"></div>
+            <div class="slide" style="background-image: url('/img/HERO/F125.jpg');"></div>
+            <div class="slide" style="background-image: url('/img/HERO/F1TRA.jpg');"></div>
         </div>
         <div class="container">
             <div class="hero-content">
@@ -126,8 +132,8 @@
                     </div>
                 </div>
                 <div class="hero-buttons">
-                    <a href="login.html" class="btn btn-primary">Se connecter</a>
-                    <a href="register.html" class="btn btn-outline">Créer un compte</a>
+                    <a href="pages/auth/login.html" class="btn btn-primary">Se connecter</a>
+                    <a href="pages/auth/register.html" class="btn btn-outline">Créer un compte</a>
                 </div>
             </div>
         </div>
@@ -152,7 +158,7 @@
         <div class="container">
             <h2 class="section-title">NOS SERVICES</h2>
             <div class="services-grid">
-                <a href="simulateurs.html" class="service-card-link">
+                <a href="pages/booking/simulateurs.html" class="service-card-link">
                     <div class="service-card">
                         <div class="service-icon">
                             <i class="fas fa-gauge-high"></i>
@@ -162,7 +168,7 @@
                         <span class="service-link">En savoir plus <i class="fas fa-arrow-right"></i></span>
                     </div>
                 </a>
-                <a href="bar-detente.html" class="service-card-link">
+                <a href="pages/booking/bar-detente.html" class="service-card-link">
                     <div class="service-card">
                         <div class="service-icon">
                             <i class="fas fa-martini-glass"></i>
@@ -172,7 +178,7 @@
                         <span class="service-link">Découvrir <i class="fas fa-arrow-right"></i></span>
                     </div>
                 </a>
-                <a href="atelier-vinyle.html" class="service-card-link">
+                <a href="pages/booking/atelier-vinyle.html" class="service-card-link">
                     <div class="service-card">
                         <div class="service-icon">
                             <i class="fas fa-paint-roller"></i>
@@ -183,7 +189,7 @@
                     </div>
                 </a>
             </div>
-            <a href="track-days.html" class="track-days-cta">
+            <a href="pages/competitions/track-days.html" class="track-days-cta">
                 <div class="track-days-content">
                     <p>Ressentez l’adrénaline à chaque virage et libérez toute la puissance sur la ligne droite : vivez l’intensité unique d’une voiture de course sur circuit.</p>
                     <span class="btn btn-primary btn-wide">DÉCOUVRIR NOS TRACK DAYS</span>
@@ -216,19 +222,19 @@
         <div class="container">
             <h2 class="section-title">GALERIE</h2>
             <div class="services-grid">
-                <a href="galerie.html" class="gallery-card-link">
+                <a href="pages/info/galerie.html" class="gallery-card-link">
                     <div class="gallery-card">
-                        <img src="img/GALERIE/GALERIE1.jpeg" alt="Simulator" class="gallery-image">
+                        <img src="/img/GALERIE/GALERIE1.jpeg" alt="Simulator" class="gallery-image">
                     </div>
                 </a>
-                <a href="galerie.html" class="gallery-card-link">
+                <a href="pages/info/galerie.html" class="gallery-card-link">
                     <div class="gallery-card">
-                        <img src="img/GALERIE/GALERIE10.jpeg" alt="Bar" class="gallery-image">
+                        <img src="/img/GALERIE/GALERIE10.jpeg" alt="Bar" class="gallery-image">
                     </div>
                 </a>
-                <a href="galerie.html" class="gallery-card-link">
+                <a href="pages/info/galerie.html" class="gallery-card-link">
                     <div class="gallery-card">
-                        <img src="img/GALERIE/GALERIE20.jpeg" alt="Vinyl Workshop" class="gallery-image">
+                        <img src="/img/GALERIE/GALERIE20.jpeg" alt="Vinyl Workshop" class="gallery-image">
                     </div>
                 </a>
             </div>
@@ -263,17 +269,16 @@
         <div class="container">
             <div class="footer-content">
                 <div class="footer-about">
-                    <img src="/public/img/EB.png" alt="EB Simracing" class="footer-logo">
+                    <img src="img/EB.png" alt="EB Racing" class="footer-logo">
                 </div>
                 <div class="footer-links">
                     <h4>LIENS RAPIDES</h4>
                     <ul>
                         <li><a href="index.html#inicio">Accueil</a></li>
                         <li><a href="index.html#servicios">Services</a></li>
-                        <li><a href="index.html#galeria">Galerie</a></li>
-                    <li><a href="merch.html">Boutique</a></li>
-        
-                        <li><a href="contacto.html">Contact</a></li>
+                        <li><a href="pages/info/galerie.html">Galerie</a></li>
+                    <li><a href="pages/shop/merch.html">Boutique</a></li>
+                        <li><a href="pages/info/contacto.html">Contact</a></li>
                     </ul>
                 </div>
                 <div class="footer-contact">
@@ -302,10 +307,10 @@
             <h2>SE CONNECTER</h2>
             <form id="loginForm">
                 <div class="form-group">
-                    <input type="email" placeholder="E-mail" required>
+                    <input type="email" id="loginEmail" placeholder="E-mail" required>
                 </div>
                 <div class="form-group">
-                    <input type="password" placeholder="Mot de passe" required>
+                    <input type="password" id="loginPassword" placeholder="Mot de passe" required>
                 </div>
                 <button type="submit" class="btn btn-primary">Entrer</button>
                 <p>Vous n'avez pas de compte?  <a href="#" id="showRegister">S'inscrire</a></p>
@@ -474,7 +479,10 @@
         </div>
     </div>
 
-    <script src="js/index.js"></script>
+    <!-- Sistema de seguridad - debe cargarse primero -->
+    <script src="/js/security.js"></script>
+    <script src="/js/auth/auth.js"></script>
+    <script src="/js/index.js?v=3"></script>
     <script>
         // Add event listeners for terms and privacy links
         document.addEventListener('DOMContentLoaded', function() {
@@ -516,12 +524,12 @@
             });
         });
     </script>
-    <script src="js/login.js"></script>
-    <script src="js/registro.js"></script>
-    <script src="js/perfil.js"></script>
-    <script src="js/citas.js"></script>
-    <script src="js/contacto.js"></script>
-    <script src="js/hero-slider.js"></script>
+    <!-- <script src="/js/auth/login.js"></script> --> <!-- Comentar para evitar interferencia con el login real -->
+    <script src="/js/auth/registro.js"></script>
+    <script src="/js/user/perfil.js"></script>
+    <script src="/js/booking/citas.js"></script>
+    <script src="/js/info/contacto.js"></script>
+    <script src="/js/hero-slider.js"></script>
     <script>
         // Asegurarse de que el primer texto esté visible al cargar la página
         document.addEventListener('DOMContentLoaded', function() {
@@ -532,75 +540,79 @@
         });
     </script>
     
-    <script src="js/auth.js"></script>
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        // Check authentication status
-        function checkAuth() {
-            const isLoggedIn = window.auth && window.auth.isAuthenticated();
-            
-            if (isLoggedIn) {
-                // Show user menu
-                const navUser = document.getElementById('navUser');
-                const navLogin = document.getElementById('navLogin');
-                if (navUser) navUser.style.display = 'block';
-                if (navLogin) navLogin.style.display = 'none';
+    <!-- <script src="/assets/scripts/auth.js"></script> --> <!-- Comentar para evitar interferencia con el login real -->
+    <!-- 
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Check authentication status
+            function checkAuth() {
+                const isLoggedIn = window.auth && window.auth.isAuthenticated();
                 
-                // Load user data
-                const userData = window.auth.getCurrentUser();
-                const userAvatar = document.getElementById('userAvatar');
-                if (userData && userData.avatar && userAvatar) {
-                    userAvatar.src = userData.avatar;
+                if (isLoggedIn) {
+                    // Show user menu
+                    const navUser = document.getElementById('navUser');
+                    const navLogin = document.getElementById('navLogin');
+                    if (navUser) navUser.style.display = 'block';
+                    if (navLogin) navLogin.style.display = 'none';
+                    
+                    // Load user data
+                    const userData = window.auth.getCurrentUser();
+                    const userAvatar = document.getElementById('userAvatar');
+                    if (userData && userData.avatar && userAvatar) {
+                        userAvatar.src = userData.avatar;
+                    }
                 }
             }
-        }
-        
-        // Handle dropdown menu
-        const userMenuBtn = document.getElementById('userMenuBtn');
-        const userDropdown = document.getElementById('userDropdown');
-        
-        if (userMenuBtn && userDropdown) {
-            userMenuBtn.addEventListener('click', function(e) {
-                e.stopPropagation();
-                userDropdown.classList.toggle('show');
-            });
             
-            // Close menu when clicking outside
-            document.addEventListener('click', function() {
-                userDropdown.classList.remove('show');
-            });
+            // Handle dropdown menu
+            const userMenuBtn = document.getElementById('userMenuBtn');
+            const userDropdown = document.getElementById('userDropdown');
             
-            // Prevent menu from closing when clicking inside
-            userDropdown.addEventListener('click', function(e) {
-                e.stopPropagation();
-            });
-        }
-        
-        // Handle logout
-        const logoutBtn = document.getElementById('logoutBtn');
-        if (logoutBtn) {
-            logoutBtn.addEventListener('click', function(e) {
-                e.preventDefault();
-                if (window.auth && typeof window.auth.logout === 'function') {
-                    window.auth.logout();
-                } else {
-                    // Fallback in case auth.js is not loaded
-                    window.location.href = 'login.html';
-                }
-            });
-        }
-        
-        // Check authentication on page load
-        checkAuth();
-    });
-
-    // Control del anuncio lateral
-    document.addEventListener('DOMContentLoaded', function() {
-        const adContainer = document.querySelector('.sidebar-ad-container');
-        const ad = document.querySelector('.sidebar-ad');
-        const closeBtn = document.querySelector('.ad-close-btn');
-        const toggleBtn = document.querySelector('.ad-toggle-btn');
-        
+            if (userMenuBtn && userDropdown) {
+                userMenuBtn.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    userDropdown.classList.toggle('show');
+                });
+                
+                // Close menu when clicking outside
+                document.addEventListener('click', function() {
+                    userDropdown.classList.remove('show');
+                });
+                
+                // Prevent menu from closing when clicking inside
+                userDropdown.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                });
+            }
+            
+            // Handle logout
+            const logoutBtn = document.getElementById('logoutBtn');
+            if (logoutBtn) {
+                logoutBtn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    if (window.auth && typeof window.auth.logout === 'function') {
+                        window.auth.logout();
+                    } else {
+                        // Fallback in case auth.js is not loaded
+                        window.location.href = 'pages/auth/login.html';
+                    }
+                });
+            }
+            
+            // Check authentication on page load
+            checkAuth();
+        });
+    </script>
+    -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Control del anuncio lateral
+            const adContainer = document.querySelector('.sidebar-ad-container');
+            const ad = document.querySelector('.sidebar-ad');
+            const closeBtn = document.querySelector('.ad-close-btn');
+            const toggleBtn = document.querySelector('.ad-toggle-btn');
+            
+            // Ocultar anuncio por defecto
         // Ocultar anuncio por defecto
         ad.classList.add('hidden');
         toggleBtn.classList.remove('hidden');
@@ -635,13 +647,18 @@
             <i class="fas fa-times"></i>
         </button>
         <a href="#" target="_blank" rel="noopener noreferrer">
-            <img src="/public/img/ads/EUROPEAN_FUN_CUP.png" alt="Anuncio promocional">
+            <img src="/assets/images/ads/EUROPEAN_FUN_CUP.png" alt="Anuncio promocional">
         </a>
     </div>
 </div>
 
 <!-- Cart Scripts -->
-<script src="js/services/cartService.js"></script>
-<script src="js/cart.js"></script>
+<script src="/js/services/cartService.js"></script>
+<script src="/js/shop/cart.js"></script>
+
+    <!-- Sistema de seguridad -->
+    <script src="/js/security.js"></script>
+    <script src="/js/auth/auth.js"></script>
+    <script src="/js/index.js?v=3"></script>
 </body>
 </html>

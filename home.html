@@ -1,12 +1,17 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
+    <!-- Security Headers -->
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    <meta http-equiv="X-Frame-Options" content="DENY">
+    <meta http-equiv="X-XSS-Protection" content="1; mode=block">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; font-src 'self'; connect-src 'self' http://localhost:3000;">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>EB Simracing - Centre de simulation</title>
-    <link rel="icon" href="/public/img/EB.png" type="image/png">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link rel="stylesheet" href="css/styles.css">
+    <link rel="icon" href="/assets/images/EB.png" type="image/png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/assets/styles/all.min.css">
+    <link rel="stylesheet" href="/css/styles.css">
 </head>
 <body>
     <!-- Header -->
@@ -19,11 +24,11 @@
                 <ul>
                     <li><a href="index.html#inicio">Accueil</a></li>
                     <li><a href="index.html#servicios">Services</a></li>
-                    <li><a href="index.html#galeria">Galerie</a></li>
+                    <li><a href="pages/info/galerie.html">Galerie</a></li>
                     <li><a href="index.html#testimonios">Témoignages</a></li>
-                    <li><a href="merch.html">Boutique</a></li>
+                    <li><a href="pages/shop/merch.html">Boutique</a></li>
         
-                    <li><a href="contacto.html">Contact</a></li>
+                    <li><a href="pages/info/contacto.html">Contact</a></li>
                     <li><a href="#login">Membres</a></li>
                 </ul>
             </nav>
@@ -36,13 +41,13 @@
     <!-- Hero Section -->
     <section class="hero" id="inicio">
         <div class="hero-slider">
-            <div class="slide active" style="background-image: url('img/hero-bg.jpg');"></div>
-            <div class="slide" style="background-image: url('img/NUR.jpg');"></div>
-            <div class="slide" style="background-image: url('img/SPA.jpg');"></div>
-            <div class="slide" style="background-image: url('img/RAT.jpg');"></div>
-            <div class="slide" style="background-image: url('img/BAH.jpg');"></div>
-            <div class="slide" style="background-image: url('img/F125.jpg');"></div>
-            <div class="slide" style="background-image: url('img/F1TRA.jpg');"></div>
+            <div class="slide active" style="background-image: url('/assets/images/hero-bg.jpg');"></div>
+            <div class="slide" style="background-image: url('/assets/images/NUR.jpg');"></div>
+            <div class="slide" style="background-image: url('/assets/images/SPA.jpg');"></div>
+            <div class="slide" style="background-image: url('/assets/images/RAT.jpg');"></div>
+            <div class="slide" style="background-image: url('/assets/images/BAH.jpg');"></div>
+            <div class="slide" style="background-image: url('/assets/images/F125.jpg');"></div>
+            <div class="slide" style="background-image: url('/assets/images/F1TRA.jpg');"></div>
         </div>
         <div class="container">
             <div class="hero-content">
@@ -113,7 +118,7 @@
         <div class="container">
             <h2 class="section-title">NOS SERVICES</h2>
             <div class="services-grid">
-                <a href="simulateurs.html" class="service-card-link">
+                <a href="pages/booking/simulateurs.html" class="service-card-link">
                     <div class="service-card">
                         <div class="service-icon">
                             <i class="fas fa-gauge-high"></i>
@@ -123,7 +128,7 @@
                         <span class="service-link">En savoir plus <i class="fas fa-arrow-right"></i></span>
                     </div>
                 </a>
-                <a href="bar-detente.html" class="service-card-link">
+                <a href="pages/booking/bar-detente.html" class="service-card-link">
                     <div class="service-card">
                         <div class="service-icon">
                             <i class="fas fa-martini-glass"></i>
@@ -133,7 +138,7 @@
                         <span class="service-link">Découvrir <i class="fas fa-arrow-right"></i></span>
                     </div>
                 </a>
-                <a href="atelier-vinyle.html" class="service-card-link">
+                <a href="pages/booking/atelier-vinyle.html" class="service-card-link">
                     <div class="service-card">
                         <div class="service-icon">
                             <i class="fas fa-paint-roller"></i>
@@ -144,7 +149,7 @@
                     </div>
                 </a>
             </div>
-            <a href="track-days.html" class="track-days-cta">
+            <a href="pages/competitions/track-days.html" class="track-days-cta">
                 <div class="track-days-content">
                     <p>Ressentez l’adrénaline à chaque virage et libérez toute la puissance sur la ligne droite : vivez l’intensité unique d’une voiture de course sur circuit.</p>
                     <span class="btn btn-primary btn-wide">DÉCOUVRIR NOS TRACK DAYS</span>
@@ -158,19 +163,19 @@
         <h2 class="section-title">GALERIE</h2>
         <div class="gallery-grid">
             <div class="gallery-item">
-                <img src="img/SIM.jpg" alt="SIMULATEUR">
+                <img src="/assets/images/SIM.jpg" alt="SIMULATEUR">
                 <div class="gallery-overlay">
                     <h3>SIMULATEUR PROFESSIONNEL</h3>
                 </div>
             </div>
             <div class="gallery-item">
-                <img src="img/BAR.jpg" alt="BAR">
+                <img src="/assets/images/BAR.jpg" alt="BAR">
                 <div class="gallery-overlay">
                     <h3>ZONE DE DÉTENTE</h3>
                 </div>
             </div>
             <div class="gallery-item">
-                <img src="img/VIN.jpg" alt="VINYLE">
+                <img src="/assets/images/VIN.jpg" alt="VINYLE">
                 <div class="gallery-overlay">
                     <h3>ATELIER VINYLE</h3>
                 </div>
@@ -233,10 +238,9 @@
                     <ul>
                         <li><a href="index.html#inicio">Accueil</a></li>
                         <li><a href="index.html#servicios">Services</a></li>
-                        <li><a href="index.html#galeria">Galerie</a></li>
-                    <li><a href="merch.html">Boutique</a></li>
-        
-                        <li><a href="contacto.html">Contact</a></li>
+                        <li><a href="pages/info/galerie.html">Galerie</a></li>
+                    <li><a href="pages/shop/merch.html">Boutique</a></li>
+                        <li><a href="pages/info/contacto.html">Contact</a></li>
                     </ul>
                 </div>
                 <div class="footer-contact">
@@ -437,7 +441,7 @@
         </div>
     </div>
 
-    <script src="js/index.js"></script>
+    <script src="/js/index.js"></script>
     <script>
         // Add event listeners for terms and privacy links
         document.addEventListener('DOMContentLoaded', function() {
@@ -479,12 +483,12 @@
             });
         });
     </script>
-    <script src="js/login.js"></script>
-    <script src="js/registro.js"></script>
-    <script src="js/perfil.js"></script>
-    <script src="js/citas.js"></script>
-    <script src="js/contacto.js"></script>
-    <script src="js/hero-slider.js"></script>
+    <script src="/js/auth/login.js"></script>
+    <script src="/js/auth/registro.js"></script>
+    <script src="/js/user/perfil.js"></script>
+    <script src="/js/booking/citas.js"></script>
+    <script src="/js/info/contacto.js"></script>
+    <script src="/js/hero-slider.js"></script>
     <script>
         // Asegurarse de que el primer texto esté visible al cargar la página
         document.addEventListener('DOMContentLoaded', function() {
@@ -494,5 +498,9 @@
             }
         });
     </script>
+
+    <!-- Sistema de seguridad -->
+    <script src="/js/security.js"></script>
+    <script src="/js/auth/auth.js"></script>
 </body>
 </html>

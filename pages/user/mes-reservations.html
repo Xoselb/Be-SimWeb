@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <!-- Security Headers -->
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    <meta http-equiv="X-Frame-Options" content="DENY">
+    <meta http-equiv="X-XSS-Protection" content="1; mode=block">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; font-src 'self'; connect-src 'self' http://localhost:3000;">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Gérez et planifiez vos sessions de simulation de course avec EB Simracing.">
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    <link rel="icon" href="/assets/images/EB.png" type="image/png">
+    <title>Mes Réservations - EB Simracing</title>
+    
+    <link rel="stylesheet" href="/css/styles.css"> <link rel="stylesheet" href="/css/user/reservations.css"> <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/assets/styles/all.min.css" 
+          integrity="sha512-Fo3rlrZj/k7ujTnHg4CGR2D7kSs0v4LLanw2qksYuMGFZpS56JtIel9w7l2S8779s2fFz10pC1J/9fW9e72Q==" 
+          crossorigin="anonymous" referrerpolicy="no-referrer">
+</head>
+<body>
+    <a href="#main-content" class="skip-link">Aller au contenu principal</a>
+
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <a href="../../index.html" aria-label="Accueil EB Simracing"><img src="/assets/images/EB SIMRACING(Solo-White).png" alt="Logo EB Simracing" class="logo-img"></a>
+            </div>
+            <nav class="main-nav" aria-label="Navigation principale">
+                <ul>
+                    <li><a href="../../index.html#inicio">Accueil</a></li>
+                    <li><a href="../../index.html#servicios">Services</a></li>
+                    <li><a href="../info/galerie.html">Galerie</a></li>
+                    <li><a href="../shop/merch.html">Boutique</a></li>
+                    <li><a href="../info/contacto.html">Contact</a></li>
+                    <li class="nav-user" id="navUser" style="display: none;">
+                        <div class="user-avatar" id="userMenuBtn" role="button" aria-expanded="false" aria-controls="userDropdown">
+                            <img src="/assets/images/default-avatar.png" alt="Avatar de l'utilisateur" id="userAvatar">
+                            <i class="fas fa-chevron-down" aria-hidden="true"></i> </div>
+                        <div class="user-dropdown" id="userDropdown" role="menu">
+                            <a href="../auth/perfil.html" class="active" role="menuitem"><i class="fas fa-user" aria-hidden="true"></i> Mon Profil</a>
+                            <a href="mes-reservations.html" aria-current="page" role="menuitem"><i class="fas fa-calendar-alt" aria-hidden="true"></i> Mes réservations</a>
+                            <a href="parametres.html" role="menuitem"><i class="fas fa-cog" aria-hidden="true"></i> Paramètres</a>
+                            <div class="dropdown-divider"></div>
+                            <a href="#" id="logoutBtn" role="menuitem"><i class="fas fa-sign-out-alt" aria-hidden="true"></i> Déconnexion</a>
+                        </div>
+                    </li>
+                    <li class="nav-login" id="navLogin">
+                        <a href="../auth/login.html" class="btn-login">Connexion</a>
+                    </li>
+                </ul>
+            </nav>
+            <div class="mobile-menu-btn" role="button" aria-label="Ouvrir le menu mobile">
+                <i class="fas fa-bars" aria-hidden="true"></i>
+            </div>
+        </div>
+    </header>
+
+    <section class="hero-section" aria-labelledby="page-title">
+        <div class="container">
+            <div class="hero-content">
+                <h1 id="page-title"><i class="fas fa-calendar-alt" aria-hidden="true"></i> MES RÉSERVATIONS</h1>
+            </div>
+        </div>
+    </section>
+
+    <main class="main-content" id="main-content">
+        <div class="container">
+            <div class="content-wrapper">
+                <div class="page-actions">
+                    <button id="newReservationBtn" class="btn btn-primary" aria-haspopup="dialog" aria-controls="reservationModal">
+                        <i class="fas fa-plus" aria-hidden="true"></i> Nouvelle Réservation
+                    </button>
+                </div>
+
+                <div class="reservations-container">
+                    <div id="reservationsList" class="reservations-list" role="region" aria-live="polite" aria-label="Liste des réservations">
+                        <p class="loading-message">Chargement des réservations...</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <div id="reservationModal" class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+        <div class="modal-content">
+            <button class="close-modal" aria-label="Fermer la fenêtre modale">&times;</button>
+            <h2 id="modal-title"><i class="fas fa-plus-circle" aria-hidden="true"></i> Nouvelle Réservation</h2>
+            <form id="reservationForm">
+                <div class="form-group">
+                    <label for="simulatorType">Type de simulateur</label>
+                    <select id="simulatorType" name="simulator" class="form-control" required>
+                        <option value="">Sélectionnez un simulateur</option>
+                        <optgroup label="Simulateurs Standard">
+                            <option value="f1">Formule 1 (Standard)</option>
+                            <option value="gt3">GT3 (Standard)</option>
+                        </optgroup>
+                        <optgroup label="Simulateurs VIP">
+                            <option value="f1_vip" data-vip="true">F1 Pro (VIP)</option>
+                            <option value="gt3_vip" data-vip="true">GT3 Pro (VIP)</option>
+                        </optgroup>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="reservationDate">Date</label>
+                    <input type="date" id="reservationDate" name="date" class="form-control" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="reservationTime">Heure</label>
+                    <select id="reservationTime" name="time" class="form-control" required>
+                        <option value="" disabled selected>Sélectionnez d'abord une date</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="duration">Durée</label>
+                    <select id="duration" name="duration" class="form-control" required>
+                        <option value="30">30 minutes</option>
+                        <option value="60" selected>1 heure</option>
+                        <option value="90">1h30</option>
+                        <option value="120">2 heures</option>
+                    </select>
+                </div>
+                
+                <div class="form-actions">
+                    <button type="button" id="cancelReservationBtn" class="btn btn-secondary">Annuler</button>
+                    <button type="submit" id="submitReservationBtn" class="btn btn-primary">Réserver</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="/assets/scripts/auth.js"></script>
+    <script src="/assets/scripts/reservations.js"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Lógica de Autenticación, Menú Desplegable y Modal:
+            // Es mucho más limpio y eficiente si toda esta lógica se mueve a un archivo JS (p. ej., `app.js` o `ui.js`) 
+            // y solo se llama una función de inicialización aquí si es necesario.
+            
+            // Función de comprobación y redirección
+            function checkAuthAndInit() {
+                const isLoggedIn = window.auth && window.auth.isAuthenticated();
+                const navUser = document.getElementById('navUser');
+                const navLogin = document.getElementById('navLogin');
+                
+                if (isLoggedIn) {
+                    // Mostrar menú de usuario
+                    if (navUser) navUser.style.display = 'block';
+                    if (navLogin) navLogin.style.display = 'none';
+                    
+                    // Cargar datos de usuario
+                    const userData = window.auth.getCurrentUser();
+                    const userAvatar = document.getElementById('userAvatar');
+                    if (userData && userData.avatar && userAvatar) {
+                        userAvatar.src = userData.avatar;
+                    }
+                    
+                    // Inicializar la funcionalidad de las reservas (asumiendo que está en reservations.js)
+                    if (typeof initReservations === 'function') {
+                        initReservations();
+                    } else {
+                        console.error('La fonction initReservations n\'est pas définie. Assurez-vous que reservations.js est chargé.');
+                    }
+                } else {
+                    // Redirigir si no está autenticado
+                    // La redirección inmediata puede ser problemática, considérala para `auth.js`
+                    // window.location.href = 'pages/auth/login.html'; 
+                }
+            }
+            
+            // Inicialización de la UI (Menú desplegable, Modal, Logout)
+            function initUI() {
+                // Menú desplegable
+                const userMenuBtn = document.getElementById('userMenuBtn');
+                const userDropdown = document.getElementById('userDropdown');
+                
+                if (userMenuBtn && userDropdown) {
+                    userMenuBtn.addEventListener('click', function(e) {
+                        e.stopPropagation();
+                        const isExpanded = userDropdown.classList.toggle('show');
+                        userMenuBtn.setAttribute('aria-expanded', isExpanded); // Actualiza ARIA
+                    });
+                    
+                    document.addEventListener('click', function() {
+                        userDropdown.classList.remove('show');
+                        userMenuBtn.setAttribute('aria-expanded', 'false');
+                    });
+                    
+                    userDropdown.addEventListener('click', function(e) {
+                        e.stopPropagation();
+                    });
+                }
+                
+                // Logout
+                const logoutBtn = document.getElementById('logoutBtn');
+                if (logoutBtn) {
+                    logoutBtn.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        if (window.auth && typeof window.auth.logout === 'function') {
+                            window.auth.logout();
+                        } else {
+                            window.location.href = 'pages/auth/login.html';
+                        }
+                    });
+                }
+                
+                // Funcionalidad del Modal (Se mantiene la lógica simple)
+                const modal = document.getElementById('reservationModal');
+                const newReservationBtn = document.getElementById('newReservationBtn');
+                const closeModalBtn = document.querySelector('#reservationModal .close-modal');
+                const cancelBtn = document.getElementById('cancelReservationBtn');
+                const form = document.getElementById('reservationForm');
+                
+                if (modal) {
+                    const closeModal = () => {
+                        modal.style.display = 'none';
+                        document.body.style.overflow = ''; // Restaurar scroll del cuerpo
+                    }
+
+                    if (newReservationBtn) {
+                        newReservationBtn.onclick = function() {
+                            modal.style.display = 'flex';
+                            document.body.style.overflow = 'hidden'; // Bloquear scroll del cuerpo
+                            // Opcional: enfocar el primer elemento del modal para accesibilidad
+                            const firstFocusable = modal.querySelector('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
+                            if (firstFocusable) firstFocusable.focus();
+                        }
+                    }
+
+                    if (closeModalBtn) closeModalBtn.onclick = closeModal;
+                    if (cancelBtn) cancelBtn.onclick = closeModal;
+                    
+                    window.onclick = function(event) {
+                        if (event.target == modal) {
+                            closeModal();
+                        }
+                    }
+                    
+                    // Envío de formulario (Lógica de ejemplo)
+                    if (form) {
+                        form.onsubmit = function(e) {
+                            e.preventDefault();
+                            alert('Réservation effectuée avec succès! (La logique réelle doit être dans reservations.js)');
+                            closeModal();
+                            form.reset();
+                        }
+                    }
+                }
+            }
+            
+            // Inicializar al cargar el DOM
+            checkAuthAndInit();
+            initUI();
+        });
+    </script>
+
+    <footer class="footer" role="contentinfo">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-about">
+                    <img src="/assets/images/EB.png" alt="Logo secondaire EB Simracing" class="footer-logo">
+                    </div>
+                <div class="footer-links">
+                    <h4>LIENS RAPIDES</h4>
+                    <nav aria-label="Liens rapides du pied de page">
+                        <ul>
+                            <li><a href="../../index.html#inicio">Accueil</a></li>
+                            <li><a href="../../index.html#servicios">Services</a></li>
+                            <li><a href="../info/galerie.html">Galerie</a></li>
+                            <li><a href="../shop/merch.html">Boutique</a></li>
+                            <li><a href="../info/contacto.html">Contact</a></li>
+                        </ul>
+                    </nav>
+                </div>
+                <div class="footer-contact" role="region" aria-label="Informations de contact">
+                    <h4>CONTACT</h4>
+                    <address>
+                        <p><i class="fas fa-map-marker-alt" aria-hidden="true"></i> RUE DE LA MAÎTRISE 4<br>1400 Nivelles</p>
+                        <p><i class="fas fa-phone" aria-hidden="true"></i> <a href="tel:+32495579278">+32 495 57 92 78</a></p>
+                        <p><i class="fas fa-envelope" aria-hidden="true"></i> <a href="mailto:ebracingevents@gmail.com">ebracingevents@gmail.com</a></p>
+                    </address>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 EB Simracing. Tous droits réservés.</p>
+                <div class="social-links" role="region" aria-label="Liens sociaux">
+                    <a href="https://www.facebook.com/beracingkart/" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><i class="fab fa-facebook-f" aria-hidden="true"></i></a>
+                    <a href="https://www.instagram.com/eb.racing.events/" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="fab fa-instagram" aria-hidden="true"></i></a>
+                    <a href="#" target="_blank" rel="noopener noreferrer" aria-label="YouTube"><i class="fab fa-youtube" aria-hidden="true"></i></a>
+                    <a href="#" target="_blank" rel="noopener noreferrer" aria-label="Twitter"><i class="fab fa-twitter" aria-hidden="true"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Sistema de seguridad -->
+    <script src="/assets/scripts/security.js"></script>
+    <script src="/assets/scripts/auth.js"></script>
+</body>
+</html>

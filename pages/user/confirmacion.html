@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <!-- Security Headers -->
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    <meta http-equiv="X-Frame-Options" content="DENY">
+    <meta http-equiv="X-XSS-Protection" content="1; mode=block">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; font-src 'self'; connect-src 'self' http://localhost:3000;">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>¡Reserva Confirmada! - BeSimRacing</title>
+    <link rel="icon" href="/assets/images/EB.png" type="image/png">
+    <link rel="stylesheet" href="/css/booking.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/assets/styles/all.min.css">
+    <style>
+        .confirmation-container {
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 40px;
+            text-align: center;
+            background: #1e1e1e;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.5);
+        }
+        
+        .confirmation-icon {
+            font-size: 80px;
+            color: #4CAF50;
+            margin-bottom: 20px;
+        }
+        
+        .confirmation-title {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            color: #FFF200;
+        }
+        
+        .confirmation-message {
+            font-size: 1.2em;
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
+        
+        .order-details {
+            background: #2d2d2d;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 30px 0;
+            text-align: left;
+        }
+        
+        .order-details h3 {
+            color: #FFF200;
+            margin-top: 0;
+            border-bottom: 1px solid #444;
+            padding-bottom: 10px;
+        }
+        
+        .detail-row {
+            display: flex;
+            margin-bottom: 10px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #333;
+        }
+        
+        .detail-label {
+            font-weight: bold;
+            color: #aaa;
+            width: 200px;
+        }
+        
+        .detail-value {
+            flex: 1;
+        }
+        
+        .btn-home {
+            display: inline-block;
+            background: #FFF200;
+            color: #000;
+            padding: 12px 30px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            margin-top: 20px;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-home:hover {
+            background: #e6d700;
+            transform: translateY(-2px);
+        }
+        
+        @media (max-width: 768px) {
+            .confirmation-container {
+                padding: 20px;
+                margin: 20px;
+            }
+            
+            .detail-row {
+                flex-direction: column;
+            }
+            
+            .detail-label {
+                width: 100%;
+                margin-bottom: 5px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="confirmation-container">
+        <div class="confirmation-icon">
+            <i class="fas fa-check-circle"></i>
+        </div>
+        <h1 class="confirmation-title">¡Reserva Confirmada!</h1>
+        <p class="confirmation-message">
+            Gracias por tu compra. Hemos enviado un correo de confirmación con los detalles de tu reserva.
+            Si no lo encuentras, revisa tu carpeta de spam.
+        </p>
+        
+        <div class="order-details">
+            <h3>Detalles de tu reserva</h3>
+            <div id="order-details-content">
+                <!-- Los detalles se cargarán con JavaScript -->
+            </div>
+        </div>
+        
+        <p>Si tienes alguna pregunta, no dudes en contactarnos en <a href="mailto:info@besimracing.com" style="color: #FFF200;">info@besimracing.com</a></p>
+        
+        <a href="../../index.html" class="btn-home">Volver al inicio</a>
+    </div>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const params = new URLSearchParams(window.location.search);
+            const orderId = params.get('order_id');
+            const orderDetails = document.getElementById('order-details-content');
+            
+            // Mostrar detalles de la orden
+            if (orderId) {
+                // Aquí podrías hacer una llamada a tu API para obtener los detalles completos de la orden
+                // Por ahora, mostramos solo el ID
+                orderDetails.innerHTML = `
+                    <div class="detail-row">
+                        <div class="detail-label">Número de reserva:</div>
+                        <div class="detail-value">${orderId}</div>
+                    </div>
+                    <div class="detail-row">
+                        <div class="detail-label">Fecha:</div>
+                        <div class="detail-value">${new Date().toLocaleDateString()}</div>
+                    </div>
+                    <div class="detail-row">
+                        <div class="detail-label">Estado:</div>
+                        <div class="detail-value">Confirmada</div>
+                    </div>
+                `;
+                
+                // Aquí podrías agregar más detalles de la orden
+                // como el vehículo, paquete, precio, etc.
+            }
+            
+            // Guardar en el historial de reservas del localStorage
+            if (orderId) {
+                const bookingHistory = JSON.parse(localStorage.getItem('bookingHistory') || '[]');
+                bookingHistory.push({
+                    id: orderId,
+                    date: new Date().toISOString(),
+                    status: 'confirmed'
+                });
+                localStorage.setItem('bookingHistory', JSON.stringify(bookingHistory));
+            }
+        });
+    </script>
+
+    <!-- Sistema de seguridad -->
+    <script src="/assets/scripts/security.js"></script>
+    <script src="/assets/scripts/auth.js"></script>
+</body>
+</html>

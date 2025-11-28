@@ -14,7 +14,7 @@ const DB_CONFIG = {
     host: process.env.DB_HOST || '127.0.0.1', // [CAMBIAR] IP o hostname del servidor de BD en producción
     user: process.env.DB_USER || 'root',      // [CAMBIAR] Usuario de la base de datos
     password: process.env.DB_PASSWORD || '',  // [CAMBIAR] Contraseña segura
-    database: dbName,                         // [CAMBIAR] Nombre de la base de datos
+    // database: dbName,                         // [CAMBIAR] Nombre de la base de datos - se conectará sin BD primero
     
     // Configuración del pool de conexiones
     waitForConnections: true,
@@ -38,17 +38,20 @@ const DB_CONFIG = {
     // }
 };
 
-// Crear el pool de conexiones
-const pool = mysql.createPool(DB_CONFIG);
+// Crear el pool de conexiones (sin base de datos específica para inicialización)
+const initPool = mysql.createPool(DB_CONFIG);
+
+// Pool para la base de datos específica (se creará después de la inicialización)
+let dbPool = null;
 
 // Registrar eventos del pool
-pool.on('acquire', (connection) => {
+initPool.on('acquire', (connection) => {
     if (isTest) {
         console.log('Conexión adquirida del pool');
     }
 });
 
-pool.on('release', (connection) => {
+initPool.on('release', (connection) => {
     if (isTest) {
         console.log('Conexión liberada al pool');
     }
@@ -62,7 +65,7 @@ console.log(`Configuración de la base de datos (${isTest ? 'TEST' : 'PRODUCCIÓ
 // Función para probar la conexión
 async function testConnection() {
     try {
-        const connection = await pool.getConnection();
+        const connection = await initPool.getConnection();
         console.log('Conexión a la base de datos exitosa');
         connection.release();
         return true;
@@ -75,13 +78,24 @@ async function testConnection() {
 // Crear la tabla de usuarios si no existe
 async function initializeDatabase() {
     try {
-        const connection = await pool.getConnection();
-        console.log('Conectado a la base de datos MySQL');
+        const connection = await initPool.getConnection();
+        console.log('Conectado a MySQL sin base de datos específica');
         
-        await connection.query(`CREATE DATABASE IF NOT EXISTS esimracing_db`);
-        await connection.query(`USE esimracing_db`);
+        // Crear la base de datos si no existe
+        await connection.query(`CREATE DATABASE IF NOT EXISTS ${dbName}`);
+        console.log(`Base de datos '${dbName}' creada o verificada`);
         
-        await connection.query(`
+        // Liberar la conexión de inicialización
+        connection.release();
+        
+        // Ahora crear el pool para la base de datos específica
+        const dbConfig = { ...DB_CONFIG, database: dbName };
+        dbPool = mysql.createPool(dbConfig);
+        
+        // Conectar a la base de datos específica y crear la tabla
+        const dbConnection = await dbPool.getConnection();
+        
+        await dbConnection.query(`
             CREATE TABLE IF NOT EXISTS users (
                 id INT AUTO_INCREMENT PRIMARY KEY,
                 first_name VARCHAR(50) NOT NULL,
@@ -99,8 +113,8 @@ async function initializeDatabase() {
             ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
         `);
         
-        connection.release();
-        console.log('Base de datos inicializada correctamente');
+        dbConnection.release();
+        console.log('Base de datos y tabla users inicializadas correctamente');
         return true;
     } catch (error) {
         console.error('Error al inicializar la base de datos:', error);
@@ -109,7 +123,7 @@ async function initializeDatabase() {
 }
 
 module.exports = {
-    pool,
+    pool: () => dbPool || initPool, // Devuelve dbPool si está inicializado, sino initPool
     initializeDatabase,
     testConnection
 };

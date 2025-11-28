@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <!-- Security Headers -->
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    <meta http-equiv="X-Frame-Options" content="DENY">
+    <meta http-equiv="X-XSS-Protection" content="1; mode=block">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; font-src 'self'; connect-src 'self' http://localhost:3000;">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="/assets/images/Aurora_Interactive.png" type="image/png">
+    <title>EB Simracing - PORSCHE 718</title>
+    <link rel="icon" href="/assets/images/EB.png" type="image/png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/assets/styles/all.min.css">
+    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="/css/competitions/Porsche718.css">
+    <link rel="stylesheet" href="/css/user/perfil.css">
+    <link rel="stylesheet" href="/css/shop/cart.css">
+</head>
+<body>
+<!-- Header -->
+<header class="header">
+    <div class="container">
+        <div class="logo">
+            <a href="../../index.html"><img src="/assets/images/EB SIMRACING(Solo-White).png" alt="EB Simracing" class="logo-img"></a>
+        </div>
+        <nav class="main-nav">
+            <ul>
+                <li><a href="../../index.html#inicio" class="active">Accueil</a></li>
+                <li><a href="../../index.html#servicios">Services</a></li>
+                <li><a href="../info/galerie.html">Galerie</a></li>
+                <li><a href="../shop/merch.html">Boutique</a></li>
+                <li><a href="../info/contacto.html">Contact</a></li>
+                <li class="nav-cart">
+                    <a href="#" class="cart-icon" id="cart-icon">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span class="cart-count">0</span>
+                    </a>
+                    <div class="cart-dropdown" id="cart-dropdown">
+                        <div class="cart-header">
+                            <span>Mon Panier</span>
+                            <span class="cart-count-header">0</span>
+                        </div>
+                        <div class="cart-items" id="cart-items">
+                            <!-- Cart items will be loaded here -->
+                        </div>
+                        <div class="cart-footer">
+                            <div class="cart-total">
+                                <span>Total:</span>
+                                <span id="cart-total">0.00 €</span>
+                            </div>
+                            <button class="checkout-btn" id="checkout-btn">
+                                <i class="fas fa-credit-card"></i> Voir le panier
+                            </button>
+                        </div>
+                    </div>
+                </li>
+                <li class="nav-user" id="navUser" style="display: none;">
+                    <div class="user-avatar" id="userMenuBtn">
+                        <img src="/assets/images/default-avatar.png" alt="Profil" id="userAvatar">
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="user-dropdown" id="userDropdown">
+                        <a href="../auth/perfil.html"><i class="fas fa-user"></i> Mon Profil</a>
+                        <a href="../shop/cart.html"><i class="fas fa-shopping-cart"></i> Mon Panier</a>
+                        <a href="../user/mes-reservations.html"><i class="fas fa-calendar-alt"></i> Mes Réservations</a>
+                        <a href="parametres.html"><i class="fas fa-cog"></i> Paramètres</a>
+                        <div class="dropdown-divider"></div>
+                        <a href="#" id="logoutBtn"><i class="fas fa-sign-out-alt"></i> Déconnexion</a>
+                    </div>
+                </li>
+                <li class="nav-login" id="navLogin">
+                    <a href="../auth/login.html" class="btn-login">Connexion</a>
+                </li>
+            </ul>
+        </nav>
+        <div class="mobile-menu-btn">
+            <i class="fas fa-bars"></i>
+        </div>
+    </div>
+</header>
+
+    <!-- Hero Section -->
+    <section class="car-hero">
+        <div class="car-hero-content">
+            <h1>PORSCHE 718 CAYMAN S</h1>
+            <p>L'essence pure du sport automobile allemand</p>
+            <a href="#" class="btn btn-primary book-now" data-vehicle-name="Porsche 718 Cayman S" data-vehicle-id="porsche-718">RÉSERVER MAINTENANT</a>
+        </div>
+    </section>
+
+    <!-- Contenido principal con fondo negro -->
+    <div class="main-content">
+        <!-- Carrusel de imágenes -->
+        <div class="carousel-container">
+            <div class="carousel" id="imageCarousel">
+                <img src="/assets/images/PORSCHE.jpg" alt="C1">
+                <img src="/assets/images/PORSCHE2.jpeg" alt="C1">
+                <img src="/assets/images/PORSCHE3.jpeg" alt="C1Into">
+                <img src="/assets/images/PORSCHE4.jpeg" alt="C1Long">
+            </div>
+            <div class="carousel-nav">
+                <button class="carousel-btn" id="prevBtn" aria-label="Image précédente"><i class="fas fa-chevron-left"></i></button>
+                <button class="carousel-btn" id="nextBtn" aria-label="Image suivante"><i class="fas fa-chevron-right"></i></button>
+            </div>
+            <div class="image-counter" id="imageCounter">1/4</div>
+        </div>
+
+        <!-- Especificaciones técnicas -->
+        <section class="specs-section">
+            <div class="container">
+                <h2 class="section-title">SPÉCIFICATIONS TECHNIQUES</h2>
+                <div class="specs-grid">
+                    <div class="spec-card">
+                        <h3>Moteur</h3>
+                        <div class="spec-item">
+                            <span class="spec-name">Type</span>
+                            <span class="spec-value">4 cylindres bóxer</span> <!-- TERMINÉ -->
+                        </div>
+                        <div class="spec-item">
+                            <span class="spec-name">Cylindrée</span>
+                            <span class="spec-value">2.5L TURBO</span> <!-- TERMINÉ -->
+                        </div>
+                        <div class="spec-item">
+                            <span class="spec-name">Puissance</span>
+                            <span class="spec-value">350 CV</span> <!-- TERMINÉ -->
+                        </div>
+                        <div class="spec-item">
+                            <span class="spec-name">Couple</span>
+                            <span class="spec-value">420 NM</span> <!-- TERMINÉ -->
+                        </div>
+                    </div>
+
+                    <div class="spec-card">
+                        <h3>Performances</h3>
+                        <div class="spec-item">
+                            <span class="spec-name">Vitesse maximale</span>
+                            <span class="spec-value">305 KM/H</span> <!-- TERMINÉ -->
+                        </div>
+                        <div class="spec-item">
+                            <span class="spec-name">0-100 km/h</span>
+                            <span class="spec-value">4,4 seg.</span> <!-- TERMINÉ -->
+                        </div>
+                        <div class="spec-item">
+                            <span class="spec-name">Freinage 100-0 km/h</span>
+                            <span class="spec-value">33 mètres</span>
+                        </div>
+                        <div class="spec-item">
+                            <span class="spec-name">Poids à vide</span>
+                            <span class="spec-value">1300 KG</span> <!-- TERMINÉ -->
+                        </div>
+                    </div>
+
+                    <div class="spec-card">
+                        <h3>Châssis</h3>
+                        <div class="spec-item">
+                            <span class="spec-name">Type</span>
+                            <span class="spec-value">Monocoque acier</span>
+                        </div>
+                        <div class="spec-item">
+                            <span class="spec-name">Suspension</span>
+                            <span class="spec-value">PASM réglable</span>
+                        </div>
+                        <div class="spec-item">
+                            <span class="spec-name">Freins</span>
+                            <span class="spec-value">Carbone-céramique</span>
+                        </div>
+                        <div class="spec-item">
+                            <span class="spec-name">Pneus</span>
+                            <span class="spec-value">Michelin Cup 2</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+    <!-- Sección de Precios de Circuitos -->
+    <section class="circuit-pricing-section">
+        <div class="container">
+            <h2 class="section-title">TARIFS SPÉCIAUX</h2>
+            <div class="pricing-table-container">
+                <table class="pricing-table">
+                    <thead>
+                        <tr>
+                            <th>Circuit</th>
+                            <th>30 min</th>
+                            <th>1 heure</th>
+                            <th>Demi - Jourgnee</th>
+                            <th>Journee Complete</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Mettet</td>
+                            <td>400€</td>
+                            <td>750€</td>
+                            <td>2200€</td>
+                            <td>3550€</td>
+                        </tr>
+                        <tr>
+                            <td>Zolder</td>
+                            <td>600€</td>
+                            <td>980€</td>
+                            <td>2750€</td>
+                            <td>4500€</td>
+                        </tr>
+                        <tr>
+                            <td>Spa Francorchamps</td>
+                            <td>700€</td>
+                            <td>1080€</td>
+                            <td>2950€</td>
+                            <td>4900€</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <p class="pricing-note">* Les prix incluent l'équipement de sécurité et l'instruction professionnelle.</p>
+            <p class="pricing-note">** Réservation en ligne disponible jusqu'à 24h avant la date souhaitée.</p>
+        </div>
+    </section>
+    
+        <!-- Botones flotantes -->
+        <div class="floating-buttons-container">
+            <a href="#reservation" class="floating-btn floating-info" id="floatingInfoBtn">
+                <div class="floating-btn-content">
+                    <span class="bold-text">PRIX</span>
+                    <span class="normal-text">À partir de 400€</span>
+                </div>
+            </a>
+            <a href="#reservation" class="floating-buy-btn book-now" id="floatingBuyBtn" data-vehicle-name="Citroën C1" data-vehicle-id="c1">
+                <i class="fas fa-shopping-cart"></i>
+            </a>
+        </div>
+    </div>
+
+    <!-- Experiencia de conducción -->
+    <section class="experience-section">
+        <div class="experience-content">
+            <h2>EXPÉRIENCE DE CONDUITE</h2>
+            <p>La Porsche 718 Cayman S incarne l'excellence allemande en matière de sportivité. Son moteur boxer turbocompressé de 350 chevaux offre une réponse immédiate et une puissance impressionnante, tandis que sa répartition des masses parfaite et sa direction précise en font une véritable extension du pilote.</p>
+            <p>Avec son châssis rigide et son système de suspension PASM, le 718 Cayman S offre une tenue de route exceptionnelle et une agilité remarquable dans les virages. Que vous soyez un pilote expérimenté ou un passionné en quête de sensations fortes, ce bolide vous garantit une expérience de conduite pure et intense sur circuit.</p>
+            <a href="#" class="btn btn-primary book-now" data-vehicle-name="Porsche 718 Cayman S" data-vehicle-id="porsche-718">RÉSERVER UNE SESSION</a>
+        </div>
+    </section>
+
+    <!-- Sección de Wallpapers -->
+        <section class="wallpapers-section">
+            <div class="wallpapers-container">
+                <h2 class="wallpapers-title">TÉLÉCHARGER NOS WALLPAPERS</h2>
+                <div class="wallpapers-buttons">
+                    <a href="#" class="wallpaper-btn" download="Porsche718-Wallpapers-PC">
+                        <i class="fas fa-desktop"></i> Wallpapers PC
+                    </a>
+                    <a href="#" class="wallpaper-btn" download="Porsche718-Wallpapers-Mobile">
+                        <i class="fas fa-mobile-alt"></i> Wallpapers Mobile
+                    </a>
+                </div>
+            </div>
+        </section>
+    
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-about">
+                    <img src="/assets/images/EB.png" alt="EB Simracing" class="footer-logo">
+                </div>
+                <div class="footer-links">
+                    <h4>LIENS RAPIDES</h4>
+                    <ul>
+                        <li><a href="../../index.html">Accueil</a></li>
+                        <li><a href="../../index.html#servicios">Services</a></li>
+                        <li><a href="../info/galerie.html">Galerie</a></li>
+                    <li><a href="../shop/merch.html">Boutique</a></li>
+                        <li><a href="../info/contacto.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-contact">
+                    <h4>CONTACT</h4>
+                    <p><i class="fas fa-map-marker-alt"></i> RUE DE LA MAÎTRISE 4, 1400 Nivelles</p>
+                    <p><i class="fas fa-phone"></i> +32 495 57 92 78</p>
+                    <p><i class="fas fa-envelope"></i> ebracingevents@gmail.com</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 EB Simracing. Tous droits réservés.</p>
+                <div class="social-links">
+                    <a href="https://www.facebook.com/beracingkart/"><i class="fab fa-facebook"></i></a>
+                    <a href="https://www.instagram.com/eb.racing.events/"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 EB Simracing. Tous droits réservés.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Script para el carrusel de imágenes y botón flotante
+        document.addEventListener('DOMContentLoaded', function() {
+            // Variables del carrusel
+            const carousel = document.getElementById('imageCarousel');
+            const prevBtn = document.getElementById('prevBtn');
+            const nextBtn = document.getElementById('nextBtn');
+            const imageCounter = document.getElementById('imageCounter');
+            const images = document.querySelectorAll('.carousel img');
+            let currentIndex = 0;
+            const totalImages = images.length;
+            
+            // Actualizar contador de imágenes
+            function updateImageCounter() {
+                imageCounter.textContent = `${currentIndex + 1}/${totalImages}`;
+            }
+            
+            // Configurar el ancho del carrusel
+            function updateCarousel() {
+                carousel.style.width = `${totalImages * 100}%`;
+                images.forEach(img => {
+                    img.style.width = `${100 / totalImages}%`;
+                });
+                updateCarouselPosition();
+                updateImageCounter();
+            }
+
+            // Actualizar la posición del carrusel
+            function updateCarouselPosition() {
+                carousel.style.transform = `translateX(-${currentIndex * (100 / totalImages)}%)`;
+            }
+
+            // Event listeners para los botones
+            nextBtn.addEventListener('click', () => {
+                currentIndex = (currentIndex + 1) % totalImages;
+                updateCarouselPosition();
+                updateImageCounter();
+            });
+
+            prevBtn.addEventListener('click', () => {
+                currentIndex = (currentIndex - 1 + totalImages) % totalImages;
+                updateCarouselPosition();
+                updateImageCounter();
+            });
+
+            // Cambio automático de imágenes cada 5 segundos
+            let slideInterval = setInterval(() => {
+                currentIndex = (currentIndex + 1) % totalImages;
+                updateCarouselPosition();
+                updateImageCounter();
+            }, 5000);
+
+            // Pausar el carrusel al pasar el ratón
+            carousel.addEventListener('mouseenter', () => {
+                clearInterval(slideInterval);
+            });
+
+            // Reanudar el carrusel al quitar el ratón
+            carousel.addEventListener('mouseleave', () => {
+                slideInterval = setInterval(() => {
+                    currentIndex = (currentIndex + 1) % totalImages;
+                    updateCarouselPosition();
+                    updateImageCounter();
+                }, 5000);
+            });
+
+            // Inicializar el carrusel
+            updateCarousel();
+
+            // Mostrar/ocultar botón flotante al hacer scroll
+            let lastScrollTop = 0;
+            const floatingBtn = document.getElementById('floatingBuyBtn');
+            
+            window.addEventListener('scroll', function() {
+                let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+                
+                if (scrollTop > lastScrollTop){
+                    // Scrolling down
+                    floatingBtn.style.transform = 'translateY(100px)';
+                } else {
+                    // Scrolling up
+                    floatingBtn.style.transform = 'translateY(0)';
+                }
+                lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
+            }, false);
+            
+            // Ajustar el carrusel al redimensionar la ventana
+            window.addEventListener('resize', updateCarousel);
+        });
+        document.addEventListener('DOMContentLoaded', function() {
+            const carousel = document.getElementById('imageCarousel');
+            const prevBtn = document.getElementById('prevBtn');
+            const nextBtn = document.getElementById('nextBtn');
+            const images = document.querySelectorAll('.carousel img');
+            let currentIndex = 0;
+            const totalImages = images.length;
+            const imageWidth = 100; // Porcentaje del ancho de cada imagen
+
+            // Configurar el ancho del carrusel
+            function updateCarousel() {
+                carousel.style.width = `${totalImages * 100}%`;
+                images.forEach(img => {
+                    img.style.width = `${100 / totalImages}%`;
+                });
+                updateCarouselPosition();
+            }
+
+            // Actualizar la posición del carrusel
+            function updateCarouselPosition() {
+                carousel.style.transform = `translateX(-${currentIndex * (100 / totalImages)}%)`;
+            }
+
+            // Event listeners para los botones
+            nextBtn.addEventListener('click', () => {
+                currentIndex = (currentIndex + 1) % totalImages;
+                updateCarouselPosition();
+            });
+
+            prevBtn.addEventListener('click', () => {
+                currentIndex = (currentIndex - 1 + totalImages) % totalImages;
+                updateCarouselPosition();
+            });
+
+            // Inicializar el carrusel
+            updateCarousel();
+
+            // Cambio automático de imágenes cada 5 segundos
+            setInterval(() => {
+                currentIndex = (currentIndex + 1) % totalImages;
+                updateCarouselPosition();
+            }, 5000);
+
+            // Ajustar el carrusel al redimensionar la ventana
+            window.addEventListener('resize', updateCarousel);
+        });
+    </script>
+    <script src="/assets/scripts/services/cartService.js"></script>
+    <script src="/assets/scripts/cart.js"></script>
+    <script src="/assets/scripts/auth.js"></script>
+    <script src="/assets/scripts/header.js"></script>
+
+    <!-- Sistema de seguridad -->
+    <script src="/assets/scripts/security.js"></script>
+    <script src="/assets/scripts/auth.js"></script>
+</body>
+</html>

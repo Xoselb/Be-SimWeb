@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inscription - EB Simracing</title>
+    
+    <!-- Security Headers -->
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    <meta http-equiv="X-Frame-Options" content="DENY">
+    <meta http-equiv="X-XSS-Protection" content="1; mode=block">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; font-src 'self'; connect-src 'self' http://localhost:3000;">
+    
+    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="/css/user/perfil.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/assets/styles/all.min.css">
+    <style>
+        /* Fondo negro para toda la página */
+        body {
+            background-color: #000;
+            min-height: 100vh;
+            margin: 0;
+        }
+
+        /* Contenedor principal con fondo negro */
+        .register-container {
+            background: #000;
+            border: 1px solid #333;
+            max-width: 500px;
+            margin: 50px auto;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(255, 242, 0, 0.1);
+        }
+
+        /* Estilo para los campos de formulario */
+        .form-group input {
+            background: #1a1a1a;
+            border: 1px solid #333;
+            color: #fff;
+        }
+
+        /* Estilo para los enlaces */
+        .register-footer a {
+            color: #FFF200;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .register-footer a:hover {
+            color: #ffeb3b;
+            text-decoration: underline;
+        }
+        .register-container {
+            max-width: 500px;
+            margin: 80px auto 50px;
+            padding: 40px;
+            background: #1a1a1a;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+            border: 1px solid #333;
+        }
+        
+        .register-container h1 {
+            text-align: center;
+            color: #FFF200;
+            margin-bottom: 30px;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+        
+        .form-group input {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #444;
+            border-radius: 5px;
+            background: #2a2a2a;
+            color: #fff;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+        
+        .form-group input:focus {
+            border-color: #FFF200;
+            outline: none;
+        }
+        
+        .btn-register {
+            width: 100%;
+            padding: 12px;
+            background: #FFF200;
+            color: #000;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-register:hover {
+            background: #e6d300;
+            transform: translateY(-2px);
+        }
+        
+        .register-footer {
+            text-align: center;
+            margin-top: 20px;
+        }
+        
+        .register-footer a {
+            color: #FFF200;
+            text-decoration: none;
+        }
+        
+        .register-footer a:hover {
+            text-decoration: underline;
+        }
+        
+        .error-message {
+            color: #ff6b6b;
+            margin-bottom: 20px;
+            text-align: center;
+            display: none;
+            padding: 10px;
+            background: rgba(255, 107, 107, 0.1);
+            border-radius: 5px;
+        }
+    </style>
+    <link rel="stylesheet" href="/assets/styles/perfil.css">
+</head>
+<body>
+<!-- Header -->
+<header class="header">
+    <div class="container">
+        <div class="logo">
+            <a href="../../index.html"><h1>EB <span>Simracing</span></h1></a>
+        </div>
+        <nav class="main-nav">
+            <ul>
+                <li><a href="../../index.html#inicio" class="active">Accueil</a></li>
+                <li><a href="../../index.html#servicios">Services</a></li>
+                <li><a href="../info/galerie.html">Galerie</a></li>
+                <li><a href="../shop/merch.html">Boutique</a></li>
+                <li><a href="../info/contacto.html">Contact</a></li>
+                <li class="nav-user" id="navUser" style="display: none;">
+                    <div class="user-avatar" id="userMenuBtn">
+                        <img src="/assets/images/default-avatar.png" alt="Profil" id="userAvatar">
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="user-dropdown" id="userDropdown">
+                        <a href="../auth/perfil.html"><i class="fas fa-user"></i> Mon Profil</a>
+                        <a href="../user/mes-reservations.html"><i class="fas fa-calendar-alt"></i> Mes réservations</a>
+                        <a href="parametres.html"><i class="fas fa-cog"></i> Paramètres</a>
+                        <div class="dropdown-divider"></div>
+                        <a href="#" id="logoutBtn"><i class="fas fa-sign-out-alt"></i> Déconnexion</a>
+                    </div>
+                </li>
+                <li class="nav-login" id="navLogin">
+                    <a href="login.html" class="btn-login">Connexion</a>
+                </li>
+            </ul>
+        </nav>
+        <div class="mobile-menu-btn">
+            <i class="fas fa-bars"></i>
+        </div>
+    </div>
+</header>
+    
+    <div class="register-container">
+        <h1>Créer un compte</h1>
+        <div id="errorMessage" class="error-message"></div>
+        <form id="registerForm">
+            <div class="form-group">
+                <label for="firstName">Prénom</label>
+                <input type="text" id="firstName" name="firstName" required>
+            </div>
+            <div class="form-group">
+                <label for="lastName">Nom</label>
+                <input type="text" id="lastName" name="lastName" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Mot de passe</label>
+                <input type="password" id="password" name="password" required minlength="6">
+            </div>
+            <div class="form-group">
+                <label for="confirmPassword">Confirmer le mot de passe</label>
+                <input type="password" id="confirmPassword" name="confirmPassword" required minlength="6">
+            </div>
+            <button type="submit" class="btn-register">S'inscrire</button>
+        </form>
+        <div class="register-footer">
+            <p>Déjà un compte ? <a href="login.html">Se connecter</a></p>
+        </div>
+    </div>
+
+    <script src="/js/auth/auth.js"></script>
+    <script>
+        // Verificar si el usuario ya está autenticado
+        if (window.auth.isAuthenticated()) {
+            window.location.href = '../../index.html';
+        }
+
+        document.getElementById('registerForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const firstName = document.getElementById('firstName').value;
+            const lastName = document.getElementById('lastName').value;
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            const confirmPassword = document.getElementById('confirmPassword').value;
+            const errorElement = document.getElementById('errorMessage');
+            
+            // Validación básica
+            if (!firstName || !lastName || !email || !password || !confirmPassword) {
+                showError('Veuillez remplir tous les champs');
+                return;
+            }
+            
+            if (password !== confirmPassword) {
+                showError('Les mots de passe ne correspondent pas');
+                return;
+            }
+            
+            if (password.length < 6) {
+                showError('Le mot de passe doit contenir au moins 6 caractères');
+                return;
+            }
+            
+            // Crear objeto de usuario
+            const userData = {
+                firstName: firstName,
+                lastName: lastName,
+                email: email,
+                phone: '',
+                avatar: 'img/default-avatar.png'
+            };
+            
+            // Guardar datos en localStorage (en producción esto se haría en el servidor)
+            localStorage.setItem('userToken', 'dummy-token');
+            localStorage.setItem('userData', JSON.stringify(userData));
+            
+            // Redirigir al inicio
+            window.location.href = '../../index.html';
+        });
+        
+        function showError(message) {
+            const errorElement = document.getElementById('errorMessage');
+            errorElement.textContent = message;
+            errorElement.style.display = 'block';
+        }
+    </script>
+    
+    <!-- Sistema de seguridad -->
+    <script src="/js/security.js"></script>
+    <script src="/js/auth/auth.js"></script>
+    <script src="/js/auth/registro.js"></script>
+</body>
+</html>

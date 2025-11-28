@@ -280,7 +280,7 @@
             height: 60vh;
             min-height: 500px;
             background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), 
-                        url('img/C1.JPG') no-repeat center center/cover;
+                        url('/img/C1.JPG') no-repeat center center/cover;
             display: flex;
             align-items: center;
             justify-content: center;

@@ -70,7 +70,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     window.auth.logout();
                 } else {
                     // Fallback in case auth.js is not loaded
-                    window.location.href = 'login.html';
+                    window.location.href = '../auth/login.html';
                 }
             });
         }

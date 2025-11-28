@@ -1,6 +1,11 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
+    <!-- Security Headers -->
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    <meta http-equiv="X-Frame-Options" content="DENY">
+    <meta http-equiv="X-XSS-Protection" content="1; mode=block">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; font-src 'self'; connect-src 'self' http://localhost:3000;">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}Eb_SimWeb{% endblock %}</title>
@@ -10,7 +15,7 @@
     <link rel="icon" type="image/png" href="/images/favicon.ico">
     
     <!-- CSS -->
-    <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="/assets/styles/main.css">
     {% block styles %}{% endblock %}
     
     <!-- Preload de fuentes -->
@@ -38,7 +43,11 @@
     {% include '../partials/footer.html' %}
     
     <!-- Scripts -->
-    <script src="/js/main.js" defer></script>
+    <script src="/assets/scripts/main.js" defer></script>
     {% block scripts %}{% endblock %}
+
+    <!-- Sistema de seguridad -->
+    <script src="/assets/scripts/security.js"></script>
+    <script src="/assets/scripts/auth.js"></script>
 </body>
 </html>

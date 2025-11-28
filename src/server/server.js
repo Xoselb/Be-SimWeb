@@ -10,6 +10,12 @@ const path = require('path');
 const fs = require('fs');
 const https = require('https');
 
+// Cargar variables de entorno
+require('dotenv').config();
+
+const PORT = process.env.PORT || 3000;
+const JWT_SECRET = process.env.JWT_SECRET || 'secreto_default';
+
 // Création de l'application Express
 const app = express();
 
@@ -23,7 +29,7 @@ const hpp = require('hpp');
 
 // [CAMBIAR] Configuración de la base de datos
 // =========================================
-const { pool, initializeDatabase, testConnection } = require('./db');
+const { pool: getPool, initializeDatabase, testConnection } = require('./db');
 
 const corsOptions = {
     origin: function (origin, callback) {
@@ -62,7 +68,18 @@ const corsOptions = {
 };
 
 // Aplicar middlewares de seguridad
-app.use(helmet()); // Añade varios encabezados de seguridad
+// app.use(helmet({
+//     contentSecurityPolicy: {
+//         directives: {
+//             defaultSrc: ["'self'"],
+//             styleSrc: ["'self'", "'unsafe-inline'", "https://cdnjs.cloudflare.com"],
+//             fontSrc: ["'self'", "https://cdnjs.cloudflare.com"],
+//             imgSrc: ["'self'", "data:", "/public/img/"],
+//             scriptSrc: ["'self'"],
+//             connectSrc: ["'self'"]
+//         }
+//     }
+// })); // Añade varios encabezados de seguridad
 app.use(cors(corsOptions));
 app.options('*', cors(corsOptions));
 
@@ -95,7 +112,7 @@ app.set('trust proxy', 1); // Confiar en el primer proxy
 
 // Servir archivos estáticos
 // Serve static files from the root directory
-app.use(express.static(path.join(__dirname, '../'), {
+app.use(express.static(path.join(__dirname, '../../'), {
     setHeaders: (res) => {
         res.setHeader('Access-Control-Allow-Origin', '*');
         res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
@@ -103,6 +120,18 @@ app.use(express.static(path.join(__dirname, '../'), {
         res.setHeader('Access-Control-Allow-Credentials', true);
     }
 }));
+
+// Ruta principal - servir index.html
+app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, '../../index.html'));
+});
+
+// Rutas específicas para CSS con headers correctos
+app.get('/css/*.css', (req, res, next) => {
+    res.setHeader('Content-Type', 'text/css; charset=UTF-8');
+    res.setHeader('Cache-Control', 'no-cache, no-store, must-revalidate');
+    next();
+});
 
 // Ruta para manejar imágenes faltantes
 app.get('/img/*', (req, res) => {
@@ -260,6 +289,7 @@ app.post('/api/register', async (req, res) => {
 
         // Verificar si el correo ya existe
         try {
+            const pool = getPool();
             const [existingUsers] = await pool.query(
                 'SELECT id FROM users WHERE email = ?',
                 [email]
@@ -289,6 +319,7 @@ app.post('/api/register', async (req, res) => {
         // Insertar usuario en la base de datos
         try {
             console.log('Intentando insertar usuario en la base de datos...');
+            const pool = getPool();
             
             const [result] = await pool.query(
                 `INSERT INTO users 
@@ -459,6 +490,127 @@ app.post('/api/register', async (req, res) => {
     }
 });
 
+// Ruta para el login de usuarios
+app.post('/api/login', async (req, res) => {
+    console.log('=== SOLICITUD DE LOGIN RECIBIDA ===');
+    console.log('Headers:', JSON.stringify(req.headers, null, 2));
+    console.log('Body:', JSON.stringify(req.body, null, 2));
+    
+    try {
+        const { email, password } = req.body;
+
+        // Validación de campos requeridos
+        if (!email || !password) {
+            console.log('Faltan campos requeridos: email o password');
+            return res.status(400).json({ 
+                success: false,
+                error: 'El correo electrónico y la contraseña son obligatorios'
+            });
+        }
+
+        // Validar formato de email
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(email)) {
+            console.log('Formato de email inválido:', email);
+            return res.status(400).json({ 
+                success: false,
+                error: 'Por favor, proporcione un correo electrónico válido'
+            });
+        }
+
+        // Buscar usuario en la base de datos
+        try {
+            const pool = getPool();
+            const [users] = await pool.query(
+                'SELECT id, first_name, last_name, email, password_hash, country, birthdate, street, street_number, created_at FROM users WHERE email = ?',
+                [email]
+            );
+
+            if (users.length === 0) {
+                console.log('Usuario no encontrado:', email);
+                return res.status(401).json({ 
+                    success: false,
+                    error: 'Correo electrónico o contraseña incorrectos'
+                });
+            }
+
+            const user = users[0];
+
+            // Verificar la contraseña
+            const passwordMatch = await bcrypt.compare(password, user.password_hash);
+            if (!passwordMatch) {
+                console.log('Contraseña incorrecta para:', email);
+                return res.status(401).json({ 
+                    success: false,
+                    error: 'Correo electrónico o contraseña incorrectos'
+                });
+            }
+
+            // Generar token JWT
+            const userPayload = { 
+                userId: user.id, 
+                email: user.email 
+            };
+            
+            console.log('Generando token JWT con payload:', userPayload);
+            
+            const token = jwt.sign(
+                userPayload,
+                JWT_SECRET,
+                { expiresIn: '24h' }
+            );
+
+            console.log('Token JWT generado correctamente');
+
+            // Configurar la cookie de autenticación
+            const cookieOptions = {
+                httpOnly: true,
+                secure: process.env.NODE_ENV === 'production',
+                sameSite: 'strict',
+                maxAge: 24 * 60 * 60 * 1000, // 24 horas
+                path: '/'
+            };
+            
+            res.cookie('token', token, cookieOptions);
+
+            // Enviar respuesta exitosa
+            const responseData = {
+                success: true,
+                message: 'Inicio de sesión exitoso',
+                user: {
+                    id: user.id,
+                    email: user.email,
+                    firstName: user.first_name,
+                    lastName: user.last_name,
+                    country: user.country,
+                    birthdate: user.birthdate,
+                    street: user.street,
+                    streetNumber: user.street_number
+                },
+                token: token
+            };
+            
+            console.log('Enviando respuesta de login exitosa:', JSON.stringify(responseData, null, 2));
+            return res.status(200).json(responseData);
+
+        } catch (dbError) {
+            console.error('Error al buscar usuario en la base de datos:', dbError);
+            return res.status(500).json({ 
+                success: false,
+                error: 'Error al verificar las credenciales'
+            });
+        }
+
+    } catch (error) {
+        console.error('Error en el login:', error);
+        res.status(500).json({ 
+            success: false,
+            error: error.message || 'Error al procesar el inicio de sesión',
+            details: process.env.NODE_ENV === 'development' ? error.stack : undefined
+        });
+    }
+});
+
 // Middleware para verificar el token JWT
 const authenticateToken = async (req, res, next) => {
     // Rutas que no requieren autenticación
@@ -608,6 +760,7 @@ const authenticateToken = async (req, res, next) => {
 // Endpoint para verificar el token
 app.get('/api/verify-token', authenticateToken, async (req, res) => {
     try {
+        const pool = getPool();
         // Obtener los datos del usuario desde la base de datos
         const [users] = await pool.query(
             'SELECT id, first_name, last_name, email, country, birthdate, street, street_number, created_at FROM users WHERE id = ?',
