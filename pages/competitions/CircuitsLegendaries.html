@@ -5,64 +5,53 @@
     <meta http-equiv="X-Content-Type-Options" content="nosniff">
     <meta http-equiv="X-Frame-Options" content="DENY">
     <meta http-equiv="X-XSS-Protection" content="1; mode=block">
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; font-src 'self'; connect-src 'self' http://localhost:3000;">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com; img-src 'self' data: https:; font-src 'self' https://cdnjs.cloudflare.com; connect-src 'self' http://localhost:3000;">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Circuits Légendaires - EB Simracing</title>
     <link rel="icon" href="/assets/images/EB.png" type="image/png">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/assets/styles/all.min.css">
-    <link rel="stylesheet" href="/assets/styles/styles.css">
-    <link rel="stylesheet" href="/assets/styles/CircuitsLegendaries.css">
-    <link rel="stylesheet" href="/assets/styles/cart.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="/css/competitions/CircuitsLegendaries.css">
 </head>
 <body>
-    <!-- En-tête -->
-    <header class="header">
-        <div class="container">
-            <div class="logo">
-                <a href="index.html">
-                    <img src="/assets/images/EB SIMRACING(Solo-White).png" alt="EB Simracing" class="logo-img">
-                </a>
-            </div>
-            <nav class="main-nav">
-                <ul>
-                    <li><a href="index.html#inicio">Accueil</a></li>
-                    <li><a href="index.html#servicios">Services</a></li>
-                    <li><a href="pages/info/galerie.html" class="active">Galerie</a></li>
-                    <li><a href="pages/shop/merch.html">Boutique</a></li>
-                    <li><a href="pages/info/contacto.html">Contact</a></li>
-                    <li><a href="#login">Membres</a></li>
-                    <li class="nav-cart">
-                        <a href="#" class="cart-icon" id="cart-icon">
-                            <i class="fas fa-shopping-cart"></i>
-                            <span class="cart-count">0</span>
-                        </a>
-                        <div class="cart-dropdown" id="cart-dropdown">
-                            <div class="cart-header">
-                                <span>Mon Panier</span>
-                                <span class="cart-count-header">0</span>
-                            </div>
-                            <div class="cart-items" id="cart-items">
-                                <!-- Cart items will be loaded here -->
-                            </div>
-                            <div class="cart-footer">
-                                <div class="cart-total">
-                                    <span>Total:</span>
-                                    <span id="cart-total">0.00 €</span>
-                                </div>
-                                <button class="checkout-btn" id="checkout-btn">
-                                    <i class="fas fa-credit-card"></i> Voir le panier
-                                </button>
-                            </div>
-                        </div>
-                    </li>
-                </ul>
-            </nav>
-            <div class="menu-toggle">
-                <i class="fas fa-bars"></i>
-            </div>
+<!-- Header -->
+<header class="header">
+    <div class="container">
+        <div class="logo">
+            <a href="#"><img src="/img/EB RACING(Solo-White).png" alt="EB Racing" class="logo-img"></a>
         </div>
-    </header>
+        <nav class="main-nav">
+            <ul>
+                <li><a href="../../index.html#inicio" class="active">Accueil</a></li>
+                <li><a href="../../index.html#servicios">Services</a></li>
+                <li><a href="../info/galerie.html">Galerie</a></li>
+                <li><a href="../shop/merch.html">Boutique</a></li>
+                <li><a href="../info/contacto.html">Contact</a></li>
+                <li class="nav-user" id="navUser" style="display: none;">
+                    <div class="user-avatar" id="userMenuBtn">
+                        <img src="/img/user/EB_Default_Avatar.png" alt="Profil" id="userAvatar">
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="user-dropdown" id="userDropdown">
+                        <a href="../auth/perfil.html"><i class="fas fa-user"></i> Mon Profil</a>
+                        <a href="../user/mes-reservations.html"><i class="fas fa-calendar-alt"></i> Mes réservations</a>
+                        <a href="parametres.html"><i class="fas fa-cog"></i> Paramètres</a>
+                        <div class="dropdown-divider"></div>
+                        <a href="#" id="logoutBtn"><i class="fas fa-sign-out-alt"></i> Déconnexion</a>
+                    </div>
+                </li>
+                <li class="nav-login" id="navLogin">
+                    <a href="../auth/login.html" class="btn-login">Connexion</a>
+                </li>
+            </ul>
+        </nav>
+        <div class="mobile-menu-btn">
+            <i class="fas fa-bars"></i>
+        </div>
+    </div>
+</header>
+
 
     <!-- Hero Section -->
     <section class="circuits-hero">
@@ -81,7 +70,7 @@
             </div>
             <div class="lemans-container">
                 <div class="lemans-image">
-                    <img src="/assets/images/CIRCUITOS/LEMANS.jpg" alt="Circuit des 24 Heures du Mans">
+                    <img src="/img/CIRCUITOS/LEMANS.jpg" alt="Circuit des 24 Heures du Mans">
                 </div>
                 <div class="lemans-content">
                     <h3>CIRCUIT DE LA SARTHE</h3>
@@ -111,11 +100,52 @@
                     </div>
                 </div>
             </div>
-            <div class="lemans-video">
-                <h3>Revivez les moments légendaires</h3>
-                <div class="video-container">
-                    <iframe src="https://www.youtube.com/embed/IEUwOomxcY0" title="Les 24 Heures du Mans - Meilleurs moments" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                </div>
+        </div>
+    </section>
+
+    <!-- Top 3 Temps Le Mans -->
+    <section class="lemans-video">
+        <div class="container">
+            <h3>TOP 3 MEILLEURS TEMPS - LE MANS</h3>
+            <div class="top-times-table">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Position</th>
+                            <th>Pilote</th>
+                            <th>Temps</th>
+                            <th>Véhicule</th>
+                            <th>Date</th>
+                            <th>Conditions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="position">1</td>
+                            <td class="driver">Evan Becerra</td>
+                            <td class="time">3:14.791</td>
+                            <td class="vehicle">Toyota TS050 Hybrid</td>
+                            <td class="date">23/06/17</td>
+                            <td class="conditions">Sec</td>
+                        </tr>
+                        <tr>
+                            <td class="position">2</td>
+                            <td class="driver">X.R.L. Becerra</td>
+                            <td class="time">3:14.966</td>
+                            <td class="vehicle">Porsche 919 Hybrid</td>
+                            <td class="date">11/06/15</td>
+                            <td class="conditions">Sec</td>
+                        </tr>
+                        <tr>
+                            <td class="position">3</td>
+                            <td class="driver">Jose Becerra</td>
+                            <td class="time">3:16.057</td>
+                            <td class="vehicle">Toyota TS050 Hybrid</td>
+                            <td class="date">15/06/19</td>
+                            <td class="conditions">Sec</td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
         </div>
     </section>
@@ -128,7 +158,7 @@
             </div>
             <div class="lemans-container">
                 <div class="lemans-image">
-                    <img src="/assets/images/CIRCUITOS/SPA-FRANCORCHAMPS.jpg" alt="SPA-FRANCORCHAMPS">
+                    <img src="/img/CIRCUITOS/SPA-FRANCORCHAMPS.jpg" alt="SPA-FRANCORCHAMPS">
                 </div>
                 <div class="lemans-content">
                     <h3>SPA-FRANCORCHAMPS</h3>
@@ -157,6 +187,53 @@
                         </div>
                     </div>
                 </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Top 3 Temps Spa-Francorchamps -->
+    <section class="lemans-video">
+        <div class="container">
+            <h3>TOP 3 MEILLEURS TEMPS - SPA-FRANCORCHAMPS</h3>
+            <div class="top-times-table">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Position</th>
+                            <th>Pilote</th>
+                            <th>Temps</th>
+                            <th>Véhicule</th>
+                            <th>Date</th>
+                            <th>Conditions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="position">1</td>
+                            <td class="driver">Jose Becerra</td>
+                            <td class="time">1:42.737</td>
+                            <td class="vehicle">Mercedes W12</td>
+                            <td class="date">28/07/21</td>
+                            <td class="conditions">Sec</td>
+                        </tr>
+                        <tr>
+                            <td class="position">2</td>
+                            <td class="driver">Evan Becerra</td>
+                            <td class="time">1:42.953</td>
+                            <td class="vehicle">Mercedes W12</td>
+                            <td class="date">28/07/21</td>
+                            <td class="conditions">Sec</td>
+                        </tr>
+                        <tr>
+                            <td class="position">3</td>
+                            <td class="driver">X.R.L. Becerra</td>
+                            <td class="time">1:43.665</td>
+                            <td class="vehicle">Red Bull RB16B</td>
+                            <td class="date">28/07/21</td>
+                            <td class="conditions">Sec</td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
         </div>
     </section>
@@ -212,13 +289,13 @@
             }
         });
     </script>
-    <script src="/assets/scripts/services/cartService.js"></script>
-    <script src="/assets/scripts/cart.js"></script>
-    <script src="/assets/scripts/auth.js"></script>
-    <script src="/assets/scripts/header.js"></script>
+    <script src="/js/shop/cartService.js"></script>
+    <script src="/js/shop/cart.js"></script>
+    <script src="/js/auth.js"></script>
+    <script src="/js/header.js"></script>
 
     <!-- Sistema de seguridad -->
-    <script src="/assets/scripts/security.js"></script>
-    <script src="/assets/scripts/auth.js"></script>
+    <script src="/js/security.js"></script>
+    <script src="/js/auth.js"></script>
 </body>
 </html>
