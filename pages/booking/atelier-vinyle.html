@@ -174,6 +174,123 @@
                     <h3>Garantie</h3>
                     <p>Tous nos travaux sont garantis contre les défauts de fabrication et de pose.</p>
                 </div>
+                <div class="feature-card">
+                    <i class="fas fa-clock"></i>
+                    <h3>Rapidité</h3>
+                    <p>Intervention rapide et respect des délais pour minimiser l'indisponibilité de votre véhicule.</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-car"></i>
+                    <h3>Spécialistes</h3>
+                    <p>Équipe de professionnels spécialisés en habillage automobile avec plus de 10 ans d'expérience.</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-award"></i>
+                    <h3>Certification</h3>
+                    <p>Nous sommes certifiés par les plus grandes marques de films vinyle du marché.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="testimonials">
+        <div class="container">
+            <h2 class="section-title">CE QUE DISENT NOS CLIENTS</h2>
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        <p>"Un travail exceptionnel ! Mon véhicule a été complètement transformé. Le design est exactement ce que je voulais."</p>
+                        <div class="stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                    <div class="testimonial-author">
+                        <strong>Marc Dubois</strong>
+                        <span>Porsche 911 GT3</span>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        <p>"Professionnalisme et qualité au rendez-vous. L'équipe a su comprendre mes besoins et dépasser mes attentes."</p>
+                        <div class="stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                    <div class="testimonial-author">
+                        <strong>Sophie Martin</strong>
+                        <span>BMW M4</span>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        <p>"Le rapport qualité-prix est excellent. Mon vinyle est toujours parfait après 2 ans ! Je recommande vivement."</p>
+                        <div class="stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                    <div class="testimonial-author">
+                        <strong>Thomas Bernard</strong>
+                        <span>Audi RS5</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq-section">
+        <div class="container">
+            <h2 class="section-title">QUESTIONS FRÉQUENTES</h2>
+            <div class="faq-grid">
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>Combien de temps dure la pose d'un vinyle ?</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>La durée varie selon la complexité : 1-2 jours pour un habillage partiel, 3-5 jours pour un habillage complet.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>Le vinyle abîme-t-il la peinture d'origine ?</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Absolument pas ! Au contraire, le vinyle protège votre peinture d'origine. Il peut être retiré sans laisser de traces.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>Quelle est la durée de vie du vinyle ?</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Nos films premium ont une durée de vie garantie de 5-7 ans avec un entretien normal.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>Peut-on laver le véhicule normalement ?</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Oui, vous pouvez laver votre véhicule normalement. Évitez simplement les brosses dures et le lavage haute pression direct.</p>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -223,11 +340,36 @@
 
     <script src="/assets/scripts/hero-slider.js"></script>
     <script src="/assets/scripts/index.js"></script>
+    <script src="/assets/scripts/services/cartService.js"></script>
+    <script src="/assets/scripts/cart.js"></script>
     <script src="/assets/scripts/auth.js"></script>
     <script src="/assets/scripts/header.js"></script>
 
     <!-- Sistema de seguridad -->
     <script src="/assets/scripts/security.js"></script>
     <script src="/assets/scripts/auth.js"></script>
+
+    <!-- FAQ Interactive Script -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const faqItems = document.querySelectorAll('.faq-item');
+            
+            faqItems.forEach(item => {
+                const question = item.querySelector('.faq-question');
+                
+                question.addEventListener('click', () => {
+                    // Close all other items
+                    faqItems.forEach(otherItem => {
+                        if (otherItem !== item) {
+                            otherItem.classList.remove('active');
+                        }
+                    });
+                    
+                    // Toggle current item
+                    item.classList.toggle('active');
+                });
+            });
+        });
+    </script>
 </body>
 </html>
