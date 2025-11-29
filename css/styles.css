@@ -1485,6 +1485,166 @@ section.pricing-table {
     color: var(--primary-color);
 }
 
+/* Estilos específicos para C1 */
+.c1-driver-experience-section, .c1-benefits-section, .c1-safety-features-section, .c1-testimonials-section {
+    padding: 80px 0;
+    background-color: #000000;
+    color: #ffffff;
+    min-height: 400px;
+}
+
+.c1-experience-timeline {
+    position: relative;
+    max-width: 800px;
+    margin: 50px auto;
+}
+
+.c1-experience-timeline::before {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: #FFF200;
+    transform: translateX(-50%);
+}
+
+.c1-timeline-item {
+    position: relative;
+    margin-bottom: 50px;
+    display: flex;
+    align-items: center;
+}
+
+.c1-timeline-item:nth-child(odd) {
+    flex-direction: row-reverse;
+}
+
+.c1-timeline-icon {
+    width: 60px;
+    height: 60px;
+    background: #FFF200;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #000000;
+    font-size: 1.5rem;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 2;
+}
+
+.c1-timeline-content {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    padding: 30px;
+    width: 45%;
+    transition: all 0.3s ease;
+}
+
+.c1-timeline-content:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(255, 241, 0, 0.2);
+    border-color: #FFF200;
+}
+
+.c1-timeline-content h3 {
+    color: #FFF200;
+    margin-bottom: 15px;
+}
+
+.c1-timeline-content p {
+    color: rgba(255, 255, 255, 0.8);
+    line-height: 1.6;
+}
+
+.c1-benefits-grid, .c1-safety-grid, .c1-testimonials-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    margin-top: 50px;
+}
+
+.c1-benefit-card, .c1-safety-item, .c1-testimonial-card {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    padding: 30px;
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+.c1-benefit-card:hover, .c1-safety-item:hover, .c1-testimonial-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(255, 241, 0, 0.2);
+    border-color: #FFF200;
+}
+
+.c1-benefit-card i, .c1-safety-item i {
+    font-size: 3rem;
+    color: #FFF200;
+    margin-bottom: 20px;
+}
+
+.c1-benefit-card h3, .c1-safety-item h3 {
+    color: #ffffff;
+    margin-bottom: 15px;
+    font-size: 1.3rem;
+}
+
+.c1-benefit-card p, .c1-safety-item p {
+    color: rgba(255, 255, 255, 0.8);
+    line-height: 1.6;
+}
+
+.c1-testimonial-content p {
+    color: #ffffff;
+    font-style: italic;
+    margin-bottom: 15px;
+    line-height: 1.6;
+}
+
+.c1-testimonial-author strong {
+    color: #FFF200;
+    display: block;
+    margin-bottom: 5px;
+}
+
+.c1-testimonial-author span {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 0.9rem;
+}
+
+.c1-stars {
+    color: #FFF200;
+    margin-bottom: 15px;
+}
+
+/* Responsive Timeline para C1 */
+@media (max-width: 768px) {
+    .c1-experience-timeline::before {
+        left: 30px;
+    }
+    
+    .c1-timeline-item {
+        flex-direction: column !important;
+        align-items: flex-start;
+        padding-left: 60px;
+    }
+    
+    .c1-timeline-icon {
+        left: 30px;
+    }
+    
+    .c1-timeline-content {
+        width: 100%;
+    }
+}
+
 /* Estilos para FunCup */
 .driver-experience-section, .benefits-section, .safety-features-section {
     padding: 80px 0;
