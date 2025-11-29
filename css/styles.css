@@ -1485,6 +1485,166 @@ section.pricing-table {
     color: var(--primary-color);
 }
 
+/* Estilos específicos para Porsche 718 */
+.porsche-driver-experience-section, .porsche-benefits-section, .porsche-safety-features-section, .porsche-testimonials-section {
+    padding: 80px 0;
+    background-color: #000000;
+    color: #ffffff;
+    min-height: 400px;
+}
+
+.porsche-experience-timeline {
+    position: relative;
+    max-width: 800px;
+    margin: 50px auto;
+}
+
+.porsche-experience-timeline::before {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: #FFF200;
+    transform: translateX(-50%);
+}
+
+.porsche-timeline-item {
+    position: relative;
+    margin-bottom: 50px;
+    display: flex;
+    align-items: center;
+}
+
+.porsche-timeline-item:nth-child(odd) {
+    flex-direction: row-reverse;
+}
+
+.porsche-timeline-icon {
+    width: 60px;
+    height: 60px;
+    background: #FFF200;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #000000;
+    font-size: 1.5rem;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 2;
+}
+
+.porsche-timeline-content {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    padding: 30px;
+    width: 45%;
+    transition: all 0.3s ease;
+}
+
+.porsche-timeline-content:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(255, 241, 0, 0.2);
+    border-color: #FFF200;
+}
+
+.porsche-timeline-content h3 {
+    color: #FFF200;
+    margin-bottom: 15px;
+}
+
+.porsche-timeline-content p {
+    color: rgba(255, 255, 255, 0.8);
+    line-height: 1.6;
+}
+
+.porsche-benefits-grid, .porsche-safety-grid, .porsche-testimonials-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    margin-top: 50px;
+}
+
+.porsche-benefit-card, .porsche-safety-item, .porsche-testimonial-card {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    padding: 30px;
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+.porsche-benefit-card:hover, .porsche-safety-item:hover, .porsche-testimonial-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(255, 241, 0, 0.2);
+    border-color: #FFF200;
+}
+
+.porsche-benefit-card i, .porsche-safety-item i {
+    font-size: 3rem;
+    color: #FFF200;
+    margin-bottom: 20px;
+}
+
+.porsche-benefit-card h3, .porsche-safety-item h3 {
+    color: #ffffff;
+    margin-bottom: 15px;
+    font-size: 1.3rem;
+}
+
+.porsche-benefit-card p, .porsche-safety-item p {
+    color: rgba(255, 255, 255, 0.8);
+    line-height: 1.6;
+}
+
+.porsche-testimonial-content p {
+    color: #ffffff;
+    font-style: italic;
+    margin-bottom: 15px;
+    line-height: 1.6;
+}
+
+.porsche-testimonial-author strong {
+    color: #FFF200;
+    display: block;
+    margin-bottom: 5px;
+}
+
+.porsche-testimonial-author span {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 0.9rem;
+}
+
+.porsche-stars {
+    color: #FFF200;
+    margin-bottom: 15px;
+}
+
+/* Responsive Timeline para Porsche */
+@media (max-width: 768px) {
+    .porsche-experience-timeline::before {
+        left: 30px;
+    }
+    
+    .porsche-timeline-item {
+        flex-direction: column !important;
+        align-items: flex-start;
+        padding-left: 60px;
+    }
+    
+    .porsche-timeline-icon {
+        left: 30px;
+    }
+    
+    .porsche-timeline-content {
+        width: 100%;
+    }
+}
+
 /* Estilos específicos para C1 */
 .c1-driver-experience-section, .c1-benefits-section, .c1-safety-features-section, .c1-testimonials-section {
     padding: 80px 0;
