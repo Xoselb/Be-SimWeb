@@ -1485,6 +1485,141 @@ section.pricing-table {
     color: var(--primary-color);
 }
 
+/* Estilos para FunCup */
+.driver-experience-section, .benefits-section, .safety-features-section {
+    padding: 80px 0;
+    background-color: #000000;
+}
+
+.experience-timeline {
+    position: relative;
+    max-width: 800px;
+    margin: 50px auto;
+}
+
+.experience-timeline::before {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: var(--primary-color);
+    transform: translateX(-50%);
+}
+
+.timeline-item {
+    position: relative;
+    margin-bottom: 50px;
+    display: flex;
+    align-items: center;
+}
+
+.timeline-item:nth-child(odd) {
+    flex-direction: row-reverse;
+}
+
+.timeline-icon {
+    width: 60px;
+    height: 60px;
+    background: var(--primary-color);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #000;
+    font-size: 1.5rem;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 2;
+}
+
+.timeline-content {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: var(--border-radius);
+    padding: 30px;
+    width: 45%;
+    transition: var(--transition);
+}
+
+.timeline-content:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(255, 241, 0, 0.2);
+    border-color: var(--primary-color);
+}
+
+.timeline-content h3 {
+    color: var(--primary-color);
+    margin-bottom: 15px;
+}
+
+.timeline-content p {
+    color: rgba(255, 255, 255, 0.8);
+    line-height: 1.6;
+}
+
+.benefits-grid, .safety-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    margin-top: 50px;
+}
+
+.benefit-card, .safety-item {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: var(--border-radius);
+    padding: 30px;
+    text-align: center;
+    transition: var(--transition);
+}
+
+.benefit-card:hover, .safety-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(255, 241, 0, 0.2);
+    border-color: var(--primary-color);
+}
+
+.benefit-card i, .safety-item i {
+    font-size: 3rem;
+    color: var(--primary-color);
+    margin-bottom: 20px;
+}
+
+.benefit-card h3, .safety-item h3 {
+    color: var(--text-light);
+    margin-bottom: 15px;
+    font-size: 1.3rem;
+}
+
+.benefit-card p, .safety-item p {
+    color: rgba(255, 255, 255, 0.8);
+    line-height: 1.6;
+}
+
+/* Responsive Timeline */
+@media (max-width: 768px) {
+    .experience-timeline::before {
+        left: 30px;
+    }
+    
+    .timeline-item {
+        flex-direction: column !important;
+        align-items: flex-start;
+        padding-left: 60px;
+    }
+    
+    .timeline-icon {
+        left: 30px;
+    }
+    
+    .timeline-content {
+        width: 100%;
+    }
+}
+
 /* Styles spécifiques pour la page simulateurs.html */
 .service-hero {
     background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('/img/POR.JPG') no-repeat center center/cover;
@@ -2877,9 +3012,6 @@ input[type="date"]:not(:placeholder-shown) + .date-label {
     animation: spin 1s ease-in-out infinite;
 }
 
-@keyframes spin {
-    to { transform: rotate(360deg); }
-}
 @keyframes spin {
     to { transform: rotate(360deg); }
 }
