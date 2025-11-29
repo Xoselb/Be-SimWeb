@@ -5,24 +5,22 @@
     <meta http-equiv="X-Content-Type-Options" content="nosniff">
     <meta http-equiv="X-Frame-Options" content="DENY">
     <meta http-equiv="X-XSS-Protection" content="1; mode=block">
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; font-src 'self'; connect-src 'self' http://localhost:3000;">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com; img-src 'self' data: https:; font-src 'self' https://cdnjs.cloudflare.com; connect-src 'self' http://localhost:3000;">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EB Simracing - Bar & Détente</title>
+    <title>EB Racing - Bar & Détente</title>
     <link rel="icon" href="/assets/images/EB.png" type="image/png">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/assets/styles/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="/css/styles.css">
     <link rel="stylesheet" href="/css/user/perfil.css">
     <link rel="stylesheet" href="/css/shop/cart.css">
 </head>
 <body>
-    <!-- Header -->
-    
 <!-- Header -->
 <header class="header">
     <div class="container">
         <div class="logo">
-            <a href="../../index.html"><img src="/assets/images/EB SIMRACING(Solo-White).png" alt="EB Simracing" class="logo-img"></a>
+            <a href="#"><img src="/img/EB RACING(Solo-White).png" alt="EB Racing" class="logo-img"></a>
         </div>
         <nav class="main-nav">
             <ul>
@@ -31,33 +29,9 @@
                 <li><a href="../info/galerie.html">Galerie</a></li>
                 <li><a href="../shop/merch.html">Boutique</a></li>
                 <li><a href="../info/contacto.html">Contact</a></li>
-                <li class="nav-cart">
-                    <a href="#" class="cart-icon" id="cart-icon">
-                        <i class="fas fa-shopping-cart"></i>
-                        <span class="cart-count">0</span>
-                    </a>
-                    <div class="cart-dropdown" id="cart-dropdown">
-                        <div class="cart-header">
-                            <span>Mon Panier</span>
-                            <span class="cart-count-header">0</span>
-                        </div>
-                        <div class="cart-items" id="cart-items">
-                            <!-- Cart items will be loaded here -->
-                        </div>
-                        <div class="cart-footer">
-                            <div class="cart-total">
-                                <span>Total:</span>
-                                <span id="cart-total">0.00 €</span>
-                            </div>
-                            <button class="checkout-btn" id="checkout-btn">
-                                <i class="fas fa-credit-card"></i> Voir le panier
-                            </button>
-                        </div>
-                    </div>
-                </li>
                 <li class="nav-user" id="navUser" style="display: none;">
                     <div class="user-avatar" id="userMenuBtn">
-                        <img src="/assets/images/default-avatar.png" alt="Profil" id="userAvatar">
+                        <img src="/img/user/EB_Default_Avatar.png" alt="Profil" id="userAvatar">
                         <i class="fas fa-chevron-down"></i>
                     </div>
                     <div class="user-dropdown" id="userDropdown">
@@ -79,35 +53,35 @@
     </div>
 </header>
 
-    <!-- Hero Section -->
-    <section class="service-hero">
-        <div class="container">
-            <h1>BAR & ESPACE DÉTENTE</h1>
-            <p>Détendez-vous dans une ambiance conviviale et chaleureuse</p>
-        </div>
-    </section>
+<!-- Hero Section -->
+<section class="service-hero">
+    <div class="container">
+        <h1>BAR & ESPACE DÉTENTE</h1>
+        <p>Détendez-vous dans une ambiance conviviale et chaleureuse</p>
+    </div>
+</section>
 
-    <!-- Service Description -->
-    <section class="service-content">
-        <div class="container">
-            <div class="service-description">
-                <h2>Un lieu unique pour se détendre</h2>
-                <p>Notre bar est bien plus qu'un simple lieu de restauration. C'est un espace convivial où vous pourrez vous détendre entre les séances de simulation, regarder les compétitions sportives sur nos écrans géants, ou simplement profiter d'un moment de détente entre amis dans une ambiance chaleureuse et accueillante.</p>
-            </div>
+<!-- Service Description -->
+<section class="service-content">
+    <div class="container">
+        <div class="service-description">
+            <h2>Un lieu unique pour se détendre</h2>
+            <p>Notre bar est bien plus qu'un simple lieu de restauration. C'est un espace convivial où vous pourrez vous détendre entre les séances de simulation, regarder les compétitions sportives sur nos écrans géants, ou simplement profiter d'un moment de détente entre amis dans une ambiance chaleureuse et accueillante.</p>
+        </div>
             
-            <div class="gallery-grid">
-                <div class="gallery-item">
-                    <img src="/assets/images/BAR.jpg" alt="Espace bar">
-                </div>
-                <div class="gallery-item">
-                    <img src="/assets/images/BAR2.jpg" alt="Espace détente">
-                </div>
-                <div class="gallery-item">
-                    <img src="/assets/images/BAR3.jpg" alt="Terrasse">
-                </div>
+        <div class="gallery-grid">
+            <div class="gallery-item">
+                <img src="/img/BAR.jpg" alt="Espace bar">
+            </div>
+            <div class="gallery-item">
+                <img src="/img/BAR2.jpg" alt="Espace détente">
+            </div>
+            <div class="gallery-item">
+                <img src="/img/BAR3.jpg" alt="Terrasse">
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
     <!-- Menu Section -->
     <section class="menu-section">
@@ -215,7 +189,7 @@
         <div class="container">
             <div class="footer-content">
                 <div class="footer-about">
-                    <img src="/assets/images/EB.png" alt="EB Simracing" class="footer-logo">
+                    <img src="/img/EB.png" alt="EB Simracing" class="footer-logo">
                 </div>
                 <div class="footer-links">
                     <h4>HORAIRES</h4>
