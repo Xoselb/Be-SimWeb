@@ -5,12 +5,12 @@
     <meta http-equiv="X-Content-Type-Options" content="nosniff">
     <meta http-equiv="X-Frame-Options" content="DENY">
     <meta http-equiv="X-XSS-Protection" content="1; mode=block">
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; font-src 'self'; connect-src 'self' http://localhost:3000;">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com; img-src 'self' data: https:; font-src 'self' https://cdnjs.cloudflare.com; connect-src 'self' http://localhost:3000;">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>EB Simracing - Atelier Vinyle</title>
     <link rel="icon" href="/assets/images/EB.png" type="image/png">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/assets/styles/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="/css/styles.css">
     <link rel="stylesheet" href="/css/user/perfil.css">
 </head>
@@ -19,7 +19,7 @@
 <header class="header">
     <div class="container">
         <div class="logo">
-            <a href="../../index.html"><img src="/assets/images/EBWRAPPING(White).png" alt="EB Simracing" class="logo-img"></a>
+            <a href="#"><img src="/img/EB RACING(Solo-White).png" alt="EB Racing" class="logo-img"></a>
         </div>
         <nav class="main-nav">
             <ul>
@@ -30,7 +30,7 @@
                 <li><a href="../info/contacto.html">Contact</a></li>
                 <li class="nav-user" id="navUser" style="display: none;">
                     <div class="user-avatar" id="userMenuBtn">
-                        <img src="/assets/images/default-avatar.png" alt="Profil" id="userAvatar">
+                        <img src="/img/user/EB_Default_Avatar.png" alt="Profil" id="userAvatar">
                         <i class="fas fa-chevron-down"></i>
                     </div>
                     <div class="user-dropdown" id="userDropdown">
@@ -53,12 +53,12 @@
 </header>
 
     <!-- Hero Section -->
-    <section class="service-hero">
-        <div class="container">
-            <h1>ATELIER VINYLE</h1>
-            <p>Personnalisez votre véhicule avec nos créations uniques</p>
-        </div>
-    </section>
+<section class="service-hero" style="background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url('/img/simulateurs/ACCP9114K.jpg') no-repeat center center/cover;">
+    <div class="container">
+        <h1>ATELIER VINYLE</h1>
+        <p>Personnalisez votre véhicule avec nos créations uniques</p>
+    </div>
+</section>
 
     <!-- Service Description -->
     <section class="service-content">
@@ -70,13 +70,13 @@
             
             <div class="gallery-grid">
                 <div class="gallery-item">
-                    <img src="/assets/images/FUNCUP3.jpeg" alt="Travail du vinyle">
+                    <img src="/img/FUNCUP/FUNCUP3.jpeg" alt="Travail du vinyle">
                 </div>
                 <div class="gallery-item">
-                    <img src="/assets/images/FUNCUP1.jpeg" alt="Personnalisation de voiture">
+                    <img src="/img/FUNCUP/FUNCUP1.jpeg" alt="Personnalisation de voiture">
                 </div>
                 <div class="gallery-item">
-                    <img src="/assets/images/FUNCUP2.jpeg" alt="Détail vinyle">
+                    <img src="/img/FUNCUP/FUNCUP2.jpeg" alt="Détail vinyle">
                 </div>
             </div>
         </div>
@@ -192,7 +192,7 @@
         <div class="container">
             <div class="footer-content">
                 <div class="footer-about">
-                    <img src="/assets/images/EB.png" alt="EB Simracing" class="footer-logo">
+                    <img src="/img/EB.png" alt="EB Simracing" class="footer-logo">
                 </div>
                 <div class="footer-links">
                     <h4>HORAIRES</h4>
