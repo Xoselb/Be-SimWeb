@@ -5,15 +5,15 @@
     <meta http-equiv="X-Content-Type-Options" content="nosniff">
     <meta http-equiv="X-Frame-Options" content="DENY">
     <meta http-equiv="X-XSS-Protection" content="1; mode=block">
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; font-src 'self'; connect-src 'self' http://localhost:3000;">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com; img-src 'self' data: https:; font-src 'self' https://cdnjs.cloudflare.com; connect-src 'self' http://localhost:3000;">    
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="/assets/images/EB.png" type="image/png">
     <title>EB Simracing - FunCup</title>
     <link rel="icon" href="/assets/images/EB.png" type="image/png">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/assets/styles/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">    
     <link rel="stylesheet" href="/css/styles.css">
-    <link rel="stylesheet" href="/css/competitions/FunCup.css">
+    <link rel="stylesheet" href="/css/TrackDays/FunCup.css">
     <link rel="stylesheet" href="/css/user/perfil.css">
     <link rel="stylesheet" href="/css/shop/cart.css">
 </head>
@@ -22,7 +22,7 @@
 <header class="header">
     <div class="container">
         <div class="logo">
-            <a href="../../index.html"><img src="/assets/images/EB SIMRACING(Solo-White).png" alt="EB Simracing" class="logo-img"></a>
+            <a href="#"><img src="/img/EB RACING(Solo-White).png" alt="EB Racing" class="logo-img"></a>
         </div>
         <nav class="main-nav">
             <ul>
@@ -31,39 +31,14 @@
                 <li><a href="../info/galerie.html">Galerie</a></li>
                 <li><a href="../shop/merch.html">Boutique</a></li>
                 <li><a href="../info/contacto.html">Contact</a></li>
-                <li class="nav-cart">
-                    <a href="#" class="cart-icon" id="cart-icon">
-                        <i class="fas fa-shopping-cart"></i>
-                        <span class="cart-count">0</span>
-                    </a>
-                    <div class="cart-dropdown" id="cart-dropdown">
-                        <div class="cart-header">
-                            <span>Mon Panier</span>
-                            <span class="cart-count-header">0</span>
-                        </div>
-                        <div class="cart-items" id="cart-items">
-                            <!-- Cart items will be loaded here -->
-                        </div>
-                        <div class="cart-footer">
-                            <div class="cart-total">
-                                <span>Total:</span>
-                                <span id="cart-total">0.00 €</span>
-                            </div>
-                            <button class="checkout-btn" id="checkout-btn">
-                                <i class="fas fa-credit-card"></i> Voir le panier
-                            </button>
-                        </div>
-                    </div>
-                </li>
                 <li class="nav-user" id="navUser" style="display: none;">
                     <div class="user-avatar" id="userMenuBtn">
-                        <img src="/assets/images/default-avatar.png" alt="Profil" id="userAvatar">
+                        <img src="/img/user/EB_Default_Avatar.png" alt="Profil" id="userAvatar">
                         <i class="fas fa-chevron-down"></i>
                     </div>
                     <div class="user-dropdown" id="userDropdown">
                         <a href="../auth/perfil.html"><i class="fas fa-user"></i> Mon Profil</a>
-                        <a href="../shop/cart.html"><i class="fas fa-shopping-cart"></i> Mon Panier</a>
-                        <a href="../user/mes-reservations.html"><i class="fas fa-calendar-alt"></i> Mes Réservations</a>
+                        <a href="../user/mes-reservations.html"><i class="fas fa-calendar-alt"></i> Mes réservations</a>
                         <a href="parametres.html"><i class="fas fa-cog"></i> Paramètres</a>
                         <div class="dropdown-divider"></div>
                         <a href="#" id="logoutBtn"><i class="fas fa-sign-out-alt"></i> Déconnexion</a>
@@ -80,24 +55,24 @@
     </div>
 </header>
 
-    <!-- Hero Section -->
-    <section class="car-hero">
-        <div class="car-hero-content">
-            <h1>FUNCUP</h1>
-            <p>La voiture idéale pour s'initier au pilotage sur circuit</p>
-            <a href="#" class="btn btn-primary book-now" data-vehicle-name="FunCup" data-vehicle-id="funcup">RÉSERVER MAINTENANT</a>
-        </div>
-    </section>
+<!-- Hero Section -->
+<section class="service-hero" style="background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('/img/FUNCUP/FUNCUP5.jpeg') no-repeat center center/cover;">
+    <div class="container">
+        <h1>FUNCUP</h1>
+        <p>La voiture idéale pour s'initier au pilotage sur circuit</p>
+        <a href="#" class="btn btn-primary book-now" data-vehicle-name="FunCup" data-vehicle-id="funcup">RÉSERVER MAINTENANT</a>
+    </div>
+</section>
 
-    <!-- Contenido principal con fondo negro -->
-    <div class="main-content">
-        <!-- Carrusel de imágenes -->
-        <div class="carousel-container">
-            <div class="carousel" id="imageCarousel">
-                <img src="/assets/images/FUNCUP6.jpeg" alt="FunCup">
-                <img src="/assets/images/FUNCUP1.jpeg" alt="FunCup">
-                <img src="/assets/images/FUNCUP4.jpeg" alt="FunCup">
-                <img src="/assets/images/FUNCUP5.jpeg" alt="FunCup">
+<!-- Contenido principal con fondo negro -->
+<div class="main-content">
+    <!-- Carrusel de imágenes -->
+    <div class="carousel-container">
+        <div class="carousel" id="imageCarousel">
+            <img src="/img/FUNCUP/FUNCUP6.jpeg" alt="FunCup">
+                <img src="/img/FUNCUP/FUNCUP1.jpeg" alt="FunCup">
+                <img src="/img/FUNCUP/FUNCUP4.jpeg" alt="FunCup">
+                <img src="/img/FUNCUP/FUNCUP5.jpeg" alt="FunCup">
             </div>
             <div class="carousel-nav">
                 <button class="carousel-btn" id="prevBtn" aria-label="Image précédente"><i class="fas fa-chevron-left"></i></button>
@@ -168,6 +143,176 @@
                         <div class="spec-item">
                             <span class="spec-name">Pneumatiques</span>
                             <span class="spec-value">Semi-slicks de compétition</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Driver Experience Section -->
+        <section class="driver-experience-section">
+            <div class="container">
+                <h2 class="section-title">L'EXPÉRIENCE PILOTE FUN CUP</h2>
+                <div class="experience-timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-icon">
+                            <i class="fas fa-clipboard-check"></i>
+                        </div>
+                        <div class="timeline-content">
+                            <h3>Briefing Personnalisé</h3>
+                            <p>Session théorique de 45 minutes avec nos instructeurs professionnels pour comprendre les spécificités de la FunCup et les techniques de pilotage adaptées.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-icon">
+                            <i class="fas fa-car-side"></i>
+                        </div>
+                        <div class="timeline-content">
+                            <h3>Tours de Familiarisation</h3>
+                            <p>3 tours d'échauffement accompagnés par un instructeur pour vous adapter au comportement du véhicule et aux particularités du circuit.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-icon">
+                            <i class="fas fa-tachometer-alt"></i>
+                        </div>
+                        <div class="timeline-content">
+                            <h3>Sessions en Liberté</h3>
+                            <p>Plusieurs sessions de 20-30 minutes pour explorer vos limites en toute sécurité avec coaching permanent en piste.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-icon">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <div class="timeline-content">
+                            <h3>Analyse de Performance</h3>
+                            <p>Débriefing détaillé avec analyse vidéo et données télémétriques pour identifier vos axes d'amélioration.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Benefits Section -->
+        <section class="benefits-section">
+            <div class="container">
+                <h2 class="section-title">POURQUOI LA FUN CUP ?</h2>
+                <div class="benefits-grid">
+                    <div class="benefit-card">
+                        <i class="fas fa-shield-alt"></i>
+                        <h3>Sécurité Maximale</h3>
+                        <p>Cellule de sécurité, arceau FIA, harnais 4 points et système d'extinction automatique pour une conduite en toute confiance.</p>
+                    </div>
+                    <div class="benefit-card">
+                        <i class="fas fa-dollar-sign"></i>
+                        <h3>Rapport Qualité/Prix</h3>
+                        <p>Coût d'exploitation maîtrisé avec des pièces détachées accessibles et une maintenance simplifiée pour un budget optimal.</p>
+                    </div>
+                    <div class="benefit-card">
+                        <i class="fas fa-graduation-cap"></i>
+                        <h3>Pédagogique</h3>
+                        <p>Comportement prévisible et progressif, idéale pour apprendre les techniques de pilotage de compétition.</p>
+                    </div>
+                    <div class="benefit-card">
+                        <i class="fas fa-users"></i>
+                        <h3>Esprit de Communauté</h3>
+                        <p>Accès à la communauté FunCup avec des événements exclusifs et des championnats amicaux toute l'année.</p>
+                    </div>
+                    <div class="benefit-card">
+                        <i class="fas fa-tools"></i>
+                        <h3>Fiable et Robuste</h3>
+                        <p>Conçue pour l'endurance, la FunCup supporte les rigueurs de la compétition sans faiblir.</p>
+                    </div>
+                    <div class="benefit-card">
+                        <i class="fas fa-trophy"></i>
+                        <h3>Évolutive</h3>
+                        <p>Possibilité d'évoluer vers la compétition en championnat FunCup avec le même véhicule.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Safety Features -->
+        <section class="safety-features-section">
+            <div class="container">
+                <h2 class="section-title">ÉQUIPEMENT DE SÉCURITÉ</h2>
+                <div class="safety-grid">
+                    <div class="safety-item">
+                        <i class="fas fa-hard-hat"></i>
+                        <h3>Cellule de Sécurité</h3>
+                        <p>Arceau acier FIA homologué avec renforts latéraux et protection anti-intrusion.</p>
+                    </div>
+                    <div class="safety-item">
+                        <i class="fas fa-seatbelt"></i>
+                        <h3>Harnais 4 Points</h3>
+                        <p>Système de retenue Sabelt homologué avec boucle rapide et réglage précis.</p>
+                    </div>
+                    <div class="safety-item">
+                        <i class="fas fa-fire-extinguisher"></i>
+                        <h3>Extinction Automatique</h3>
+                        <p>Système d'extinction électrique Plifex avec déclenchement manuel et automatique.</p>
+                    </div>
+                    <div class="safety-item">
+                        <i class="fas fa-first-aid"></i>
+                        <h3>Kit Médical</h3>
+                        <p>Trousse de secours complète et extincteur portatif toujours accessibles.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Testimonials -->
+        <section class="testimonials-section">
+            <div class="container">
+                <h2 class="section-title">TÉMOIGNAGES DE PILOTES</h2>
+                <div class="testimonials-grid">
+                    <div class="testimonial-card">
+                        <div class="testimonial-content">
+                            <div class="stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <p>"La FunCup est parfaite pour débuter ! L'encadrement est excellent et la voiture très progressive. J'ai gagné en confiance après seulement quelques sessions."</p>
+                        </div>
+                        <div class="testimonial-author">
+                            <strong>Lucas Martin</strong>
+                            <span>Débutant passionné</span>
+                        </div>
+                    </div>
+                    <div class="testimonial-card">
+                        <div class="testimonial-content">
+                            <div class="stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <p>"Après 10 ans de simulation, la FunCup m'a permis de faire la transition vers le réel. Les sensations sont incroyables et la sécurité irréprochable."</p>
+                        </div>
+                        <div class="testimonial-author">
+                            <strong>Emma Dubois</strong>
+                            <span>Sim-racer devenue pilote</span>
+                        </div>
+                    </div>
+                    <div class="testimonial-card">
+                        <div class="testimonial-content">
+                            <div class="stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <p>"Le rapport qualité-prix est exceptionnel. Pour le coût d'une journée en piste, vous accédez à un véhicule de compétition réel avec un coaching pro."</p>
+                        </div>
+                        <div class="testimonial-author">
+                            <strong>Nicolas Petit</strong>
+                            <span>Pilote amateur confirmé</span>
                         </div>
                     </div>
                 </div>
@@ -248,10 +393,10 @@
         <div class="wallpapers-container">
             <h2 class="wallpapers-title">TÉLÉCHARGER NOS WALLPAPERS</h2>
             <div class="wallpapers-buttons">
-                <a href="/assets/images/wallpapers/FunCupPC.zip" class="wallpaper-btn" download="FunCup-Wallpapers-PC">
+                <a href="/img/wallpapers/FunCupPC.zip" class="wallpaper-btn" download="FunCup-Wallpapers-PC">
                     <i class="fas fa-desktop"></i> Wallpapers PC
                 </a>
-                <a href="/assets/images/wallpapers/FunCupM.zip" class="wallpaper-btn" download="FunCup-Wallpapers-Mobile">
+                <a href="/img/wallpapers/FunCupM.zip" class="wallpaper-btn" download="FunCup-Wallpapers-Mobile">
                     <i class="fas fa-mobile-alt"></i> Wallpapers Mobile
                 </a>
             </div>
@@ -263,7 +408,7 @@
         <div class="container">
             <div class="footer-content">
                 <div class="footer-about">
-                    <img src="/assets/images/EB.png" alt="EB Simracing" class="footer-logo">
+                    <img src="/img/EB.png" alt="EB Simracing" class="footer-logo">
                 </div>
                 <div class="footer-links">
                     <h4>LIENS RAPIDES</h4>
