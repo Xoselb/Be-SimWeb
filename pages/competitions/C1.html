@@ -5,72 +5,46 @@
     <meta http-equiv="X-Content-Type-Options" content="nosniff">
     <meta http-equiv="X-Frame-Options" content="DENY">
     <meta http-equiv="X-XSS-Protection" content="1; mode=block">
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; font-src 'self'; connect-src 'self' http://localhost:3000;">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com; img-src 'self' data: https:; font-src 'self' https://cdnjs.cloudflare.com; connect-src 'self' http://localhost:3000;">    
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="/assets/images/EB.png" type="image/png">
-    <title>EB Simracing - CITROËN C1</title>
+    <title>EB Racing - CITROËN C1</title>
     <link rel="icon" href="/assets/images/EB.png" type="image/png">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/assets/styles/all.min.css">
-    <link rel="stylesheet" href="/assets/styles/styles.css">
-    <link rel="stylesheet" href="/assets/styles/TrackDays/C1.css">
-    <link rel="stylesheet" href="/assets/styles/Membres/perfil.css">
-    <link rel="stylesheet" href="/assets/styles/cart.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="/css/TrackDays/C1.css">
+    <link rel="stylesheet" href="/css/Membres/perfil.css">
 </head>
 <body>  
 <!-- Header -->
 <header class="header">
     <div class="container">
         <div class="logo">
-            <a href="index.html"><img src="/assets/images/EB SIMRACING(Solo-White).png" alt="EB Simracing" class="logo-img"></a>
+            <a href="#"><img src="/img/EB RACING(Solo-White).png" alt="EB Racing" class="logo-img"></a>
         </div>
         <nav class="main-nav">
             <ul>
-                <li><a href="index.html#inicio" class="active">Accueil</a></li>
-                <li><a href="index.html#servicios">Services</a></li>
-                <li><a href="pages/info/galerie.html">Galerie</a></li>
-                <li><a href="pages/shop/merch.html">Boutique</a></li>
-                <li><a href="pages/info/contacto.html">Contact</a></li>
-                <li class="nav-cart">
-                    <a href="#" class="cart-icon" id="cart-icon">
-                        <i class="fas fa-shopping-cart"></i>
-                        <span class="cart-count">0</span>
-                    </a>
-                    <div class="cart-dropdown" id="cart-dropdown">
-                        <div class="cart-header">
-                            <span>Mon Panier</span>
-                            <span class="cart-count-header">0</span>
-                        </div>
-                        <div class="cart-items" id="cart-items">
-                            <!-- Cart items will be loaded here -->
-                        </div>
-                        <div class="cart-footer">
-                            <div class="cart-total">
-                                <span>Total:</span>
-                                <span id="cart-total">0.00 €</span>
-                            </div>
-                            <button class="checkout-btn" id="checkout-btn">
-                                <i class="fas fa-credit-card"></i> Voir le panier
-                            </button>
-                        </div>
-                    </div>
-                </li>
+                <li><a href="../../index.html#inicio" class="active">Accueil</a></li>
+                <li><a href="../../index.html#servicios">Services</a></li>
+                <li><a href="../info/galerie.html">Galerie</a></li>
+                <li><a href="../shop/merch.html">Boutique</a></li>
+                <li><a href="../info/contacto.html">Contact</a></li>
                 <li class="nav-user" id="navUser" style="display: none;">
                     <div class="user-avatar" id="userMenuBtn">
-                        <img src="/assets/images/default-avatar.png" alt="Profil" id="userAvatar">
+                        <img src="/img/user/EB_Default_Avatar.png" alt="Profil" id="userAvatar">
                         <i class="fas fa-chevron-down"></i>
                     </div>
                     <div class="user-dropdown" id="userDropdown">
-                            <a href="pages/auth/perfil.html"><i class="fas fa-user"></i> Mon Profil</a>
-                            <a href="pages/shop/cart.html"><i class="fas fa-shopping-cart"></i> Mon Panier</a>
-                            <a href="reservations.html"><i class="fas fa-calendar-alt"></i> Réservations</a>
-                            <a href="parametres.html"><i class="fas fa-cog"></i> Paramètres</a>
-                            <div class="dropdown-divider"></div>
-                            <a href="#" id="logoutBtn"><i class="fas fa-sign-out-alt"></i> Déconnexion</a>
-                        </div>
+                        <a href="../auth/perfil.html"><i class="fas fa-user"></i> Mon Profil</a>
+                        <a href="../user/mes-reservations.html"><i class="fas fa-calendar-alt"></i> Mes réservations</a>
+                        <a href="parametres.html"><i class="fas fa-cog"></i> Paramètres</a>
+                        <div class="dropdown-divider"></div>
+                        <a href="#" id="logoutBtn"><i class="fas fa-sign-out-alt"></i> Déconnexion</a>
+                    </div>
                 </li>
                 <li class="nav-login" id="navLogin">
-                    <a href="pages/auth/login.html" class="btn-login">Connexion</a>
+                    <a href="../auth/login.html" class="btn-login">Connexion</a>
                 </li>
             </ul>
         </nav>
@@ -79,24 +53,26 @@
         </div>
     </div>
 </header>
-    <!-- Hero Section -->
-    <section class="car-hero">
-        <div class="car-hero-content">
-            <h1>CITROËN C1</h1>
-            <p>L'essentiel du pilotage sportif dans une citadine survitaminée</p>
-            <a href="pages/info/contacto.html" class="btn btn-primary">RÉSERVER MAINTENANT</a>
-        </div>
-    </section>
+
+
+<!-- Hero Section -->
+<section class="service-hero" style="background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('/img/C1/C12.JPG') no-repeat center center/cover;">
+    <div class="container">
+        <h1>CITROËN C1</h1>
+        <p>L'essentiel du pilotage sportif dans une citadine survitaminée</p>
+        <a href="pages/info/contacto.html" class="btn btn-primary">RÉSERVER MAINTENANT</a>
+    </div>
+</section>
 
     <!-- Contenido principal con fondo negro -->
     <div class="main-content">
         <!-- Carrusel de imágenes -->
         <div class="carousel-container">
             <div class="carousel" id="imageCarousel">
-                <img src="/assets/images/C12.JPG" alt="C1">
-                <img src="/assets/images/C13.JPG" alt="C1">
-                <img src="/assets/images/C1INTO.jpeg" alt="C1Into">
-                <img src="/assets/images/C1LONG.jpeg" alt="C1Long">
+                <img src="/img/C1/C1.JPG" alt="C1">
+                <img src="/img/C1/C13.JPG" alt="C1">
+                <img src="/img/C1/C1INTO.jpeg" alt="C1Into">
+                <img src="/img/C1/C1LONG.jpeg" alt="C1Long">
             </div>
             <div class="carousel-nav">
                 <button class="carousel-btn" id="prevBtn" aria-label="Image précédente"><i class="fas fa-chevron-left"></i></button>
@@ -167,6 +143,176 @@
                         <div class="spec-item">
                             <span class="spec-name">Pneus</span>
                             <span class="spec-value">Semi-slicks 185/60 R15</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- C1 Driver Experience Section -->
+        <section class="c1-driver-experience-section">
+            <div class="container">
+                <h2 class="section-title">L'EXPÉRIENCE PILOTE C1 CUP</h2>
+                <div class="c1-experience-timeline">
+                    <div class="c1-timeline-item">
+                        <div class="c1-timeline-icon">
+                            <i class="fas fa-clipboard-check"></i>
+                        </div>
+                        <div class="c1-timeline-content">
+                            <h3>Briefing Technique</h3>
+                            <p>Session théorique de 30 minutes axée sur les techniques de pilotage pour véhicules légers et l'optimisation des trajectoires en C1 Cup.</p>
+                        </div>
+                    </div>
+                    <div class="c1-timeline-item">
+                        <div class="c1-timeline-icon">
+                            <i class="fas fa-car-side"></i>
+                        </div>
+                        <div class="c1-timeline-content">
+                            <h3>Découverte du Véhicule</h3>
+                            <p>Tours d'adaptation pour comprendre le comportement agile de la C1 et maîtriser sa légèreté en piste.</p>
+                        </div>
+                    </div>
+                    <div class="c1-timeline-item">
+                        <div class="c1-timeline-icon">
+                            <i class="fas fa-tachometer-alt"></i>
+                        </div>
+                        <div class="c1-timeline-content">
+                            <h3>Sessions d'Entraînement</h3>
+                            <p>Sessions progressives pour développer votre confiance et explorer les limites d'une citadine de course.</p>
+                        </div>
+                    </div>
+                    <div class="c1-timeline-item">
+                        <div class="c1-timeline-icon">
+                            <i class="fas fa-flag-checkered"></i>
+                        </div>
+                        <div class="c1-timeline-content">
+                            <h3>Mini Compétition</h3>
+                            <p>Session de chronos avec analyse des temps et conseils personnalisés pour améliorer vos performances.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- C1 Benefits Section -->
+        <section class="c1-benefits-section">
+            <div class="container">
+                <h2 class="section-title">POURQUOI LA CITROËN C1 CUP ?</h2>
+                <div class="c1-benefits-grid">
+                    <div class="c1-benefit-card">
+                        <i class="fas fa-dollar-sign"></i>
+                        <h3>Budget Accessible</h3>
+                        <p>Le championnat le plus économique du marché, idéal pour débuter en compétition sans investissement massif.</p>
+                    </div>
+                    <div class="c1-benefit-card">
+                        <i class="fas fa-graduation-cap"></i>
+                        <h3>Pédagogie Active</h3>
+                        <p>Légère et réactive, elle apprend les bases du pilotage avec un comportement très prévisible et rassurant.</p>
+                    </div>
+                    <div class="c1-benefit-card">
+                        <i class="fas fa-users"></i>
+                        <h3>Convivialité</h3>
+                        <p>Ambiance championnat amical avec une communauté passionnée et des événements toute l'année.</p>
+                    </div>
+                    <div class="c1-benefit-card">
+                        <i class="fas fa-tools"></i>
+                        <h3>Maintenance Simple</h3>
+                        <p>Mécanique Citroën fiable et pièces détachées accessibles partout, maintenance économique et rapide.</p>
+                    </div>
+                    <div class="c1-benefit-card">
+                        <i class="fas fa-chart-line"></i>
+                        <h3>Progression Rapide</h3>
+                        <p>Parfait pour développer ses compétences rapidement avec une montée en puissance progressive.</p>
+                    </div>
+                    <div class="c1-benefit-card">
+                        <i class="fas fa-trophy"></i>
+                        <h3>Porte d'Entrée</h3>
+                        <p>Excellente première étape vers des championnats plus prestigieux comme la FunCup ou Porsche Carrera Cup.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- C1 Safety Features Section -->
+        <section class="c1-safety-features-section">
+            <div class="container">
+                <h2 class="section-title">ÉQUIPEMENT DE SÉCURITÉ</h2>
+                <div class="c1-safety-grid">
+                    <div class="c1-safety-item">
+                        <i class="fas fa-hard-hat"></i>
+                        <h3>Arceau Soudé</h3>
+                        <p>Arceau acier 4 points soudé avec renforts latéraux pour une rigidité et sécurité optimales.</p>
+                    </div>
+                    <div class="c1-safety-item">
+                        <i class="fas fa-seatbelt"></i>
+                        <h3>Harnais 3 Points</h3>
+                        <p>Système de retenue 3 points homologué avec réglage précis pour un maintien parfait.</p>
+                    </div>
+                    <div class="c1-safety-item">
+                        <i class="fas fa-fire-extinguisher"></i>
+                        <h3>Extincteur Manuel</h3>
+                        <p>Extincteur poudre 2kg accessible depuis l'habitacle pour une intervention rapide.</p>
+                    </div>
+                    <div class="c1-safety-item">
+                        <i class="fas fa-cut"></i>
+                        <h3>Coupure Circuit</h3>
+                        <p>Coupure électrique et carburant accessible extérieurement pour une sécurité maximale.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- C1 Testimonials Section -->
+        <section class="c1-testimonials-section">
+            <div class="container">
+                <h2 class="section-title">TÉMOIGNAGES DE PILOTES</h2>
+                <div class="c1-testimonials-grid">
+                    <div class="c1-testimonial-card">
+                        <div class="c1-testimonial-content">
+                            <div class="c1-stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <p>"La C1 Cup est géniale pour débuter ! Abordable et super pédagogique, j'ai appris les bases du pilotage en toute sécurité."</p>
+                        </div>
+                        <div class="c1-testimonial-author">
+                            <strong>Marie Lemoine</strong>
+                            <span>Débutante en piste</span>
+                        </div>
+                    </div>
+                    <div class="c1-testimonial-card">
+                        <div class="c1-testimonial-content">
+                            <div class="c1-stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <p>"Le rapport qualité-prix est incroyable. Pour une fraction du budget d'autres championnats, vous avez une vraie expérience de course."</p>
+                        </div>
+                        <div class="c1-testimonial-author">
+                            <strong>Thomas Rousseau</strong>
+                            <span>Étudiant passionné</span>
+                        </div>
+                    </div>
+                    <div class="c1-testimonial-card">
+                        <div class="c1-testimonial-content">
+                            <div class="c1-stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <p>"Après la C1 Cup, j'ai naturellement évolué vers la FunCup. C'est la meilleure porte d'entrée vers la compétition automobile."</p>
+                        </div>
+                        <div class="c1-testimonial-author">
+                            <strong>Antoine Bernard</strong>
+                            <span>Pilote en progression</span>
                         </div>
                     </div>
                 </div>
@@ -247,10 +393,10 @@
         <div class="wallpapers-container">
             <h2 class="wallpapers-title">TÉLÉCHARGER NOS WALLPAPERS</h2>
             <div class="wallpapers-buttons">
-                <a href="/assets/images/wallpapers/C1PC.zip" class="wallpaper-btn" download="C1-Wallpapers-PC">
+                <a href="/img/wallpapers/C1PC.zip" class="wallpaper-btn" download="C1-Wallpapers-PC">
                     <i class="fas fa-desktop"></i> Wallpapers PC
                 </a>
-                <a href="/assets/images/wallpapers/C1M.zip" class="wallpaper-btn" download="C1-Wallpapers-Mobile">
+                <a href="/img/wallpapers/C1M.zip" class="wallpaper-btn" download="C1-Wallpapers-Mobile">
                     <i class="fas fa-mobile-alt"></i> Wallpapers Mobile
                 </a>
             </div>
@@ -262,7 +408,7 @@
         <div class="container">
             <div class="footer-content">
                 <div class="footer-about">
-                    <img src="/assets/images/EB.png" alt="EB Simracing" class="footer-logo">
+                    <img src="/img/EB.png" alt="EB Simracing" class="footer-logo">
                 </div>
                 <div class="footer-links">
                     <h4>LIENS RAPIDES</h4>
