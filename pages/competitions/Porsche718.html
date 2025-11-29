@@ -5,24 +5,23 @@
     <meta http-equiv="X-Content-Type-Options" content="nosniff">
     <meta http-equiv="X-Frame-Options" content="DENY">
     <meta http-equiv="X-XSS-Protection" content="1; mode=block">
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; font-src 'self'; connect-src 'self' http://localhost:3000;">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com; img-src 'self' data: https:; font-src 'self' https://cdnjs.cloudflare.com; connect-src 'self' http://localhost:3000;">    
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="/assets/images/Aurora_Interactive.png" type="image/png">
-    <title>EB Simracing - PORSCHE 718</title>
+    <title>EB Racing - Porsche 718</title>
     <link rel="icon" href="/assets/images/EB.png" type="image/png">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/assets/styles/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">    
     <link rel="stylesheet" href="/css/styles.css">
-    <link rel="stylesheet" href="/css/competitions/Porsche718.css">
+    <link rel="stylesheet" href="/css/TrackDays/Porsche718.css">
     <link rel="stylesheet" href="/css/user/perfil.css">
-    <link rel="stylesheet" href="/css/shop/cart.css">
 </head>
 <body>
 <!-- Header -->
 <header class="header">
     <div class="container">
         <div class="logo">
-            <a href="../../index.html"><img src="/assets/images/EB SIMRACING(Solo-White).png" alt="EB Simracing" class="logo-img"></a>
+            <a href="#"><img src="/img/EB RACING(Solo-White).png" alt="EB Racing" class="logo-img"></a>
         </div>
         <nav class="main-nav">
             <ul>
@@ -31,39 +30,14 @@
                 <li><a href="../info/galerie.html">Galerie</a></li>
                 <li><a href="../shop/merch.html">Boutique</a></li>
                 <li><a href="../info/contacto.html">Contact</a></li>
-                <li class="nav-cart">
-                    <a href="#" class="cart-icon" id="cart-icon">
-                        <i class="fas fa-shopping-cart"></i>
-                        <span class="cart-count">0</span>
-                    </a>
-                    <div class="cart-dropdown" id="cart-dropdown">
-                        <div class="cart-header">
-                            <span>Mon Panier</span>
-                            <span class="cart-count-header">0</span>
-                        </div>
-                        <div class="cart-items" id="cart-items">
-                            <!-- Cart items will be loaded here -->
-                        </div>
-                        <div class="cart-footer">
-                            <div class="cart-total">
-                                <span>Total:</span>
-                                <span id="cart-total">0.00 €</span>
-                            </div>
-                            <button class="checkout-btn" id="checkout-btn">
-                                <i class="fas fa-credit-card"></i> Voir le panier
-                            </button>
-                        </div>
-                    </div>
-                </li>
                 <li class="nav-user" id="navUser" style="display: none;">
                     <div class="user-avatar" id="userMenuBtn">
-                        <img src="/assets/images/default-avatar.png" alt="Profil" id="userAvatar">
+                        <img src="/img/user/EB_Default_Avatar.png" alt="Profil" id="userAvatar">
                         <i class="fas fa-chevron-down"></i>
                     </div>
                     <div class="user-dropdown" id="userDropdown">
                         <a href="../auth/perfil.html"><i class="fas fa-user"></i> Mon Profil</a>
-                        <a href="../shop/cart.html"><i class="fas fa-shopping-cart"></i> Mon Panier</a>
-                        <a href="../user/mes-reservations.html"><i class="fas fa-calendar-alt"></i> Mes Réservations</a>
+                        <a href="../user/mes-reservations.html"><i class="fas fa-calendar-alt"></i> Mes réservations</a>
                         <a href="parametres.html"><i class="fas fa-cog"></i> Paramètres</a>
                         <div class="dropdown-divider"></div>
                         <a href="#" id="logoutBtn"><i class="fas fa-sign-out-alt"></i> Déconnexion</a>
@@ -80,24 +54,24 @@
     </div>
 </header>
 
-    <!-- Hero Section -->
-    <section class="car-hero">
-        <div class="car-hero-content">
-            <h1>PORSCHE 718 CAYMAN S</h1>
-            <p>L'essence pure du sport automobile allemand</p>
-            <a href="#" class="btn btn-primary book-now" data-vehicle-name="Porsche 718 Cayman S" data-vehicle-id="porsche-718">RÉSERVER MAINTENANT</a>
-        </div>
-    </section>
+<!-- Hero Section -->
+<section class="service-hero" style="background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('/img/POR.jpg') no-repeat center center/cover;">
+    <div class="container">
+        <h1>PORSCHE 718 CAYMAN S</h1>
+        <p>L'essence pure du sport automobile allemand</p>
+        <a href="#" class="btn btn-primary book-now" data-vehicle-name="Porsche 718 Cayman S" data-vehicle-id="porsche-718">RÉSERVER MAINTENANT</a>
+    </div>
+</section>
 
     <!-- Contenido principal con fondo negro -->
     <div class="main-content">
         <!-- Carrusel de imágenes -->
         <div class="carousel-container">
             <div class="carousel" id="imageCarousel">
-                <img src="/assets/images/PORSCHE.jpg" alt="C1">
-                <img src="/assets/images/PORSCHE2.jpeg" alt="C1">
-                <img src="/assets/images/PORSCHE3.jpeg" alt="C1Into">
-                <img src="/assets/images/PORSCHE4.jpeg" alt="C1Long">
+                <img src="/img/PORSCHE/PORSCHE.jpg" alt="Porsche718">
+                <img src="/img/PORSCHE/PORSCHE2.jpeg" alt="Porsche718">
+                <img src="/img/PORSCHE/PORSCHE3.jpeg" alt="Porsche718">
+                <img src="/img/PORSCHE/PORSCHE4.jpeg" alt="Porsche718">
             </div>
             <div class="carousel-nav">
                 <button class="carousel-btn" id="prevBtn" aria-label="Image précédente"><i class="fas fa-chevron-left"></i></button>
@@ -168,6 +142,176 @@
                         <div class="spec-item">
                             <span class="spec-name">Pneus</span>
                             <span class="spec-value">Michelin Cup 2</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Porsche Driver Experience Section -->
+        <section class="porsche-driver-experience-section">
+            <div class="container">
+                <h2 class="section-title">L'EXPÉRIENCE PILOTE PORSCHE 718</h2>
+                <div class="porsche-experience-timeline">
+                    <div class="porsche-timeline-item">
+                        <div class="porsche-timeline-icon">
+                            <i class="fas fa-clipboard-check"></i>
+                        </div>
+                        <div class="porsche-timeline-content">
+                            <h3>Briefing Premium</h3>
+                            <p>Session théorique de 60 minutes avec instructeurs experts sur la conduite de voitures de sport allemandes et techniques avancées de pilotage Porsche.</p>
+                        </div>
+                    </div>
+                    <div class="porsche-timeline-item">
+                        <div class="porsche-timeline-icon">
+                            <i class="fas fa-car-side"></i>
+                        </div>
+                        <div class="porsche-timeline-content">
+                            <h3>Maîtrise du Véhicule</h3>
+                            <p>Tours d'initiation pour comprendre la puissance et le comportement dynamique de la 718 Cayman S avec coaching personnalisé.</p>
+                        </div>
+                    </div>
+                    <div class="porsche-timeline-item">
+                        <div class="porsche-timeline-icon">
+                            <i class="fas fa-tachometer-alt"></i>
+                        </div>
+                        <div class="porsche-timeline-content">
+                            <h3>Sessions Haute Performance</h3>
+                            <p>Sessions intensives de 30 minutes pour exploiter les 350 chevaux et le châssis sportif en toute sécurité.</p>
+                        </div>
+                    </div>
+                    <div class="porsche-timeline-item">
+                        <div class="porsche-timeline-icon">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <div class="porsche-timeline-content">
+                            <h3>Analyse Expert</h3>
+                            <p>Débriefing complet avec télémétrie professionnelle, analyse vidéo et recommandations pour perfectionner votre technique.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Porsche Benefits Section -->
+        <section class="porsche-benefits-section">
+            <div class="container">
+                <h2 class="section-title">POURQUOI LA PORSCHE 718 CAYMAN S ?</h2>
+                <div class="porsche-benefits-grid">
+                    <div class="porsche-benefit-card">
+                        <i class="fas fa-star"></i>
+                        <h3>Excellence Allemande</h3>
+                        <p>Ingénierie Porsche de pointe avec qualité de fabrication exceptionnelle et fiabilité légendaire.</p>
+                    </div>
+                    <div class="porsche-benefit-card">
+                        <i class="fas fa-tachometer-alt"></i>
+                        <h3>Performance Pure</h3>
+                        <p>350 chevaux, 0-100 km/h en 4.6s, et un châssis mid-engine pour une agilité extrême.</p>
+                    </div>
+                    <div class="porsche-benefit-card">
+                        <i class="fas fa-graduation-cap"></i>
+                        <h3>Apprentissage Avancé</h3>
+                        <p>Véhicule exigeant qui perfectionne vos compétences et vous prépare aux voitures de compétition.</p>
+                    </div>
+                    <div class="porsche-benefit-card">
+                        <i class="fas fa-crown"></i>
+                        <h3>Expérience Premium</h3>
+                        <p>Conduite d'un mythe automobile avec sensations authentiques de sport germanique.</p>
+                    </div>
+                    <div class="porsche-benefit-card">
+                        <i class="fas fa-shield-alt"></i>
+                        <h3>Sécurité Active</h3>
+                        <p>Électronique de pointe, freins carbone-céramique et systèmes d'aide à la conduite avancés.</p>
+                    </div>
+                    <div class="porsche-benefit-card">
+                        <i class="fas fa-trophy"></i>
+                        <h3>Statut Exclusif</h3>
+                        <p>Accès à une expérience rare et prestigieuse réservée aux passionnés exigeants.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Porsche Safety Features Section -->
+        <section class="porsche-safety-features-section">
+            <div class="container">
+                <h2 class="section-title">ÉQUIPEMENT DE SÉCURITÉ PREMIUM</h2>
+                <div class="porsche-safety-grid">
+                    <div class="porsche-safety-item">
+                        <i class="fas fa-hard-hat"></i>
+                        <h3>Cellule de Sécurité</h3>
+                        <p>Arceau renforcé FIA avec protection anti-intrusion et points d'ancrage optimisés.</p>
+                    </div>
+                    <div class="porsche-safety-item">
+                        <i class="fas fa-seatbelt"></i>
+                        <h3>Harnais 6 Points</h3>
+                        <p>Système de retenue Schroth professionnel avec réglage millimétrique et boucle rapide.</p>
+                    </div>
+                    <div class="porsche-safety-item">
+                        <i class="fas fa-fire-extinguisher"></i>
+                        <h3>Extinction Automatique</h3>
+                        <p>Système Plifex multi-points avec détection thermique et activation manuelle/automatique.</p>
+                    </div>
+                    <div class="porsche-safety-item">
+                        <i class="fas fa-heartbeat"></i>
+                        <h3>Électronique Active</h3>
+                        <p>PASM, PTV, et PSM pour un contrôle optimal et une sécurité maximale dans toutes les conditions.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Porsche Testimonials Section -->
+        <section class="porsche-testimonials-section">
+            <div class="container">
+                <h2 class="section-title">TÉMOIGNAGES DE PILOTES EXPERTS</h2>
+                <div class="porsche-testimonials-grid">
+                    <div class="porsche-testimonial-card">
+                        <div class="porsche-testimonial-content">
+                            <div class="porsche-stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <p>"La Porsche 718 est une révélation ! La précision du châssis et la réponse du moteur sont d'une pureté inégalée. Une expérience qui change votre vision du pilotage."</p>
+                        </div>
+                        <div class="porsche-testimonial-author">
+                            <strong>Alexandre Mercier</strong>
+                            <span>Pilote professionnel</span>
+                        </div>
+                    </div>
+                    <div class="porsche-testimonial-card">
+                        <div class="porsche-testimonial-content">
+                            <div class="porsche-stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <p>"Après des années de simulation, piloter une vraie Porsche 718 est un rêve devenu réalité. L'encadrement est au niveau de la voiture : exceptionnel."</p>
+                        </div>
+                        <div class="porsche-testimonial-author">
+                            <strong>Sophie Laurent</strong>
+                            <span>Ingénieure automobile</span>
+                        </div>
+                    </div>
+                    <div class="porsche-testimonial-card">
+                        <div class="porsche-testimonial-content">
+                            <div class="porsche-stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <p>"Le rapport qualité-prix de cette expérience Porsche est incroyable. Vous accédez à un véhicule d'exception avec un coaching d'expert."</p>
+                        </div>
+                        <div class="porsche-testimonial-author">
+                            <strong>Marc Dubois</strong>
+                            <span>Entrepreneur passionné</span>
                         </div>
                     </div>
                 </div>
@@ -264,16 +408,17 @@
         <div class="container">
             <div class="footer-content">
                 <div class="footer-about">
-                    <img src="/assets/images/EB.png" alt="EB Simracing" class="footer-logo">
+                    <img src="/img/EB.png" alt="EB Simracing" class="footer-logo">
                 </div>
                 <div class="footer-links">
                     <h4>LIENS RAPIDES</h4>
                     <ul>
-                        <li><a href="../../index.html">Accueil</a></li>
-                        <li><a href="../../index.html#servicios">Services</a></li>
-                        <li><a href="../info/galerie.html">Galerie</a></li>
-                    <li><a href="../shop/merch.html">Boutique</a></li>
-                        <li><a href="../info/contacto.html">Contact</a></li>
+                        <li><a href="index.html">Accueil</a></li>
+                        <li><a href="index.html#servicios">Services</a></li>
+                        <li><a href="index.html#galeria">Galerie</a></li>
+                    <li><a href="pages/shop/merch.html">Boutique</a></li>
+        
+                        <li><a href="pages/info/contacto.html">Contact</a></li>
                     </ul>
                 </div>
                 <div class="footer-contact">
@@ -291,9 +436,6 @@
                     <a href="#"><i class="fab fa-youtube"></i></a>
                     <a href="#"><i class="fab fa-twitter"></i></a>
                 </div>
-            </div>
-            <div class="footer-bottom">
-                <p>&copy; 2025 EB Simracing. Tous droits réservés.</p>
             </div>
         </div>
     </footer>
