@@ -1,73 +1,52 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="fr">
 <head>
     <!-- Security Headers -->
     <meta http-equiv="X-Content-Type-Options" content="nosniff">
     <meta http-equiv="X-Frame-Options" content="DENY">
     <meta http-equiv="X-XSS-Protection" content="1; mode=block">
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; font-src 'self'; connect-src 'self' http://localhost:3000;">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com; img-src 'self' data: https:; font-src 'self' https://cdnjs.cloudflare.com; connect-src 'self' http://localhost:3000;">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact - EB Simracing</title>
-    <link rel="icon" href="/assets/images/EB.png" type="image/png">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/assets/styles/all.min.css">
+    <title>EB Racing - Contact</title>
+    <link rel="icon" href="/img/EB.png" type="image/png">
+    
+    <!-- CSS Files -->
     <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="/css/shop/cart.css?v=1.1">
     <link rel="stylesheet" href="/css/user/perfil.css">
-    <link rel="stylesheet" href="/css/shop/cart.css">
+    <link rel="stylesheet" href="/css/contact.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 </head>
 <body>
-    <!-- Header -->
-    
 <!-- Header -->
 <header class="header">
     <div class="container">
         <div class="logo">
-            <a href="../../index.html"><img src="/assets/images/EB SIMRACING(Solo-White).png" alt="EB Simracing" class="logo-img"></a>
+            <a href="#"><img src="/img/EB RACING(Solo-White).png" alt="EB Racing" class="logo-img"></a>
         </div>
         <nav class="main-nav">
             <ul>
                 <li><a href="../../index.html#inicio" class="active">Accueil</a></li>
                 <li><a href="../../index.html#servicios">Services</a></li>
-                <li><a href="galerie.html">Galerie</a></li>
+                <li><a href="../info/galerie.html">Galerie</a></li>
                 <li><a href="../shop/merch.html">Boutique</a></li>
-                <li><a href="contacto.html">Contact</a></li>
-                <li class="nav-cart">
-                    <a href="#" class="cart-icon" id="cart-icon">
-                        <i class="fas fa-shopping-cart"></i>
-                        <span class="cart-count">0</span>
-                    </a>
-                    <div class="cart-dropdown" id="cart-dropdown">
-                        <div class="cart-header">
-                            <span>Mon Panier</span>
-                            <span class="cart-count-header">0</span>
-                        </div>
-                        <div class="cart-items" id="cart-items">
-                            <!-- Cart items will be loaded here -->
-                        </div>
-                        <div class="cart-footer">
-                            <div class="cart-total">
-                                <span>Total:</span>
-                                <span id="cart-total">0.00 €</span>
-                            </div>
-                            <button class="checkout-btn" id="checkout-btn">
-                                <i class="fas fa-credit-card"></i> Voir le panier
-                            </button>
-                        </div>
-                    </div>
-                </li>
+                <li><a href="../info/contacto.html">Contact</a></li>
                 <li class="nav-user" id="navUser" style="display: none;">
                     <div class="user-avatar" id="userMenuBtn">
-                        <img src="/assets/images/default-avatar.png" alt="Profil" id="userAvatar">
+                        <img src="/img/user/EB_Default_Avatar.png" alt="Profil" id="userAvatar">
                         <i class="fas fa-chevron-down"></i>
                     </div>
                     <div class="user-dropdown" id="userDropdown">
-                            <a href="../auth/perfil.html"><i class="fas fa-user"></i> Mon Profil</a>
-                            <a href="../shop/cart.html"><i class="fas fa-shopping-cart"></i> Mon Panier</a>
-                            <a href="../user/mes-reservations.html"><i class="fas fa-calendar-alt"></i> Mes Réservations</a>
-                            <a href="parametres.html"><i class="fas fa-cog"></i> Paramètres</a>
-                            <div class="dropdown-divider"></div>
-                            <a href="#" id="logoutBtn"><i class="fas fa-sign-out-alt"></i> Déconnexion</a>
-                        </div>
+                        <a href="../auth/perfil.html"><i class="fas fa-user"></i> Mon Profil</a>
+                        <a href="../user/mes-reservations.html"><i class="fas fa-calendar-alt"></i> Mes réservations</a>
+                        <a href="parametres.html"><i class="fas fa-cog"></i> Paramètres</a>
+                        <div class="dropdown-divider"></div>
+                        <a href="#" id="logoutBtn"><i class="fas fa-sign-out-alt"></i> Déconnexion</a>
+                    </div>
                 </li>
                 <li class="nav-login" id="navLogin">
                     <a href="../auth/login.html" class="btn-login">Connexion</a>
@@ -80,168 +59,118 @@
     </div>
 </header>
 
-    <!-- Contact Section -->
-    <section class="contact-section" id="contacto">
-        <div class="container">
-            <h2 class="section-title">Contactez-nous</h2>
-            <p class="section-subtitle">Remplissez ce formulaire et notre équipe vous contactera dans les plus brefs délais.</p>
+
+    <!-- Hero Section Impactante -->
+    <section class="contact-hero">
+        <div class="hero-particles" id="particles"></div>
+        <div class="hero-content">
+            <h1 class="hero-title">Contact</h1>
+            <p class="hero-subtitle">Connectez-vous avec l'excellence du sport automobile</p>
+        </div>
+    </section>
+
+    <!-- Contact Methods Mejorado -->
+    <section class="contact-methods">
+        <div class="section-header">
+            <h2 class="section-title">Contactez-Nous</h2>
+            <p class="section-subtitle">Plusieurs façons de nous joindre pour votre projet racing</p>
+        </div>
         
-        <form id="contactForm" class="contact-form">
-            <!-- Sección de Tipo de Perfil -->
-            <fieldset class="form-section">
-                <legend>Type de profil</legend>
-                <div class="form-group radio-group">
-                    <label class="radio-label">
-                        <input type="radio" name="profileType" value="consumer" required>
-                        <span class="radio-custom"></span>
-                        Consommateur
-                    </label>
-                    <label class="radio-label">
-                        <input type="radio" name="profileType" value="professional" required>
-                        <span class="radio-custom"></span>
-                        Professionnel
-                    </label>
+        <div class="methods-grid">
+            <div class="method-card">
+                <div class="method-icon-wrapper">
+                    <div class="method-icon-bg"></div>
+                    <div class="method-icon">
+                        <i class="fas fa-phone"></i>
+                    </div>
                 </div>
-            </fieldset>
-
-            <!-- Sección de Motivo de Contacto -->
-            <div class="form-group">
-                <label for="contactReason">Motif du contact *</label>
-                <select id="contactReason" name="contactReason" required>
-                    <option value="" disabled selected>Sélectionnez une option</option>
-                    <option value="information">Demande d'informations</option>
-                    <option value="quote">Demande de devis</option>
-                    <option value="complaint">Réclamer</option>
-                    <option value="suggestion">Suggestion</option>
-                    <option value="other">Autre</option>
-                </select>
-            </div>
-
-            <!-- Información de Contacto -->
-            <div class="form-row">
-                <div class="form-group">
-                    <label for="firstName">Prénom *</label>
-                    <input type="text" id="firstName" name="firstName" required>
-                </div>
-                <div class="form-group">
-                    <label for="lastName">Nom *</label>
-                    <input type="text" id="lastName" name="lastName" required>
-                </div>
-            </div>
-
-            <div class="form-row">
-                <div class="form-group">
-                    <label for="email">E-mail *</label>
-                    <input type="email" id="email" name="email" required>
-                </div>
-                <div class="form-group">
-                    <label for="phone">Téléphone</label>
-                    <input type="tel" id="phone" name="phone">
-                </div>
-            </div>
-
-            <!-- Dirección -->
-            <div class="form-group">
-                <label for="country">Pays *</label>
-                <select id="country" name="country" required>
-                    <option value="" disabled selected>Sélectionnez un pays</option>
-                    <option value="BE" selected>Belgique</option>
-                    <option value="AL">Albanie</option>
-                    <option value="DE">Allemagne</option>
-                    <option value="AD">Andorre</option>
-                    <option value="AM">Arménie</option>
-                    <option value="AT">Autriche</option>
-                    <option value="AZ">Azerbaïdjan</option>
-                    <option value="BY">Biélorussie</option>
-                    <option value="BA">Bosnie-Herzégovine</option>
-                    <option value="BG">Bulgarie</option>
-                    <option value="HR">Croatie</option>
-                    <option value="CY">Chypre</option>
-                    <option value="CZ">Tchéquie</option>
-                    <option value="DK">Danemark</option>
-                    <option value="ES">Espagne</option>
-                    <option value="EE">Estonie</option>
-                    <option value="FI">Finlande</option>
-                    <option value="FR">France</option>
-                    <option value="GE">Géorgie</option>
-                    <option value="GR">Grèce</option>
-                    <option value="HU">Hongrie</option>
-                    <option value="IS">Islande</option>
-                    <option value="IE">Irlande</option>
-                    <option value="IT">Italie</option>
-                    <option value="KZ">Kazakhstan</option>
-                    <option value="XK">Kosovo</option>
-                    <option value="LV">Lettonie</option>
-                    <option value="LI">Liechtenstein</option>
-                    <option value="LT">Lituanie</option>
-                    <option value="LU">Luxembourg</option>
-                    <option value="MT">Malte</option>
-                    <option value="MD">Moldavie</option>
-                    <option value="MC">Monaco</option>
-                    <option value="ME">Monténégro</option>
-                    <option value="NL">Pays-Bas</option>
-                    <option value="MK">Macédoine du Nord</option>
-                    <option value="NO">Norvège</option>
-                    <option value="PL">Pologne</option>
-                    <option value="PT">Portugal</option>
-                    <option value="RO">Roumanie</option>
-                    <option value="RU">Russie</option>
-                    <option value="SM">Saint-Marin</option>
-                    <option value="RS">Serbie</option>
-                    <option value="SK">Slovaquie</option>
-                    <option value="SI">Slovénie</option>
-                    <option value="SE">Suède</option>
-                    <option value="CH">Suisse</option>
-                    <option value="TR">Turquie</option>
-                    <option value="UA">Ukraine</option>
-                    <option value="GB">Royaume-Uni</option>
-                    <option value="VA">Vatican</option>
-                    <option value="other">Autre pays</option>
-                </select>
-            </div>
-
-            <div class="form-row">
-                <div class="form-group">
-                    <label for="province">Province *</label>
-                    <input type="text" id="province" name="province" required>
-                </div>
-                <div class="form-group">
-                    <label for="city">Ville *</label>
-                    <input type="text" id="city" name="city" required>
-                </div>
-                <div class="form-group">
-                    <label for="postalCode">Code postal *</label>
-                    <input type="text" id="postalCode" name="postalCode" required>
-                </div>
-            </div>
-
-            <!-- Asunto y Mensaje -->
-            <div class="form-group">
-                <label for="subject">Affaire *</label>
-                <input type="text" id="subject" name="subject" required>
-            </div>
-
-            <div class="form-group">
-                <label for="message">Message *</label>
-                <textarea id="message" name="message" rows="6" required></textarea>
-            </div>
-
-            <!-- Política de Privacidad -->
-            <div class="form-group checkbox-group">
-                <label class="checkbox-label">
-                    <input type="checkbox" id="privacyPolicy" name="privacyPolicy" required>
-                    <span class="checkbox-custom"></span>
-                    J'ai lu et j'accepte les <a href="#" id="privacyPolicyLink">politique de confidentialité</a> *
-                </label>
-            </div>
-
-            <!-- Botón de Envío -->
-            <div class="form-actions">
-                <button type="submit" class="btn btn-primary">
-                    <i class="fas fa-paper-plane"></i> Envoyer un message
+                <h3 class="method-title">Téléphone</h3>
+                <p class="method-description">Appelez-nous directement pour une consultation immédiate avec nos experts racing</p>
+                <button class="method-action" onclick="makeCall()">
+                    <span>+32 495 57 92 78</span>
                 </button>
             </div>
-        </form>
+            
+            <div class="method-card">
+                <div class="method-icon-wrapper">
+                    <div class="method-icon-bg"></div>
+                    <div class="method-icon">
+                        <i class="fas fa-envelope"></i>
+                    </div>
+                </div>
+                <h3 class="method-title">Email</h3>
+                <p class="method-description">Envoyez-nous votre projet et recevez une réponse personnalisée sous 24h</p>
+                <button class="method-action" onclick="sendEmail()">
+                    <span>Envoyer Email</span>
+                </button>
+            </div>
+            
+            <div class="method-card">
+                <div class="method-icon-wrapper">
+                    <div class="method-icon-bg"></div>
+                    <div class="method-icon">
+                        <i class="fas fa-map-marker-alt"></i>
+                    </div>
+                </div>
+                <h3 class="method-title">Local</h3>
+                <p class="method-description">Visitez-nous à Nivelles pour découvrir nos installations de pointe</p>
+                <button class="method-action" onclick="openMaps()">
+                    <span>Voir sur Maps</span>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Form Mejorado -->
+    <section class="contact-form-section">
+        <div class="section-header">
+            <h2 class="section-title">Formulaire de Contact</h2>
+            <p class="section-subtitle">Décrivez votre projet et nous vous contacterons dans les plus brefs délais</p>
+        </div>
+        
+        <div class="form-container">
+            <form id="contactForm">
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label class="form-label">Prénom *</label>
+                        <input type="text" class="form-input" name="firstName" placeholder="" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">Nom *</label>
+                        <input type="text" class="form-input" name="lastName" placeholder="" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">Email *</label>
+                        <input type="email" class="form-input" name="email" placeholder="" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">Téléphone</label>
+                        <input type="tel" class="form-input" name="phone" placeholder="">
+                    </div>
+                </div>
+                
+                <div class="form-group full-width">
+                    <label class="form-label">Sujet *</label>
+                    <input type="text" class="form-input" name="subject" placeholder="" required>
+                </div>
+                
+                <div class="form-group full-width">
+                    <label class="form-label">Message *</label>
+                    <textarea class="form-textarea" name="message" placeholder="Décrivez votre projet, vos besoins ou vos questions..." required></textarea>
+                </div>
+                
+                <div class="form-checkbox">
+                    <input type="checkbox" id="privacy" name="privacy" required>
+                    <label for="privacy">J'accepte la politique de confidentialité et consens au traitement de mes données *</label>
+                </div>
+                
+                <button type="submit" class="form-submit">
+                    <span>Envoyer le Message</span>
+                </button>
+            </form>
         </div>
     </section>
 
@@ -249,44 +178,155 @@
     <footer class="footer">
         <div class="container">
             <div class="footer-content">
-                <div class="footer-section">
-                    <h3>EB Simracing</h3>
-                    <p>Passionnés de sport automobile et de divertissement, nous proposons des simulateurs de simulation de course, un bar pour partager de bons moments et une boutique de vinyles pour personnaliser votre voiture.</p>
+                <div class="footer-about">
+                    <img src="/img/EB.png" alt="EB Simracing" class="footer-logo">
                 </div>
-                <div class="footer-section">
-                    <h3>Liens Rapides</h3>
+                <div class="footer-links">
+                    <h4>LIENS RAPIDES</h4>
                     <ul>
-                        <li><a href="../../index.html#inicio">Accueil</a></li>
-                        <li><a href="../../index.html#servicios">Services</a></li>
-                        <li><a href="galerie.html">Galerie</a></li>
-                        <li><a href="../shop/merch.html">Boutique</a></li>
-                        <li><a href="contacto.html">Contact</a></li>
+                        <li><a href="index.html">Accueil</a></li>
+                        <li><a href="index.html#servicios">Services</a></li>
+                        <li><a href="index.html#galeria">Galerie</a></li>
+                    <li><a href="pages/shop/merch.html">Boutique</a></li>
+        
+                        <li><a href="pages/info/contacto.html">Contact</a></li>
                     </ul>
                 </div>
-                <div class="footer-section">
-                    <h3>Contact</h3>
-                    <p><i class="fas fa-map-marker-alt"></i> Rue de Namur 1, 1400 Nivelles</p>
+                <div class="footer-contact">
+                    <h4>CONTACT</h4>
+                    <p><i class="fas fa-map-marker-alt"></i> RUE DE LA MAÎTRISE 4, 1400 Nivelles</p>
                     <p><i class="fas fa-phone"></i> +32 495 57 92 78</p>
                     <p><i class="fas fa-envelope"></i> ebracingevents@gmail.com</p>
-                    <div class="social-links">
-                        <a href="https://www.facebook.com/beracingkart/?ref=_xav_ig_profile_page_web&checkpoint_src=any"><i class="fab fa-facebook"></i></a>
-                        <a href="https://www.instagram.com/eb.racing.events/"><i class="fab fa-instagram"></i></a>
-                        <a href="#"><i class="fab fa-youtube"></i></a>
-                    </div>
                 </div>
             </div>
             <div class="footer-bottom">
                 <p>&copy; 2025 EB Simracing. Tous droits réservés.</p>
+                <div class="social-links">
+                    <a href="https://www.facebook.com/beracingkart/"><i class="fab fa-facebook"></i></a>
+                    <a href="https://www.instagram.com/eb.racing.events/"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                </div>
             </div>
         </div>
     </footer>
 
-    <script src="/assets/scripts/contacto.js"></script>
-    <script src="/assets/scripts/services/cartService.js"></script>
-    <script src="/assets/scripts/cart.js"></script>
+    <!-- Notification Toast -->
+    <div class="notification-toast" id="notificationToast"></div>
 
-    <!-- Sistema de seguridad -->
-    <script src="/assets/scripts/security.js"></script>
-    <script src="/assets/scripts/auth.js"></script>
+    <!-- Scripts del header y footer -->
+    <script src="/js/services/cartService.js"></script>
+    <script src="/js/shop/cart.js"></script>
+    <script src="/js/security.js"></script>
+    <script src="/js/auth/auth.js"></script>
+    <script src="/js/index.js?v=3"></script>
+
+    <!-- JavaScript Mejorado -->
+    <script>
+        // Partículas animadas
+        function createParticles() {
+            const particlesContainer = document.getElementById('particles');
+            const particleCount = 150; // Aumentado de 50 a 150
+            
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.animationDelay = Math.random() * 25 + 's';
+                particle.style.animationDuration = (18 + Math.random() * 12) + 's';
+                particlesContainer.appendChild(particle);
+            }
+        }
+
+        // Contact Functions
+        function makeCall() {
+            window.location.href = 'tel:+32495579278';
+            showNotification('📞 Appel en cours...');
+        }
+
+        function sendEmail() {
+            window.location.href = 'mailto:ebracingevents@gmail.com?subject=Contact%20EB%20Racing&body=Bonjour%20EB%20Racing,%0A%0AJe%20souhaite%20obtenir%20plus%20d%27informations.%0A%0ACordialement';
+            showNotification('✉️ Ouverture du client email...');
+        }
+
+        function openMaps() {
+            window.open('https://maps.google.com/?q=RUE+DE+LA+MAÎTRISE+4+1400+Nivelles+Belgique', '_blank');
+            showNotification('📍 Ouverture de Google Maps...');
+        }
+
+        // Notification System mejorado
+        function showNotification(message) {
+            const toast = document.getElementById('notificationToast');
+            toast.textContent = message;
+            toast.className = 'notification-toast show';
+            
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 4000);
+        }
+
+        // Form Submission con animación mejorada
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const submitBtn = this.querySelector('.form-submit');
+            const originalText = submitBtn.innerHTML;
+            
+            submitBtn.innerHTML = '<span>⏳ Envoi en cours...</span>';
+            submitBtn.disabled = true;
+            submitBtn.style.transform = 'scale(0.95)';
+            
+            // Simulate form submission
+            setTimeout(() => {
+                showNotification('✅ Message envoyé avec succès! Nous vous contacterons bientôt.');
+                this.reset();
+                submitBtn.innerHTML = '<span>✅ Envoyé!</span>';
+                
+                setTimeout(() => {
+                    submitBtn.innerHTML = originalText;
+                    submitBtn.disabled = false;
+                    submitBtn.style.transform = 'scale(1)';
+                }, 2000);
+            }, 2000);
+        });
+
+        // Animación al hacer scroll mejorada
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observar elementos para animación
+        document.addEventListener('DOMContentLoaded', () => {
+            createParticles();
+            
+            const animatedElements = document.querySelectorAll('.method-card, .form-container, .section-header');
+            animatedElements.forEach((el, index) => {
+                el.style.opacity = '0';
+                el.style.transform = 'translateY(50px)';
+                el.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
+                observer.observe(el);
+            });
+        });
+
+        // Efecto parallax sutil en el hero
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const heroContent = document.querySelector('.hero-content');
+            
+            if (heroContent && scrolled < window.innerHeight) {
+                heroContent.style.transform = `translateY(${scrolled * 0.5}px)`;
+            }
+        });
+    </script>
 </body>
 </html>
