@@ -4,11 +4,13 @@
   "description": "Sitio web de simracing con autenticación de usuarios",
   "main": "src/server/server.js",
   "scripts": {
-    "start": "node src/server/server.js",
-    "dev": "nodemon src/server/server.js",
+    "start": "node src/server.js",
+    "dev": "nodemon src/server.js",
     "test": "cross-env NODE_ENV=test jest --config=config/jest/jest.config.js --detectOpenHandles --forceExit",
     "test:watch": "cross-env NODE_ENV=test jest --config=config/jest/jest.config.js --watch",
-    "test:coverage": "cross-env NODE_ENV=test jest --config=config/jest/jest.config.js --coverage"
+    "test:coverage": "cross-env NODE_ENV=test jest --config=config/jest/jest.config.js --coverage",
+    "db:setup": "node scripts/setupDatabase.js",
+    "db:seed": "node scripts/seedDatabase.js"
   },
   "dependencies": {
     "bcrypt": "^5.1.0",
@@ -21,8 +23,10 @@
     "helmet": "^8.1.0",
     "hpp": "^0.2.3",
     "jsonwebtoken": "^9.0.2",
+    "mongoose": "^7.5.0",
     "morgan": "^1.10.1",
     "mysql2": "^3.6.0",
+    "pg": "^8.11.0",
     "xss-clean": "^0.1.4"
   },
   "devDependencies": {
