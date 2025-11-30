@@ -206,7 +206,7 @@ if (loginForm) {
             
             // Redirigir al usuario solo si todo fue exitoso
             console.log('Redirigiendo a perfil.html...');
-            window.location.href = 'pages/auth/perfil.html';
+            window.location.href = 'pages/user/perfil.html';
             
         } catch (error) {
             console.error('Error en el login:', error);
@@ -319,7 +319,7 @@ registerForm.addEventListener('submit', async (e) => {
                 closeLoginModal();
                 
                 // Redirigir al perfil
-                window.location.href = 'pages/auth/perfil.html';
+                window.location.href = 'pages/user/perfil.html';
             } else {
                 console.error('No se recibió token en la respuesta:', data);
                 throw new Error('Error en la autenticación: no se recibió token');
@@ -415,10 +415,31 @@ function checkAuthStatus() {
         console.log('Elementos navLogin:', navLogin);
         console.log('Elementos navUser:', navUser);
         
-        if (navLogin) {
-            navLogin.style.display = 'none';
-            console.log('Botón de login ocultado');
+        if (navLogin) navLogin.style.display = 'none';
+        if (navUser) navUser.style.display = 'block';
+        
+        // Cargar avatar del usuario
+        const userAvatar = document.getElementById('userAvatar');
+        if (userData && userData.avatar && userAvatar) {
+            userAvatar.src = userData.avatar;
+            console.log('Avatar del usuario cargado:', userData.avatar);
+        } else {
+            // También verificar localStorage directamente
+            const savedUser = localStorage.getItem('auth_user');
+            if (savedUser) {
+                try {
+                    const user = JSON.parse(savedUser);
+                    if (user.avatar && userAvatar) {
+                        userAvatar.src = user.avatar;
+                        console.log('Avatar cargado desde localStorage:', user.avatar);
+                    }
+                } catch (e) {
+                    console.error('Error al leer avatar desde localStorage:', e);
+                }
+            }
         }
+        
+        console.log('Botón de login ocultado');
         if (navUser) {
             navUser.style.display = 'block';
             console.log('Perfil de usuario mostrado');
