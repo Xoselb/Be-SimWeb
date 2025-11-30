@@ -5,12 +5,12 @@
     <meta http-equiv="X-Content-Type-Options" content="nosniff">
     <meta http-equiv="X-Frame-Options" content="DENY">
     <meta http-equiv="X-XSS-Protection" content="1; mode=block">
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; font-src 'self'; connect-src 'self' http://localhost:3000;">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com; img-src 'self' data: https:; font-src 'self' https://cdnjs.cloudflare.com; connect-src 'self' http://localhost:3000;">    
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Boutique Officielle - EB Simracing</title>
     <link rel="icon" href="/assets/images/EB.png" type="image/png">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/assets/styles/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="/css/styles.css">
     <link rel="stylesheet" href="/css/shop/merch.css?v=1.3">
     <link rel="stylesheet" href="/css/shop/cart.css?v=1.1">
@@ -21,15 +21,15 @@
 <header class="header">
     <div class="container">
         <div class="logo">
-            <a href="../../index.html"><img src="/assets/images/EB SIMRACING(Solo-White).png" alt="EB Simracing" class="logo-img"></a>
+            <a href="#"><img src="/img/EB RACING(Solo-White).png" alt="EB Racing" class="logo-img"></a>
         </div>
         <nav class="main-nav">
             <ul>
-                <li><a href="../../index.html#inicio" class="active">Accueil</a></li>
-                <li><a href="../../index.html#servicios">Services</a></li>
-                <li><a href="../info/galerie.html">Galerie</a></li>
-                <li><a href="merch.html">Boutique</a></li>
-                <li><a href="../info/contacto.html">Contact</a></li>
+                <li><a href="/index.html">Accueil</a></li>
+                <li><a href="/index.html#servicios">Services</a></li>
+                <li><a href="/pages/info/galerie.html">Galerie</a></li>
+                <li><a href="/pages/shop/merch.html">Boutique</a></li>
+                <li><a href="/pages/info/contacto.html">Contact</a></li>
                 <li class="nav-cart">
                     <a href="#" class="cart-icon" id="cart-icon">
                         <i class="fas fa-shopping-cart"></i>
@@ -56,20 +56,20 @@
                 </li>
                 <li class="nav-user" id="navUser" style="display: none;">
                     <div class="user-avatar" id="userMenuBtn">
-                        <img src="/assets/images/default-avatar.png" alt="Profil" id="userAvatar">
+                        <img src="/img/user/EB_Default_Avatar.png" alt="Profil" id="userAvatar">
                         <i class="fas fa-chevron-down"></i>
                     </div>
                     <div class="user-dropdown" id="userDropdown">
-                        <a href="../auth/perfil.html"><i class="fas fa-user"></i> Mon Profil</a>
-                        <a href="cart.html"><i class="fas fa-shopping-cart"></i> Mon Panier</a>
-                        <a href="../user/mes-reservations.html"><i class="fas fa-calendar-alt"></i> Mes Réservations</a>
-                        <a href="parametres.html"><i class="fas fa-cog"></i> Paramètres</a>
+                        <a href="pages/auth/perfil.html" class="active"><i class="fas fa-user"></i> Mon Profil</a>
+                        <a href="pages/shop/cart.html"><i class="fas fa-shopping-cart"></i> Mon Panier</a>
+                        <a href="pages/user/mes-reservations.html"><i class="fas fa-calendar-alt"></i> Réservations</a>
+                        <a href="pages/user/confirmacion.html"><i class="fas fa-cog"></i> Paramètres</a>
                         <div class="dropdown-divider"></div>
                         <a href="#" id="logoutBtn"><i class="fas fa-sign-out-alt"></i> Déconnexion</a>
                     </div>
                 </li>
                 <li class="nav-login" id="navLogin">
-                    <a href="../auth/login.html" class="btn-login">Connexion</a>
+                    <a href="pages/auth/login.html" class="btn-login">Connexion</a>
                 </li>
             </ul>
         </nav>
@@ -79,6 +79,7 @@
     </div>
 </header>
 
+
     <!-- Hero Section -->
     <section class="merch-hero">
         <div class="container">
@@ -87,18 +88,140 @@
         </div>
     </section>
 
+    <!-- Filters Section -->
+    <section class="filters-section">
+        <div class="container">
+            <div class="filters-header">
+                <h2>Filtrer les produits</h2>
+                <button class="filters-toggle" id="filtersToggle">
+                    <i class="fas fa-filter"></i> Filtres
+                </button>
+            </div>
+            
+            <div class="filters-content" id="filtersContent">
+                <div class="search-bar">
+                    <div class="search-input-wrapper">
+                        <i class="fas fa-search"></i>
+                        <input type="text" id="searchInput" placeholder="Rechercher un produit...">
+                        <button class="search-clear" id="searchClear" style="display: none;">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="filter-options">
+                    <div class="filter-group">
+                        <label>Catégorie:</label>
+                        <div class="custom-dropdown" data-filter="category">
+                            <select id="categoryFilter">
+                                <option value="">Toutes les catégories</option>
+                                <option value="clothing">Vêtements</option>
+                                <option value="accessories">Accessoires</option>
+                                <option value="decoration">Décoration</option>
+                            </select>
+                            <div class="dropdown-options" id="categoryDropdown"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="filter-group">
+                        <label>Prix:</label>
+                        <div class="custom-dropdown" data-filter="price">
+                            <select id="priceFilter">
+                                <option value="">Tous les prix</option>
+                                <option value="0-25">Moins de 25€</option>
+                                <option value="25-50">25€ - 50€</option>
+                                <option value="50-100">50€ - 100€</option>
+                                <option value="100+">Plus de 100€</option>
+                            </select>
+                            <div class="dropdown-options" id="priceDropdown"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="filter-group">
+                        <label>Trier par:</label>
+                        <div class="custom-dropdown" data-filter="sort">
+                            <select id="sortFilter">
+                                <option value="name">Nom</option>
+                                <option value="price-asc">Prix croissant</option>
+                                <option value="price-desc">Prix décroissant</option>
+                                <option value="featured">En vedette</option>
+                            </select>
+                            <div class="dropdown-options" id="sortDropdown"></div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="active-filters" id="activeFilters"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Results Section -->
+    <section class="results-section">
+        <div class="container">
+            <div class="results-header">
+                <div class="results-count">
+                    <span id="resultsCount">0</span> produits trouvés
+                </div>
+                <div class="view-toggle">
+                    <button class="view-btn active" data-view="grid" title="Vue grille">
+                        <i class="fas fa-th"></i>
+                    </button>
+                    <button class="view-btn" data-view="list" title="Vue liste">
+                        <i class="fas fa-list"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Contenedor de Productos -->
     <div class="products-container">
         <div class="products-grid" id="products-grid">
             <!-- Los productos se cargarán aquí dinámicamente -->
         </div>
+        <div class="no-results" id="noResults" style="display: none;">
+            <i class="fas fa-search"></i>
+            <h3>Aucun produit trouvé</h3>
+            <p>Essayez de modifier vos filtres ou votre recherche</p>
+            <button class="clear-filters-btn" id="clearFiltersBtn">
+                <i class="fas fa-redo"></i> Réinitialiser les filtres
+            </button>
+        </div>
     </div>
 
+    <!-- Quick View Modal -->
+    <div class="quick-view-modal" id="quickViewModal">
+        <div class="quick-view-content">
+            <button class="quick-view-close" id="quickViewClose">
+                <i class="fas fa-times"></i>
+            </button>
+            <div class="quick-view-body">
+                <div class="quick-view-image-container">
+                    <img src="" alt="" class="quick-view-image" id="quickViewImage">
+                </div>
+                <div class="quick-view-info">
+                    <h2 id="quickViewTitle"></h2>
+                    <p class="description" id="quickViewDescription"></p>
+                    <div class="price" id="quickViewPrice"></div>
+                    <div id="quickViewOptions"></div>
+                    <div class="quick-view-actions">
+                        <button class="add-to-cart-btn" id="quickViewAddToCart">
+                            <i class="fas fa-shopping-cart"></i> Añadir al carrito
+                        </button>
+                        <button class="add-to-cart-btn close-btn" id="quickViewCloseBtn">
+                            Cerrar
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!-- Scripts de la tienda -->
-    <script src="/assets/scripts/services/cartService.js"></script>
-    <script src="/assets/scripts/cart.js"></script>
-    <script src="/assets/scripts/products.js?v=1.3"></script>
+    <script src="/js/services/cartService.js"></script>
+    <script src="/js/shop/cart.js"></script>
+    <script src="/js/shop/products.js?v=1.3"></script>
     
     <!-- Smooth scrolling para enlaces internos -->
     <script>
@@ -126,7 +249,7 @@
         <div class="container">
             <div class="footer-content">
                 <div class="footer-about">
-                    <img src="/assets/images/EB.png" alt="EB Simracing" class="footer-logo">
+                    <img src="/img/EB.png" alt="EB Simracing" class="footer-logo">
                 </div>
                 <div class="footer-links">
                     <h4>LIENS RAPIDES</h4>
