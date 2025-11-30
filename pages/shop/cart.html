@@ -5,12 +5,12 @@
     <meta http-equiv="X-Content-Type-Options" content="nosniff">
     <meta http-equiv="X-Frame-Options" content="DENY">
     <meta http-equiv="X-XSS-Protection" content="1; mode=block">
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; font-src 'self'; connect-src 'self' http://localhost:3000;">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com; img-src 'self' data: https:; font-src 'self' https://cdnjs.cloudflare.com; connect-src 'self' http://localhost:3000;">    
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mon Panier - EB Simracing</title>
     <link rel="icon" href="/assets/images/EB.png" type="image/png">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/assets/styles/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="/css/styles.css">
     <link rel="stylesheet" href="/css/shop/cart.css?v=1.1">
     <link rel="stylesheet" href="/css/shop/merch.css">
@@ -335,49 +335,42 @@
     </style>
 </head>
 <body>
-    <!-- Header -->
-    <header class="header">
-        <div class="container">
-            <div class="logo">
-                <a href="../../index.html"><img src="/assets/images/EB SIMRACING(Solo-White).png" alt="EB Simracing" class="logo-img"></a>
-            </div>
-            <nav class="main-nav">
-                <ul>
-                    <li><a href="../../index.html#inicio">Accueil</a></li>
-                    <li><a href="../../index.html#servicios">Services</a></li>
-                    <li><a href="../info/galerie.html">Galerie</a></li>
-                    <li><a href="merch.html">Boutique</a></li>
-                    <li><a href="../info/contacto.html">Contact</a></li>
-                    <li class="nav-cart">
-                        <a href="#" class="cart-icon" id="cart-icon">
-                            <i class="fas fa-shopping-cart"></i>
-                            <span class="cart-count">0</span>
-                        </a>
-                    </li>
-                    <li class="nav-user" id="navUser" style="display: none;">
-                        <div class="user-avatar" id="userMenuBtn">
-                            <img src="/assets/images/default-avatar.png" alt="Profil" id="userAvatar">
-                            <i class="fas fa-chevron-down"></i>
-                        </div>
-                        <div class="user-dropdown" id="userDropdown">
-                            <a href="../auth/perfil.html"><i class="fas fa-user"></i> Mon Profil</a>
-                            <a href="cart.html"><i class="fas fa-shopping-cart"></i> Mon Panier</a>
-                            <a href="../user/mes-reservations.html"><i class="fas fa-calendar-alt"></i> Mes Réservations</a>
-                            <a href="parametres.html"><i class="fas fa-cog"></i> Paramètres</a>
-                            <div class="dropdown-divider"></div>
-                            <a href="#" id="logoutBtn"><i class="fas fa-sign-out-alt"></i> Déconnexion</a>
-                        </div>
-                    </li>
-                    <li class="nav-login" id="navLogin">
-                        <a href="../auth/login.html" class="btn-login">Connexion</a>
-                    </li>
-                </ul>
-            </nav>
-            <div class="mobile-menu-btn">
-                <i class="fas fa-bars"></i>
-            </div>
+<!-- Header -->
+<header class="header">
+    <div class="container">
+        <div class="logo">
+            <a href="#"><img src="/img/EB RACING(Solo-White).png" alt="EB Racing" class="logo-img"></a>
         </div>
-    </header>
+        <nav class="main-nav">
+            <ul>
+                <li><a href="/index.html#inicio" class="active">Accueil</a></li>
+                <li><a href="/index.html#servicios">Services</a></li>
+                <li><a href="/pages/info/galerie.html">Galerie</a></li>
+                <li><a href="/pages/shop/merch.html">Boutique</a></li>
+                <li><a href="/pages/info/contacto.html">Contact</a></li>
+                <li class="nav-user" id="navUser" style="display: none;">
+                    <div class="user-avatar" id="userMenuBtn">
+                        <img src="/img/user/EB_Default_Avatar.png" alt="Profil" id="userAvatar">
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="user-dropdown" id="userDropdown">
+                        <a href="/pages/user/perfil.html"><i class="fas fa-user"></i> Mon Profil</a>
+                        <a href="/pages/user/mes-reservations.html"><i class="fas fa-calendar-alt"></i> Mes réservations</a>
+                        <a href="/pages/user/parametres.html"><i class="fas fa-cog"></i> Paramètres</a>
+                        <div class="dropdown-divider"></div>
+                        <a href="#" id="logoutBtn"><i class="fas fa-sign-out-alt"></i> Déconnexion</a>
+                    </div>
+                </li>
+                <li class="nav-login" id="navLogin">
+                    <a href="/pages/auth/login.html" class="btn-login">Connexion</a>
+                </li>
+            </ul>
+        </nav>
+        <div class="mobile-menu-btn">
+            <i class="fas fa-bars"></i>
+        </div>
+    </div>
+</header>
 
     <!-- Cart Page Content -->
     <main class="cart-page">
@@ -411,16 +404,16 @@
         <div class="container">
             <div class="footer-content">
                 <div class="footer-about">
-                    <img src="/assets/images/EB.png" alt="EB Simracing" class="footer-logo">
+                    <img src="/img/EB.png" alt="EB Racing" class="footer-logo">
                 </div>
                 <div class="footer-links">
                     <h4>LIENS RAPIDES</h4>
                     <ul>
-                        <li><a href="../../index.html">Accueil</a></li>
-                        <li><a href="../../index.html#servicios">Services</a></li>
-                        <li><a href="../info/galerie.html">Galerie</a></li>
-                        <li><a href="merch.html">Boutique</a></li>
-                        <li><a href="../info/contacto.html">Contact</a></li>
+                        <li><a href="/index.html#inicio">Accueil</a></li>
+                        <li><a href="/index.html#servicios">Services</a></li>
+                        <li><a href="/pages/info/galerie.html">Galerie</a></li>
+                        <li><a href="/pages/shop/merch.html">Boutique</a></li>
+                        <li><a href="/pages/info/contacto.html">Contact</a></li>
                     </ul>
                 </div>
                 <div class="footer-contact">
@@ -443,10 +436,10 @@
     </footer>
 
     <!-- Scripts -->
-    <script src="/assets/scripts/services/cartService.js"></script>
-    <script src="/assets/scripts/cart.js"></script>
-    <script src="/assets/scripts/auth.js"></script>
-    <script src="/assets/scripts/header.js"></script>
+    <script src="/js/services/cartService.js"></script>
+    <script src="/js/shop/cart.js"></script>
+    <script src="/js/auth/auth.js"></script>
+    <script src="/js/utils/header.js"></script>
     
     <script>
         class CartPage {
@@ -572,7 +565,7 @@
                     <button class="checkout-btn-page" id="checkout-btn-page">
                         <i class="fas fa-credit-card"></i> Finaliser la commande
                     </button>
-                    <a href="pages/shop/merch.html" class="continue-shopping-btn">
+                    <a href="/pages/shop/merch.html" class="continue-shopping-btn">
                         <i class="fas fa-arrow-left"></i> Continuer vos achats
                     </a>
                 `;
@@ -662,7 +655,7 @@
                     }
 
                     // Redirect to checkout page
-                    window.location.href = 'pages/shop/checkout.html';
+                    window.location.href = '/pages/shop/checkout.html';
                     
                 } catch (error) {
                     console.error('Error in checkout:', error);
@@ -696,7 +689,7 @@
     </script>
 
     <!-- Sistema de seguridad -->
-    <script src="/assets/scripts/security.js"></script>
-    <script src="/assets/scripts/auth.js"></script><script src="/assets/scripts/services/cartService.js"></script><script src="/assets/scripts/cart.js"></script>
+    <script src="/js/utils/security.js"></script>
+    <script src="/js/auth/auth.js"></script><script src="/js/services/cartService.js"></script><script src="/js/shop/cart.js"></script>
 </body>
 </html>
