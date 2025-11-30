@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EB Racing - Connexion</title>
+    <title>Connexion - EB Simracing</title>
     
     <!-- Security Headers -->
     <meta http-equiv="X-Content-Type-Options" content="nosniff">
@@ -12,8 +12,9 @@
     <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com; img-src 'self' data: https:; font-src 'self' https://cdnjs.cloudflare.com; connect-src 'self' http://localhost:3000;">    
 
     <link rel="stylesheet" href="/css/styles.css">
-    <link rel="stylesheet" href="/css/user/perfil.css">
-    <link rel="stylesheet" href="/css/Membres/perfil.css">
+    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="/css/components/header-profile.css">
+    <link rel="stylesheet" href="/css/auth/login.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         /* Fondo premium con efectos */
@@ -68,6 +69,7 @@
             max-width: 500px;
             margin: 100px auto 50px;
             padding: 50px;
+            padding-top: 70px;
             background: linear-gradient(135deg, 
                 rgba(255, 255, 255, 0.05), 
                 rgba(255, 255, 255, 0.02)
@@ -342,11 +344,44 @@
                         <i class="fas fa-chevron-down"></i>
                     </div>
                     <div class="user-dropdown" id="userDropdown">
-                        <a href="/pages/user/perfil.html"><i class="fas fa-user"></i> Mon Profil</a>
-                        <a href="/pages/user/mes-reservations.html"><i class="fas fa-calendar-alt"></i> Mes réservations</a>
-                        <a href="/pages/user/parametres.html"><i class="fas fa-cog"></i> Paramètres</a>
+                        <!-- Header del dropdown con info del usuario -->
+                        <div class="user-info-header">
+                            <div class="user-name">Usuario</div>
+                            <div class="user-email">user@example.com</div>
+                            <div class="user-status">Verificado</div>
+                        </div>
+                        
+                        <!-- Enlaces del menú -->
+                        <a href="/pages/user/perfil.html" class="active">
+                            <i class="fas fa-user"></i> 
+                            <span>Mon Profil</span>
+                            <span class="badge">Actuel</span>
+                        </a>
+                        <a href="/pages/user/mes-reservations.html">
+                            <i class="fas fa-calendar-alt"></i> 
+                            <span>Mes Réservations</span>
+                            <span class="badge">3</span>
+                        </a>
+                        <a href="/pages/shop/cart.html">
+                            <i class="fas fa-shopping-cart"></i> 
+                            <span>Mon Panier</span>
+                            <span class="badge">2</span>
+                        </a>
+                        <a href="/pages/user/parametres.html">
+                            <i class="fas fa-cog"></i> 
+                            <span>Paramètres</span>
+                        </a>
+                        <a href="/pages/user/aide.html">
+                            <i class="fas fa-question-circle"></i> 
+                            <span>Aide & Support</span>
+                        </a>
+                        
                         <div class="dropdown-divider"></div>
-                        <a href="#" id="logoutBtn"><i class="fas fa-sign-out-alt"></i> Déconnexion</a>
+                        
+                        <a href="#" id="logoutBtn">
+                            <i class="fas fa-sign-out-alt"></i> 
+                            <span>Déconnexion</span>
+                        </a>
                     </div>
                 </li>
                 <li class="nav-login" id="navLogin">
@@ -383,10 +418,11 @@
 <!-- Sistema de seguridad -->
 <script src="/js/security.js"></script>
 <script src="/js/auth/auth.js"></script>
+<script src="/js/header.js"></script>
 <script>
     // Verificar si el usuario ya está autenticado
     if (window.auth.isAuthenticated()) {
-        window.location.href = '../../index.html';
+        window.location.href = '../user/perfil.html';
     }
 
     // Función para validar email
@@ -452,8 +488,8 @@
             // Manejar la promesa devuelta por handleLogin
             Promise.resolve(result).then(response => {
                 console.log('Inicio de sesión exitoso:', response);
-                // Redirigir al usuario después de un inicio de sesión exitoso
-                window.location.href = '../../index.html';
+                // Redirigir al perfil del usuario después de un inicio de sesión exitoso
+                window.location.href = '../user/perfil.html';
             }).catch(error => {
                 console.error('Error en el inicio de sesión:', error);
                 showError(error.message || 'Email ou mot de passe incorrect');
