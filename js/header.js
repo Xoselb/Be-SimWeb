@@ -1,6 +1,7 @@
-// header.js - Common header functionality for all pages
+// header.js - Sistema mejorado para el header con perfil premium
 
 document.addEventListener('DOMContentLoaded', function() {
+    
     // Check authentication status
     function checkAuth() {
         const isLoggedIn = window.auth && window.auth.isAuthenticated();
@@ -15,8 +16,33 @@ document.addEventListener('DOMContentLoaded', function() {
             // Load user data
             const userData = window.auth.getCurrentUser();
             const userAvatar = document.getElementById('userAvatar');
-            if (userData && userData.avatar && userAvatar) {
-                userAvatar.src = userData.avatar;
+            
+            if (userData) {
+                // Update avatar
+                if (userData.avatar && userAvatar) {
+                    userAvatar.src = userData.avatar;
+                    console.log('Avatar del header cargado desde userData:', userData.avatar);
+                }
+                
+                // Update user info in dropdown
+                updateUserInfo(userData);
+            }
+            
+            // También verificar si hay avatar guardado en localStorage directamente
+            const savedUser = localStorage.getItem('auth_user');
+            if (savedUser) {
+                try {
+                    const user = JSON.parse(savedUser);
+                    if (user.avatar && userAvatar) {
+                        userAvatar.src = user.avatar;
+                        console.log('Avatar del header cargado desde localStorage:', user.avatar);
+                    }
+                    if (!userData) {
+                        updateUserInfo(user);
+                    }
+                } catch (e) {
+                    console.error('Error al leer usuario desde localStorage:', e);
+                }
             }
         } else {
             // Show login button and hide user menu
@@ -25,31 +51,58 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
     
+    // Update user information in dropdown
+    function updateUserInfo(userData) {
+        // Update user name
+        const userNameElements = document.querySelectorAll('.user-name');
+        userNameElements.forEach(element => {
+            const name = userData.name || `${userData.firstName || ''} ${userData.lastName || ''}`.trim() || 'Usuario';
+            element.textContent = name;
+        });
+        
+        // Update user email
+        const userEmailElements = document.querySelectorAll('.user-email');
+        userEmailElements.forEach(element => {
+            element.textContent = userData.email || 'user@example.com';
+        });
+        
+        // Update user status
+        const userStatusElements = document.querySelectorAll('.user-status');
+        userStatusElements.forEach(element => {
+            element.textContent = userData.emailVerified ? 'Verificado' : 'No verificado';
+            element.style.background = userData.emailVerified 
+                ? 'linear-gradient(135deg, rgba(46, 204, 113, 0.2), rgba(46, 204, 113, 0.1))'
+                : 'linear-gradient(135deg, rgba(241, 196, 15, 0.2), rgba(241, 196, 15, 0.1))';
+            element.style.borderColor = userData.emailVerified 
+                ? 'rgba(46, 204, 113, 0.3)'
+                : 'rgba(241, 196, 15, 0.3)';
+            element.style.color = userData.emailVerified ? '#2ecc71' : '#f1c40f';
+        });
+        
+        console.log('Información de usuario actualizada en header');
+    }
+    
     // Handle dropdown menu
     function setupDropdown() {
         const userMenuBtn = document.getElementById('userMenuBtn');
         const userDropdown = document.getElementById('userDropdown');
         
         if (userMenuBtn && userDropdown) {
+            // Toggle dropdown
             userMenuBtn.addEventListener('click', function(e) {
                 e.stopPropagation();
                 userDropdown.classList.toggle('show');
                 
-                // Rotate the arrow icon
-                const icon = this.querySelector('i');
-                if (icon) {
-                    icon.style.transform = userDropdown.classList.contains('show') 
-                        ? 'rotate(180deg)' 
-                        : 'rotate(0deg)';
+                // Add animation class
+                if (userDropdown.classList.contains('show')) {
+                    userDropdown.style.animation = 'fadeInUp 0.3s ease-out';
                 }
             });
             
             // Close menu when clicking outside
-            document.addEventListener('click', function() {
-                userDropdown.classList.remove('show');
-                const icon = userMenuBtn.querySelector('i');
-                if (icon) {
-                    icon.style.transform = 'rotate(0deg)';
+            document.addEventListener('click', function(e) {
+                if (!userDropdown.contains(e.target) && !userMenuBtn.contains(e.target)) {
+                    userDropdown.classList.remove('show');
                 }
             });
             
