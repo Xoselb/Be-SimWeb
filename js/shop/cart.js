@@ -292,7 +292,7 @@ document.addEventListener('DOMContentLoaded', () => {
             cartDropdown.classList.toggle('show');
         });
     } else {
-        console.error('Cart elements not found:', { cartIcon, cartDropdown });
+        console.log('Cart elements not found - this is normal on checkout page:', { cartIcon, cartDropdown });
     }
 
     // Cerrar dropdown al hacer clic fuera
