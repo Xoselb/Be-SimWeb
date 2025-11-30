@@ -107,6 +107,50 @@ class SecurityManager {
         return this.generateSecureToken();
     }
 
+    // Actualizar avatar del usuario en todas las páginas
+    updateUserAvatar(avatarUrl) {
+        const userData = this.getCurrentUser();
+        if (userData) {
+            userData.avatar = avatarUrl;
+            localStorage.setItem(this.userKey, JSON.stringify(userData));
+        }
+        
+        // Actualizar avatar en todos los elementos con id="userAvatar"
+        const avatarElements = document.querySelectorAll('#userAvatar, #profileAvatar');
+        avatarElements.forEach(element => {
+            element.src = avatarUrl;
+        });
+        
+        console.log('Avatar actualizado en todos los elementos:', avatarUrl);
+    }
+
+    // Actualizar datos completos del usuario
+    updateUserData(userData) {
+        const currentUser = this.getCurrentUser();
+        if (currentUser) {
+            const updatedUser = { 
+                ...currentUser, 
+                ...userData,
+                // Mantener datos importantes que no se deben sobreescribir
+                id: currentUser.id,
+                loginTime: currentUser.loginTime,
+                lastActivity: Date.now()
+            };
+            
+            // Guardar en localStorage
+            localStorage.setItem(this.userKey, JSON.stringify(updatedUser));
+            
+            // Actualizar avatar si existe
+            if (updatedUser.avatar) {
+                this.updateUserAvatar(updatedUser.avatar);
+            }
+            
+            console.log('Datos de usuario actualizados:', updatedUser);
+            return updatedUser;
+        }
+        return null;
+    }
+
     // Verificar si la solicitud es del mismo origen
     verifyOrigin(request) {
         return request.origin === window.location.origin;
