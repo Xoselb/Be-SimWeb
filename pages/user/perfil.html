@@ -1,49 +1,83 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href="/assets/images/EB.png" type="image/png">
-    <title>Mon Profil - EB Simracing</title>
+    <title>EB Racing - Mon Profil</title>
     
     <!-- Security Headers -->
     <meta http-equiv="X-Content-Type-Options" content="nosniff">
     <meta http-equiv="X-Frame-Options" content="DENY">
     <meta http-equiv="X-XSS-Protection" content="1; mode=block">
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; font-src 'self'; connect-src 'self' http://localhost:3000;">
-    
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com; img-src 'self' data: https:; font-src 'self' https://cdnjs.cloudflare.com; connect-src 'self' http://localhost:3000;">    
+
     <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="/css/components/header-profile.css">
     <link rel="stylesheet" href="/css/user/perfil.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/assets/styles/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
+    <!-- Header -->
     <header class="header">
         <div class="container">
             <div class="logo">
-                <a href="../../index.html"><img src="/assets/images/EB SIMRACING(Solo-White).png" alt="EB Simracing" class="logo-img"></a>
+                <a href="/index.html"><img src="/img/EB RACING(Solo-White).png" alt="EB Racing" class="logo-img"></a>
             </div>
             <nav class="main-nav">
                 <ul>
-                    <li><a href="../../index.html#inicio">Accueil</a></li>
-                    <li><a href="../../index.html#servicios">Services</a></li>
-                    <li><a href="../info/galerie.html">Galerie</a></li>
-                    <li><a href="../shop/merch.html">Boutique</a></li>
-                    <li><a href="../info/contacto.html">Contact</a></li>
+                    <li><a href="/index.html#inicio">Accueil</a></li>
+                    <li><a href="/index.html#servicios">Services</a></li>
+                    <li><a href="/pages/info/galerie.html">Galerie</a></li>
+                    <li><a href="/pages/shop/merch.html">Boutique</a></li>
+                    <li><a href="/pages/info/contacto.html">Contact</a></li>
                     <li class="nav-user" id="navUser" style="display: none;">
                         <div class="user-avatar" id="userMenuBtn">
-                            <img src="/assets/images/default-avatar.png" alt="Profil" id="userAvatar">
+                            <img src="/img/user/EB_Default_Avatar.png" alt="Profil" id="userAvatar">
                             <i class="fas fa-chevron-down"></i>
                         </div>
                         <div class="user-dropdown" id="userDropdown">
-                            <a href="../auth/perfil.html" class="active"><i class="fas fa-user"></i> Mon Profil</a>
-                            <a href="mes-reservations.html"><i class="fas fa-calendar-alt"></i> Mes réservations</a>
-                            <a href="parametres.html"><i class="fas fa-cog"></i> Paramètres</a>
+                            <!-- Header del dropdown con info del usuario -->
+                            <div class="user-info-header">
+                                <div class="user-name">Usuario</div>
+                                <div class="user-email">user@example.com</div>
+                                <div class="user-status">Verificado</div>
+                            </div>
+                            
+                            <!-- Enlaces del menú -->
+                            <a href="/pages/user/perfil.html" class="active">
+                                <i class="fas fa-user"></i> 
+                                <span>Mon Profil</span>
+                                <span class="badge">Actuel</span>
+                            </a>
+                            <a href="/pages/user/mes-reservations.html">
+                                <i class="fas fa-calendar-alt"></i> 
+                                <span>Mes Réservations</span>
+                                <span class="badge">3</span>
+                            </a>
+                            <a href="/pages/shop/cart.html">
+                                <i class="fas fa-shopping-cart"></i> 
+                                <span>Mon Panier</span>
+                                <span class="badge">2</span>
+                            </a>
+                            <a href="/pages/user/parametres.html">
+                                <i class="fas fa-cog"></i> 
+                                <span>Paramètres</span>
+                            </a>
+                            <a href="/pages/user/aide.html">
+                                <i class="fas fa-question-circle"></i> 
+                                <span>Aide & Support</span>
+                            </a>
+                            
                             <div class="dropdown-divider"></div>
-                            <a href="#" id="logoutBtn"><i class="fas fa-sign-out-alt"></i> Déconnexion</a>
+                            
+                            <a href="#" id="logoutBtn">
+                                <i class="fas fa-sign-out-alt"></i> 
+                                <span>Déconnexion</span>
+                            </a>
                         </div>
                     </li>
                     <li class="nav-login" id="navLogin">
-                        <a href="../auth/login.html" class="btn-login">Connexion</a>
+                        <a href="/pages/auth/login.html" class="btn-login">Connexion</a>
                     </li>
                 </ul>
             </nav>
@@ -56,7 +90,7 @@
     <main class="profile-container">
         <div class="profile-header">
             <div class="profile-avatar">
-                <img src="/assets/images/default-avatar.png" alt="Photo de profil" id="profileAvatar">
+                <img src="/img/user/EB_Default_Avatar.png" alt="Photo de profil" id="profileAvatar">
                 <label for="avatarUpload" class="avatar-upload">
                     <i class="fas fa-camera"></i>
                     <input type="file" id="avatarUpload" accept="image/*" style="display: none;">
@@ -64,22 +98,21 @@
             </div>
             <h1 id="profileName">Nom d'utilisateur</h1>
             <p id="profileEmail">email@example.com</p>
-            <div class="user-role" id="userRole">
-                <span class="role-badge">Rôle</span>
-            </div>
         </div>
 
         <div class="profile-content">
             <div class="profile-section">
                 <h2>Informations personnelles</h2>
                 <form id="profileForm">
-                    <div class="form-group">
-                        <label for="firstName">Prénom</label>
-                        <input type="text" id="firstName" name="firstName" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="lastName">Nom</label>
-                        <input type="text" id="lastName" name="lastName" required>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="firstName">Prénom</label>
+                            <input type="text" id="firstName" name="firstName" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="lastName">Nom</label>
+                            <input type="text" id="lastName" name="lastName" required>
+                        </div>
                     </div>
                     <div class="form-group">
                         <label for="email">Email</label>
@@ -89,7 +122,11 @@
                         <label for="phone">Téléphone</label>
                         <input type="tel" id="phone" name="phone">
                     </div>
-                    <button type="submit" class="btn btn-primary">Enregistrer les modifications</button>
+                    <div class="form-group">
+                        <label for="address">Adresse</label>
+                        <input type="text" id="address" name="address">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Mettre à jour</button>
                 </form>
             </div>
 
@@ -114,208 +151,154 @@
         </div>
     </main>
 
-    <script src="/assets/scripts/auth.js"></script>
-    <script src="/assets/scripts/perfil.js"></script>
+    <!-- Scripts -->
+    <script src="/js/security.js"></script>
+    <script src="/js/auth/auth.js"></script>
+    <script src="/js/header.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            // Mobile menu functionality
-            const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
-            const mainNav = document.querySelector('.main-nav');
-            
-            if (mobileMenuBtn && mainNav) {
-                mobileMenuBtn.addEventListener('click', function(e) {
-                    e.stopPropagation();
-                    mainNav.classList.toggle('show');
-                });
-                
-                // Close mobile menu when clicking on a nav link
-                const navLinks = mainNav.querySelectorAll('a');
-                navLinks.forEach(link => {
-                    link.addEventListener('click', () => {
-                        mainNav.classList.remove('show');
-                    });
-                });
-                
-                // Close mobile menu when clicking outside
-                document.addEventListener('click', function(e) {
-                    if (!mainNav.contains(e.target) && !mobileMenuBtn.contains(e.target)) {
-                        mainNav.classList.remove('show');
-                    }
-                });
-            }
-            // Verificar autenticación y cargar datos del usuario
+            // Verificar autenticación
             if (!window.auth.isAuthenticated()) {
-                window.location.href = 'pages/auth/login.html';
+                console.log('Usuario no autenticado, redirigiendo a login...');
+                window.location.href = '../auth/login.html';
                 return;
             }
 
-            // Mostrar/ocultar elementos según autenticación
-            const navUser = document.getElementById('navUser');
-            const navLogin = document.getElementById('navLogin');
-            
-            if (navUser) navUser.style.display = 'block';
-            if (navLogin) navLogin.style.display = 'none';
-            
+            console.log('Usuario autenticado, cargando perfil...');
+
             // Cargar datos del usuario
             function loadUserData() {
-                const userData = JSON.parse(localStorage.getItem('userData') || '{}');
-                if (userData) {
-                    document.getElementById('profileName').textContent = `${userData.firstName || ''} ${userData.lastName || ''}`.trim() || 'Utilisateur';
-                    document.getElementById('profileEmail').textContent = userData.email || 'email@example.com';
-                    document.getElementById('firstName').value = userData.firstName || '';
-                    document.getElementById('lastName').value = userData.lastName || '';
-                    document.getElementById('email').value = userData.email || '';
-                    document.getElementById('phone').value = userData.phone || '';
+                const user = window.auth.getCurrentUser();
+                if (user) {
+                    document.getElementById('profileName').textContent = user.name || user.firstName + ' ' + user.lastName || 'Nom d\'utilisateur';
+                    document.getElementById('profileEmail').textContent = user.email || 'email@example.com';
+                    document.getElementById('firstName').value = user.firstName || '';
+                    document.getElementById('lastName').value = user.lastName || '';
+                    document.getElementById('email').value = user.email || '';
                     
-                    // Mostrar el rol del usuario en francés
-                    const roleElement = document.getElementById('userRole');
-                    if (roleElement) {
-                        // Mapeo de roles a sus versiones en francés
-                        const roleMap = {
-                            'propriétaire': 'Propriétaire',
-                            'modérateur': 'Developer',
-                            'administrateur': 'Administrateur',
-                            'premium': 'Membre Premium',
-                            'utilisateur': 'Utilisateur',
-                            // Mantener compatibilidad con roles antiguos
-                            'dueño': 'Propriétaire',
-                            'dev': 'Developer',  // Cambiado de 'Modérateur' a 'Developer' para consistencia
-                            'admin': 'Administrateur',
-                            'vip': 'Membre Premium',
-                            'usuario': 'Utilisateur'
-                        };
-                        
-                        const role = userData.role || 'utilisateur';
-                        // Mapeo consistente de roles a clases CSS
-                        const roleClass = role === 'propriétaire' ? 'dueño' : 
-                                        (role === 'modérateur' || role === 'dev') ? 'dev' :
-                                        role === 'administrateur' ? 'admin' :
-                                        role === 'premium' ? 'vip' : 'usuario';
-                        
-                        // Usar el mapeo de roles para el texto mostrado
-                        const roleText = roleMap[role] || 'Utilisateur';
-                        roleElement.innerHTML = `<span class="role-badge role-${roleClass}">${roleText}</span>`;
+                    // Cargar avatar si existe
+                    if (user.avatar) {
+                        document.getElementById('profileAvatar').src = user.avatar;
+                        console.log('Avatar cargado desde localStorage:', user.avatar);
                     }
                     
-                    if (userData.avatar) {
-                        document.getElementById('profileAvatar').src = userData.avatar;
-                        document.getElementById('userAvatar').src = userData.avatar;
+                    // Actualizar avatar en el header
+                    const headerAvatar = document.getElementById('userAvatar');
+                    if (headerAvatar && user.avatar) {
+                        headerAvatar.src = user.avatar;
+                        console.log('Avatar del header actualizado:', user.avatar);
                     }
                 }
             }
+
+            // Cargar datos iniciales
             loadUserData();
-            
-            // Manejar la subida de avatar
+
+            // Manejar cambio de avatar
             document.getElementById('avatarUpload').addEventListener('change', function(e) {
                 const file = e.target.files[0];
                 if (file) {
                     const reader = new FileReader();
-                    reader.onload = function(event) {
-                        const avatarUrl = event.target.result;
-                        document.getElementById('profileAvatar').src = avatarUrl;
-                        document.getElementById('userAvatar').src = avatarUrl;
+                    reader.onload = function(e) {
+                        const avatarUrl = e.target.result;
                         
-                        // Actualizar la imagen en el localStorage
-                        const userData = JSON.parse(localStorage.getItem('userData') || '{}');
-                        userData.avatar = avatarUrl;
-                        localStorage.setItem('userData', JSON.stringify(userData));
+                        // Usar la función global para actualizar el avatar
+                        window.security.updateUserAvatar(avatarUrl);
+                        
+                        console.log('Avatar actualizado con la función global:', avatarUrl);
+                        
+                        // Mostrar notificación de éxito
+                        showNotification('Avatar actualizado correctamente', 'success');
                     };
                     reader.readAsDataURL(file);
                 }
             });
-            
-            // Manejar el envío del formulario de perfil
+
+            // Función para mostrar notificaciones
+            function showNotification(message, type = 'success') {
+                const notification = document.createElement('div');
+                notification.className = `notification ${type}`;
+                notification.textContent = message;
+                document.body.appendChild(notification);
+                
+                // Auto-eliminar después de 3 segundos
+                setTimeout(() => {
+                    notification.style.animation = 'slideOut 0.3s ease-in forwards';
+                    setTimeout(() => {
+                        notification.remove();
+                    }, 300);
+                }, 3000);
+            }
+
+            // Manejar formulario de perfil
             document.getElementById('profileForm').addEventListener('submit', function(e) {
                 e.preventDefault();
                 
-                // Obtener los valores del formulario
-                const userData = {
-                    firstName: document.getElementById('firstName').value,
-                    lastName: document.getElementById('lastName').value,
-                    email: document.getElementById('email').value,
-                    phone: document.getElementById('phone').value,
-                    avatar: document.getElementById('profileAvatar').src
-                };
+                const formData = new FormData(this);
+                const userData = {};
+                formData.forEach((value, key) => {
+                    userData[key] = value;
+                });
+
+                console.log('Datos del formulario:', userData);
+
+                // Usar la función global para actualizar datos del usuario
+                const updatedUser = window.security.updateUserData(userData);
                 
-                // Actualizar los datos en el localStorage
-                localStorage.setItem('userData', JSON.stringify(userData));
-                
-                // Actualizar la información en el header
-                document.getElementById('profileName').textContent = 
-                    (userData.firstName || '') + ' ' + (userData.lastName || '');
-                document.getElementById('profileEmail').textContent = userData.email || '';
-                document.getElementById('userAvatar').src = userData.avatar;
-                
-                alert('Modifications enregistrées avec succès!');
+                if (updatedUser) {
+                    // Actualizar nombre en el header
+                    document.getElementById('profileName').textContent = 
+                        updatedUser.firstName + ' ' + updatedUser.lastName;
+                    
+                    // Actualizar email si cambió
+                    document.getElementById('profileEmail').textContent = updatedUser.email;
+                    
+                    console.log('Usuario actualizado exitosamente:', updatedUser);
+                    
+                    // Mostrar notificación de éxito
+                    showNotification('Informations personnelles mises à jour avec succès!', 'success');
+                } else {
+                    console.error('Error al actualizar el usuario');
+                    showNotification('Erreur lors de la mise à jour du profil', 'error');
+                }
             });
-            
-            // Manejar el cambio de contraseña
+
+            // Manejar formulario de contraseña
             document.getElementById('passwordForm').addEventListener('submit', function(e) {
                 e.preventDefault();
+                
+                const currentPassword = document.getElementById('currentPassword').value;
                 const newPassword = document.getElementById('newPassword').value;
                 const confirmPassword = document.getElementById('confirmPassword').value;
-                
+
                 if (newPassword !== confirmPassword) {
-                    alert('Les mots de passe ne correspondent pas');
+                    alert('Les nouveaux mots de passe ne correspondent pas');
                     return;
                 }
-                
-                // Aquí iría la lógica para cambiar la contraseña en el servidor
-                alert('Mot de passe modifié avec succès!');
+
+                if (newPassword.length < 8) {
+                    alert('Le mot de passe doit contenir au moins 8 caractères');
+                    return;
+                }
+
+                // Aquí iría la lógica para cambiar la contraseña
+                alert('Mot de passe changé avec succès!');
                 this.reset();
             });
-            
-            // Configurar el menú de usuario desplegable
-            const userMenuBtn = document.getElementById('userMenuBtn');
-            const userDropdown = document.getElementById('userDropdown');
-            
-            if (userMenuBtn && userDropdown) {
-                userMenuBtn.addEventListener('click', function(e) {
-                    e.stopPropagation();
-                    userDropdown.classList.toggle('show');
-                    
-                    // Rotar la flecha
-                    const icon = this.querySelector('i');
-                    if (icon) {
-                        icon.style.transform = userDropdown.classList.contains('show') 
-                            ? 'rotate(180deg)' 
-                            : 'rotate(0deg)';
+
+            // Logout
+            const logoutBtn = document.getElementById('logoutBtn');
+            if (logoutBtn) {
+                logoutBtn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    if (window.auth && window.auth.logout) {
+                        window.auth.logout();
+                    } else {
+                        window.location.href = '/pages/auth/login.html';
                     }
                 });
-                
-                // Cerrar el menú al hacer clic fuera
-                document.addEventListener('click', function() {
-                    userDropdown.classList.remove('show');
-                    const icon = userMenuBtn.querySelector('i');
-                    if (icon) {
-                        icon.style.transform = 'rotate(0deg)';
-                    }
-                });
-                
-                // Evitar que el menú se cierre al hacer clic dentro
-                userDropdown.addEventListener('click', function(e) {
-                    e.stopPropagation();
-                });
-                
-                // Manejar el logout
-                const logoutBtn = document.getElementById('logoutBtn');
-                if (logoutBtn) {
-                    logoutBtn.addEventListener('click', function(e) {
-                        e.preventDefault();
-                        if (window.auth && window.auth.logout) {
-                            window.auth.logout();
-                        } else {
-                            window.location.href = 'pages/auth/login.html';
-                        }
-                    });
-                }
             }
         });
     </script>
-    
-    <!-- Sistema de seguridad -->
-    <script src="/assets/scripts/security.js"></script>
-    <script src="/assets/scripts/auth.js"></script>
-    <script src="/assets/scripts/perfil.js"></script>
 </body>
 </html>
