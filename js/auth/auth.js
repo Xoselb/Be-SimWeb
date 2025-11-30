@@ -24,9 +24,78 @@ window.auth = {
     },
     
     handleLogin: function(email, password) {
-        // Función dummy - el login real se maneja en index.js
-        console.log('handleLogin dummy llamado - usar el sistema de login en index.js');
-        return false;
+        return new Promise((resolve, reject) => {
+            // Validar credenciales
+            if (!this.validateCredentials(email, password)) {
+                reject(new Error('Credenciales inválidas'));
+                return;
+            }
+
+            // Simular autenticación (en producción sería una llamada API)
+            setTimeout(() => {
+                console.log('Intentando login con:', email, password);
+                
+                // Verificar usuario de prueba
+                if (email === 'test@example.com' && password === 'Test123!') {
+                    // Usuario válido - crear sesión
+                    const user = {
+                        id: 1,
+                        email: email,
+                        firstName: 'Test',
+                        lastName: 'User',
+                        name: 'Test User'
+                    };
+                    
+                    const token = window.security.generateSecureToken();
+                    console.log('Token generado:', token);
+                    console.log('Usuario a guardar:', user);
+                    
+                    window.security.saveSession(token, user);
+                    
+                    console.log('Sesión guardada. Verificando...');
+                    console.log('Token en localStorage:', localStorage.getItem('auth_token'));
+                    console.log('Usuario en localStorage:', localStorage.getItem('auth_user'));
+                    console.log('¿Está autenticado?', window.auth.isAuthenticated());
+                    
+                    resolve({
+                        success: true,
+                        user: user,
+                        token: token
+                    });
+                } else {
+                    // Verificar si hay usuarios guardados en localStorage
+                    const storedUser = localStorage.getItem(email);
+                    if (storedUser) {
+                        try {
+                            const userData = JSON.parse(storedUser);
+                            if (userData.password === password) {
+                                const user = {
+                                    id: userData.id || Date.now(),
+                                    email: userData.email,
+                                    firstName: userData.nombre || userData.firstName || 'Usuario',
+                                    lastName: userData.lastName || 'Registrado',
+                                    name: userData.nombre || userData.firstName || 'Usuario'
+                                };
+                                
+                                const token = window.security.generateSecureToken();
+                                window.security.saveSession(token, user);
+                                
+                                resolve({
+                                    success: true,
+                                    user: user,
+                                    token: token
+                                });
+                                return;
+                            }
+                        } catch (e) {
+                            console.error('Error al leer usuario guardado:', e);
+                        }
+                    }
+                    
+                    reject(new Error('Email o contraseña incorrectos'));
+                }
+            }, 1000); // Simular delay de red
+        });
     },
     
     // Nuevas funciones de seguridad
