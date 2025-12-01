@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const user = localStorage.getItem('user');
     
     if (!token || !user) {
-        window.location.href = '../auth/login.html';
+        window.location.href = '/pages/auth/login.html';
         return;
     }
     
