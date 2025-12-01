@@ -1,9 +1,10 @@
 class ShoppingCartUI {
     constructor() {
         this.cartService = window.cartService;
+        this.currentUser = null;
         this.initializeEventListeners();
-        this.updateCartUI();
         this.setupAuthListeners();
+        this.updateCartUI();
     }
 
     // Inicializar event listeners
@@ -20,22 +21,51 @@ class ShoppingCartUI {
         if (checkoutBtn) {
             checkoutBtn.addEventListener('click', () => this.handleCheckout());
         }
+
+        // Listener para actualizaciones del carrito
+        document.addEventListener('cart:updated', (e) => {
+            this.updateCartUI();
+        });
     }
 
     // Configurar listeners para cambios de autenticación
     setupAuthListeners() {
-        document.addEventListener('auth:login', () => this.onUserLogin());
-        document.addEventListener('auth:logout', () => this.onUserLogout());
+        document.addEventListener('auth:login', (user) => {
+            this.onUserLogin(user);
+        });
+        
+        document.addEventListener('auth:logout', () => {
+            this.onUserLogout();
+        });
+
+        // Verificar estado inicial de autenticación
+        this.checkInitialAuthState();
+    }
+
+    // Verificar estado inicial de autenticación
+    checkInitialAuthState() {
+        try {
+            this.currentUser = window.auth && window.auth.getCurrentUser ? window.auth.getCurrentUser() : null;
+            if (this.currentUser) {
+                console.log('✅ Usuario detectado:', this.currentUser.email);
+                this.updateCartUI();
+            }
+        } catch (e) {
+            console.log('Error verificando autenticación inicial:', e);
+        }
     }
 
     // Manejar inicio de sesión de usuario
-    async onUserLogin() {
+    async onUserLogin(user) {
+        this.currentUser = user;
+        console.log('✅ Usuario conectado:', user.email);
+        
         try {
             // Fusionar carrito de invitado con el del usuario
             await this.cartService.mergeGuestCart();
             // Actualizar la UI
             this.updateCartUI();
-            this.showNotification('Panier synchronisé avec votre compte');
+            this.showNotification('Panier synchronisé avec votre compte', 'success');
         } catch (error) {
             console.error('Error al sincronizar carrito:', error);
             this.showNotification('Erreur lors de la synchronisation du panier', 'error');
@@ -44,291 +74,334 @@ class ShoppingCartUI {
 
     // Manejar cierre de sesión
     onUserLogout() {
+        this.currentUser = null;
+        console.log('✅ Usuario desconectado');
         this.updateCartUI();
-    }
-
-    // Añadir ítem al carrito
-    async addItem(product, quantity = 1, size = null, color = null) {
-        try {
-            const options = {};
-            if (size) options.size = size;
-            if (color) options.color = color;
-            
-            await this.cartService.addItem(product, quantity, options);
-            this.updateCartUI();
-            this.showNotification('Produit ajouté au panier');
-            return true;
-        } catch (error) {
-            console.error('Error al añadir al carrito:', error);
-            this.showNotification('Erreur lors de l\'ajout au panier', 'error');
-            return false;
-        }
-    }
-
-    // Actualizar cantidad de un ítem
-    async updateQuantity(index, newQuantity) {
-        try {
-            const item = this.cartService.cart[index];
-            if (!item) return;
-            
-            await this.cartService.updateQuantity(item.id, newQuantity, item.options);
-            this.updateCartUI();
-        } catch (error) {
-            console.error('Error al actualizar cantidad:', error);
-            this.showNotification('Erreur lors de la mise à jour de la quantité', 'error');
-        }
-    }
-
-    // Eliminar ítem del carrito
-    async removeItem(index) {
-        try {
-            const item = this.cartService.cart[index];
-            if (!item) return;
-            
-            await this.cartService.removeItem(item.id, item.options);
-            this.updateCartUI();
-            this.showNotification('Produit supprimé du panier');
-        } catch (error) {
-            console.error('Error al eliminar del carrito:', error);
-            this.showNotification('Erreur lors de la suppression du produit', 'error');
-        }
-    }
-
-    // Mostrar notificación
-    showNotification(message, type = 'success') {
-        const notification = document.createElement('div');
-        notification.className = `notification ${type}`;
-        notification.textContent = message;
-        
-        document.body.appendChild(notification);
-        
-        setTimeout(() => {
-            notification.classList.add('show');
-            setTimeout(() => {
-                notification.classList.remove('show');
-                setTimeout(() => {
-                    notification.remove();
-                }, 300);
-            }, 3000);
-        }, 100);
+        this.showNotification('Vous êtes déconnecté', 'info');
     }
 
     // Actualizar la interfaz del carrito
     updateCartUI() {
-        const cartDropdown = document.getElementById('cart-dropdown');
-        const cartItemsContainer = document.getElementById('cart-items');
+        const cart = this.cartService.cart;
+        const cartCount = document.querySelector('.cart-count');
+        const cartCountHeader = document.querySelector('.cart-count-header');
+        const cartItems = document.getElementById('cart-items');
         const cartTotal = document.getElementById('cart-total');
-        const cartCountElements = document.querySelectorAll('.cart-count');
+        const checkoutBtn = document.getElementById('checkout-btn');
+
+        // Actualizar contador
+        const itemCount = this.cartService.getItemCount();
+        if (cartCount) cartCount.textContent = itemCount;
+        if (cartCountHeader) cartCountHeader.textContent = itemCount;
+
+        // Actualizar total
+        const total = this.cartService.getTotal();
+        if (cartTotal) cartTotal.textContent = `${total.toFixed(2)} €`;
+
+        // Actualizar items del carrito
+        if (cartItems) {
+            this.renderCartItems(cart);
+        }
+
+        // Actualizar estado del botón de checkout
+        if (checkoutBtn) {
+            checkoutBtn.disabled = cart.length === 0;
+            if (cart.length === 0) {
+                checkoutBtn.textContent = 'Panier vide';
+            } else {
+                checkoutBtn.textContent = 'Finaliser la commande';
+            }
+        }
+
+        // Mostrar información del usuario en el carrito
+        this.updateUserInfo();
+    }
+
+    // Actualizar información del usuario en el carrito
+    updateUserInfo() {
+        const userSection = document.querySelector('.cart-user-info');
+        
+        if (this.currentUser) {
+            if (!userSection) {
+                this.createUserInfoSection();
+            }
+            this.updateUserInfoContent();
+        } else {
+            if (userSection) {
+                userSection.remove();
+            }
+        }
+    }
+
+    // Crear sección de información del usuario
+    createUserInfoSection() {
+        const cartDropdown = document.getElementById('cart-dropdown');
+        const cartHeader = cartDropdown.querySelector('.cart-header');
+        
+        const userSection = document.createElement('div');
+        userSection.className = 'cart-user-info';
+        userSection.innerHTML = `
+            <div class="user-info-content">
+                <div class="user-avatar-small">
+                    <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=40&h=40&fit=crop&crop=face" alt="Avatar">
+                </div>
+                <div class="user-details">
+                    <div class="user-name">${this.currentUser.name || 'Usuario'}</div>
+                    <div class="user-email">${this.currentUser.email}</div>
+                </div>
+            </div>
+        `;
+        
+        cartHeader.appendChild(userSection);
+    }
+
+    // Actualizar contenido de información del usuario
+    updateUserInfoContent() {
+        const userSection = document.querySelector('.cart-user-info');
+        if (userSection && this.currentUser) {
+            const userName = userSection.querySelector('.user-name');
+            const userEmail = userSection.querySelector('.user-email');
+            
+            if (userName) userName.textContent = this.currentUser.name || 'Usuario';
+            if (userEmail) userEmail.textContent = this.currentUser.email;
+        }
+    }
+
+    // Renderizar items del carrito
+    renderCartItems(cart) {
+        const cartItemsContainer = document.getElementById('cart-items');
         
         if (!cartItemsContainer) return;
 
-        const cart = this.cartService ? this.cartService.cart : [];
-        const itemCount = this.cartService ? this.cartService.getItemCount() : 0;
-        const total = this.cartService ? this.cartService.getTotal() : 0;
-
-        // Actualizar contador del carrito
-        cartCountElements.forEach(el => {
-            el.textContent = itemCount;
-            el.style.display = itemCount > 0 ? 'flex' : 'none';
-        });
-
-        // Actualizar lista de productos
         if (cart.length === 0) {
-            cartItemsContainer.innerHTML = '<div class="empty-cart">Votre panier est vide</div>';
-            if (cartTotal) cartTotal.textContent = '0.00 €';
+            cartItemsContainer.innerHTML = `
+                <div class="cart-empty">
+                    <i class="fas fa-shopping-cart"></i>
+                    <p>Votre panier est vide</p>
+                    <a href="/pages/shop/merch.html" class="btn-secondary">Commencer vos achats</a>
+                </div>
+            `;
             return;
         }
 
-        cartItemsContainer.innerHTML = cart.map((item, index) => {
-            // Construir opciones del producto (tamaño, color, etc.)
-            const optionsHtml = [];
-            if (item.options) {
-                if (item.options.size) {
-                    optionsHtml.push(`<div class="cart-item-option">Taille: ${item.options.size}</div>`);
-                }
-                if (item.options.color) {
-                    optionsHtml.push(`<div class="cart-item-option">Couleur: ${item.options.color}</div>`);
-                }
-            }
-
-            return `
-            <div class="cart-item" data-item-id="${item.id}" data-options='${JSON.stringify(item.options || {})}'>
-                <img src="${item.image}" alt="${item.name}" class="cart-item-image" loading="lazy">
+        cartItemsContainer.innerHTML = cart.map(item => `
+            <div class="cart-item" data-item-id="${item.id}">
+                <div class="cart-item-image">
+                    <img src="${item.image || '/assets/images/default-product.png'}" alt="${item.name}">
+                </div>
                 <div class="cart-item-details">
-                    <div class="cart-item-name">${item.name}</div>
-                    ${optionsHtml.join('')}
-                    <div class="cart-item-quantity">
-                        <button class="quantity-btn" data-index="${index}" data-action="decrease">-</button>
-                        <span>${item.quantity}</span>
-                        <button class="quantity-btn" data-index="${index}" data-action="increase">+</button>
+                    <h4>${item.name}</h4>
+                    <p class="cart-item-type">${item.type || 'Produit'}</p>
+                    ${item.options ? this.renderItemOptions(item.options) : ''}
+                    <div class="cart-item-price">
+                        <span class="price">${item.price.toFixed(2)} €</span>
+                        <span class="quantity">× ${item.quantity}</span>
                     </div>
                 </div>
-                <div class="cart-item-price">
-                    ${(item.price * item.quantity).toFixed(2)} €
-                    <button class="remove-item" data-index="${index}" aria-label="Eliminar">
-                        <i class="fas fa-times"></i>
+                <div class="cart-item-actions">
+                    <div class="quantity-controls">
+                        <button class="btn-quantity decrease" data-item-id="${item.id}">-</button>
+                        <span class="quantity-display">${item.quantity}</span>
+                        <button class="btn-quantity increase" data-item-id="${item.id}">+</button>
+                    </div>
+                    <button class="btn-remove" data-item-id="${item.id}">
+                        <i class="fas fa-trash"></i>
                     </button>
                 </div>
-            </div>`;
-        }).join('');
+            </div>
+        `).join('');
 
-        // Actualizar total
-        if (cartTotal) {
-            cartTotal.textContent = `${total.toFixed(2)} €`;
-        }
+        // Añadir event listeners a los botones
+        this.attachItemEventListeners();
+    }
 
-        // Event listeners para botones de cantidad
-        document.querySelectorAll('.quantity-btn').forEach(button => {
-            button.addEventListener('click', (e) => {
-                const btn = e.target.closest('.quantity-btn');
-                const index = parseInt(btn.dataset.index);
-                const action = btn.dataset.action;
-                const item = cart[index];
+    // Renderizar opciones del item
+    renderItemOptions(options) {
+        if (!options || Object.keys(options).length === 0) return '';
+        
+        return `
+            <div class="item-options">
+                ${Object.entries(options).map(([key, value]) => 
+                    `<span class="option">${key}: ${value}</span>`
+                ).join('')}
+            </div>
+        `;
+    }
+
+    // Adjuntar event listeners a los items
+    attachItemEventListeners() {
+        // Botones de cantidad
+        document.querySelectorAll('.btn-quantity').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                const itemId = btn.dataset.itemId;
+                const isIncrease = btn.classList.contains('increase');
+                const item = this.cartService.cart.find(i => i.id === itemId);
                 
-                if (!item) return;
-                
-                const currentQty = item.quantity;
-                const newQty = action === 'increase' ? currentQty + 1 : currentQty - 1;
-                
-                this.updateQuantity(index, newQty);
+                if (item) {
+                    const newQuantity = isIncrease ? item.quantity + 1 : item.quantity - 1;
+                    this.cartService.updateQuantity(itemId, newQuantity, item.options || {});
+                }
             });
         });
 
-        // Event listeners para botones de eliminar
-        document.querySelectorAll('.remove-item').forEach(button => {
-            button.addEventListener('click', (e) => {
-                const index = parseInt(e.target.closest('.remove-item').dataset.index);
-                this.removeItem(index);
+        // Botones de eliminar
+        document.querySelectorAll('.btn-remove').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                const itemId = btn.dataset.itemId;
+                const item = this.cartService.cart.find(i => i.id === itemId);
+                
+                if (item && confirm('Êtes-vous sûr de vouloir supprimer cet article ?')) {
+                    this.cartService.removeItem(itemId, item.options || {});
+                }
             });
         });
     }
 
-    // Manejar el proceso de pago
+    // Manejar checkout
     async handleCheckout() {
-        try {
-            if (this.cartService.cart.length === 0) {
-                this.showNotification('Votre panier est vide', 'error');
-                return;
-            }
+        if (this.cartService.cart.length === 0) {
+            this.showNotification('Votre panier est vide', 'warning');
+            return;
+        }
 
+        if (!this.currentUser) {
+            this.showNotification('Veuillez vous connecter pour finaliser votre commande', 'warning');
+            // Redirigir al login
+            setTimeout(() => {
+                window.location.href = '/pages/auth/login.html';
+            }, 2000);
+            return;
+        }
+
+        try {
             // Redirigir a la página de checkout
-            window.location.href = 'cart.html';
-            
+            window.location.href = '/pages/shop/checkout.html';
         } catch (error) {
             console.error('Error en checkout:', error);
-            this.showNotification('Erreur lors du paiement', 'error');
+            this.showNotification('Erreur lors du traitement de la commande', 'error');
         }
     }
 
-    // Mostrar notificaciones
-    showNotification(message, type = 'success') {
+    // Mostrar notificación
+    showNotification(message, type = 'info') {
         // Crear elemento de notificación
         const notification = document.createElement('div');
-        notification.className = `notification ${type}`;
-        notification.textContent = message;
-        notification.style.cssText = `
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            padding: 15px 20px;
-            border-radius: 10px;
-            color: white;
-            font-weight: 600;
-            z-index: 1000;
-            transform: translateX(100%);
-            transition: transform 0.3s ease;
+        notification.className = `notification notification-${type}`;
+        notification.innerHTML = `
+            <i class="fas fa-${this.getNotificationIcon(type)}"></i>
+            <span>${message}</span>
+            <button class="notification-close">×</button>
         `;
-        
-        // Colores según tipo
-        const colors = {
-            success: 'linear-gradient(135deg, #10b981, #059669)',
-            error: 'linear-gradient(135deg, #ef4444, #dc2626)',
-            info: 'linear-gradient(135deg, #3b82f6, #2563eb)'
-        };
-        
-        notification.style.background = colors[type] || colors.success;
-        
+
+        // Añadir al DOM
         document.body.appendChild(notification);
-        
-        // Mostrar animación
+
+        // Mostrar con animación
+        setTimeout(() => notification.classList.add('show'), 100);
+
+        // Cerrar automáticamente
         setTimeout(() => {
-            notification.style.transform = 'translateX(0)';
-        }, 100);
-        
-        // Ocultar después de 3 segundos
-        setTimeout(() => {
-            notification.style.transform = 'translateX(100%)';
-            setTimeout(() => {
-                if (document.body.contains(notification)) {
-                    document.body.removeChild(notification);
-                }
-            }, 300);
+            notification.classList.remove('show');
+            setTimeout(() => notification.remove(), 300);
         }, 3000);
+
+        // Event listener para cerrar manualmente
+        notification.querySelector('.notification-close').addEventListener('click', () => {
+            notification.classList.remove('show');
+            setTimeout(() => notification.remove(), 300);
+        });
+    }
+
+    // Obtener ícono para notificación
+    getNotificationIcon(type) {
+        const icons = {
+            success: 'check-circle',
+            error: 'exclamation-circle',
+            warning: 'exclamation-triangle',
+            info: 'info-circle'
+        };
+        return icons[type] || 'info-circle';
     }
 }
 
-// Inicializar la UI del carrito cuando el DOM esté listo
+// Crear instancia global
 document.addEventListener('DOMContentLoaded', () => {
-    // Crear instancia global del carrito
-    if (!window.cart) {
-        window.cart = new ShoppingCartUI();
-        console.log('ShoppingCartUI initialized');
-    }
-
-    // Verificar que cartService esté disponible
-    if (!window.cartService) {
-        console.error('cartService not found. Make sure cartService.js is loaded before cart.js');
-        return;
-    }
-
-    // Alternar visibilidad del carrito
-    const cartIcon = document.getElementById('cart-icon');
-    const cartDropdown = document.getElementById('cart-dropdown');
+    console.log('🛒 ShoppingCartUI: Inicializando...');
     
-    if (cartIcon && cartDropdown) {
-        cartIcon.addEventListener('click', (e) => {
-            e.preventDefault();
-            e.stopPropagation();
-            cartDropdown.classList.toggle('show');
-        });
-    } else {
-        console.log('Cart elements not found - this is normal on checkout page:', { cartIcon, cartDropdown });
-    }
-
-    // Cerrar dropdown al hacer clic fuera
-    document.addEventListener('click', (e) => {
-        if (cartDropdown && cartDropdown.classList.contains('show')) {
-            if (!cartDropdown.contains(e.target) && !cartIcon.contains(e.target)) {
-                cartDropdown.classList.remove('show');
+    // Esperar a que CartService esté listo
+    function initializeCartUI() {
+        try {
+            if (!window.cartService) {
+                console.log('🛒 ShoppingCartUI: Esperando CartService...');
+                setTimeout(initializeCartUI, 100);
+                return;
             }
-        }
-    });
-
-    // Sincronizar carrito si el usuario acaba de iniciar sesión
-    if (window.auth && window.auth.isAuthenticated()) {
-        window.cartService.loadCartFromServer().then(() => {
-            window.cart.updateCartUI();
-        });
-    } else {
-        // Actualizar UI del carrito incluso si no está autenticado
-        window.cart.updateCartUI();
-    }
-
-    // Función de prueba para añadir productos (solo para desarrollo)
-    window.testAddToCart = async function(productId = 1) {
-        if (window.productsService) {
-            const product = window.productsService.getProductById(productId);
-            if (product && window.cart) {
-                await window.cart.addItem(product, 1, 'M', 'Negro');
-                console.log(`Added ${product.name} to cart`);
+            
+            if (window.cartUI) {
+                console.log('🛒 ShoppingCartUI: Ya existe instancia');
+                return;
+            }
+            
+            window.cartUI = new ShoppingCartUI();
+            console.log('✅ ShoppingCartUI: Instancia creada correctamente');
+            
+            // Configurar event listener del carrito
+            const cartIcon = document.getElementById('cart-icon');
+            if (cartIcon) {
+                cartIcon.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    const cartDropdown = document.getElementById('cart-dropdown');
+                    if (cartDropdown) {
+                        cartDropdown.classList.toggle('show');
+                        console.log('🛒 Carrito dropdown toggled');
+                    }
+                });
+                console.log('✅ ShoppingCartUI: Event listener configurado');
             } else {
-                console.error('Product or cart not found');
+                console.error('❌ ShoppingCartUI: No se encontró cart-icon');
             }
-        } else {
-            console.error('Products service not initialized');
+            
+        } catch (error) {
+            console.error('❌ ShoppingCartUI: Error en inicialización:', error);
         }
-    };
-
-    // Exponer función de prueba en la consola
-    console.log('Cart initialized. Use testAddToCart(productId) to add a test product (1-4).');
+    }
+    
+    // Inicializar después de un pequeño retraso para asegurar que el DOM esté listo
+    setTimeout(initializeCartUI, 200);
 });
+
+// Función global para añadir productos de prueba
+window.addToCartTest = async function(productId = 1) {
+    console.log('🛒 Añadiendo producto de prueba:', productId);
+    
+    if (!window.cartService) {
+        console.error('❌ CartService no disponible');
+        return false;
+    }
+    
+    const testProducts = [
+        { id: 1, name: 'T-shirt EB Racing', price: 29.99, image: '/assets/images/tshirt.jpg' },
+        { id: 2, name: 'Casquette EB Racing', price: 19.99, image: '/assets/images/cap.jpg' },
+        { id: 3, name: 'Veste EB Racing', price: 89.99, image: '/assets/images/jacket.jpg' },
+        { id: 4, name: 'Mug EB Racing', price: 12.99, image: '/assets/images/mug.jpg' }
+    ];
+    
+    const product = testProducts[productId - 1] || testProducts[0];
+    
+    try {
+        await window.cartService.addItem({
+            ...product,
+            type: 'merchandise'
+        });
+        
+        console.log('✅ Producto añadido:', product.name);
+        return true;
+    } catch (error) {
+        console.error('❌ Error añadiendo producto:', error);
+        return false;
+    }
+};
+
+// Exponer función para debugging
+console.log('🛒 Carrito listo. Usa addToCartTest(1-4) para añadir productos de prueba');
