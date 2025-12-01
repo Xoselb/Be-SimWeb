@@ -487,4 +487,4 @@
     .toggle-switch input:checked + .slider:before {
         transform: translateX(25px);
     }
-}  
+}
