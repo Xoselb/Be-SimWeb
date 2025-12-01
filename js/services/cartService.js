@@ -2,237 +2,288 @@ class CartService {
     constructor() {
         this.baseUrl = '/api/cart';
         this.cart = [];
+        this.currentUser = null;
         this.loadCartFromStorage();
+        this.setupAuthListener();
     }
 
-    // Cargar carrito desde localStorage
+    // Configurar listener para cambios de autenticación
+    setupAuthListener() {
+        document.addEventListener('auth:login', (user) => {
+            this.currentUser = user;
+            this.loadCartFromServer();
+        });
+        
+        document.addEventListener('auth:logout', () => {
+            this.currentUser = null;
+            this.cart = [];
+            this.loadCartFromStorage();
+        });
+    }
+
+    // Obtener usuario actual
+    getCurrentUser() {
+        if (!this.currentUser) {
+            try {
+                this.currentUser = window.auth && window.auth.getCurrentUser ? window.auth.getCurrentUser() : null;
+            } catch (e) {
+                console.log('Error obteniendo usuario:', e);
+            }
+        }
+        return this.currentUser;
+    }
+
+    // Cargar carrito desde localStorage (para invitados)
     loadCartFromStorage() {
-        let user = null;
-        try {
-            user = window.auth && window.auth.getCurrentUser ? window.auth.getCurrentUser() : null;
-        } catch (e) {
-            console.log('Error obteniendo usuario:', e);
+        const user = this.getCurrentUser();
+        
+        if (!user) {
+            // Carrito de invitado
+            const savedCart = localStorage.getItem('guest_cart');
+            this.cart = savedCart ? JSON.parse(savedCart) : [];
+        } else {
+            // Si hay usuario, cargar desde servidor
+            this.loadCartFromServer();
         }
         
-        const cartKey = user ? `cart_${user.id}` : 'guest_cart';
-        const savedCart = localStorage.getItem(cartKey);
-        this.cart = savedCart ? JSON.parse(savedCart) : [];
         return this.cart;
     }
 
-    // Guardar carrito en localStorage
-    saveCartToStorage() {
-        let user = null;
+    // Cargar carrito desde el servidor (para usuarios autenticados)
+    async loadCartFromServer() {
+        const user = this.getCurrentUser();
+        if (!user) return;
+
         try {
-            user = window.auth && window.auth.getCurrentUser ? window.auth.getCurrentUser() : null;
-        } catch (e) {
-            console.log('Error obteniendo usuario:', e);
-        }
-        
-        const cartKey = user ? `cart_${user.id}` : 'guest_cart';
-        localStorage.setItem(cartKey, JSON.stringify(this.cart));
-        
-        // Si el usuario está autenticado, sincronizar con el servidor
-        if (user) {
-            this.syncCartWithServer();
+            // Usar localStorage en lugar de API
+            const savedCart = localStorage.getItem(`cart_${user.id}`);
+            this.cart = savedCart ? JSON.parse(savedCart) : [];
+            console.log('✅ Carrito cargado desde localStorage:', this.cart);
+            
+            // Notificar a la UI
+            this.notifyCartUpdate();
+        } catch (error) {
+            console.error('❌ Error cargando carrito:', error);
+            this.cart = [];
         }
     }
 
     // Sincronizar carrito con el servidor
     async syncCartWithServer() {
-        try {
-            const user = window.auth.getCurrentUser();
-            if (!user) return;
+        const user = this.getCurrentUser();
+        if (!user) return;
 
+        try {
             const response = await fetch(`${this.baseUrl}/sync`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${user.token}`
+                    'Authorization': `Bearer ${user.token || 'guest-token'}`
                 },
-                body: JSON.stringify({ items: this.cart })
+                body: JSON.stringify({
+                    userId: user.id,
+                    items: this.cart
+                })
             });
 
-            if (!response.ok) {
-                throw new Error('Error al sincronizar el carrito');
+            if (response.ok) {
+                console.log('✅ Carrito sincronizado con servidor');
+            } else {
+                console.error('❌ Error sincronizando carrito');
             }
-
-            const data = await response.json();
-            return data;
         } catch (error) {
-            console.error('Error al sincronizar el carrito:', error);
-            // Guardar en cola para intentar más tarde
-            this.queueCartForSync();
-            throw error;
+            console.error('❌ Error sincronizando con servidor:', error);
         }
     }
 
-    // Guardar en cola para sincronización posterior
-    queueCartForSync() {
-        const pendingSync = JSON.parse(localStorage.getItem('pending_cart_sync') || '[]');
-        pendingSync.push({
-            timestamp: new Date().toISOString(),
-            userId: window.auth.getCurrentUser()?.id,
-            items: [...this.cart]
+    // Guardar carrito
+    saveCartToStorage() {
+        const user = this.getCurrentUser();
+        
+        if (!user) {
+            // Guardar carrito de invitado
+            localStorage.setItem('guest_cart', JSON.stringify(this.cart));
+        } else {
+            // Guardar en localStorage como backup y sincronizar con servidor
+            localStorage.setItem(`cart_${user.id}`, JSON.stringify(this.cart));
+            this.syncCartWithServer();
+        }
+        
+        // Notificar a la UI
+        this.notifyCartUpdate();
+    }
+
+    // Notificar cambios en el carrito
+    notifyCartUpdate() {
+        const event = new CustomEvent('cart:updated', {
+            detail: {
+                cart: this.cart,
+                total: this.getTotal(),
+                count: this.getItemCount()
+            }
         });
-        localStorage.setItem('pending_cart_sync', JSON.stringify(pendingSync));
+        document.dispatchEvent(event);
     }
 
-    // Procesar la cola de sincronización
-    async processSyncQueue() {
-        const pendingSync = JSON.parse(localStorage.getItem('pending_cart_sync') || '[]');
-        if (pendingSync.length === 0) return;
-
-        const user = window.auth.getCurrentUser();
-        if (!user) return;
-
-        const successfulSyncs = [];
-        
-        for (const sync of pendingSync) {
-            try {
-                await this.syncCartWithServer();
-                successfulSyncs.push(sync.timestamp);
-            } catch (error) {
-                console.error(`Error sincronizando carrito (${sync.timestamp}):`, error);
-            }
-        }
-
-        // Eliminar solo las sincronizaciones exitosas
-        const updatedQueue = pendingSync.filter(sync => 
-            !successfulSyncs.includes(sync.timestamp)
-        );
-        
-        localStorage.setItem('pending_cart_sync', JSON.stringify(updatedQueue));
-    }
-
-    // Cargar carrito del servidor
-    async loadCartFromServer() {
-        try {
-            const user = window.auth.getCurrentUser();
-            if (!user) return this.loadCartFromStorage();
-
-            const response = await fetch(`${this.baseUrl}`, {
-                headers: {
-                    'Authorization': `Bearer ${user.token}`
-                }
-            });
-
-            if (!response.ok) {
-                throw new Error('Error al cargar el carrito');
-            }
-
-            const data = await response.json();
-            this.cart = data.items || [];
-            this.saveCartToStorage();
-            return this.cart;
-        } catch (error) {
-            console.error('Error al cargar el carrito:', error);
-            return this.loadCartFromStorage();
-        }
-    }
-
-    // Añadir producto al carrito
-    async addItem(product, quantity = 1, options = {}) {
-        const existingItemIndex = this.cart.findIndex(item => 
-            item.id === product.id && 
-            JSON.stringify(item.options) === JSON.stringify(options)
+    // Añadir ítem al carrito
+    async addItem(item) {
+        const existingItem = this.cart.find(cartItem => 
+            cartItem.id === item.id && 
+            cartItem.type === item.type &&
+            JSON.stringify(cartItem.options) === JSON.stringify(item.options)
         );
 
-        if (existingItemIndex >= 0) {
-            this.cart[existingItemIndex].quantity += quantity;
+        if (existingItem) {
+            existingItem.quantity += item.quantity || 1;
         } else {
             this.cart.push({
-                ...product,
-                quantity,
-                options,
+                ...item,
+                quantity: item.quantity || 1,
                 addedAt: new Date().toISOString()
             });
         }
 
         this.saveCartToStorage();
-        return this.cart;
+        console.log('✅ Ítem añadido al carrito:', item);
     }
 
-    // Actualizar cantidad de un producto
-    async updateQuantity(itemId, newQuantity, options = {}) {
-        const itemIndex = this.cart.findIndex(item => 
-            item.id === itemId && 
-            JSON.stringify(item.options) === JSON.stringify(options)
+    // Eliminar ítem del carrito
+    removeItem(itemId, itemOptions = {}) {
+        this.cart = this.cart.filter(cartItem => 
+            !(cartItem.id === itemId && 
+              JSON.stringify(cartItem.options || {}) === JSON.stringify(itemOptions))
         );
+        
+        this.saveCartToStorage();
+        console.log('✅ Ítem eliminado del carrito');
+    }
 
-        if (itemIndex >= 0) {
-            if (newQuantity <= 0) {
-                this.cart.splice(itemIndex, 1);
+    // Actualizar cantidad de ítem
+    updateQuantity(itemId, quantity, itemOptions = {}) {
+        const item = this.cart.find(cartItem => 
+            cartItem.id === itemId && 
+            JSON.stringify(cartItem.options || {}) === JSON.stringify(itemOptions)
+        );
+        
+        if (item) {
+            if (quantity <= 0) {
+                this.removeItem(itemId, itemOptions);
             } else {
-                this.cart[itemIndex].quantity = newQuantity;
+                item.quantity = quantity;
+                this.saveCartToStorage();
             }
-            this.saveCartToStorage();
         }
-
-        return this.cart;
     }
 
-    // Eliminar producto del carrito
-    async removeItem(itemId, options = {}) {
-        this.cart = this.cart.filter(item => 
-            !(item.id === itemId && 
-              JSON.stringify(item.options) === JSON.stringify(options))
-        );
-        this.saveCartToStorage();
-        return this.cart;
-    }
-
-    // Vaciar el carrito
-    async clearCart() {
-        this.cart = [];
-        this.saveCartToStorage();
-        return this.cart;
-    }
-
-    // Obtener el total del carrito
+    // Obtener total del carrito
     getTotal() {
         return this.cart.reduce((total, item) => {
             return total + (item.price * item.quantity);
         }, 0);
     }
 
-    // Obtener la cantidad de ítems en el carrito
+    // Obtener cantidad de ítems
     getItemCount() {
         return this.cart.reduce((count, item) => count + item.quantity, 0);
     }
 
-    // Fusionar carrito de invitado con el del usuario al hacer login
+    // Limpiar carrito
+    clearCart() {
+        this.cart = [];
+        this.saveCartToStorage();
+        console.log('✅ Carrito vaciado');
+    }
+
+    // Fusionar carrito de invitado con el del usuario
     async mergeGuestCart() {
-        const user = window.auth.getCurrentUser();
+        const user = this.getCurrentUser();
         if (!user) return;
 
-        const guestCart = JSON.parse(localStorage.getItem('guest_cart') || '[]');
-        if (guestCart.length === 0) return;
+        try {
+            const guestCart = localStorage.getItem('guest_cart');
+            const guestItems = guestCart ? JSON.parse(guestCart) : [];
 
-        // Cargar carrito actual del usuario
-        await this.loadCartFromServer();
+            if (guestItems.length > 0) {
+                // Añadir ítems del carrito de invitado al carrito actual
+                guestItems.forEach(item => {
+                    this.addItem(item);
+                });
 
-        // Fusionar ítems del carrito de invitado
-        for (const guestItem of guestCart) {
-            await this.addItem(guestItem, guestItem.quantity, guestItem.options);
+                // Limpiar carrito de invitado
+                localStorage.removeItem('guest_cart');
+                
+                console.log('✅ Carrito de invitado fusionado');
+            }
+        } catch (error) {
+            console.error('❌ Error fusionando carrito de invitado:', error);
         }
+    }
 
-        // Limpiar carrito de invitado
-        localStorage.removeItem('guest_cart');
+    // Obtener carrito para checkout
+    getCheckoutData() {
+        const user = this.getCurrentUser();
         
-        // Sincronizar con el servidor
-        await this.syncCartWithServer();
-        
-        return this.cart;
+        return {
+            userId: user ? user.id : null,
+            items: this.cart,
+            total: this.getTotal(),
+            itemCount: this.getItemCount(),
+            timestamp: new Date().toISOString()
+        };
+    }
+
+    // Procesar checkout
+    async processCheckout(checkoutData) {
+        try {
+            const user = this.getCurrentUser();
+            const response = await fetch(`${this.baseUrl}/checkout`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${user ? user.token : 'guest-token'}`
+                },
+                body: JSON.stringify({
+                    ...checkoutData,
+                    ...this.getCheckoutData()
+                })
+            });
+
+            if (response.ok) {
+                const result = await response.json();
+                
+                // Limpiar carrito después de checkout exitoso
+                this.clearCart();
+                
+                console.log('✅ Checkout procesado:', result);
+                return result;
+            } else {
+                throw new Error('Error procesando checkout');
+            }
+        } catch (error) {
+            console.error('❌ Error en checkout:', error);
+            throw error;
+        }
     }
 }
 
 // Crear instancia global
 document.addEventListener('DOMContentLoaded', () => {
-    window.cartService = new CartService();
+    console.log('🛒 CartService: Inicializando...');
     
-    // Si el usuario está autenticado, cargar su carrito del servidor
-    if (window.auth.isAuthenticated()) {
-        window.cartService.loadCartFromServer();
+    try {
+        if (window.cartService) {
+            console.log('🛒 CartService: Ya existe instancia');
+            return;
+        }
+        
+        window.cartService = new CartService();
+        console.log('✅ CartService: Instancia creada correctamente');
+        console.log('🛒 CartService: Items iniciales:', window.cartService.cart.length);
+        
+        // Disparar evento de inicialización
+        document.dispatchEvent(new CustomEvent('cart:service-ready'));
+        
+    } catch (error) {
+        console.error('❌ CartService: Error en inicialización:', error);
     }
 });
