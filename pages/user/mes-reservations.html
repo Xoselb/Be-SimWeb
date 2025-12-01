@@ -13,7 +13,9 @@
     <link rel="icon" href="/assets/images/EB.png" type="image/png">
     <title>Mes Réservations - EB Simracing</title>
     
-    <link rel="stylesheet" href="/css/styles.css"> <link rel="stylesheet" href="/css/user/reservations.css"> <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/assets/styles/all.min.css" 
+    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="/css/components/header-profile.css">
+    <link rel="stylesheet" href="/css/user/reservations.css"> <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/assets/styles/all.min.css" 
           integrity="sha512-Fo3rlrZj/k7ujTnHg4CGR2D7kSs0v4LLanw2qksYuMGFZpS56JtIel9w7l2S8779s2fFz10pC1J/9fW9e72Q==" 
           crossorigin="anonymous" referrerpolicy="no-referrer">
 </head>
@@ -37,11 +39,46 @@
                             <img src="/assets/images/default-avatar.png" alt="Avatar de l'utilisateur" id="userAvatar">
                             <i class="fas fa-chevron-down" aria-hidden="true"></i> </div>
                         <div class="user-dropdown" id="userDropdown" role="menu">
-                            <a href="../auth/perfil.html" class="active" role="menuitem"><i class="fas fa-user" aria-hidden="true"></i> Mon Profil</a>
-                            <a href="mes-reservations.html" aria-current="page" role="menuitem"><i class="fas fa-calendar-alt" aria-hidden="true"></i> Mes réservations</a>
-                            <a href="parametres.html" role="menuitem"><i class="fas fa-cog" aria-hidden="true"></i> Paramètres</a>
+                            <!-- Header del dropdown con info del usuario -->
+                            <div class="user-info-header">
+                                <div class="user-name">Usuario</div>
+                                <div class="user-email">user@example.com</div>
+                                <div class="user-status">Verificado</div>
+                            </div>
+                            
+                            <!-- Enlaces del menú -->
+                            <a href="../auth/perfil.html" role="menuitem">
+                                <i class="fas fa-user" aria-hidden="true"></i> 
+                                <span>Mon Profil</span>
+                            </a>
+                            <a href="mes-reservations.html" class="active" aria-current="page" role="menuitem">
+                                <i class="fas fa-calendar-alt" aria-hidden="true"></i> 
+                                <span>Mes Réservations</span>
+                                <span class="badge">Actuel</span>
+                            </a>
+                            <a href="../shop/cart.html" role="menuitem">
+                                <i class="fas fa-shopping-cart" aria-hidden="true"></i> 
+                                <span>Mon Panier</span>
+                            </a>
+                            <a href="../shop/merch.html" role="menuitem">
+                                <i class="fas fa-store" aria-hidden="true"></i> 
+                                <span>Boutique</span>
+                            </a>
+                            <a href="parametres.html" role="menuitem">
+                                <i class="fas fa-cog" aria-hidden="true"></i> 
+                                <span>Paramètres</span>
+                            </a>
+                            <a href="aide.html" role="menuitem">
+                                <i class="fas fa-question-circle" aria-hidden="true"></i> 
+                                <span>Aide & Support</span>
+                            </a>
+                            
                             <div class="dropdown-divider"></div>
-                            <a href="#" id="logoutBtn" role="menuitem"><i class="fas fa-sign-out-alt" aria-hidden="true"></i> Déconnexion</a>
+                            
+                            <a href="#" id="logoutBtn" role="menuitem">
+                                <i class="fas fa-sign-out-alt" aria-hidden="true"></i> 
+                                <span>Déconnexion</span>
+                            </a>
                         </div>
                     </li>
                     <li class="nav-login" id="navLogin">
@@ -131,8 +168,9 @@
         </div>
     </div>
 
-    <script src="/assets/scripts/auth.js"></script>
-    <script src="/assets/scripts/reservations.js"></script>
+    <script src="/js/auth/auth.js"></script>
+    <script src="/js/header.js"></script>
+    <script src="/js/user/reservations.js"></script>
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
@@ -297,7 +335,7 @@
     </footer>
 
     <!-- Sistema de seguridad -->
-    <script src="/assets/scripts/security.js"></script>
-    <script src="/assets/scripts/auth.js"></script>
+    <script src="/js/security.js"></script>
+    <script src="/js/auth/auth.js"></script>
 </body>
 </html>
