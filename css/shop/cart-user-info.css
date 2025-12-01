@@ -1,0 +1,205 @@
+/* Estilos para información del usuario en el carrito */
+
+.cart-user-info {
+    background: rgba(255, 242, 0, 0.05);
+    border: 1px solid rgba(255, 242, 0, 0.1);
+    border-radius: 8px;
+    padding: 12px;
+    margin: 10px 0;
+    animation: slideIn 0.3s ease;
+}
+
+.user-info-content {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.user-avatar-small {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 2px solid rgba(255, 242, 0, 0.3);
+    flex-shrink: 0;
+}
+
+.user-avatar-small img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.user-details {
+    flex: 1;
+    min-width: 0;
+}
+
+.user-name {
+    color: rgba(255, 255, 255, 0.95);
+    font-weight: 600;
+    font-size: 0.9rem;
+    margin-bottom: 2px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.user-email {
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 0.8rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* Animaciones */
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Estilos para notificaciones del carrito */
+.notification {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: linear-gradient(135deg, rgba(20, 20, 20, 0.95), rgba(10, 10, 10, 0.98));
+    border: 1px solid rgba(255, 242, 0, 0.2);
+    border-radius: 8px;
+    padding: 15px 20px;
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 0.9rem;
+    z-index: 10000;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8);
+    transform: translateX(100%);
+    opacity: 0;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.notification.show {
+    transform: translateX(0);
+    opacity: 1;
+}
+
+.notification-success {
+    border-color: rgba(40, 167, 69, 0.3);
+}
+
+.notification-success i {
+    color: #28a745;
+}
+
+.notification-error {
+    border-color: rgba(220, 53, 69, 0.3);
+}
+
+.notification-error i {
+    color: #dc3545;
+}
+
+.notification-warning {
+    border-color: rgba(255, 193, 7, 0.3);
+}
+
+.notification-warning i {
+    color: #ffc107;
+}
+
+.notification-info {
+    border-color: rgba(23, 162, 184, 0.3);
+}
+
+.notification-info i {
+    color: #17a2b8;
+}
+
+.notification-close {
+    background: none;
+    border: none;
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 1.2rem;
+    cursor: pointer;
+    padding: 0;
+    margin-left: auto;
+    transition: color 0.3s ease;
+}
+
+.notification-close:hover {
+    color: rgba(255, 255, 255, 0.8);
+}
+
+/* Estilos para carrito vacío mejorado */
+.cart-empty {
+    text-align: center;
+    padding: 40px 20px;
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.cart-empty i {
+    font-size: 3rem;
+    margin-bottom: 15px;
+    opacity: 0.5;
+}
+
+.cart-empty p {
+    font-size: 1.1rem;
+    margin-bottom: 20px;
+}
+
+.cart-empty .btn-secondary {
+    display: inline-block;
+    padding: 10px 20px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 6px;
+    color: rgba(255, 255, 255, 0.9);
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.cart-empty .btn-secondary:hover {
+    background: rgba(255, 255, 255, 0.15);
+    border-color: rgba(255, 255, 255, 0.3);
+    transform: translateY(-1px);
+}
+
+/* Responsive para información de usuario */
+@media (max-width: 768px) {
+    .cart-user-info {
+        margin: 8px 0;
+        padding: 10px;
+    }
+    
+    .user-info-content {
+        gap: 10px;
+    }
+    
+    .user-avatar-small {
+        width: 35px;
+        height: 35px;
+    }
+    
+    .user-name {
+        font-size: 0.85rem;
+    }
+    
+    .user-email {
+        font-size: 0.75rem;
+    }
+    
+    .notification {
+        right: 10px;
+        left: 10px;
+        top: 10px;
+    }
+}
