@@ -70,7 +70,8 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     
     // Validación del formulario
-    contactForm.addEventListener('submit', async function(e) {
+    if (contactForm) {
+        contactForm.addEventListener('submit', async function(e) {
         e.preventDefault();
         
         // Limpiar errores previos
@@ -113,6 +114,7 @@ document.addEventListener('DOMContentLoaded', function() {
             await submitContactForm();
         }
     });
+    } // Cierre del if (contactForm)
     
     // Función para mostrar mensajes de error
     function showError(element, message) {
