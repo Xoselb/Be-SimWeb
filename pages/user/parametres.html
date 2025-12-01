@@ -1,0 +1,744 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <!-- Security Headers -->
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    <meta http-equiv="X-Frame-Options" content="DENY">
+    <meta http-equiv="X-XSS-Protection" content="1; mode=block">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com; img-src 'self' data: https:; font-src 'self' https://cdnjs.cloudflare.com; connect-src 'self' http://localhost:3000;">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Gérez vos paramètres personnels et préférences avec EB Simracing.">
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    <link rel="icon" href="/assets/images/EB.png" type="image/png">
+    <title>Paramètres - EB Simracing</title>
+    
+    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="/css/components/header-profile.css">
+    <link rel="stylesheet" href="/css/user/perfil.css">
+    <link rel="stylesheet" href="/css/user/parametres.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <a href="/index.html"><img src="/img/EB RACING(Solo-White).png" alt="EB Racing" class="logo-img"></a>
+            </div>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="/index.html#inicio">Accueil</a></li>
+                    <li><a href="/index.html#servicios">Services</a></li>
+                    <li><a href="/pages/info/galerie.html">Galerie</a></li>
+                    <li><a href="/pages/shop/merch.html">Boutique</a></li>
+                    <li><a href="/pages/info/contacto.html">Contact</a></li>
+                    <li class="nav-user" id="navUser" style="display: none;">
+                        <div class="user-avatar" id="userMenuBtn">
+                            <img src="/img/user/EB_Default_Avatar.png" alt="Profil" id="userAvatar">
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="user-dropdown" id="userDropdown">
+                            <!-- Header del dropdown con info del usuario -->
+                            <div class="user-info-header">
+                                <div class="user-name">Usuario</div>
+                                <div class="user-email">user@example.com</div>
+                                <div class="user-status">Verificado</div>
+                            </div>
+                            
+                            <!-- Enlaces del menú -->
+                            <a href="/pages/user/perfil.html">
+                                <i class="fas fa-user"></i> 
+                                <span>Mon Profil</span>
+                            </a>
+                            <a href="/pages/user/mes-reservations.html">
+                                <i class="fas fa-calendar-alt"></i> 
+                                <span>Mes Réservations</span>
+                            </a>
+                            <a href="/pages/shop/cart.html">
+                                <i class="fas fa-shopping-cart"></i> 
+                                <span>Mon Panier</span>
+                            </a>
+                            <a href="/pages/shop/merch.html">
+                                <i class="fas fa-store"></i> 
+                                <span>Boutique</span>
+                            </a>
+                            <a href="/pages/user/parametres.html" class="active">
+                                <i class="fas fa-cog"></i> 
+                                <span>Paramètres</span>
+                                <span class="badge">Actuel</span>
+                            </a>
+                            <a href="/pages/user/aide.html">
+                                <i class="fas fa-question-circle"></i> 
+                                <span>Aide & Support</span>
+                            </a>
+                            
+                            <div class="dropdown-divider"></div>
+                            
+                            <a href="#" id="logoutBtn">
+                                <i class="fas fa-sign-out-alt"></i> 
+                                <span>Déconnexion</span>
+                            </a>
+                        </div>
+                    </li>
+                    <li class="nav-login" id="navLogin">
+                        <a href="/pages/auth/login.html" class="btn-login">Connexion</a>
+                    </li>
+                </ul>
+            </nav>
+            <div class="mobile-menu-btn">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </header>
+    
+    <section class="hero-section" aria-labelledby="page-title">
+        <div class="container">
+            <div class="hero-content">
+                <h1 id="page-title"><i class="fas fa-cog" aria-hidden="true"></i> PARAMÈTRES</h1>
+            </div>
+        </div>
+    </section>
+
+    <main class="main-content" id="main-content">
+        <div class="container">
+            <div class="settings-container">
+                <!-- Préférences de communication EB Simracing -->
+                <section class="settings-section">
+                    <h2><i class="fas fa-envelope"></i> Communications EB Simracing</h2>
+                    <div class="settings-grid">
+                        <div class="setting-item toggle-item">
+                            <label for="eb-newsletter">Newsletter EB Simracing</label>
+                            <div class="toggle-controls">
+                                <div class="toggle-switch">
+                                    <input type="checkbox" id="eb-newsletter" name="eb-newsletter" checked>
+                                    <span class="slider"></span>
+                                </div>
+                                <button type="button" class="toggle-btn toggle-btn-save" data-setting="eb-newsletter">Sauver</button>
+                                <span class="save-indicator" id="indicator-eb-newsletter">
+                                    <i class="fas fa-spinner fa-spin"></i> Sauvegarde...
+                                </span>
+                            </div>
+                        </div>
+                        <div class="setting-item toggle-item">
+                            <label for="eb-events">Notifications d'événements</label>
+                            <div class="toggle-controls">
+                                <div class="toggle-switch">
+                                    <input type="checkbox" id="eb-events" name="eb-events" checked>
+                                    <span class="slider"></span>
+                                </div>
+                                <button type="button" class="toggle-btn toggle-btn-save" data-setting="eb-events">Sauver</button>
+                                <span class="save-indicator" id="indicator-eb-events">
+                                    <i class="fas fa-spinner fa-spin"></i> Sauvegarde...
+                                </span>
+                            </div>
+                        </div>
+                        <div class="setting-item toggle-item">
+                            <label for="eb-promotions">Offres spéciales et promotions</label>
+                            <div class="toggle-controls">
+                                <div class="toggle-switch">
+                                    <input type="checkbox" id="eb-promotions" name="eb-promotions">
+                                    <span class="slider"></span>
+                                </div>
+                                <button type="button" class="toggle-btn toggle-btn-save" data-setting="eb-promotions">Sauver</button>
+                                <span class="save-indicator" id="indicator-eb-promotions">
+                                    <i class="fas fa-spinner fa-spin"></i> Sauvegarde...
+                                </span>
+                            </div>
+                        </div>
+                        <div class="setting-item toggle-item">
+                            <label for="eb-new-circuits">Nouveaux circuits et véhicules</label>
+                            <div class="toggle-controls">
+                                <div class="toggle-switch">
+                                    <input type="checkbox" id="eb-new-circuits" name="eb-new-circuits" checked>
+                                    <span class="slider"></span>
+                                </div>
+                                <button type="button" class="toggle-btn toggle-btn-save" data-setting="eb-new-circuits">Sauver</button>
+                                <span class="save-indicator" id="indicator-eb-new-circuits">
+                                    <i class="fas fa-spinner fa-spin"></i> Sauvegarde...
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Préférences de réservation -->
+                <section class="settings-section">
+                    <h2><i class="fas fa-calendar-check"></i> Réservations et sessions</h2>
+                    <div class="settings-grid">
+                        <div class="setting-item toggle-item">
+                            <label for="booking-reminders">Rappels de réservation</label>
+                            <div class="toggle-controls">
+                                <div class="toggle-switch">
+                                    <input type="checkbox" id="booking-reminders" name="booking-reminders" checked>
+                                    <span class="slider"></span>
+                                </div>
+                                <button type="button" class="toggle-btn toggle-btn-save" data-setting="booking-reminders">Sauver</button>
+                                <span class="save-indicator" id="indicator-booking-reminders">
+                                    <i class="fas fa-spinner fa-spin"></i> Sauvegarde...
+                                </span>
+                            </div>
+                        </div>
+                        <div class="setting-item toggle-item">
+                            <label for="booking-confirmations">Confirmations de réservation</label>
+                            <div class="toggle-controls">
+                                <div class="toggle-switch">
+                                    <input type="checkbox" id="booking-confirmations" name="booking-confirmations" checked>
+                                    <span class="slider"></span>
+                                </div>
+                                <button type="button" class="toggle-btn toggle-btn-save" data-setting="booking-confirmations">Sauver</button>
+                                <span class="save-indicator" id="indicator-booking-confirmations">
+                                    <i class="fas fa-spinner fa-spin"></i> Sauvegarde...
+                                </span>
+                            </div>
+                        </div>
+                        <div class="setting-item toggle-item">
+                            <label for="session-cancellations">Annulations de session</label>
+                            <div class="toggle-controls">
+                                <div class="toggle-switch">
+                                    <input type="checkbox" id="session-cancellations" name="session-cancellations" checked>
+                                    <span class="slider"></span>
+                                </div>
+                                <button type="button" class="toggle-btn toggle-btn-save" data-setting="session-cancellations">Sauver</button>
+                                <span class="save-indicator" id="indicator-session-cancellations">
+                                    <i class="fas fa-spinner fa-spin"></i> Sauvegarde...
+                                </span>
+                            </div>
+                        </div>
+                        <div class="setting-item toggle-item">
+                            <label for="payment-reminders">Rappels de paiement</label>
+                            <div class="toggle-controls">
+                                <div class="toggle-switch">
+                                    <input type="checkbox" id="payment-reminders" name="payment-reminders" checked>
+                                    <span class="slider"></span>
+                                </div>
+                                <button type="button" class="toggle-btn toggle-btn-save" data-setting="payment-reminders">Sauver</button>
+                                <span class="save-indicator" id="indicator-payment-reminders">
+                                    <i class="fas fa-spinner fa-spin"></i> Sauvegarde...
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Préférences de la communauté -->
+                <section class="settings-section">
+                    <h2><i class="fas fa-users"></i> Communauté EB Simracing</h2>
+                    <div class="settings-grid">
+                        <div class="setting-item toggle-item">
+                            <label for="community-updates">Mises à jour de la communauté</label>
+                            <div class="toggle-controls">
+                                <div class="toggle-switch">
+                                    <input type="checkbox" id="community-updates" name="community-updates" checked>
+                                    <span class="slider"></span>
+                                </div>
+                                <button type="button" class="toggle-btn toggle-btn-save" data-setting="community-updates">Sauver</button>
+                                <span class="save-indicator" id="indicator-community-updates">
+                                    <i class="fas fa-spinner fa-spin"></i> Sauvegarde...
+                                </span>
+                            </div>
+                        </div>
+                        <div class="setting-item toggle-item">
+                            <label for="tournament-invitations">Invitations aux tournois</label>
+                            <div class="toggle-controls">
+                                <div class="toggle-switch">
+                                    <input type="checkbox" id="tournament-invitations" name="tournament-invitations">
+                                    <span class="slider"></span>
+                                </div>
+                                <button type="button" class="toggle-btn toggle-btn-save" data-setting="tournament-invitations">Sauver</button>
+                                <span class="save-indicator" id="indicator-tournament-invitations">
+                                    <i class="fas fa-spinner fa-spin"></i> Sauvegarde...
+                                </span>
+                            </div>
+                        </div>
+                        <div class="setting-item toggle-item">
+                            <label for="leaderboard-updates">Mises à jour des classements</label>
+                            <div class="toggle-controls">
+                                <div class="toggle-switch">
+                                    <input type="checkbox" id="leaderboard-updates" name="leaderboard-updates">
+                                    <span class="slider"></span>
+                                </div>
+                                <button type="button" class="toggle-btn toggle-btn-save" data-setting="leaderboard-updates">Sauver</button>
+                                <span class="save-indicator" id="indicator-leaderboard-updates">
+                                    <i class="fas fa-spinner fa-spin"></i> Sauvegarde...
+                                </span>
+                            </div>
+                        </div>
+                        <div class="setting-item toggle-item">
+                            <label for="social-features">Fonctionnalités sociales</label>
+                            <div class="toggle-controls">
+                                <div class="toggle-switch">
+                                    <input type="checkbox" id="social-features" name="social-features" checked>
+                                    <span class="slider"></span>
+                                </div>
+                                <button type="button" class="toggle-btn toggle-btn-save" data-setting="social-features">Sauver</button>
+                                <span class="save-indicator" id="indicator-social-features">
+                                    <i class="fas fa-spinner fa-spin"></i> Sauvegarde...
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Préférences de support -->
+                <section class="settings-section">
+                    <h2><i class="fas fa-headset"></i> Support et assistance</h2>
+                    <div class="settings-grid">
+                        <div class="setting-item toggle-item">
+                            <label for="support-updates">Suivi des tickets de support</label>
+                            <div class="toggle-controls">
+                                <div class="toggle-switch">
+                                    <input type="checkbox" id="support-updates" name="support-updates" checked>
+                                    <span class="slider"></span>
+                                </div>
+                                <button type="button" class="toggle-btn toggle-btn-save" data-setting="support-updates">Sauver</button>
+                                <span class="save-indicator" id="indicator-support-updates">
+                                    <i class="fas fa-spinner fa-spin"></i> Sauvegarde...
+                                </span>
+                            </div>
+                        </div>
+                        <div class="setting-item toggle-item">
+                            <label for="maintenance-notices">Avis de maintenance</label>
+                            <div class="toggle-controls">
+                                <div class="toggle-switch">
+                                    <input type="checkbox" id="maintenance-notices" name="maintenance-notices" checked>
+                                    <span class="slider"></span>
+                                </div>
+                                <button type="button" class="toggle-btn toggle-btn-save" data-setting="maintenance-notices">Sauver</button>
+                                <span class="save-indicator" id="indicator-maintenance-notices">
+                                    <i class="fas fa-spinner fa-spin"></i> Sauvegarde...
+                                </span>
+                            </div>
+                        </div>
+                        <div class="setting-item toggle-item">
+                            <label for="system-updates">Mises à jour système</label>
+                            <div class="toggle-controls">
+                                <div class="toggle-switch">
+                                    <input type="checkbox" id="system-updates" name="system-updates" checked>
+                                    <span class="slider"></span>
+                                </div>
+                                <button type="button" class="toggle-btn toggle-btn-save" data-setting="system-updates">Sauver</button>
+                                <span class="save-indicator" id="indicator-system-updates">
+                                    <i class="fas fa-spinner fa-spin"></i> Sauvegarde...
+                                </span>
+                            </div>
+                        </div>
+                        <div class="setting-item toggle-item">
+                            <label for="urgent-alerts">Alertes urgentes</label>
+                            <div class="toggle-controls">
+                                <div class="toggle-switch">
+                                    <input type="checkbox" id="urgent-alerts" name="urgent-alerts" checked>
+                                    <span class="slider"></span>
+                                </div>
+                                <button type="button" class="toggle-btn toggle-btn-save" data-setting="urgent-alerts">Sauver</button>
+                                <span class="save-indicator" id="indicator-urgent-alerts">
+                                    <i class="fas fa-spinner fa-spin"></i> Sauvegarde...
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Préférences de confidentialité EB -->
+                <section class="settings-section">
+                    <h2><i class="fas fa-shield-alt"></i> Confidentialité EB Simracing</h2>
+                    <div class="settings-grid">
+                        <div class="setting-item toggle-item">
+                            <label for="data-sharing">Partage de données avec EB</label>
+                            <div class="toggle-controls">
+                                <div class="toggle-switch">
+                                    <input type="checkbox" id="data-sharing" name="data-sharing" checked>
+                                    <span class="slider"></span>
+                                </div>
+                                <button type="button" class="toggle-btn toggle-btn-save" data-setting="data-sharing">Sauver</button>
+                                <span class="save-indicator" id="indicator-data-sharing">
+                                    <i class="fas fa-spinner fa-spin"></i> Sauvegarde...
+                                </span>
+                            </div>
+                        </div>
+                        <div class="setting-item toggle-item">
+                            <label for="usage-analytics">Analytiques d'utilisation EB</label>
+                            <div class="toggle-controls">
+                                <div class="toggle-switch">
+                                    <input type="checkbox" id="usage-analytics" name="usage-analytics">
+                                    <span class="slider"></span>
+                                </div>
+                                <button type="button" class="toggle-btn toggle-btn-save" data-setting="usage-analytics">Sauver</button>
+                                <span class="save-indicator" id="indicator-usage-analytics">
+                                    <i class="fas fa-spinner fa-spin"></i> Sauvegarde...
+                                </span>
+                            </div>
+                        </div>
+                        <div class="setting-item toggle-item">
+                            <label for="improvement-program">Programme d'amélioration</label>
+                            <div class="toggle-controls">
+                                <div class="toggle-switch">
+                                    <input type="checkbox" id="improvement-program" name="improvement-program">
+                                    <span class="slider"></span>
+                                </div>
+                                <button type="button" class="toggle-btn toggle-btn-save" data-setting="improvement-program">Sauver</button>
+                                <span class="save-indicator" id="indicator-improvement-program">
+                                    <i class="fas fa-spinner fa-spin"></i> Sauvegarde...
+                                </span>
+                            </div>
+                        </div>
+                        <div class="setting-item">
+                            <label for="download-data">Télécharger mes données EB Racing</label>
+                            <button type="button" class="btn-secondary" id="download-data-btn">Télécharger</button>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Boutons d'action -->
+                <div class="settings-actions">
+                    <button type="button" class="btn-primary btn-large">Enregistrer les modifications</button>
+                    <button type="button" class="btn-secondary btn-large">Annuler</button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>EB Simracing</h3>
+                    <p>Leader européen en simulation de course professionnelle</p>
+                    <div class="social-links">
+                        <a href="https://www.facebook.com/beracingkart/" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><i class="fab fa-facebook-f" aria-hidden="true"></i></a>
+                        <a href="https://www.instagram.com/eb.racing.events/" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="fab fa-instagram" aria-hidden="true"></i></a>
+                        <a href="#" target="_blank" rel="noopener noreferrer" aria-label="YouTube"><i class="fab fa-youtube" aria-hidden="true"></i></a>
+                        <a href="#" target="_blank" rel="noopener noreferrer" aria-label="Twitter"><i class="fab fa-twitter" aria-hidden="true"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4>Navigation</h4>
+                    <ul>
+                        <li><a href="../../index.html#inicio">Accueil</a></li>
+                        <li><a href="../../index.html#servicios">Services</a></li>
+                        <li><a href="../info/galerie.html">Galerie</a></li>
+                        <li><a href="../shop/merch.html">Boutique</a></li>
+                        <li><a href="../info/contacto.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Légal</h4>
+                    <ul>
+                        <li><a href="#">Mentions légales</a></li>
+                        <li><a href="#">Politique de confidentialité</a></li>
+                        <li><a href="#">CGV</a></li>
+                        <li><a href="#">Cookies</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact</h4>
+                    <p><i class="fas fa-phone"></i> +33 1 234 567 890</p>
+                    <p><i class="fas fa-envelope"></i> contact@ebsimracing.fr</p>
+                    <p><i class="fas fa-map-marker-alt"></i> Paris, France</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 EB Simracing. Tous droits réservés.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="/js/auth/auth.js"></script>
+    <script src="/js/header.js"></script>
+    <script src="/js/api-service.js"></script>
+
+    <!-- Sistema de seguridad -->
+    <script src="/js/security.js"></script>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', async function() {
+        // Configurar API (cambiar estos valores por los reales)
+        window.EBRacingAPI.configure('/api/v1', {
+            // 'Authorization': 'Bearer ' + token,
+            // 'X-API-Key': 'your-api-key'
+        });
+
+        // Usuario actual (debería venir del sistema de autenticación)
+        const currentUserId = window.currentUser?.id || 1;
+
+        // Función para guardar configuración individual en vuestra BD
+        async function saveSetting(settingName, value) {
+            const button = document.querySelector(`[data-setting="${settingName}"]`);
+            
+            if (!button) return;
+            
+            try {
+                // Mostrar estado de guardado
+                button.classList.add('saving');
+                button.disabled = true;
+                button.textContent = 'Sauvegarde...';
+                
+                // Guardar en vuestra base de datos
+                await window.EBRacingAPI.saveUserSetting(currentUserId, settingName, value);
+                
+                // Registrar actividad
+                await window.EBRacingAPI.logUserActivity(currentUserId, 'setting_updated', {
+                    setting: settingName,
+                    value: value
+                });
+                
+                // Mostrar éxito
+                button.classList.remove('saving');
+                button.classList.add('saved');
+                button.textContent = 'Sauvegardé!';
+                
+                // Resetear después de 2 segundos
+                setTimeout(() => {
+                    button.classList.remove('saved');
+                    button.disabled = false;
+                    button.textContent = 'Sauver';
+                }, 2000);
+                
+                console.log(`✅ Configuración guardada en BD: ${settingName} = ${value}`);
+                
+            } catch (error) {
+                // Mostrar error
+                button.classList.remove('saving');
+                button.disabled = false;
+                button.classList.add('error');
+                button.textContent = 'Erreur!';
+                
+                setTimeout(() => {
+                    button.classList.remove('error');
+                    button.textContent = 'Sauver';
+                }, 3000);
+                
+                console.error('❌ Error guardando en BD:', error);
+            }
+        }
+        
+        // Cargar configuraciones desde vuestra base de datos
+        async function loadSettings() {
+            try {
+                const settings = await window.EBRacingAPI.getUserSettings(currentUserId);
+                
+                // Aplicar configuraciones a los toggles
+                Object.keys(settings).forEach(settingKey => {
+                    const checkbox = document.getElementById(settingKey);
+                    if (checkbox) {
+                        checkbox.checked = settings[settingKey];
+                    }
+                });
+                
+                console.log('✅ Configuraciones cargadas desde BD');
+            } catch (error) {
+                console.error('❌ Error cargando configuraciones desde BD:', error);
+                // Fallback a localStorage si falla la API
+                loadSettingsFromLocalStorage();
+            }
+        }
+
+        // Fallback a localStorage
+        function loadSettingsFromLocalStorage() {
+            const settings = [
+                'eb-newsletter', 'eb-events', 'eb-promotions', 'eb-new-circuits',
+                'booking-reminders', 'booking-confirmations', 'session-cancellations', 'payment-reminders',
+                'community-updates', 'tournament-invitations', 'leaderboard-updates', 'social-features',
+                'support-updates', 'maintenance-notices', 'system-updates', 'urgent-alerts',
+                'data-sharing', 'usage-analytics', 'improvement-program'
+            ];
+            
+            settings.forEach(setting => {
+                const saved = localStorage.getItem(`eb_setting_${setting}`);
+                const checkbox = document.getElementById(setting);
+                
+                if (saved !== null && checkbox) {
+                    checkbox.checked = saved === 'true';
+                }
+            });
+        }
+        
+        // Event listeners para botones de guardar
+        document.querySelectorAll('.toggle-btn-save').forEach(button => {
+            button.addEventListener('click', async function() {
+                const settingName = this.getAttribute('data-setting');
+                const checkbox = document.getElementById(settingName);
+                const value = checkbox ? checkbox.checked : false;
+                
+                await saveSetting(settingName, value);
+            });
+        });
+        
+        // Event listeners para cambios en los toggles
+        document.querySelectorAll('.toggle-switch input').forEach(toggle => {
+            toggle.addEventListener('change', async function() {
+                const settingName = this.id;
+                const value = this.checked;
+                
+                // Auto-guardar cuando cambia el toggle
+                await saveSetting(settingName, value);
+            });
+        });
+        
+        // Botón de descarga de datos desde vuestra BD
+        const downloadBtn = document.getElementById('download-data-btn');
+        
+        if (downloadBtn) {
+            downloadBtn.addEventListener('click', async function() {
+                try {
+                    // Exportar datos completos desde vuestra base de datos
+                    const userData = await window.EBRacingAPI.exportUserData(currentUserId);
+                    
+                    // Crear y descargar el archivo
+                    const blob = new Blob([JSON.stringify(userData, null, 2)], 
+                        { type: 'application/json' });
+                    const url = URL.createObjectURL(blob);
+                    const a = document.createElement('a');
+                    a.href = url;
+                    a.download = `eb_racing_data_${new Date().getTime()}.json`;
+                    document.body.appendChild(a);
+                    a.click();
+                    document.body.removeChild(a);
+                    URL.revokeObjectURL(url);
+                    
+                    // Registrar actividad de exportación
+                    await window.EBRacingAPI.logUserActivity(currentUserId, 'data_exported', {
+                        timestamp: new Date().toISOString()
+                    });
+                    
+                    // Feedback visual
+                    this.textContent = 'Téléchargé!';
+                    this.style.background = 'linear-gradient(135deg, #28a745, #20c997)';
+                    this.style.color = '#fff';
+                    
+                    setTimeout(() => {
+                        this.textContent = 'Télécharger';
+                        this.style.background = '';
+                        this.style.color = '';
+                    }, 2000);
+                    
+                    console.log('✅ Datos exportados desde BD');
+                    
+                } catch (error) {
+                    console.error('❌ Error exportando desde BD:', error);
+                    
+                    // Fallback: exportar desde localStorage
+                    exportFromLocalStorage(this);
+                }
+            });
+        }
+        
+        // Fallback para exportación desde localStorage
+        function exportFromLocalStorage(button) {
+            const userData = {
+                settings: {},
+                exportDate: new Date().toISOString(),
+                user: 'current_user',
+                platform: 'EB Racing',
+                source: 'localStorage_fallback'
+            };
+            
+            // Recopilar todas las configuraciones
+            document.querySelectorAll('.toggle-switch input').forEach(input => {
+                userData.settings[input.id] = input.checked;
+            });
+            
+            // Crear y descargar el archivo
+            const blob = new Blob([JSON.stringify(userData, null, 2)], 
+                { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `eb_racing_data_${new Date().getTime()}.json`;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+            
+            // Feedback visual
+            button.textContent = 'Téléchargé!';
+            button.style.background = 'linear-gradient(135deg, #28a745, #20c997)';
+            button.style.color = '#fff';
+            
+            setTimeout(() => {
+                button.textContent = 'Télécharger';
+                button.style.background = '';
+                button.style.color = '';
+            }, 2000);
+        }
+        
+        // Botón de guardar todo
+        const saveAllBtn = document.querySelector('.btn-primary.btn-large');
+        if (saveAllBtn) {
+            saveAllBtn.addEventListener('click', async function() {
+                this.disabled = true;
+                this.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sauvegarde de tout...';
+                
+                try {
+                    // Recopilar todas las configuraciones
+                    const allSettings = {};
+                    document.querySelectorAll('.toggle-switch input').forEach(toggle => {
+                        allSettings[toggle.id] = toggle.checked;
+                    });
+                    
+                    // Guardar todo en vuestra base de datos
+                    await window.EBRacingAPI.updateUserSettings(currentUserId, allSettings);
+                    
+                    // Registrar actividad masiva
+                    await window.EBRacingAPI.logUserActivity(currentUserId, 'all_settings_saved', {
+                        totalSettings: Object.keys(allSettings).length
+                    });
+                    
+                    // Mostrar éxito
+                    this.innerHTML = '<i class="fas fa-check"></i> Tout est sauvegardé!';
+                    this.style.background = 'linear-gradient(135deg, #28a745, #20c997)';
+                    
+                    setTimeout(() => {
+                        this.disabled = false;
+                        this.innerHTML = 'Enregistrer les modifications';
+                        this.style.background = '';
+                    }, 2000);
+                    
+                    console.log('✅ Todas las configuraciones guardadas en BD');
+                    
+                } catch (error) {
+                    this.innerHTML = '<i class="fas fa-exclamation-triangle"></i> Erreur!';
+                    this.style.background = 'linear-gradient(135deg, #dc3545, #c82333)';
+                    
+                    setTimeout(() => {
+                        this.disabled = false;
+                        this.innerHTML = 'Enregistrer les modifications';
+                        this.style.background = '';
+                    }, 2000);
+                    
+                    console.error('❌ Error guardando todo en BD:', error);
+                }
+            });
+        }
+        
+        // Botón de cancelar
+        const cancelBtn = document.querySelector('.btn-secondary.btn-large');
+        if (cancelBtn) {
+            cancelBtn.addEventListener('click', function() {
+                // Recargar las configuraciones desde base de datos
+                loadSettings();
+                
+                // Feedback visual
+                this.innerHTML = '<i class="fas fa-undo"></i> Annulé!';
+                setTimeout(() => {
+                    this.innerHTML = 'Annuler';
+                }, 1000);
+            });
+        }
+        
+        // Cargar configuraciones al iniciar
+        await loadSettings();
+        
+        // Mostrar estadísticas del usuario
+        try {
+            const stats = await window.EBRacingAPI.getUserStats(currentUserId);
+            console.log('📊 Estadísticas del usuario:', stats);
+        } catch (error) {
+            console.error('❌ Error obteniendo estadísticas:', error);
+        }
+    });
+</script>
+</body>
+</html>
