@@ -15,6 +15,7 @@
     <link rel="stylesheet" href="/css/components/header-profile.css">
     <link rel="stylesheet" href="/css/shop/merch.css?v=1.3">
     <link rel="stylesheet" href="/css/shop/cart.css?v=1.1">
+    <link rel="stylesheet" href="/css/shop/cart-user-info.css?v=1.0">
     <link rel="stylesheet" href="/css/user/perfil.css">
 </head>
 <body>
@@ -76,12 +77,15 @@
                         <a href="/pages/user/mes-reservations.html">
                             <i class="fas fa-calendar-alt"></i> 
                             <span>Mes Réservations</span>
-                            <span class="badge">3</span>
                         </a>
-                        <a href="/pages/shop/cart.html" class="active">
+                        <a href="/pages/shop/cart.html">
                             <i class="fas fa-shopping-cart"></i> 
                             <span>Mon Panier</span>
-                            <span class="badge">2</span>
+                        </a>
+                        <a href="/pages/shop/merch.html" class="active">
+                            <i class="fas fa-store"></i> 
+                            <span>Boutique</span>
+                            <span class="badge">Actuel</span>
                         </a>
                         <a href="/pages/user/parametres.html">
                             <i class="fas fa-cog"></i> 
@@ -317,12 +321,219 @@
         document.querySelector('.mobile-menu-btn').addEventListener('click', function() {
             document.querySelector('.main-nav').classList.toggle('active');
         });
+
+        // Sample products data
+        const sampleProducts = [
+            {
+                id: 1,
+                name: 'T-shirt EB Racing Pro',
+                price: 29.99,
+                image: '/assets/images/tshirt.jpg',
+                category: 'clothing',
+                description: 'T-shirt technique de haute qualité pour les passionnés de course'
+            },
+            {
+                id: 2,
+                name: 'Casquette EB Racing',
+                price: 19.99,
+                image: '/assets/images/cap.jpg',
+                category: 'accessories',
+                description: 'Casquette élégante avec logo EB Racing brodé'
+            },
+            {
+                id: 3,
+                name: 'Veste EB Racing Team',
+                price: 89.99,
+                image: '/assets/images/jacket.jpg',
+                category: 'clothing',
+                description: 'Veste de pilote professionnel avec protections intégrées'
+            },
+            {
+                id: 4,
+                name: 'Mug EB Racing',
+                price: 12.99,
+                image: '/assets/images/mug.jpg',
+                category: 'decoration',
+                description: 'Mug céramique avec design exclusif EB Racing'
+            },
+            {
+                id: 5,
+                name: 'Sac à dos EB Racing',
+                price: 39.99,
+                image: '/assets/images/backpack.jpg',
+                category: 'accessories',
+                description: 'Sac à dos spacieux avec compartiments pour ordinateur portable'
+            },
+            {
+                id: 6,
+                name: 'Posteb Collection 2024',
+                price: 24.99,
+                image: '/assets/images/poster.jpg',
+                category: 'decoration',
+                description: 'Posteb artistique des circuits légendaires'
+            }
+        ];
+
+        // Handle add to cart - simple function
+        window.handleAddToCart = function(e) {
+            const btn = e.currentTarget;
+            const productId = btn.dataset.productId;
+            
+            // Simple feedback
+            btn.innerHTML = '<i class="fas fa-check"></i> Ajouté!';
+            btn.style.background = '#28a745';
+            
+            // Update cart count
+            const cartCounts = document.querySelectorAll('.cart-count');
+            cartCounts.forEach(el => {
+                const currentCount = parseInt(el.textContent) || 0;
+                el.textContent = currentCount + 1;
+                el.style.display = 'flex';
+            });
+            
+            // Reset button after delay
+            setTimeout(() => {
+                btn.innerHTML = '<i class="fas fa-shopping-cart"></i> Ajouter au panier';
+                btn.style.background = '';
+            }, 2000);
+            
+            console.log('✅ Producto añadido al carrito');
+        };
+
+        // Handle quick view - global function
+        window.handleQuickView = function(e) {
+            const productId = parseInt(e.currentTarget.dataset.productId);
+            const product = sampleProducts.find(p => p.id === productId);
+            
+            if (!product) return;
+
+            // Update modal content
+            const modal = document.getElementById('quickViewModal');
+            const title = document.getElementById('quickViewTitle');
+            const description = document.getElementById('quickViewDescription');
+            const price = document.getElementById('quickViewPrice');
+            const image = document.getElementById('quickViewImage');
+            const addToCartBtn = document.getElementById('quickViewAddToCart');
+
+            if (title) title.textContent = product.name;
+            if (description) description.textContent = product.description;
+            if (price) price.textContent = `${product.price.toFixed(2)} €`;
+            if (image) {
+                image.src = product.image;
+                image.alt = product.name;
+                image.onerror = () => { image.src = '/assets/images/default-product.png'; };
+            }
+
+            // Set up add to cart button
+            if (addToCartBtn) {
+                addToCartBtn.onclick = async () => {
+                    if (window.cartService) {
+                        await window.cartService.addItem({
+                            ...product,
+                            type: 'merchandise'
+                        });
+                        modal.classList.remove('active');
+                    }
+                };
+            }
+
+            // Show modal
+            modal.classList.add('active');
+        };
+
+        // Make loadSampleProducts globally available
+        window.loadSampleProducts = function() {
+            console.log('🛒 Cargando productos...');
+            
+            const productsGrid = document.getElementById('products-grid');
+            if (!productsGrid) {
+                console.error('❌ No se encontró products-grid');
+                return;
+            }
+
+            productsGrid.innerHTML = sampleProducts.map(product => `
+                <div class="product-card" data-product-id="${product.id}">
+                    <div class="product-image">
+                        <img src="${product.image}" alt="${product.name}">
+                        <div class="product-overlay">
+                            <button class="quick-view-btn" data-product-id="${product.id}">
+                                <i class="fas fa-eye"></i> Voir
+                            </button>
+                        </div>
+                    </div>
+                    <div class="product-info">
+                        <h3>${product.name}</h3>
+                        <p class="product-description">${product.description}</p>
+                        <div class="product-price">${product.price.toFixed(2)} €</div>
+                        <button class="add-to-cart-btn" data-product-id="${product.id}">
+                            <i class="fas fa-shopping-cart"></i> Ajouter au panier
+                        </button>
+                    </div>
+                </div>
+            `).join('');
+
+            // Update results count
+            const resultsCount = document.getElementById('resultsCount');
+            if (resultsCount) {
+                resultsCount.textContent = sampleProducts.length;
+            }
+
+            // Add event listeners to add-to-cart buttons
+            document.querySelectorAll('.add-to-cart-btn').forEach(btn => {
+                btn.addEventListener('click', window.handleAddToCart);
+            });
+
+            // Add event listeners to quick view buttons
+            document.querySelectorAll('.quick-view-btn').forEach(btn => {
+                btn.addEventListener('click', window.handleQuickView);
+            });
+            
+            console.log('✅ Productos cargados:', sampleProducts.length);
+        };
+
+        // Close modal handlers
+        document.addEventListener('DOMContentLoaded', function() {
+            // Close modal handlers
+            const quickViewClose = document.getElementById('quickViewClose');
+            const quickViewCloseBtn = document.getElementById('quickViewCloseBtn');
+            const quickViewModal = document.getElementById('quickViewModal');
+
+            if (quickViewClose) {
+                quickViewClose.addEventListener('click', () => {
+                    quickViewModal.classList.remove('active');
+                });
+            }
+
+            if (quickViewCloseBtn) {
+                quickViewCloseBtn.addEventListener('click', () => {
+                    quickViewModal.classList.remove('active');
+                });
+            }
+
+            // Close modal on background click
+            if (quickViewModal) {
+                quickViewModal.addEventListener('click', (e) => {
+                    if (e.target.id === 'quickViewModal') {
+                        e.target.classList.remove('active');
+                    }
+                });
+            }
+        });
     </script>
-    <script src="/assets/scripts/auth.js"></script>
-    <script src="/assets/scripts/header.js"></script>
+    <script src="/js/auth/auth.js"></script>
+    <script src="/js/header.js"></script>
+    
+    <!-- Cart Scripts -->
+    <script src="/js/services/cartService.js"></script>
+    <script src="/js/shop/cart.js"></script>
+    
+    <!-- Initialize products after everything is loaded -->
+    <script>
+        // Load products immediately when page loads
+        window.loadSampleProducts();
+    </script>
 
     <!-- Sistema de seguridad -->
-    <script src="/assets/scripts/security.js"></script>
-    <script src="/assets/scripts/auth.js"></script>
+    <script src="/js/security.js"></script>
 </body>
 </html>
