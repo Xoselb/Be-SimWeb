@@ -13,103 +13,103 @@
     <link rel="stylesheet" href="/css/styles.css">
     <link rel="stylesheet" href="/css/components/header-profile.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link rel="stylesheet" href="/css/styles.css">
     <link rel="stylesheet" href="/css/shop/cart.css?v=1.1">
     <link rel="stylesheet" href="/css/user/perfil.css">
 </head>
 <body>
-    <header class="header">
-        <div class="container">
-            <div class="logo">
-                <a href="#"><img src="/img/EB RACING(Solo-White).png" alt="EB Racing" class="logo-img"></a>
-            </div>
-            <nav class="main-nav">
-                <ul>
-                    <li><a href="#inicio">Accueil</a></li>
-                    <li><a href="#servicios">Services</a></li>
-                    <li><a href="pages/info/galerie.html">Galerie</a></li>
-                    <li><a href="pages/shop/merch.html">Boutique</a></li>
-                    <li><a href="pages/info/contacto.html">Contact</a></li>
-                    <li class="nav-cart">
-                        <a href="#" class="cart-icon" id="cart-icon">
-                            <i class="fas fa-shopping-cart"></i>
-                            <span class="cart-count">0</span>
-                        </a>
-                        <div class="cart-dropdown" id="cart-dropdown">
-                            <div class="cart-header">
-                                <span>Mon Panier</span>
-                                <span class="cart-count-header">0</span>
-                            </div>
-                            <div class="cart-items" id="cart-items">
-                                <!-- Cart items will be loaded here -->
-                            </div>
-                            <div class="cart-footer">
-                                <div class="cart-total">
-                                    <span>Total:</span>
-                                    <span id="cart-total">0.00 €</span>
-                                </div>
-                                <button class="checkout-btn" id="checkout-btn">
-                                    <i class="fas fa-credit-card"></i> Voir le panier
-                                </button>
-                            </div>
-                        </div>
-                    </li>
-                    <li class="nav-user" id="navUser" style="display: none;">
-                        <div class="user-avatar" id="userMenuBtn">
-                            <img src="/img/user/EB_Default_Avatar.png" alt="Profil" id="userAvatar">
-                            <i class="fas fa-chevron-down"></i>
-                        </div>
-                        <div class="user-dropdown" id="userDropdown">
-                            <!-- Header del dropdown con info del usuario -->
-                            <div class="user-info-header">
-                                <div class="user-name">Usuario</div>
-                                <div class="user-email">user@example.com</div>
-                                <div class="user-status">Verificado</div>
-                            </div>
-                            
-                            <!-- Enlaces del menú -->
-                            <a href="/pages/user/perfil.html" class="active">
-                                <i class="fas fa-user"></i> 
-                                <span>Mon Profil</span>
-                                <span class="badge">Nouveau</span>
-                            </a>
-                            <a href="/pages/user/mes-reservations.html">
-                                <i class="fas fa-calendar-alt"></i> 
-                                <span>Mes Réservations</span>
-                                <span class="badge">3</span>
-                            </a>
-                            <a href="/pages/shop/cart.html">
-                                <i class="fas fa-shopping-cart"></i> 
-                                <span>Mon Panier</span>
-                                <span class="badge">2</span>
-                            </a>
-                            <a href="/pages/user/parametres.html">
-                                <i class="fas fa-cog"></i> 
-                                <span>Paramètres</span>
-                            </a>
-                            <a href="/pages/user/aide.html">
-                                <i class="fas fa-question-circle"></i> 
-                                <span>Aide & Support</span>
-                            </a>
-                            
-                            <div class="dropdown-divider"></div>
-                            
-                            <a href="#" id="logoutBtn">
-                                <i class="fas fa-sign-out-alt"></i> 
-                                <span>Déconnexion</span>
-                            </a>
-                        </div>
-                    </li>
-                    <li class="nav-login" id="navLogin">
-                        <a href="pages/auth/login.html" class="btn-login">Connexion</a>
-                    </li>
-                </ul>
-            </nav>
-            <div class="mobile-menu-btn">
-                <i class="fas fa-bars"></i>
-            </div>
+<header class="header">
+    <div class="container">
+        <div class="logo">
+            <a href="#"><img src="/img/EB RACING(Solo-White).png" alt="EB Racing" class="logo-img"></a>
         </div>
-    </header>
+        <nav class="main-nav">
+            <ul>
+                <li><a href="/index.html">Accueil</a></li>
+                <li><a href="/index.html#servicios">Services</a></li>
+                <li><a href="/pages/info/galerie.html">Galerie</a></li>
+                <li><a href="/pages/shop/merch.html">Boutique</a></li>
+                <li><a href="/pages/info/contacto.html">Contact</a></li>
+                <li class="nav-cart">
+                    <a href="#" class="cart-icon" id="cart-icon">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span class="cart-count">0</span>
+                    </a>
+                    <div class="cart-dropdown" id="cart-dropdown">
+                        <div class="cart-header">
+                            <span>Mon Panier</span>
+                            <span class="cart-count-header">0</span>
+                        </div>
+                        <div class="cart-items" id="cart-items">
+                            <!-- Cart items will be loaded here -->
+                        </div>
+                        <div class="cart-footer">
+                            <div class="cart-total">
+                                <span>Total:</span>
+                                <span id="cart-total">0.00 €</span>
+                            </div>
+                            <button class="checkout-btn" id="checkout-btn">
+                                <i class="fas fa-credit-card"></i> Voir le panier
+                            </button>
+                        </div>
+                    </div>
+                </li>
+                <li class="nav-user" id="navUser" style="display: none;">
+                    <div class="user-avatar" id="userMenuBtn">
+                        <img src="/img/user/EB_Default_Avatar.png" alt="Profil" id="userAvatar">
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="user-dropdown" id="userDropdown">
+                        <!-- Header del dropdown con info del usuario -->
+                        <div class="user-info-header">
+                            <div class="user-name">Usuario</div>
+                            <div class="user-email">user@example.com</div>
+                            <div class="user-status">Verificado</div>
+                        </div>
+                        
+                        <!-- Enlaces del menú -->
+                        <a href="/pages/user/perfil.html">
+                            <i class="fas fa-user"></i> 
+                            <span>Mon Profil</span>
+                        </a>
+                        <a href="/pages/user/mes-reservations.html">
+                            <i class="fas fa-calendar-alt"></i> 
+                            <span>Mes Réservations</span>
+                        </a>
+                        <a href="/pages/shop/cart.html">
+                            <i class="fas fa-shopping-cart"></i> 
+                            <span>Mon Panier</span>
+                        </a>
+                        <a href="/pages/shop/merch.html">
+                            <i class="fas fa-store"></i> 
+                            <span>Boutique</span>
+                        </a>
+                        <a href="/pages/user/parametres.html">
+                            <i class="fas fa-cog"></i> 
+                            <span>Paramètres</span>
+                        </a>
+                        <a href="/pages/user/aide.html">
+                            <i class="fas fa-question-circle"></i> 
+                            <span>Aide & Support</span>
+                        </a>
+                        
+                        <div class="dropdown-divider"></div>
+                        
+                        <a href="#" id="logoutBtn">
+                            <i class="fas fa-sign-out-alt"></i> 
+                            <span>Déconnexion</span>
+                        </a>
+                    </div>
+                </li>
+                <li class="nav-login" id="navLogin">
+                    <a href="pages/auth/login.html" class="btn-login">Connexion</a>
+                </li>
+            </ul>
+        </nav>
+        <div class="mobile-menu-btn">
+            <i class="fas fa-bars"></i>
+        </div>
+    </div>
+</header>
 
     <!-- Hero Section -->
     <section class="hero" id="inicio">
