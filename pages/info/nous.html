@@ -1,23 +1,27 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="fr">
 <head>
     <!-- Security Headers -->
     <meta http-equiv="X-Content-Type-Options" content="nosniff">
     <meta http-equiv="X-Frame-Options" content="DENY">
     <meta http-equiv="X-XSS-Protection" content="1; mode=block">
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; font-src 'self'; connect-src 'self' http://localhost:3000;">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com; img-src 'self' data: https:; font-src 'self' https://cdnjs.cloudflare.com; connect-src 'self' http://localhost:3000;">
     <meta charset="UTF-8">
-    <title>Quiénes Somos</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Qui Sommes Nous - EB Racing</title>
     <link rel="icon" href="/assets/images/EB.png" type="image/png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="/css/styles.css">
     <link rel="stylesheet" href="/css/user/perfil.css">
+    <link rel="stylesheet" href="/css/components/header-profile.css">
+    <link rel="stylesheet" href="/css/pages/nous.css">
 </head>
 <body>
 <!-- Header -->
 <header class="header">
     <div class="container">
         <div class="logo">
-            <a href="../../index.html"><h1>EB <span>Simracing</span></h1></a>
+            <a href="../../index.html"><img src="/img/EB RACING(Solo-White).png" alt="EB Racing" class="logo-img"></a>
         </div>
         <nav class="main-nav">
             <ul>
@@ -28,15 +32,47 @@
                 <li><a href="contacto.html">Contact</a></li>
                 <li class="nav-user" id="navUser" style="display: none;">
                     <div class="user-avatar" id="userMenuBtn">
-                        <img src="/assets/images/default-avatar.png" alt="Profil" id="userAvatar">
+                        <img src="/img/user/EB_Default_Avatar.png" alt="Profil" id="userAvatar">
                         <i class="fas fa-chevron-down"></i>
                     </div>
                     <div class="user-dropdown" id="userDropdown">
-                        <a href="../auth/perfil.html"><i class="fas fa-user"></i> Mon Profil</a>
-                        <a href="../user/mes-reservations.html"><i class="fas fa-calendar-alt"></i> Mes réservations</a>
-                        <a href="parametres.html"><i class="fas fa-cog"></i> Paramètres</a>
+                        <div class="user-info-header">
+                            <div class="user-name">Usuario</div>
+                            <div class="user-email">user@example.com</div>
+                            <div class="user-status">Verificado</div>
+                        </div>
+                        
+                        <a href="../auth/perfil.html">
+                            <i class="fas fa-user"></i> 
+                            <span>Mon Profil</span>
+                        </a>
+                        <a href="../user/mes-reservations.html">
+                            <i class="fas fa-calendar-alt"></i> 
+                            <span>Mes Réservations</span>
+                        </a>
+                        <a href="../shop/cart.html">
+                            <i class="fas fa-shopping-cart"></i> 
+                            <span>Mon Panier</span>
+                        </a>
+                        <a href="../shop/merch.html">
+                            <i class="fas fa-store"></i> 
+                            <span>Boutique</span>
+                        </a>
+                        <a href="parametres.html">
+                            <i class="fas fa-cog"></i> 
+                            <span>Paramètres</span>
+                        </a>
+                        <a href="../user/aide.html">
+                            <i class="fas fa-question-circle"></i> 
+                            <span>Aide & Support</span>
+                        </a>
+                        
                         <div class="dropdown-divider"></div>
-                        <a href="#" id="logoutBtn"><i class="fas fa-sign-out-alt"></i> Déconnexion</a>
+                        
+                        <a href="#" id="logoutBtn">
+                            <i class="fas fa-sign-out-alt"></i> 
+                            <span>Déconnexion</span>
+                        </a>
                     </div>
                 </li>
                 <li class="nav-login" id="navLogin">
@@ -49,14 +85,262 @@
         </div>
     </div>
 </header>
-    <main>
-        <p>Somos un centro de simulación de carreras profesionales, con la tecnología más avanzada en Simracing.</p>
-    </main>
-    <script src="/assets/scripts/auth.js"></script>
-    <script src="/assets/scripts/header.js"></script>
 
-    <!-- Sistema de seguridad -->
-    <script src="/assets/scripts/security.js"></script>
-    <script src="/assets/scripts/auth.js"></script>
+<!-- Hero Section Premium -->
+<section class="contact-hero">
+    <div class="hero-particles" id="particles"></div>
+    <div class="container">
+        <div class="hero-content">
+            <h1 class="hero-title">QUI SOMMES NOUS</h1>
+            <p class="hero-subtitle">L'excellence automobile au service de votre passion</p>
+            <div class="hero-badges">
+                <span class="badge professional">PROFESSIONNEL</span>
+                <span class="badge premium">PREMIUM</span>
+                <span class="badge expert">EXPERT</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- About Section Premium -->
+<section class="contact-methods">
+    <div class="container">
+        <div class="section-header">
+            <h2 class="section-title">EB RACING</h2>
+            <p class="section-subtitle">La référence en simulation automobile professionnelle</p>
+        </div>
+        
+        <div class="about-content">
+            <p>Nous sommes un centre de services automobiles professionnels, avec la technologie la plus avancée en automobile. Notre mission est de vous offrir une expérience exceptionnelle, que vous soyez un pilote amateur ou professionnel.</p>
+            <p>Nos simulateurs de pointe reproduisent fidèlement les sensations de conduite, vous permettant de vous entraîner, vous améliorer et vivre votre passion dans des conditions optimales.</p>
+        </div>
+        
+        <!-- Premium Stats Grid -->
+        <div class="stats-grid">
+            <div class="method-card" style="background: linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 241, 0, 0.05) 100%); border: 1px solid rgba(255, 241, 0, 0.3); border-radius: 25px; padding: 50px 40px; text-align: center; transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1); position: relative; overflow: hidden; animation: cardEntry 0.8s ease-out backwards;">
+                <div class="method-icon-wrapper" style="position: relative; margin-bottom: 30px;">
+                    <div class="method-icon-bg" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 120px; height: 120px; background: radial-gradient(circle, rgba(255, 241, 0, 0.2) 0%, transparent 70%); border-radius: 50%; animation: pulse 2s ease-in-out infinite;"></div>
+                    <div class="method-icon" style="position: relative; width: 80px; height: 80px; background: linear-gradient(135deg, #FFF200 0%, #FFD700 100%); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto; font-size: 2.2rem; color: #000000; box-shadow: 0 10px 30px rgba(255, 241, 0, 0.4), inset 0 0 20px rgba(255, 255, 255, 0.3); transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); z-index: 1;">
+                        <i class="fas fa-trophy"></i>
+                    </div>
+                </div>
+                <h3 class="method-title" style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; font-size: 3rem; margin-bottom: 15px; color: #FFF200; font-weight: 900; text-transform: uppercase; letter-spacing: 2px;">10+</h3>
+                <h4 style="color: #FFFFFF; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 15px;">Ans d'Expertise</h4>
+                <p style="color: #ccc; font-size: 0.95rem; line-height: 1.6;">Une décennie d'excellence et d'innovation dans la simulation automobile</p>
+            </div>
+            
+            <div class="method-card" style="background: linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 241, 0, 0.05) 100%); border: 1px solid rgba(255, 241, 0, 0.3); border-radius: 25px; padding: 50px 40px; text-align: center; transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1); position: relative; overflow: hidden; animation: cardEntry 0.8s ease-out 0.2s backwards;">
+                <div class="method-icon-wrapper" style="position: relative; margin-bottom: 30px;">
+                    <div class="method-icon-bg" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 120px; height: 120px; background: radial-gradient(circle, rgba(255, 241, 0, 0.2) 0%, transparent 70%); border-radius: 50%; animation: pulse 2s ease-in-out infinite;"></div>
+                    <div class="method-icon" style="position: relative; width: 80px; height: 80px; background: linear-gradient(135deg, #FFF200 0%, #FFD700 100%); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto; font-size: 2.2rem; color: #000000; box-shadow: 0 10px 30px rgba(255, 241, 0, 0.4), inset 0 0 20px rgba(255, 255, 255, 0.3); transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); z-index: 1;">
+                        <i class="fas fa-users"></i>
+                    </div>
+                </div>
+                <h3 class="method-title" style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; font-size: 3rem; margin-bottom: 15px; color: #FFF200; font-weight: 900; text-transform: uppercase; letter-spacing: 2px;">500+</h3>
+                <h4 style="color: #FFFFFF; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 15px;">Clients Satisfaits</h4>
+                <p style="color: #ccc; font-size: 0.95rem; line-height: 1.6;">Une communauté grandissante de passionnés et de professionnels</p>
+            </div>
+            
+            <div class="method-card" style="background: linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 241, 0, 0.05) 100%); border: 1px solid rgba(255, 241, 0, 0.3); border-radius: 25px; padding: 50px 40px; text-align: center; transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1); position: relative; overflow: hidden; animation: cardEntry 0.8s ease-out 0.4s backwards;">
+                <div class="method-icon-wrapper" style="position: relative; margin-bottom: 30px;">
+                    <div class="method-icon-bg" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 120px; height: 120px; background: radial-gradient(circle, rgba(255, 241, 0, 0.2) 0%, transparent 70%); border-radius: 50%; animation: pulse 2s ease-in-out infinite;"></div>
+                    <div class="method-icon" style="position: relative; width: 80px; height: 80px; background: linear-gradient(135deg, #FFF200 0%, #FFD700 100%); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto; font-size: 2.2rem; color: #000000; box-shadow: 0 10px 30px rgba(255, 241, 0, 0.4), inset 0 0 20px rgba(255, 255, 255, 0.3); transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); z-index: 1;">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                </div>
+                <h3 class="method-title" style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; font-size: 3rem; margin-bottom: 15px; color: #FFF200; font-weight: 900; text-transform: uppercase; letter-spacing: 2px;">24/7</h3>
+                <h4 style="color: #FFFFFF; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 15px;">Disponibilité</h4>
+                <p style="color: #ccc; font-size: 0.95rem; line-height: 1.6;">Accès permanent à nos installations et services premium</p>
+            </div>
+            
+            <div class="method-card" style="background: linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 241, 0, 0.05) 100%); border: 1px solid rgba(255, 241, 0, 0.3); border-radius: 25px; padding: 50px 40px; text-align: center; transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1); position: relative; overflow: hidden; animation: cardEntry 0.8s ease-out 0.6s backwards;">
+                <div class="method-icon-wrapper" style="position: relative; margin-bottom: 30px;">
+                    <div class="method-icon-bg" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 120px; height: 120px; background: radial-gradient(circle, rgba(255, 241, 0, 0.2) 0%, transparent 70%); border-radius: 50%; animation: pulse 2s ease-in-out infinite;"></div>
+                    <div class="method-icon" style="position: relative; width: 80px; height: 80px; background: linear-gradient(135deg, #FFF200 0%, #FFD700 100%); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto; font-size: 2.2rem; color: #000000; box-shadow: 0 10px 30px rgba(255, 241, 0, 0.4), inset 0 0 20px rgba(255, 255, 255, 0.3); transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); z-index: 1;">
+                        <i class="fas fa-award"></i>
+                    </div>
+                </div>
+                <h3 class="method-title" style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; font-size: 3rem; margin-bottom: 15px; color: #FFF200; font-weight: 900; text-transform: uppercase; letter-spacing: 2px;">100%</h3>
+                <h4 style="color: #FFFFFF; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 15px;">Qualité Premium</h4>
+                <p style="color: #ccc; font-size: 0.95rem; line-height: 1.6;">Standards d'excellence et qualité irréprochable garantie</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Full Premium Team Section -->
+<section class="contact-form-section">
+    <div class="container">
+        <div class="section-header">
+            <h2 class="section-title">FULL PREMIUM</h2>
+            <p class="section-subtitle">L'équipe d'excellence derrière EB Racing</p>
+        </div>
+        
+        <div class="form-container">
+            <div class="team-grid">
+                <div class="method-card" style="background: linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 241, 0, 0.05) 100%); border: 1px solid rgba(255, 241, 0, 0.3); border-radius: 25px; padding: 50px 40px; text-align: center; transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1); position: relative; overflow: hidden; animation: cardEntry 0.8s ease-out backwards;">
+                    <div class="method-icon-wrapper" style="position: relative; margin-bottom: 30px;">
+                        <div class="method-icon-bg" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 120px; height: 120px; background: radial-gradient(circle, rgba(255, 241, 0, 0.2) 0%, transparent 70%); border-radius: 50%; animation: pulse 2s ease-in-out infinite;"></div>
+                        <div class="method-icon" style="position: relative; width: 80px; height: 80px; background: linear-gradient(135deg, #FFF200 0%, #FFD700 100%); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto; font-size: 2.2rem; color: #000000; box-shadow: 0 10px 30px rgba(255, 241, 0, 0.4), inset 0 0 20px rgba(255, 255, 255, 0.3); transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); z-index: 1;">
+                            <i class="fas fa-code"></i>
+                        </div>
+                    </div>
+                    <h3 class="method-title smaller">Services Automobiles Complets</h3>
+                    <h4>EB Racing</h4>
+                    <p>Équipe spécialisée en services automobiles : wrapping personnalisé, track days pour pilotes, simulation professionnelle, et préparation de véhicules. Une passion pour l'excellence automobile au service des passionnés.</p>
+                    <div class="badge-container">
+                        <span class="badge">ENTREPRISE</span>
+                        <span class="badge">AUTOMOBILE</span>
+                    </div>
+                </div>
+                
+                <div class="method-card" style="background: linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 241, 0, 0.05) 100%); border: 1px solid rgba(255, 241, 0, 0.3); border-radius: 25px; padding: 50px 40px; text-align: center; transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1); position: relative; overflow: hidden; animation: cardEntry 0.8s ease-out 0.2s backwards;">
+                    <div class="method-icon-wrapper" style="position: relative; margin-bottom: 30px;">
+                        <div class="method-icon-bg" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 120px; height: 120px; background: radial-gradient(circle, rgba(255, 241, 0, 0.2) 0%, transparent 70%); border-radius: 50%; animation: pulse 2s ease-in-out infinite;"></div>
+                        <div class="method-icon" style="position: relative; width: 80px; height: 80px; background: linear-gradient(135deg, #FFF200 0%, #FFD700 100%); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto; font-size: 2.2rem; color: #000000; box-shadow: 0 10px 30px rgba(255, 241, 0, 0.4), inset 0 0 20px rgba(255, 255, 255, 0.3); transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); z-index: 1;">
+                            <i class="fas fa-laptop-code"></i>
+                        </div>
+                    </div>
+                    <h3 class="method-title smaller">Développement & Design</h3>
+                    <h4>Aurora Interactive</h4>
+                    <p>Apprentis développeurs web passionnés. Nous apprenons jour après jour pour créer la meilleure expérience possible. Notre motivation : transformer des idées en réalité digitale.</p>
+                    <div class="badge-container">
+                        <span class="badge">APPRENTISSAGE</span>
+                        <span class="badge">PASSION</span>
+                    </div>
+                </div>
+                
+                <div class="method-card" style="background: linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 241, 0, 0.05) 100%); border: 1px solid rgba(255, 241, 0, 0.3); border-radius: 25px; padding: 50px 40px; text-align: center; transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1); position: relative; overflow: hidden; animation: cardEntry 0.8s ease-out 0.4s backwards;">
+                    <div class="method-icon-wrapper" style="position: relative; margin-bottom: 30px;">
+                        <div class="method-icon-bg" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 120px; height: 120px; background: radial-gradient(circle, rgba(255, 241, 0, 0.2) 0%, transparent 70%); border-radius: 50%; animation: pulse 2s ease-in-out infinite;"></div>
+                        <div class="method-icon" style="position: relative; width: 80px; height: 80px; background: linear-gradient(135deg, #FFF200 0%, #FFD700 100%); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto; font-size: 2.2rem; color: #000000; box-shadow: 0 10px 30px rgba(255, 241, 0, 0.4), inset 0 0 20px rgba(255, 255, 255, 0.3); transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); z-index: 1;">
+                            <i class="fas fa-palette"></i>
+                        </div>
+                    </div>
+                    <h3 class="method-title smaller">Design & Branding</h3>
+                    <h4>ByNuiDesign</h4>
+                    <p>Créatrice du logo et de l'identité visuelle de EB Racing. Talent créatif pour donner vie à la marque avec un design unique et mémorable.</p>
+                    <div class="badge-container">
+                        <span class="badge">LOGO DESIGN</span>
+                        <span class="badge">IDENTITE</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-section">
+                <h3>L'Excellence en Équipe</h3>
+                <p>Une collaboration d'expertise pour une expérience automobile premium</p>
+                <div class="footer-badges">
+                    <span class="footer-badge">Premium Quality</span>
+                    <span class="footer-badge">Expert Development</span>
+                    <span class="footer-badge">Creative Design</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Values Section Premium -->
+<section class="contact-methods">
+    <div class="container">
+        <div class="section-header">
+            <h2 class="section-title">NOS VALEURS</h2>
+            <p class="section-subtitle">Les piliers de notre excellence</p>
+        </div>
+        
+        <div class="methods-grid">
+            <div class="method-card" style="background: linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 241, 0, 0.05) 100%); border: 1px solid rgba(255, 241, 0, 0.3); border-radius: 25px; padding: 50px 40px; text-align: center; transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1); position: relative; overflow: hidden; animation: cardEntry 0.8s ease-out backwards;">
+                <div class="method-icon-wrapper" style="position: relative; margin-bottom: 30px;">
+                    <div class="method-icon-bg" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 120px; height: 120px; background: radial-gradient(circle, rgba(255, 241, 0, 0.2) 0%, transparent 70%); border-radius: 50%; animation: pulse 2s ease-in-out infinite;"></div>
+                    <div class="method-icon" style="position: relative; width: 80px; height: 80px; background: linear-gradient(135deg, #FFF200 0%, #FFD700 100%); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto; font-size: 2.2rem; color: #000000; box-shadow: 0 10px 30px rgba(255, 241, 0, 0.4), inset 0 0 20px rgba(255, 255, 255, 0.3); transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); z-index: 1;">
+                        <i class="fas fa-trophy"></i>
+                    </div>
+                </div>
+                <h3 class="method-title" style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; font-size: 1.8rem; margin-bottom: 15px; color: #FFFFFF; font-weight: 800; text-transform: uppercase; letter-spacing: 2px;">Excellence</h3>
+                <p style="color: #ccc; font-size: 1rem; line-height: 1.7;">Nous visons l'excellence dans chaque aspect de notre service, de la technologie à l'expérience utilisateur.</p>
+            </div>
+            
+            <div class="method-card" style="background: linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 241, 0, 0.05) 100%); border: 1px solid rgba(255, 241, 0, 0.3); border-radius: 25px; padding: 50px 40px; text-align: center; transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1); position: relative; overflow: hidden; animation: cardEntry 0.8s ease-out 0.2s backwards;">
+                <div class="method-icon-wrapper" style="position: relative; margin-bottom: 30px;">
+                    <div class="method-icon-bg" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 120px; height: 120px; background: radial-gradient(circle, rgba(255, 241, 0, 0.2) 0%, transparent 70%); border-radius: 50%; animation: pulse 2s ease-in-out infinite;"></div>
+                    <div class="method-icon" style="position: relative; width: 80px; height: 80px; background: linear-gradient(135deg, #FFF200 0%, #FFD700 100%); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto; font-size: 2.2rem; color: #000000; box-shadow: 0 10px 30px rgba(255, 241, 0, 0.4), inset 0 0 20px rgba(255, 255, 255, 0.3); transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); z-index: 1;">
+                        <i class="fas fa-users"></i>
+                    </div>
+                </div>
+                <h3 class="method-title" style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; font-size: 1.8rem; margin-bottom: 15px; color: #FFFFFF; font-weight: 800; text-transform: uppercase; letter-spacing: 2px;">Passion</h3>
+                <p style="color: #ccc; font-size: 1rem; line-height: 1.7;">Notre passion pour l'automobile et la technologie nous pousse à repousser sans cesse les limites.</p>
+            </div>
+            
+            <div class="method-card" style="background: linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 241, 0, 0.05) 100%); border: 1px solid rgba(255, 241, 0, 0.3); border-radius: 25px; padding: 50px 40px; text-align: center; transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1); position: relative; overflow: hidden; animation: cardEntry 0.8s ease-out 0.4s backwards;">
+                <div class="method-icon-wrapper" style="position: relative; margin-bottom: 30px;">
+                    <div class="method-icon-bg" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 120px; height: 120px; background: radial-gradient(circle, rgba(255, 241, 0, 0.2) 0%, transparent 70%); border-radius: 50%; animation: pulse 2s ease-in-out infinite;"></div>
+                    <div class="method-icon" style="position: relative; width: 80px; height: 80px; background: linear-gradient(135deg, #FFF200 0%, #FFD700 100%); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto; font-size: 2.2rem; color: #000000; box-shadow: 0 10px 30px rgba(255, 241, 0, 0.4), inset 0 0 20px rgba(255, 255, 255, 0.3); transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); z-index: 1;">
+                        <i class="fas fa-award"></i>
+                    </div>
+                </div>
+                <h3 class="method-title" style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; font-size: 1.8rem; margin-bottom: 15px; color: #FFFFFF; font-weight: 800; text-transform: uppercase; letter-spacing: 2px;">Innovation</h3>
+                <p style="color: #ccc; font-size: 1rem; line-height: 1.7;">Nous intégrons les dernières innovations technologiques pour offrir une expérience inégalée.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+    <div class="container">
+        <div class="footer-content">
+            <div class="footer-about">
+                <img src="/img/EB.png" alt="EB Racing" class="footer-logo">
+            </div>
+            <div class="footer-links">
+                <h4>HORAIRES</h4>
+                <ul>
+                    <li>Lun-Ven: 9h - 18h</li>
+                    <li>Sam: 10h - 16h</li>
+                    <li>Sur RDV le dimanche</li>
+                </ul>
+            </div>
+            <div class="footer-contact">
+                <h4>CONTACT</h4>
+                <p><i class="fas fa-map-marker-alt"></i> RUE DE LA MAÎTRISE 4, 1400 Nivelles</p>
+                <p><i class="fas fa-phone"></i> +32 495 57 92 78</p>
+                <p><i class="fas fa-envelope"></i> ebracingevents@gmail.com</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 EB Racing. Tous droits réservés.</p>
+            <div class="social-links">
+                <a href="https://www.facebook.com/beracingkart/"><i class="fab fa-facebook"></i></a>
+                <a href="https://www.instagram.com/eb.racing.events/"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-youtube"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- Sistema de seguridad -->
+<script src="/js/security.js"></script>
+<script src="/js/auth/auth.js"></script>
+<script src="/js/header.js"></script>
+
+
+<!-- Particle Generation Script -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Generate particles
+    const particlesContainer = document.getElementById('particles');
+    if (particlesContainer) {
+        for (let i = 0; i < 50; i++) {
+            const particle = document.createElement('div');
+            particle.className = 'particle';
+            particle.style.left = Math.random() * 100 + '%';
+            particle.style.animationDelay = Math.random() * 20 + 's';
+            particle.style.animationDuration = (15 + Math.random() * 10) + 's';
+            particlesContainer.appendChild(particle);
+        }
+    }
+});
+</script>
 </body>
 </html>
