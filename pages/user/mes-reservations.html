@@ -5,40 +5,43 @@
     <meta http-equiv="X-Content-Type-Options" content="nosniff">
     <meta http-equiv="X-Frame-Options" content="DENY">
     <meta http-equiv="X-XSS-Protection" content="1; mode=block">
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; font-src 'self'; connect-src 'self' http://localhost:3000;">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com https://fonts.googleapis.com; img-src 'self' data: https:; font-src 'self' https://cdnjs.cloudflare.com https://fonts.gstatic.com; connect-src 'self' http://localhost:3000;">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Gérez et planifiez vos sessions de simulation de course avec EB Simracing.">
-    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    <meta name="description" content="Tableau de bord premium de vos réservations - EB Simracing">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="icon" href="/assets/images/EB.png" type="image/png">
-    <title>Mes Réservations - EB Simracing</title>
+    <title>EB Racing - Mes Réservations</title>
     
     <link rel="stylesheet" href="/css/styles.css">
     <link rel="stylesheet" href="/css/components/header-profile.css">
-    <link rel="stylesheet" href="/css/user/reservations.css"> <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/assets/styles/all.min.css" 
-          integrity="sha512-Fo3rlrZj/k7ujTnHg4CGR2D7kSs0v4LLanw2qksYuMGFZpS56JtIel9w7l2S8779s2fFz10pC1J/9fW9e72Q==" 
-          crossorigin="anonymous" referrerpolicy="no-referrer">
+    <link rel="stylesheet" href="/css/shop/cart.css?v=1.1">
+    <link rel="stylesheet" href="/css/Membres/reservations.css">
+    <link rel="stylesheet" href="/css/Membres/reservations-enhancements.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
-    <a href="#main-content" class="skip-link">Aller au contenu principal</a>
-
+    <!-- Header -->
     <header class="header">
         <div class="container">
             <div class="logo">
-                <a href="../../index.html" aria-label="Accueil EB Simracing"><img src="/assets/images/EB SIMRACING(Solo-White).png" alt="Logo EB Simracing" class="logo-img"></a>
+                <a href="/index.html"><img src="/img/EB RACING(Solo-White).png" alt="EB Racing" class="logo-img"></a>
             </div>
-            <nav class="main-nav" aria-label="Navigation principale">
+            <nav class="main-nav">
                 <ul>
-                    <li><a href="../../index.html#inicio">Accueil</a></li>
-                    <li><a href="../../index.html#servicios">Services</a></li>
-                    <li><a href="../info/galerie.html">Galerie</a></li>
-                    <li><a href="../shop/merch.html">Boutique</a></li>
-                    <li><a href="../info/contacto.html">Contact</a></li>
+                    <li><a href="/index.html#inicio">Accueil</a></li>
+                    <li><a href="/index.html#servicios">Services</a></li>
+                    <li><a href="/pages/info/galerie.html">Galerie</a></li>
+                    <li><a href="/pages/shop/merch.html">Boutique</a></li>
+                    <li><a href="/pages/info/contacto.html">Contact</a></li>
                     <li class="nav-user" id="navUser" style="display: none;">
-                        <div class="user-avatar" id="userMenuBtn" role="button" aria-expanded="false" aria-controls="userDropdown">
-                            <img src="/assets/images/default-avatar.png" alt="Avatar de l'utilisateur" id="userAvatar">
-                            <i class="fas fa-chevron-down" aria-hidden="true"></i> </div>
-                        <div class="user-dropdown" id="userDropdown" role="menu">
+                        <div class="user-avatar" id="userMenuBtn">
+                            <img src="/img/user/EB_Default_Avatar.png" alt="Profil" id="userAvatar">
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="user-dropdown" id="userDropdown">
                             <!-- Header del dropdown con info del usuario -->
                             <div class="user-info-header">
                                 <div class="user-name">Usuario</div>
@@ -47,295 +50,464 @@
                             </div>
                             
                             <!-- Enlaces del menú -->
-                            <a href="../auth/perfil.html" role="menuitem">
-                                <i class="fas fa-user" aria-hidden="true"></i> 
+                            <a href="/pages/user/perfil.html">
+                                <i class="fas fa-user"></i> 
                                 <span>Mon Profil</span>
                             </a>
-                            <a href="mes-reservations.html" class="active" aria-current="page" role="menuitem">
-                                <i class="fas fa-calendar-alt" aria-hidden="true"></i> 
+                            <a href="/pages/user/mes-reservations.html" class="active">
+                                <i class="fas fa-calendar-alt"></i> 
                                 <span>Mes Réservations</span>
                                 <span class="badge">Actuel</span>
                             </a>
-                            <a href="../shop/cart.html" role="menuitem">
-                                <i class="fas fa-shopping-cart" aria-hidden="true"></i> 
+                            <a href="/pages/shop/cart.html">
+                                <i class="fas fa-shopping-cart"></i> 
                                 <span>Mon Panier</span>
                             </a>
-                            <a href="../shop/merch.html" role="menuitem">
-                                <i class="fas fa-store" aria-hidden="true"></i> 
+                            <a href="/pages/shop/merch.html">
+                                <i class="fas fa-store"></i> 
                                 <span>Boutique</span>
                             </a>
-                            <a href="parametres.html" role="menuitem">
-                                <i class="fas fa-cog" aria-hidden="true"></i> 
+                            <a href="/pages/user/parametres.html">
+                                <i class="fas fa-cog"></i> 
                                 <span>Paramètres</span>
                             </a>
-                            <a href="aide.html" role="menuitem">
-                                <i class="fas fa-question-circle" aria-hidden="true"></i> 
+                            <a href="/pages/user/aide.html">
+                                <i class="fas fa-question-circle"></i> 
                                 <span>Aide & Support</span>
                             </a>
                             
                             <div class="dropdown-divider"></div>
                             
-                            <a href="#" id="logoutBtn" role="menuitem">
-                                <i class="fas fa-sign-out-alt" aria-hidden="true"></i> 
+                            <a href="#" id="logoutBtn">
+                                <i class="fas fa-sign-out-alt"></i> 
                                 <span>Déconnexion</span>
                             </a>
                         </div>
                     </li>
                     <li class="nav-login" id="navLogin">
-                        <a href="../auth/login.html" class="btn-login">Connexion</a>
+                        <a href="/pages/auth/login.html" class="btn-login">Connexion</a>
                     </li>
                 </ul>
             </nav>
-            <div class="mobile-menu-btn" role="button" aria-label="Ouvrir le menu mobile">
-                <i class="fas fa-bars" aria-hidden="true"></i>
+            <div class="mobile-menu-btn">
+                <i class="fas fa-bars"></i>
             </div>
         </div>
     </header>
 
-    <section class="hero-section" aria-labelledby="page-title">
-        <div class="container">
+
+
+    <!-- Premium Hero Section -->
+    <section class="premium-hero" role="banner">
+        <div class="hero-background">
+            <div class="hero-gradient"></div>
+            <div class="hero-particles" id="heroParticles"></div>
+        </div>
+        <div class="hero-container">
             <div class="hero-content">
-                <h1 id="page-title"><i class="fas fa-calendar-alt" aria-hidden="true"></i> MES RÉSERVATIONS</h1>
+                <div class="hero-badge">
+                    <i class="fas fa-crown"></i>
+                    <span>TABLEAU DE BORD PREMIUM</span>
+                </div>
+                <h1 class="hero-title">
+                    <span class="title-gradient">MES RÉSERVATIONS</span>
+                </h1>
+                <p class="hero-subtitle">
+                    Gérez vos sessions de simulation avec style et efficacité
+                </p>
+                <div class="hero-stats">
+                    <div class="stat-item">
+                        <span class="stat-number" id="totalReservations">0</span>
+                        <span class="stat-label">Total Réservations</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number" id="upcomingReservations">0</span>
+                        <span class="stat-label">À Venir</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number" id="completedSessions">0</span>
+                        <span class="stat-label">Sessions Terminées</span>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 
-    <main class="main-content" id="main-content">
-        <div class="container">
-            <div class="content-wrapper">
-                <div class="page-actions">
-                    <button id="newReservationBtn" class="btn btn-primary" aria-haspopup="dialog" aria-controls="reservationModal">
-                        <i class="fas fa-plus" aria-hidden="true"></i> Nouvelle Réservation
+    <!-- Main Content -->
+    <main class="premium-main" id="main-content">
+        <div class="main-container">
+            <!-- Premium Dashboard -->
+            <div class="premium-dashboard">
+                <!-- Quick Actions Bar -->
+                <div class="quick-actions-bar">
+                    <div class="actions-left">
+                        <button class="premium-btn primary" id="newReservationBtn">
+                            <i class="fas fa-plus-circle"></i>
+                            <span>Nouvelle Réservation</span>
+                            <div class="btn-glow"></div>
+                        </button>
+                        <button class="premium-btn secondary" id="calendarViewBtn">
+                            <i class="fas fa-calendar-alt"></i>
+                            <span>Vue Calendrier</span>
+                        </button>
+                    </div>
+                    <div class="actions-right">
+                        <div class="search-box">
+                            <i class="fas fa-search"></i>
+                            <input type="text" id="searchInput" placeholder="Rechercher une réservation...">
+                        </div>
+                        <div class="view-toggle">
+                            <button class="view-btn active" data-view="grid" aria-label="Vue grille">
+                                <i class="fas fa-th"></i>
+                            </button>
+                            <button class="view-btn" data-view="list" aria-label="Vue liste">
+                                <i class="fas fa-list"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Filters Section -->
+                <div class="premium-filters">
+                    <div class="filter-group">
+                        <label class="filter-label">Statut</label>
+                        <select class="premium-select" id="statusFilter">
+                            <option value="all">Tous les statuts</option>
+                            <option value="confirmed">Confirmées</option>
+                            <option value="pending">En attente</option>
+                            <option value="completed">Terminées</option>
+                            <option value="cancelled">Annulées</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <label class="filter-label">Simulateur</label>
+                        <select class="premium-select" id="simulatorFilter">
+                            <option value="all">Tous les simulateurs</option>
+                            <option value="normal">Simulateurs Standards (1-9)</option>
+                            <option value="vip">Simulateur VIP</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <label class="filter-label">Période</label>
+                        <select class="premium-select" id="periodFilter">
+                            <option value="all">Toutes périodes</option>
+                            <option value="today">Aujourd'hui</option>
+                            <option value="week">Cette semaine</option>
+                            <option value="month">Ce mois</option>
+                            <option value="future">À venir</option>
+                        </select>
+                    </div>
+                    <button class="premium-btn outline" id="resetFiltersBtn">
+                        <i class="fas fa-redo"></i>
+                        <span>Réinitialiser</span>
                     </button>
                 </div>
 
-                <div class="reservations-container">
-                    <div id="reservationsList" class="reservations-list" role="region" aria-live="polite" aria-label="Liste des réservations">
-                        <p class="loading-message">Chargement des réservations...</p>
+                <!-- Reservations Grid -->
+                <div class="reservations-grid" id="reservationsGrid">
+                    <div class="loading-state">
+                        <div class="loading-spinner"></div>
+                        <p>Chargement de vos réservations...</p>
+                    </div>
+                </div>
+
+                <!-- Empty State -->
+                <div class="empty-state" id="emptyState" style="display: none;">
+                    <div class="empty-content">
+                        <div class="empty-icon">
+                            <i class="fas fa-calendar-times"></i>
+                        </div>
+                        <h3>Aucune réservation trouvée</h3>
+                        <p>Vous n'avez pas encore de réservation. Créez votre première session dès maintenant!</p>
+                        <button class="premium-btn primary" id="emptyStateNewBtn">
+                            <i class="fas fa-rocket"></i>
+                            <span>Commencer</span>
+                        </button>
                     </div>
                 </div>
             </div>
         </div>
     </main>
 
-    <div id="reservationModal" class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
-        <div class="modal-content">
-            <button class="close-modal" aria-label="Fermer la fenêtre modale">&times;</button>
-            <h2 id="modal-title"><i class="fas fa-plus-circle" aria-hidden="true"></i> Nouvelle Réservation</h2>
-            <form id="reservationForm">
-                <div class="form-group">
-                    <label for="simulatorType">Type de simulateur</label>
-                    <select id="simulatorType" name="simulator" class="form-control" required>
-                        <option value="">Sélectionnez un simulateur</option>
-                        <optgroup label="Simulateurs Standard">
-                            <option value="f1">Formule 1 (Standard)</option>
-                            <option value="gt3">GT3 (Standard)</option>
-                        </optgroup>
-                        <optgroup label="Simulateurs VIP">
-                            <option value="f1_vip" data-vip="true">F1 Pro (VIP)</option>
-                            <option value="gt3_vip" data-vip="true">GT3 Pro (VIP)</option>
-                        </optgroup>
-                    </select>
-                </div>
-                
-                <div class="form-group">
-                    <label for="reservationDate">Date</label>
-                    <input type="date" id="reservationDate" name="date" class="form-control" required>
-                </div>
-                
-                <div class="form-group">
-                    <label for="reservationTime">Heure</label>
-                    <select id="reservationTime" name="time" class="form-control" required>
-                        <option value="" disabled selected>Sélectionnez d'abord une date</option>
-                    </select>
-                </div>
-                
-                <div class="form-group">
-                    <label for="duration">Durée</label>
-                    <select id="duration" name="duration" class="form-control" required>
-                        <option value="30">30 minutes</option>
-                        <option value="60" selected>1 heure</option>
-                        <option value="90">1h30</option>
-                        <option value="120">2 heures</option>
-                    </select>
-                </div>
-                
-                <div class="form-actions">
-                    <button type="button" id="cancelReservationBtn" class="btn btn-secondary">Annuler</button>
-                    <button type="submit" id="submitReservationBtn" class="btn btn-primary">Réserver</button>
-                </div>
-            </form>
+    <!-- Premium Modal -->
+    <div class="premium-modal" id="reservationModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+        <div class="modal-backdrop" id="modalBackdrop"></div>
+        <div class="modal-container">
+            <div class="modal-header">
+                <h2 id="modalTitle">
+                    <i class="fas fa-plus-circle"></i>
+                    Nouvelle Réservation Premium
+                </h2>
+                <button class="modal-close" id="modalClose" aria-label="Fermer">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            
+            <div class="modal-body">
+                <form id="reservationForm" class="premium-form">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label" for="simulatorType">
+                                <i class="fas fa-car"></i>
+                                Type de simulateur
+                            </label>
+                            <div class="simulator-cards">
+                                <div class="simulator-card" data-simulator="normal" data-id="1">
+                                    <div class="card-icon">
+                                        <i class="fas fa-car-side"></i>
+                                    </div>
+                                    <div class="card-info">
+                                        <h4>Simulateur 1</h4>
+                                        <p>Simulateur standard</p>
+                                        <div class="price">40€/h</div>
+                                    </div>
+                                </div>
+                                <div class="simulator-card" data-simulator="normal" data-id="2">
+                                    <div class="card-icon">
+                                        <i class="fas fa-car-side"></i>
+                                    </div>
+                                    <div class="card-info">
+                                        <h4>Simulateur 2</h4>
+                                        <p>Simulateur standard</p>
+                                        <div class="price">40€/h</div>
+                                    </div>
+                                </div>
+                                <div class="simulator-card" data-simulator="normal" data-id="3">
+                                    <div class="card-icon">
+                                        <i class="fas fa-car-side"></i>
+                                    </div>
+                                    <div class="card-info">
+                                        <h4>Simulateur 3</h4>
+                                        <p>Simulateur standard</p>
+                                        <div class="price">40€/h</div>
+                                    </div>
+                                </div>
+                                <div class="simulator-card" data-simulator="normal" data-id="4">
+                                    <div class="card-icon">
+                                        <i class="fas fa-car-side"></i>
+                                    </div>
+                                    <div class="card-info">
+                                        <h4>Simulateur 4</h4>
+                                        <p>Simulateur standard</p>
+                                        <div class="price">40€/h</div>
+                                    </div>
+                                </div>
+                                <div class="simulator-card" data-simulator="normal" data-id="5">
+                                    <div class="card-icon">
+                                        <i class="fas fa-car-side"></i>
+                                    </div>
+                                    <div class="card-info">
+                                        <h4>Simulateur 5</h4>
+                                        <p>Simulateur standard</p>
+                                        <div class="price">40€/h</div>
+                                    </div>
+                                </div>
+                                <div class="simulator-card" data-simulator="normal" data-id="6">
+                                    <div class="card-icon">
+                                        <i class="fas fa-car-side"></i>
+                                    </div>
+                                    <div class="card-info">
+                                        <h4>Simulateur 6</h4>
+                                        <p>Simulateur standard</p>
+                                        <div class="price">40€/h</div>
+                                    </div>
+                                </div>
+                                <div class="simulator-card" data-simulator="normal" data-id="7">
+                                    <div class="card-icon">
+                                        <i class="fas fa-car-side"></i>
+                                    </div>
+                                    <div class="card-info">
+                                        <h4>Simulateur 7</h4>
+                                        <p>Simulateur standard</p>
+                                        <div class="price">40€/h</div>
+                                    </div>
+                                </div>
+                                <div class="simulator-card" data-simulator="normal" data-id="8">
+                                    <div class="card-icon">
+                                        <i class="fas fa-car-side"></i>
+                                    </div>
+                                    <div class="card-info">
+                                        <h4>Simulateur 8</h4>
+                                        <p>Simulateur standard</p>
+                                        <div class="price">40€/h</div>
+                                    </div>
+                                </div>
+                                <div class="simulator-card" data-simulator="normal" data-id="9">
+                                    <div class="card-icon">
+                                        <i class="fas fa-car-side"></i>
+                                    </div>
+                                    <div class="card-info">
+                                        <h4>Simulateur 9</h4>
+                                        <p>Simulateur standard</p>
+                                        <div class="price">40€/h</div>
+                                    </div>
+                                </div>
+                                <div class="simulator-card vip" data-simulator="vip" data-id="10">
+                                    <div class="vip-badge">
+                                        <i class="fas fa-crown"></i> VIP
+                                    </div>
+                                    <div class="card-icon">
+                                        <i class="fas fa-gem"></i>
+                                    </div>
+                                    <div class="card-info">
+                                        <h4>Simulateur VIP</h4>
+                                        <p>Expérience premium</p>
+                                        <div class="price">75€/h</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <input type="hidden" id="simulatorType" name="simulator" required>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label" for="reservationDate">
+                                <i class="fas fa-calendar"></i>
+                                Date de réservation
+                            </label>
+                            <input type="date" id="reservationDate" name="date" class="premium-input" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="reservationTime">
+                                <i class="fas fa-clock"></i>
+                                Heure de début
+                            </label>
+                            <select id="reservationTime" name="time" class="premium-select" required>
+                                <option value="">Sélectionnez une date</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label" for="duration">
+                                <i class="fas fa-hourglass-half"></i>
+                                Durée de la session
+                            </label>
+                            <select id="duration" name="duration" class="premium-select" required>
+                                <option value="30">30 minutes - 20€</option>
+                                <option value="60" selected>1 heure - 40€</option>
+                                <option value="90">1h30 - 55€</option>
+                                <option value="120">2 heures - 70€</option>
+                                <option value="180">3 heures - 90€</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="participants">
+                                <i class="fas fa-users"></i>
+                                Nombre de participants
+                            </label>
+                            <select id="participants" name="participants" class="premium-select">
+                                <option value="1">1 pilote</option>
+                                <option value="2">2 pilotes</option>
+                                <option value="3">3 pilotes</option>
+                                <option value="4">4 pilotes</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="specialRequests">
+                            <i class="fas fa-comment"></i>
+                            Demandes spéciales (optionnel)
+                        </label>
+                        <textarea id="specialRequests" name="specialRequests" class="premium-textarea" 
+                                  placeholder="Précisez vos besoins spécifiques..."></textarea>
+                    </div>
+
+                    <div class="price-summary">
+                        <div class="summary-row">
+                            <span>Tarif de base:</span>
+                            <span id="basePrice">0€</span>
+                        </div>
+                        <div class="summary-row">
+                            <span>Durée:</span>
+                            <span id="durationPrice">0€</span>
+                        </div>
+                        <div class="summary-row discount" id="discountRow" style="display: none;">
+                            <span>Réduction VIP:</span>
+                            <span id="discountAmount">-0€</span>
+                        </div>
+                        <div class="summary-row total">
+                            <span>Total:</span>
+                            <span id="totalPrice">0€</span>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            
+            <div class="modal-footer">
+                <button type="button" class="premium-btn secondary" id="cancelBtn">
+                    <i class="fas fa-times"></i>
+                    Annuler
+                </button>
+                <button type="submit" form="reservationForm" class="premium-btn primary">
+                    <i class="fas fa-check"></i>
+                    Confirmer la réservation
+                </button>
+            </div>
         </div>
     </div>
 
-    <script src="/js/auth/auth.js"></script>
-    <script src="/js/header.js"></script>
-    <script src="/js/user/reservations.js"></script>
-
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // Lógica de Autenticación, Menú Desplegable y Modal:
-            // Es mucho más limpio y eficiente si toda esta lógica se mueve a un archivo JS (p. ej., `app.js` o `ui.js`) 
-            // y solo se llama una función de inicialización aquí si es necesario.
-            
-            // Función de comprobación y redirección
-            function checkAuthAndInit() {
-                const isLoggedIn = window.auth && window.auth.isAuthenticated();
-                const navUser = document.getElementById('navUser');
-                const navLogin = document.getElementById('navLogin');
-                
-                if (isLoggedIn) {
-                    // Mostrar menú de usuario
-                    if (navUser) navUser.style.display = 'block';
-                    if (navLogin) navLogin.style.display = 'none';
-                    
-                    // Cargar datos de usuario
-                    const userData = window.auth.getCurrentUser();
-                    const userAvatar = document.getElementById('userAvatar');
-                    if (userData && userData.avatar && userAvatar) {
-                        userAvatar.src = userData.avatar;
-                    }
-                    
-                    // Inicializar la funcionalidad de las reservas (asumiendo que está en reservations.js)
-                    if (typeof initReservations === 'function') {
-                        initReservations();
-                    } else {
-                        console.error('La fonction initReservations n\'est pas définie. Assurez-vous que reservations.js est chargé.');
-                    }
-                } else {
-                    // Redirigir si no está autenticado
-                    // La redirección inmediata puede ser problemática, considérala para `auth.js`
-                    // window.location.href = 'pages/auth/login.html'; 
-                }
-            }
-            
-            // Inicialización de la UI (Menú desplegable, Modal, Logout)
-            function initUI() {
-                // Menú desplegable
-                const userMenuBtn = document.getElementById('userMenuBtn');
-                const userDropdown = document.getElementById('userDropdown');
-                
-                if (userMenuBtn && userDropdown) {
-                    userMenuBtn.addEventListener('click', function(e) {
-                        e.stopPropagation();
-                        const isExpanded = userDropdown.classList.toggle('show');
-                        userMenuBtn.setAttribute('aria-expanded', isExpanded); // Actualiza ARIA
-                    });
-                    
-                    document.addEventListener('click', function() {
-                        userDropdown.classList.remove('show');
-                        userMenuBtn.setAttribute('aria-expanded', 'false');
-                    });
-                    
-                    userDropdown.addEventListener('click', function(e) {
-                        e.stopPropagation();
-                    });
-                }
-                
-                // Logout
-                const logoutBtn = document.getElementById('logoutBtn');
-                if (logoutBtn) {
-                    logoutBtn.addEventListener('click', function(e) {
-                        e.preventDefault();
-                        if (window.auth && typeof window.auth.logout === 'function') {
-                            window.auth.logout();
-                        } else {
-                            window.location.href = 'pages/auth/login.html';
-                        }
-                    });
-                }
-                
-                // Funcionalidad del Modal (Se mantiene la lógica simple)
-                const modal = document.getElementById('reservationModal');
-                const newReservationBtn = document.getElementById('newReservationBtn');
-                const closeModalBtn = document.querySelector('#reservationModal .close-modal');
-                const cancelBtn = document.getElementById('cancelReservationBtn');
-                const form = document.getElementById('reservationForm');
-                
-                if (modal) {
-                    const closeModal = () => {
-                        modal.style.display = 'none';
-                        document.body.style.overflow = ''; // Restaurar scroll del cuerpo
-                    }
-
-                    if (newReservationBtn) {
-                        newReservationBtn.onclick = function() {
-                            modal.style.display = 'flex';
-                            document.body.style.overflow = 'hidden'; // Bloquear scroll del cuerpo
-                            // Opcional: enfocar el primer elemento del modal para accesibilidad
-                            const firstFocusable = modal.querySelector('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
-                            if (firstFocusable) firstFocusable.focus();
-                        }
-                    }
-
-                    if (closeModalBtn) closeModalBtn.onclick = closeModal;
-                    if (cancelBtn) cancelBtn.onclick = closeModal;
-                    
-                    window.onclick = function(event) {
-                        if (event.target == modal) {
-                            closeModal();
-                        }
-                    }
-                    
-                    // Envío de formulario (Lógica de ejemplo)
-                    if (form) {
-                        form.onsubmit = function(e) {
-                            e.preventDefault();
-                            alert('Réservation effectuée avec succès! (La logique réelle doit être dans reservations.js)');
-                            closeModal();
-                            form.reset();
-                        }
-                    }
-                }
-            }
-            
-            // Inicializar al cargar el DOM
-            checkAuthAndInit();
-            initUI();
-        });
-    </script>
-
-    <footer class="footer" role="contentinfo">
+    <!-- Premium Notification -->
+    <div class="premium-notification" id="notification">
+        <div class="notification-content">
+            <div class="notification-icon">
+                <i class="fas fa-check-circle"></i>
+            </div>
+            <div class="notification-message">
+                <p id="notificationText">Message de notification</p>
+            </div>
+            <button class="notification-close" id="notificationClose">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+    </div>
+    
+        <!-- Footer -->
+    <footer class="footer">
         <div class="container">
             <div class="footer-content">
                 <div class="footer-about">
-                    <img src="/assets/images/EB.png" alt="Logo secondaire EB Simracing" class="footer-logo">
-                    </div>
+                    <img src="/img/EB.png" alt="EB Racing" class="footer-logo">
+                </div>
                 <div class="footer-links">
                     <h4>LIENS RAPIDES</h4>
-                    <nav aria-label="Liens rapides du pied de page">
-                        <ul>
-                            <li><a href="../../index.html#inicio">Accueil</a></li>
-                            <li><a href="../../index.html#servicios">Services</a></li>
-                            <li><a href="../info/galerie.html">Galerie</a></li>
-                            <li><a href="../shop/merch.html">Boutique</a></li>
-                            <li><a href="../info/contacto.html">Contact</a></li>
-                        </ul>
-                    </nav>
+                    <ul>
+                        <li><a href="index.html#inicio">Accueil</a></li>
+                        <li><a href="index.html#servicios">Services</a></li>
+                        <li><a href="pages/info/galerie.html">Galerie</a></li>
+                    <li><a href="pages/shop/merch.html">Boutique</a></li>
+                        <li><a href="pages/info/contacto.html">Contact</a></li>
+                    </ul>
                 </div>
-                <div class="footer-contact" role="region" aria-label="Informations de contact">
-                    <h4>CONTACT</h4>
-                    <address>
-                        <p><i class="fas fa-map-marker-alt" aria-hidden="true"></i> RUE DE LA MAÎTRISE 4<br>1400 Nivelles</p>
-                        <p><i class="fas fa-phone" aria-hidden="true"></i> <a href="tel:+32495579278">+32 495 57 92 78</a></p>
-                        <p><i class="fas fa-envelope" aria-hidden="true"></i> <a href="mailto:ebracingevents@gmail.com">ebracingevents@gmail.com</a></p>
-                    </address>
+                <div class="footer-contact">
+                    <h4>Contact</h4>
+                    <p><i class="fas fa-map-marker-alt"></i> RUE DE LA MAÎTRISE 4<br>1400 Nivelles</p>
+                    <p><i class="fas fa-phone"></i> +32 495 57 92 78</p>
+                    <p><i class="fas fa-envelope"></i> ebracingevents@gmail.com</p>
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2025 EB Simracing. Tous droits réservés.</p>
-                <div class="social-links" role="region" aria-label="Liens sociaux">
-                    <a href="https://www.facebook.com/beracingkart/" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><i class="fab fa-facebook-f" aria-hidden="true"></i></a>
-                    <a href="https://www.instagram.com/eb.racing.events/" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="fab fa-instagram" aria-hidden="true"></i></a>
-                    <a href="#" target="_blank" rel="noopener noreferrer" aria-label="YouTube"><i class="fab fa-youtube" aria-hidden="true"></i></a>
-                    <a href="#" target="_blank" rel="noopener noreferrer" aria-label="Twitter"><i class="fab fa-twitter" aria-hidden="true"></i></a>
+                <p>&copy; 2025 EB Simracing. Todos los derechos reservados.</p>
+                <div class="social-links">
+                    <a href="https://www.facebook.com/beracingkart/?ref=_xav_ig_profile_page_web&checkpoint_src=any"><i class="fab fa-facebook"></i></a>
+                    <a href="https://www.instagram.com/eb.racing.events/"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
                 </div>
             </div>
         </div>
     </footer>
 
-    <!-- Sistema de seguridad -->
+    <!-- Scripts -->
+    <script src="/js/services/cartService.js"></script>
+    <script src="/js/shop/cart.js"></script>
     <script src="/js/security.js"></script>
     <script src="/js/auth/auth.js"></script>
+    <script src="/js/header.js"></script>
+    <script src="/js/premium/reservations-premium.js"></script>
+    <script src="/js/premium/reservations-enhancements.js"></script>
 </body>
 </html>

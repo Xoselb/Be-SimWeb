@@ -1,9 +1,3 @@
-/* 
- * =============================================
- * 1. VARIABLES Y RESET
- * =============================================
- * Define las variables de colores, tipografía y resetea estilos por defecto
- */
 :root {
     --primary-color: #FFF200;
     --secondary-color: #1d3557;
