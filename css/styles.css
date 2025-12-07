@@ -426,6 +426,7 @@ img {
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     border-radius: 10px;
     overflow: hidden;
+    width: 100%; /* Forzar que ocupe todo el ancho disponible */
 }
 
 .service-card-link:hover {
@@ -438,6 +439,10 @@ img {
     position: relative;
     height: 100%;
     padding-bottom: 50px; /* Espace pour le lien "En savoir plus" */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%; /* Forzar que ocupe todo el ancho del contenedor */
 }
 
 .service-link {
@@ -762,12 +767,12 @@ img {
 
 .services-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(2, 1fr);
     gap: 30px;
-    margin-top: 50px;
+    margin: 50px auto 0;
     position: relative;
     z-index: 1;
-    max-width: 1200px;
+    max-width: 1400px;
     width: 100%;
     padding: 0 20px;
 }
@@ -848,8 +853,23 @@ img {
     transition: all 0.3s ease;
     text-align: center;
     height: 100%;
+    min-height: 400px; /* Altura mínima para mantener consistencia */
     position: relative;
     overflow: hidden;
+    /* Sin max-width para que ocupen todo el ancho disponible */
+}
+
+/* Background images for service cards */
+.service-card.simulateurs {
+    background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.25)), url('/img/HSO.jpeg') no-repeat center center/cover;
+}
+
+.service-card.bar {
+    background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.25)), url('/img/BAR/BAR.jpg') no-repeat center center/cover;
+}
+
+.service-card.atelier {
+    background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.25)), url('/img/WRAPPING.EVAN.jpeg') no-repeat center center/cover;
 }
 
 .service-card::after {
@@ -873,7 +893,7 @@ img {
 .service-icon {
     width: 80px;
     height: 80px;
-    margin: 0 auto 20px;
+    margin: 0 auto 15px; /* Reducir espacio debajo del icono */
     background: #000;
     border-radius: 50%;
     display: flex;
@@ -883,6 +903,7 @@ img {
     color: #FFF;
     transition: all 0.3s ease;
     border: 2px solid #FFF200;
+    order: 1; /* Icono primero */
 }
 
 .service-card-link:hover .service-icon {
@@ -896,6 +917,14 @@ img {
     margin-bottom: 15px;
     color: #FFFFFF;
     transition: color 0.3s ease;
+    order: 2; /* Título segundo */
+}
+
+.service-card p {
+    min-height: 80px; /* Altura mínima para mantener espacio del texto */
+    margin-bottom: 20px;
+    line-height: 1.6;
+    order: 3; /* Párrafo tercero */
 }
 
 .service-card:hover h3 {
@@ -2006,11 +2035,13 @@ section.pricing-table {
 }
 
 .testimonial {
-    background: white;
+    background: black;
     padding: 40px;
     border-radius: 10px;
+    border: 2px solid #FFF200;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
     margin: 0 20px;
+    
 }
 
 .testimonial-content {
@@ -2021,8 +2052,9 @@ section.pricing-table {
 }
 
 .testimonial-author h4 {
-    color: var(--primary-color);
+    color: white;
     margin-bottom: 5px;
+    font-weight: 1000;
 }
 
 .testimonial-author span {
@@ -2069,6 +2101,90 @@ section.pricing-table {
     outline: none;
     border-color: var(--primary-color);
     box-shadow: 0 0 0 3px rgba(230, 57, 70, 0.2);
+}
+
+/* Brands Row */
+.brands-row {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 50px;
+    padding: 30px 0;
+}
+
+.brands-row .brand-logo {
+    height: 50px;
+    width: auto;
+    transition: all 0.3s ease;
+    animation: autoBrightness 5s infinite;
+}
+
+.brands-row .cooler-master {
+    filter: invert(1) brightness(2) !important;
+    -webkit-filter: invert(1) brightness(2) !important;
+}
+
+.brands-row .hos-logo {
+    filter: invert(1) brightness(2) !important;
+    -webkit-filter: invert(1) brightness(2) !important;
+}
+
+.brands-row .SimuCube-logo {
+    filter: invert(1) brightness(2) !important;
+    -webkit-filter: invert(1) brightness(2) !important;
+}
+
+.brands-row .SimLab-logo {
+    filter: invert(1) brightness(2) !important;
+    -webkit-filter: invert(1) brightness(2) !important;
+}
+
+.brands-row .CubeControls-logo {
+    filter: grayscale(1) brightness(3) contrast(1.5) !important;
+    -webkit-filter: grayscale(1) brightness(3) contrast(1.5) !important;
+}
+
+@keyframes autoBrightness {
+    0% { opacity: 0.6; }
+    40% { opacity: 0.6; }
+    40.01% { opacity: 1; }
+    80% { opacity: 1; }
+    80.01% { opacity: 0.6; }
+    100% { opacity: 0.6; }
+}
+
+/* Footer Maps Button */
+.footer-maps-btn {
+    background:  #000;
+    color: #FFF;
+    border: 2px solid #FFF200;
+    padding: 10px 15px;
+    border-radius: 10px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 15px;
+    text-decoration: none;
+    box-shadow: 0 4px 15px rgba(255, 242, 0, 0.3);
+}
+
+.footer-maps-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 0px 20px #FFF200;
+    background: linear-gradient(135deg, #FFD700 0%, #FFF200 100%);
+    color: #000;
+}
+
+.footer-maps-btn:hover i {
+    color: #000;
+}
+
+.footer-maps-btn i {
+    font-size: 1rem;
 }
 
 /* Footer */
@@ -3131,10 +3247,8 @@ input[type="date"]:not(:placeholder-shown) + .date-label {
     left: 0;
     opacity: 0;
     visibility: hidden;
-    transition: opacity 0.8s ease, visibility 0.8s;
-    pointer-events: none;
-    transform: translateZ(0); /* Forzar aceleración por hardware */
-    backface-visibility: hidden; /* Prevenir parpadeo en algunas transiciones */
+    transition: all 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    transform: translateX(-100%);
 }
 
 .hero-text.active {
@@ -3142,11 +3256,26 @@ input[type="date"]:not(:placeholder-shown) + .date-label {
     visibility: visible;
     pointer-events: auto;
     position: relative;
+    transform: translateX(0);
+}
+
+.hero-text.slide-out-right {
+    opacity: 0;
+    visibility: hidden;
+    transform: translateX(100%);
+    transition: all 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.hero-text.slide-in-left {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(0);
+    transition: all 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55);
 }
 
 /* Asegurar que solo el texto activo sea interactivo */
 .hero-text:not(.active) {
-    display: none;
+    pointer-events: none;
 }
 
 /* Media Queries */

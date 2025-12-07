@@ -453,10 +453,14 @@
                     </ul>
                 </div>
                 <div class="footer-contact">
-                    <h4>CONTACT</h4>
-                    <p><i class="fas fa-map-marker-alt"></i> RUE DE LA MAÎTRISE 4, 1400 Nivelles</p>
+                    <h4>Contact</h4>
+                    <p><i class="fas fa-map-marker-alt"></i> RUE DE LA MAÎTRISE 4<br>1400 Nivelles</p>
                     <p><i class="fas fa-phone"></i> +32 495 57 92 78</p>
                     <p><i class="fas fa-envelope"></i> ebracingevents@gmail.com</p>
+                    <button class="footer-maps-btn" onclick="openMaps()">
+                        <i class="fas fa-map-marked-alt"></i>
+                        <span>Voir sur Maps</span>
+                    </button>
                 </div>
             </div>
             <div class="footer-bottom">
@@ -727,5 +731,11 @@
     <!-- Sistema de seguridad -->
     <script src="/js/security.js"></script>
     <script src="/js/auth/auth.js"></script><script src="/js/services/cartService.js"></script><script src="/js/shop/cart.js"></script>
+    
+    <script>
+        function openMaps() {
+            window.open('https://maps.google.com/?q=RUE+DE+LA+MAÎTRISE+4+1400+Nivelles+Belgique', '_blank');
+        }
+    </script>
 </body>
 </html>

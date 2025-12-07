@@ -119,7 +119,7 @@
             <h2 class="section-title">NOS SERVICES</h2>
             <div class="services-grid">
                 <a href="pages/booking/simulateurs.html" class="service-card-link">
-                    <div class="service-card">
+                    <div class="service-card simulateurs">
                         <div class="service-icon">
                             <i class="fas fa-gauge-high"></i>
                         </div>
@@ -128,18 +128,8 @@
                         <span class="service-link">En savoir plus <i class="fas fa-arrow-right"></i></span>
                     </div>
                 </a>
-                <a href="pages/booking/bar-detente.html" class="service-card-link">
-                    <div class="service-card">
-                        <div class="service-icon">
-                            <i class="fas fa-martini-glass"></i>
-                        </div>
-                        <h3>BAR ET DÉTENTE</h3>
-                        <p>Un lieu idéal pour se détendre, passer du temps entre amis et profiter d'une ambiance conviviale. Avant ou après vos séances de simulation, vous pourrez prendre un verre, discuter et passer un moment agréable dans un cadre unique et propice à la détente.</p>
-                        <span class="service-link">Découvrir <i class="fas fa-arrow-right"></i></span>
-                    </div>
-                </a>
                 <a href="pages/booking/atelier-vinyle.html" class="service-card-link">
-                    <div class="service-card">
+                    <div class="service-card atelier">
                         <div class="service-icon">
                             <i class="fas fa-paint-roller"></i>
                         </div>
@@ -248,6 +238,10 @@
                     <p><i class="fas fa-map-marker-alt"></i> RUE DE LA MAÎTRISE 4<br>1400 Nivelles</p>
                     <p><i class="fas fa-phone"></i> +32 495 57 92 78</p>
                     <p><i class="fas fa-envelope"></i> ebracingevents@gmail.com</p>
+                    <button class="footer-maps-btn" onclick="openMaps()">
+                        <i class="fas fa-map-marked-alt"></i>
+                        <span>Voir sur Maps</span>
+                    </button>
                 </div>
             </div>
             <div class="footer-bottom">
@@ -502,5 +496,11 @@
     <!-- Sistema de seguridad -->
     <script src="/js/security.js"></script>
     <script src="/js/auth/auth.js"></script>
+    
+    <script>
+        function openMaps() {
+            window.open('https://maps.google.com/?q=RUE+DE+LA+MAÎTRISE+4+1400+Nivelles+Belgique', '_blank');
+        }
+    </script>
 </body>
 </html>

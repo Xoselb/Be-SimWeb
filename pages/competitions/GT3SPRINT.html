@@ -5,60 +5,84 @@
     <meta http-equiv="X-Content-Type-Options" content="nosniff">
     <meta http-equiv="X-Frame-Options" content="DENY">
     <meta http-equiv="X-XSS-Protection" content="1; mode=block">
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; font-src 'self'; connect-src 'self' http://localhost:3000;">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com; img-src 'self' data: https:; font-src 'self' https://cdnjs.cloudflare.com; connect-src 'self' http://localhost:3000;">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Detalles del Campeonato - EB Simracing</title>
+    <title>Detalles del Campeonato - EB Racing</title>
     <link rel="icon" href="/assets/images/EB.png" type="image/png">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/assets/styles/all.min.css">
-    <link rel="stylesheet" href="/assets/styles/styles.css">
-    <link rel="stylesheet" href="/assets/styles/GT3SPRINT.css">
-    <link rel="stylesheet" href="/assets/styles/cart.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="/css/competitions/GT3SPRINT.css">
+    <link rel="stylesheet" href="/css/shop/cart.css">
+    <link rel="stylesheet" href="/css/components/header-profile.css">
 </head>
 <body>
-    <!-- Header -->
+<!-- Header -->
     <header class="header">
         <div class="container">
             <div class="logo">
-                <a href="index.html">
-                    <img src="/assets/images/EB SIMRACING(Solo-White).png" alt="EB Simracing" class="logo-img">
-                </a>
+                <a href="/index.html"><img src="/img/EB RACING(Solo-White).png" alt="EB Racing" class="logo-img"></a>
             </div>
             <nav class="main-nav">
                 <ul>
-                    <li><a href="index.html">Inicio</a></li>
-                    <li><a href="pages/simulation/simulateurs.html">Simuladores</a></li>
-                    <li><a href="pages/simulation/materiel-simulation.html">Equipamiento</a></li>
-                    <li><a href="pages/events/competitions.html" >Competiciones</a></li>
-                    <li><a href="pages/info/bar-detente.html">Bar de Copas</a></li>
-                    <li><a href="#contact">Contacto</a></li>
-                    <li class="nav-cart">
-                        <a href="#" class="cart-icon" id="cart-icon">
-                            <i class="fas fa-shopping-cart"></i>
-                            <span class="cart-count">0</span>
-                        </a>
-                        <div class="cart-dropdown" id="cart-dropdown">
-                            <div class="cart-header">
-                                <span>Mon Panier</span>
-                                <span class="cart-count-header">0</span>
-                            </div>
-                            <div class="cart-items" id="cart-items">
-                                <!-- Cart items will be loaded here -->
-                            </div>
-                            <div class="cart-footer">
-                                <div class="cart-total">
-                                    <span>Total:</span>
-                                    <span id="cart-total">0.00 €</span>
-                                </div>
-                                <button class="checkout-btn" id="checkout-btn">
-                                    <i class="fas fa-credit-card"></i> Voir le panier
-                                </button>
-                            </div>
+                    <li><a href="/index.html#inicio">Accueil</a></li>
+                    <li><a href="/index.html#servicios">Services</a></li>
+                    <li><a href="/pages/info/galerie.html">Galerie</a></li>
+                    <li><a href="/pages/shop/merch.html">Boutique</a></li>
+                    <li><a href="/pages/info/contacto.html">Contact</a></li>
+                    <li class="nav-user" id="navUser" style="display: none;">
+                        <div class="user-avatar" id="userMenuBtn">
+                            <img src="/img/user/EB_Default_Avatar.png" alt="Profil" id="userAvatar">
+                            <i class="fas fa-chevron-down"></i>
                         </div>
+                        <div class="user-dropdown" id="userDropdown">
+                            <!-- Header del dropdown con info del usuario -->
+                            <div class="user-info-header">
+                                <div class="user-name">Usuario</div>
+                                <div class="user-email">user@example.com</div>
+                                <div class="user-status">Verificado</div>
+                            </div>
+                            
+                            <!-- Enlaces del menú -->
+                            <a href="/pages/user/perfil.html">
+                                <i class="fas fa-user"></i> 
+                                <span>Mon Profil</span>
+                            </a>
+                            <a href="/pages/user/mes-reservations.html">
+                                <i class="fas fa-calendar-alt"></i> 
+                                <span>Mes Réservations</span>
+                            </a>
+                            <a href="/pages/shop/cart.html">
+                                <i class="fas fa-shopping-cart"></i> 
+                                <span>Mon Panier</span>
+                            </a>
+                            <a href="/pages/shop/merch.html">
+                                <i class="fas fa-store"></i> 
+                                <span>Boutique</span>
+                            </a>
+                            <a href="/pages/user/parametres.html">
+                                <i class="fas fa-cog"></i> 
+                                <span>Paramètres</span>
+                            </a>
+                            <a href="/pages/user/aide.html">
+                                <i class="fas fa-question-circle"></i> 
+                                <span>Aide & Support</span>
+                            </a>
+                            
+                            <div class="dropdown-divider"></div>
+                            
+                            <a href="#" id="logoutBtn">
+                                <i class="fas fa-sign-out-alt"></i> 
+                                <span>Déconnexion</span>
+                            </a>
+                        </div>
+                    </li>
+                    <li class="nav-login" id="navLogin">
+                        <a href="/pages/auth/login.html" class="btn-login">Connexion</a>
                     </li>
                 </ul>
             </nav>
-            <div class="menu-toggle">
+            <div class="mobile-menu-btn">
                 <i class="fas fa-bars"></i>
             </div>
         </div>
@@ -103,7 +127,7 @@
                                 <strong class="car-tooltip">SPA-FRANCORCHAMPS</strong>
                                 <div class="tooltip-backdrop"></div>
                                 <span class="tooltip-image">
-                                    <img src="/assets/images/CIRCUITOS/SPA.png" alt="Circuito de Zandvoort">
+                                    <img src="/img/CIRCUITOS/SPA.png" alt="Circuito de Zandvoort">
                                 </span>
                             </div>
                         </li>
@@ -470,10 +494,14 @@
                     </ul>
                 </div>
                 <div class="footer-contact">
-                    <h4>CONTACTO</h4>
-                    <p><i class="fas fa-map-marker-alt"></i> RUE DE LA MAÎTRISE 4, 1400 Nivelles</p>
+                    <h4>Contact</h4>
+                    <p><i class="fas fa-map-marker-alt"></i> RUE DE LA MAÎTRISE 4<br>1400 Nivelles</p>
                     <p><i class="fas fa-phone"></i> +32 495 57 92 78</p>
                     <p><i class="fas fa-envelope"></i> ebracingevents@gmail.com</p>
+                    <button class="footer-maps-btn" onclick="openMaps()">
+                        <i class="fas fa-map-marked-alt"></i>
+                        <span>Voir sur Maps</span>
+                    </button>
                 </div>
             </div>
             <div class="footer-bottom">
@@ -496,5 +524,11 @@
 
     <!-- Sistema de seguridad -->
     <script src="/js/security.js"></script>
+    
+    <script>
+        function openMaps() {
+            window.open('https://maps.google.com/?q=RUE+DE+LA+MAÎTRISE+4+1400+Nivelles+Belgique', '_blank');
+        }
+    </script>
 </body>
 </html>

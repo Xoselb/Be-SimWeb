@@ -24,8 +24,8 @@
         </div>
         <nav class="main-nav">
             <ul>
-                <li><a href="/index.html">Accueil</a></li>
-                <li><a href="/index.html#servicios">Services</a></li>
+                <li><a href="pages/booking/simulateurs.html">Simulation</a></li>
+                <li><a href="pages/booking/atelier-vinyle.html">Wrapping</a></li>
                 <li><a href="/pages/info/galerie.html">Galerie</a></li>
                 <li><a href="/pages/shop/merch.html">Boutique</a></li>
                 <li><a href="/pages/info/contacto.html">Contact</a></li>
@@ -128,14 +128,15 @@
                     <!-- Texto para simuladores (hero-bg.jpg y NUR.jpg) -->
                     <div class="hero-text active" data-slides="0,1">
                         <h1 style="color: white !important; line-height: 1.3;">
-                            <span style="display: block; margin-bottom: 0.5em;">Votre nouvelle destination</span>
+                            <span style="display: block; margin-bottom: 0.5em; font-size: 0.7em;">Votre nouvelle destination</span>
                             <span style="display: block;">
-                                <span style="color: #FFF200 !important;">SIMRACING</span>
-                                <span style="color: white !important;"> à </span>
-                                <span style="color: #FFF200 !important;">NIVELLES</span>
+                                <span style="color: #FFF200 !important;">SIMRACING & WRAPPING</span>
+                            </span>
+                            <span style="display: block;">
+                                <span style="color: white !important; font-size: 0.7em;">à </span>
+                                <span style="color: white !important; font-size: 0.8em;">NIVELLES</span>
                             </span>
                         </h1>
-                        <p>Faites la course sur des simulateurs professionnels de pointe, vivez l'expérience ultime de course automobile.</p>
                     </div>
                     
                     <!-- Texto para taller (SPA.jpg y RAT.jpg) -->
@@ -192,32 +193,20 @@
             <h2 class="section-title">NOS SERVICES</h2>
             <div class="services-grid">
                 <a href="pages/booking/simulateurs.html" class="service-card-link">
-                    <div class="service-card">
+                    <div class="service-card simulateurs">
                         <div class="service-icon">
                             <i class="fas fa-gauge-high"></i>
                         </div>
                         <h3>SIMULATEURS</h3>
-                        <p>Vivez le frisson de la course comme jamais auparavant. Nous proposons des simulateurs professionnels de pointe, parfaits pour les pilotes débutants comme expérimentés qui souhaitent s'entraîner, concourir ou simplement profiter de l'adrénaline de la simulation de course.</p>
                         <span class="service-link">En savoir plus <i class="fas fa-arrow-right"></i></span>
                     </div>
                 </a>
-                <a href="pages/booking/bar-detente.html" class="service-card-link">
-                    <div class="service-card">
-                        <div class="service-icon">
-                            <i class="fas fa-martini-glass"></i>
-                        </div>
-                        <h3>BAR ET DÉTENTE</h3>
-                        <p>Un lieu idéal pour se détendre, passer du temps entre amis et profiter d'une ambiance conviviale. Avant ou après vos séances de simulation, vous pourrez prendre un verre, discuter et passer un moment agréable dans un cadre unique et propice à la détente.</p>
-                        <span class="service-link">Découvrir <i class="fas fa-arrow-right"></i></span>
-                    </div>
-                </a>
                 <a href="pages/booking/atelier-vinyle.html" class="service-card-link">
-                    <div class="service-card">
+                    <div class="service-card atelier">
                         <div class="service-icon">
                             <i class="fas fa-paint-roller"></i>
                         </div>
                         <h3>ATELIER VINYLE</h3>
-                        <p>Personnalisez votre voiture et rendez-la unique. Dans notre atelier vinyle, vous trouverez des professionnels spécialisés en design et en application pour donner à votre véhicule le style qu'il mérite, des plus petits détails aux projets complets.</p>
                         <span class="service-link">Voir les réalisations <i class="fas fa-arrow-right"></i></span>
                     </div>
                 </a>
@@ -300,6 +289,14 @@
     <!-- Footer -->
     <footer class="footer">
         <div class="container">
+            <div class="brands-row">
+                <img src="/img/brands/CoolerMasterL.png" alt="Cooler Master" class="brand-logo cooler-master">
+                <img src="/img/brands/HOSL.png" alt="HOS" class="brand-logo hos-logo">
+                <img src="/img/brands/SimuCubeL.png" alt="Brand 3" class="brand-logo SimuCube-logo">
+                <img src="/img/brands/SimLabL.jpg" alt="Brand 4" class="brand-logo SimLab-logo">
+                <img src="/img/brands/CubeControlsL.png" alt="Brand 5" class="brand-logo CubeControls-logo">
+            </div>
+            
             <div class="footer-content">
                 <div class="footer-about">
                     <img src="img/EB.png" alt="EB Racing" class="footer-logo">
@@ -319,6 +316,10 @@
                     <p><i class="fas fa-map-marker-alt"></i> RUE DE LA MAÎTRISE 4<br>1400 Nivelles</p>
                     <p><i class="fas fa-phone"></i> +32 495 57 92 78</p>
                     <p><i class="fas fa-envelope"></i> ebracingevents@gmail.com</p>
+                    <button class="footer-maps-btn" onclick="openMaps()">
+                        <i class="fas fa-map-marked-alt"></i>
+                        <span>Voir sur Maps</span>
+                    </button>
                 </div>
             </div>
             <div class="footer-bottom">
@@ -517,6 +518,34 @@
     <script src="/js/auth/auth.js"></script>
     <script src="/js/index.js?v=3"></script>
     <script>
+        // Add event listeners for terms and privacy links
+        document.addEventListener('DOMContentLoaded', function() {
+            // Terms and conditions
+            const termsLinks = document.querySelectorAll('.terms-link');
+            termsLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    // Aquí puedes abrir el modal o redirigir a la página de términos
+                    console.log('Terms and conditions clicked');
+                });
+            });
+
+            // Privacy policy
+            const privacyLinks = document.querySelectorAll('.privacy-link');
+            privacyLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    // Aquí puedes abrir el modal o redirigir a la página de privacidad
+                    console.log('Privacy policy clicked');
+                });
+            });
+        });
+
+        // Function to open Google Maps
+        function openMaps() {
+            window.open('https://maps.google.com/?q=RUE+DE+LA+MAÎTRISE+4+1400+Nivelles+Belgique', '_blank');
+        }
+
         // Add event listeners for terms and privacy links
         document.addEventListener('DOMContentLoaded', function() {
             // Terms and conditions
