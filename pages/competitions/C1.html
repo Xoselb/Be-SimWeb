@@ -17,43 +17,78 @@
     <link rel="stylesheet" href="/css/Membres/perfil.css">
 </head>
 <body>  
-<!-- Header -->
-<header class="header">
-    <div class="container">
-        <div class="logo">
-            <a href="#"><img src="/img/EB RACING(Solo-White).png" alt="EB Racing" class="logo-img"></a>
+   <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <a href="/index.html"><img src="/img/EB RACING(Solo-White).png" alt="EB Racing" class="logo-img"></a>
+            </div>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="/index.html#inicio">Accueil</a></li>
+                    <li><a href="/index.html#servicios">Services</a></li>
+                    <li><a href="/pages/info/galerie.html">Galerie</a></li>
+                    <li><a href="#">Boutique</a></li>
+                    <li><a href="/pages/info/contacto.html">Contact</a></li>
+                    <li class="nav-user" id="navUser">
+                        <div class="user-avatar" id="userMenuBtn">
+                            <img src="/img/user/EB_Default_Avatar.png" alt="Profil" id="userAvatar">
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="user-dropdown" id="userDropdown">
+                            <!-- Header del dropdown con info del usuario -->
+                            <div class="user-info-header">
+                                <div class="user-name">Usuario</div>
+                                <div class="user-email">user@example.com</div>
+                                <div class="user-status">Verificado</div>
+                            </div>
+                            
+                            <!-- Enlaces del menú -->
+                            <a href="/pages/user/perfil.html">
+                                <i class="fas fa-user"></i> 
+                                <span>Mon Profil</span>
+                            </a>
+                            <a href="/pages/user/mes-reservations.html">
+                                <i class="fas fa-calendar-alt"></i> 
+                                <span>Mes Réservations</span>
+                            </a>
+                            <a href="#">
+                                <i class="fas fa-shopping-cart"></i> 
+                                <span>Mon Panier</span>
+                                <span class="badge">Bientot</span>
+                            </a>
+                            <a href="#">
+                                <i class="fas fa-store"></i> 
+                                <span>Boutique</span>
+                                <span class="badge">Bientot</span>
+                            </a>
+                            <a href="/pages/user/parametres.html">
+                                <i class="fas fa-cog"></i> 
+                                <span>Paramètres</span>
+                            </a>
+                            <a href="/pages/user/aide.html">
+                                <i class="fas fa-question-circle"></i> 
+                                <span>Aide & Support</span>
+                            </a>
+                            
+                            <div class="dropdown-divider"></div>
+                            
+                            <a href="#" id="logoutBtn">
+                                <i class="fas fa-sign-out-alt"></i> 
+                                <span>Déconnexion</span>
+                            </a>
+                        </div>
+                    </li>
+                    <li class="nav-login" id="navLogin">
+                        <a href="/pages/auth/login.html" class="btn-login">Connexion</a>
+                    </li>
+                </ul>
+            </nav>
+            <div class="mobile-menu-btn">
+                <i class="fas fa-bars"></i>
+            </div>
         </div>
-        <nav class="main-nav">
-            <ul>
-                <li><a href="../../index.html#inicio" class="active">Accueil</a></li>
-                <li><a href="../../index.html#servicios">Services</a></li>
-                <li><a href="../info/galerie.html">Galerie</a></li>
-                <li><a href="../shop/merch.html">Boutique</a></li>
-                <li><a href="../info/contacto.html">Contact</a></li>
-                <li class="nav-user" id="navUser" style="display: none;">
-                    <div class="user-avatar" id="userMenuBtn">
-                        <img src="/img/user/EB_Default_Avatar.png" alt="Profil" id="userAvatar">
-                        <i class="fas fa-chevron-down"></i>
-                    </div>
-                    <div class="user-dropdown" id="userDropdown">
-                        <a href="../auth/perfil.html"><i class="fas fa-user"></i> Mon Profil</a>
-                        <a href="../user/mes-reservations.html"><i class="fas fa-calendar-alt"></i> Mes réservations</a>
-                        <a href="parametres.html"><i class="fas fa-cog"></i> Paramètres</a>
-                        <div class="dropdown-divider"></div>
-                        <a href="#" id="logoutBtn"><i class="fas fa-sign-out-alt"></i> Déconnexion</a>
-                    </div>
-                </li>
-                <li class="nav-login" id="navLogin">
-                    <a href="../auth/login.html" class="btn-login">Connexion</a>
-                </li>
-            </ul>
-        </nav>
-        <div class="mobile-menu-btn">
-            <i class="fas fa-bars"></i>
-        </div>
-    </div>
-</header>
-
+    </header>
 
 <!-- Hero Section -->
 <section class="service-hero" style="background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('/img/C1/C12.JPG') no-repeat center center/cover;">
