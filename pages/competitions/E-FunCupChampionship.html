@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="fr">
 <head>
     <!-- Security Headers -->
     <meta http-equiv="X-Content-Type-Options" content="nosniff">
@@ -8,11 +8,11 @@
     <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com; img-src 'self' data: https:; font-src 'self' https://cdnjs.cloudflare.com; connect-src 'self' http://localhost:3000;">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Detalles del Campeonato - EB Racing</title>
+    <title>Détails du Championnat - EB Racing</title>
     <link rel="icon" href="/assets/images/EB.png" type="image/png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="/css/styles.css">
-    <link rel="stylesheet" href="/css/competitions/GT3SPRINT.css">
+    <link rel="stylesheet" href="/css/competitions/E-FunCupChampionship-premium.css">
     <link rel="stylesheet" href="/css/shop/cart.css">
     <link rel="stylesheet" href="/css/components/header-profile.css">
 </head>
@@ -36,14 +36,14 @@
                             <i class="fas fa-chevron-down"></i>
                         </div>
                         <div class="user-dropdown" id="userDropdown">
-                            <!-- Header del dropdown con info del usuario -->
+                            <!-- En-tête du dropdown avec info de l'utilisateur -->
                             <div class="user-info-header">
-                                <div class="user-name">Usuario</div>
+                                <div class="user-name">Utilisateur</div>
                                 <div class="user-email">user@example.com</div>
-                                <div class="user-status">Verificado</div>
+                                <div class="user-status">Vérifié</div>
                             </div>
                             
-                            <!-- Enlaces del menú -->
+                            <!-- Liens du menu -->
                             <a href="/pages/user/perfil.html">
                                 <i class="fas fa-user"></i> 
                                 <span>Mon Profil</span>
@@ -55,12 +55,12 @@
                             <a href="#">
                                 <i class="fas fa-shopping-cart"></i> 
                                 <span>Mon Panier</span>
-                                <span calss="badge">Bientot</span>
+                                <span class="badge">Bientôt</span>
                             </a>
                             <a href="#">
                                 <i class="fas fa-store"></i> 
                                 <span>Boutique</span>
-                                <span class="badge">Bientot</span>
+                                <span class="badge">Bientôt</span>
                             </a>
                             <a href="/pages/user/parametres.html">
                                 <i class="fas fa-cog"></i> 
@@ -93,12 +93,15 @@
     <!-- Hero Section -->
     <section class="championship-hero">
         <div class="container">
-            <h1>E-FunCup Championship</h1>
-            <p>Championnat E-FunCup disputé sur 6 circuits différents, axé sur l’égalité et la compétition pure.</p>
-            <div class="championship-meta">
-                <span><i class="fas fa-calendar-alt"></i> Commencer: 1/01/2026</span>
-                <span><i class="fas fa-flag-checkered"></i> 6 Courses</span>
-                <span><i class="fas fa-users"></i> 25 Pilotes</span>
+            <div class="scroll-reveal">
+                <h1>E-FunCup Championship</h1>
+                <p>Championnat E-FunCup disputé sur 6 circuits différents, axé sur l'égalité et la compétition pure.</p>
+                <div class="championship-meta">
+                    <span><i class="fas fa-calendar-alt"></i> Début: 1/01/2026</span>
+                    <span><i class="fas fa-flag-checkered"></i> 6 Courses</span>
+                    <span><i class="fas fa-users"></i> 10 Equipes</span>
+                    <span><i class="fas fa-trophy"></i> Cagnotte: 1h de jeu gratuite</span>
+                </div>
             </div>
         </div>
     </section>
@@ -113,87 +116,41 @@
     <!-- Championship Info -->
     <section class="championship-info">
         <div class="container">
-            <div class="section-header">
+            <div class="section-header scroll-reveal">
                 <h2>Informations sur le championnat</h2>
                 <p>Tout ce que vous devez savoir sur la compétition</p>
             </div>
             
             <div class="info-grid">
-                <div class="info-card">
-                    <h3><i class="fas fa-flag-checkered"></i> CIRCUITS</h3>
-                    <p>Sélectionnez le circuit pour afficher plus de détails:</p>
-                    <ul class="car-list">
-                        <li>
-                            <div class="tooltip-trigger">
-                                <i class="fas fa-map-marker-alt"></i>
-                                <strong class="car-tooltip">SPA-FRANCORCHAMPS</strong>
-                                <div class="tooltip-backdrop"></div>
-                                <span class="tooltip-image">
-                                    <img src="/img/CIRCUITOS/SPA.png" alt="Circuito de Zandvoort">
-                                </span>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="tooltip-trigger">
-                                <i class="fas fa-map-marker-alt"></i>
-                                <strong class="car-tooltip">NÜRBURGRING GP</strong>
-                                <div class="tooltip-backdrop"></div>
-                                <span class="tooltip-image">
-                                    <img src="/img/CIRCUITOS/NURGP.png" alt="Circuito de Nürburgring GP">
-                                </span>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="tooltip-trigger">
-                                <i class="fas fa-map-marker-alt"></i>
-                                <strong class="car-tooltip">MONZA</strong>
-                                <div class="tooltip-backdrop"></div>
-                                <span class="tooltip-image">
-                                    <img src="/img/CIRCUITOS/MONZA.png" alt="Autodromo Nazionale di Monza">
-                                </span>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="tooltip-trigger">
-                                <i class="fas fa-map-marker-alt"></i>
-                                <strong class="car-tooltip">SILVERSTONE</strong>
-                                <div class="tooltip-backdrop"></div>
-                                <span class="tooltip-image">
-                                    <img src="/img/CIRCUITOS/SILVERSTONE.png" alt="Circuito de Silverstone">
-                                </span>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="tooltip-trigger">
-                                <i class="fas fa-map-marker-alt"></i>
-                                <strong class="car-tooltip">BARCELONA-CATALUNYA</strong>
-                                <div class="tooltip-backdrop"></div>
-                                <span class="tooltip-image">
-                                    <img src="/img/CIRCUITOS/BCN.png" alt="Circuito de Barcelona-Cataluña">
-                                </span>
-                            </div>
-                        </li>
-                    </ul>
+                <div class="info-card scroll-reveal">
+                    <h3><i class="fas fa-flag-checkered"></i> CIRCUIT ACTUEL</h3>
+                    <p>Circuit de la session actuelle:</p>
+                    <div class="current-circuit">
+                        <img src="/img/CIRCUITOS/SPA.png" alt="Spa-Francorchamps" class="circuit-main-image">
+                        <div class="circuit-info">
+                            <h4>SPA-FRANCORCHAMPS</h4>
+                            <p><i class="fas fa-map-marker-alt"></i> Belgique</p>
+                            <p><i class="fas fa-route"></i> 7.004 km</p>
+                            <p><i class="fas fa-info-circle"></i> Le circuit le plus mythique du monde</p>
+                        </div>
+                    </div>
                 </div>
                 
-                <div class="info-card">
-                    <h3><i class="fas fa-car"></i> VOITURES</h3>
-                    <p>Choisissez votre voiture pour la saison:</p>
-                    <ul class="car-list">
-                        <li>
-                            <div class="tooltip-trigger">
-                                <i class="fas fa-car-side"></i>
-                                <strong class="car-tooltip">FunCup</strong>
-                                <div class="tooltip-backdrop"></div>
-                                <span class="tooltip-image">
-                                    <img src="/img/FUNCUP/FUNCUP5.jpeg" alt="FERRARI 296 GT3">
-                                </span>
-                            </div>
-                        </li>
-                    </ul>
+                <div class="info-card scroll-reveal">
+                    <h3><i class="fas fa-car"></i> VÉHICULE ACTUEL</h3>
+                    <p>Véhicule de la saison actuelle:</p>
+                    <div class="current-car">
+                        <img src="/img/FUNCUP/FUNCUP5.jpeg" alt="FunCup" class="car-main-image">
+                        <div class="car-info">
+                            <h4>FunCup</h4>
+                            <p><i class="fas fa-car-side"></i> Monoplace équilibrée</p>
+                            <p><i class="fas fa-tachometer-alt"></i> Performance équilibrée</p>
+                            <p><i class="fas fa-info-circle"></i> Le championnat d'égalité par excellence</p>
+                        </div>
+                    </div>
                 </div>
                 
-                <div class="info-card full-width">
+                <div class="info-card full-width scroll-reveal">
                     <h3><i class="fas fa-cogs"></i> Règlement et système de points</h3>
                     <p>Règles détaillées et système de notation de la compétition:</p>
                     
@@ -216,61 +173,49 @@
                             <h4><i class="fas fa-trophy"></i> Système de points</h4>
                             <div class="puntos-grid">
                                 <div class="punto-item">
-                                    <span class="puesto">1º</span>
+                                    <span class="position">1er</span>
                                     <span class="puntos">25 pts</span>
                                 </div>
                                 <div class="punto-item">
-                                    <span class="puesto">2º</span>
+                                    <span class="position">2ème</span>
                                     <span class="puntos">20 pts</span>
                                 </div>
                                 <div class="punto-item">
-                                    <span class="puesto">3º</span>
+                                    <span class="position">3ème</span>
                                     <span class="puntos">16 pts</span>
                                 </div>
                                 <div class="punto-item">
-                                    <span class="puesto">4º</span>
+                                    <span class="position">4ème</span>
                                     <span class="puntos">13 pts</span>
                                 </div>
                                 <div class="punto-item">
-                                    <span class="puesto">5º</span>
+                                    <span class="position">5ème</span>
                                     <span class="puntos">11 pts</span>
                                 </div>
                                 <div class="punto-item">
-                                    <span class="puesto">6º</span>
+                                    <span class="position">6ème</span>
                                     <span class="puntos">10 pts</span>
                                 </div>
                                 <div class="punto-item">
-                                    <span class="puesto">7º</span>
+                                    <span class="position">7ème</span>
                                     <span class="puntos">9 pts</span>
                                 </div>
                                 <div class="punto-item">
-                                    <span class="puesto">8º</span>
+                                    <span class="position">8ème</span>
                                     <span class="puntos">8 pts</span>
                                 </div>
                                 <div class="punto-item">
-                                    <span class="puesto">9º</span>
+                                    <span class="position">9ème</span>
                                     <span class="puntos">7 pts</span>
                                 </div>
                                 <div class="punto-item">
-                                    <span class="puesto">10º</span>
+                                    <span class="position">10ème</span>
                                     <span class="puntos">6 pts</span>
-                                </div>
-                                <div class="punto-item">
-                                    <span class="puesto">11º-15º</span>
-                                    <span class="puntos">5 pts</span>
-                                </div>
-                                <div class="punto-item">
-                                    <span class="puesto">16º-20º</span>
-                                    <span class="puntos">4 pts</span>
-                                </div>
-                                <div class="punto-item">
-                                    <span class="puesto">21º-25º</span>
-                                    <span class="puntos">3 pts</span>
                                 </div>
                             </div>
                             <div class="puntos-extra">
-                                <p><i class="fas fa-asterisk"></i> <strong>Points bonus:</strong> +1 points pour le tour le plus rapide</p>
-                                <p><i class="fas fa-asterisk"></i> <strong>Position de pôle:</strong> +3 points</p>
+                                <p><i class="fas fa-asterisk"></i> <strong>Points bonus:</strong> +1 point par équipe pour le tour le plus rapide</p>
+                                <p><i class="fas fa-asterisk"></i> <strong>Position de pôle:</strong> +3 points par équipe</p>
                             </div>
                         </div>
                     </div>
@@ -281,7 +226,7 @@
                             <h5>1. Comportement de suivi</h5>
                             <ul>
                                 <li>Le respect entre pilotes est requis en toutes circonstances.</li>
-                                <li>Le blocage intentionnel est interdit..</li>
+                                <li>Le blocage intentionnel est interdit.</li>
                                 <li>Le pilote qui commet une erreur doit revenir en toute sécurité à sa position initiale.</li>
                                 <li>En cas de sortie de piste, vous devez la réintégrer en toute sécurité sans blesser les autres conducteurs.</li>
                             </ul>
@@ -316,20 +261,20 @@
     <!-- Calendar Section -->
     <section class="calendar-section">
         <div class="container">
-            <div class="section-header">
+            <div class="section-header scroll-reveal">
                 <h2>Calendrier des courses</h2>
                 <p>Dates et circuits de la saison</p>
             </div>
             
             <div class="calendar-grid">
-                <!-- Carrera 1 -->
-                <div class="event-item">
+                <!-- Course 1 -->
+                <div class="event-item scroll-reveal">
                     <div class="event-image" style="background-image: url('/assets/images/SGT3SPA.jpg');">
-                        <div class="event-date">30 SEPTIEMBRE 2025</div>
+                        <div class="event-date">30 SEPTEMBRE 2025</div>
                     </div>
                     <div class="event-details">
-                        <h4>Ronda 1: Spa-Francorchamps</h4>
-                        <p>Circuito de Spa-Francorchamps - Bélgica</p>
+                        <h4>Manche 1: Spa-Francorchamps</h4>
+                        <p>Circuit de Spa-Francorchamps - Belgique • Le circuit le plus mythique du championnat avec ses 7.004 km de pur adrénaline.</p>
                         <div class="event-meta">
                             <span><i class="far fa-clock"></i> 20:00 CEST</span>
                             <span><i class="fas fa-route"></i> 7.004 km</span>
@@ -337,14 +282,14 @@
                     </div>
                 </div>
                 
-                <!-- Carrera 2 -->
-                <div class="event-item">
+                <!-- Course 2 -->
+                <div class="event-item scroll-reveal">
                     <div class="event-image" style="background-image: url('/assets/images/6HGT3NUR.jpeg');">
-                        <div class="event-date">14 OCTUBRE 2025</div>
+                        <div class="event-date">14 OCTOBRE 2025</div>
                     </div>
                     <div class="event-details">
-                        <h4>Ronda 2: Nürburgring GP</h4>
-                        <p>Nürburgring - Alemania</p>
+                        <h4>Manche 2: Nürburgring GP</h4>
+                        <p>Nürburgring - Allemagne • Affrontez le Green Hell sur sa configuration GP de 5.148 km.</p>
                         <div class="event-meta">
                             <span><i class="far fa-clock"></i> 20:00 CEST</span>
                             <span><i class="fas fa-route"></i> 5.148 km</span>
@@ -352,14 +297,14 @@
                     </div>
                 </div>
                 
-                <!-- Carrera 3 -->
-                <div class="event-item">
+                <!-- Course 3 -->
+                <div class="event-item scroll-reveal">
                     <div class="event-image" style="background-image: url('/assets/images/MONZAGT3.jpg');">
-                        <div class="event-date">28 OCTUBRE 2025</div>
+                        <div class="event-date">28 OCTOBRE 2025</div>
                     </div>
                     <div class="event-details">
-                        <h4>Ronda 3: Monza</h4>
-                        <p>Autodromo Nazionale Monza - Italia</p>
+                        <h4>Manche 3: Monza</h4>
+                        <p>Autodromo Nazionale Monza - Italia • Le temple de la vitesse avec ses 5.793 km de pleins gaz.</p>
                         <div class="event-meta">
                             <span><i class="far fa-clock"></i> 20:00 CET</span>
                             <span><i class="fas fa-route"></i> 5.793 km</span>
@@ -367,14 +312,14 @@
                     </div>
                 </div>
                 
-                <!-- Carrera 4 -->
-                <div class="event-item">
+                <!-- Course 4 -->
+                <div class="event-item scroll-reveal">
                     <div class="event-image" style="background-image: url('/assets/images/SilverstoneGT3.jpg');">
-                        <div class="event-date">11 NOVIEMBRE 2025</div>
+                        <div class="event-date">11 NOVEMBRE 2025</div>
                     </div>
                     <div class="event-details">
-                        <h4>Ronda 4: Silverstone</h4>
-                        <p>Silverstone Circuit - Reino Unido</p>
+                        <h4>Manche 4: Silverstone</h4>
+                        <p>Silverstone Circuit - Reino Unido • Le berceau de la F1 avec ses 5.891 km de courbes rapides.</p>
                         <div class="event-meta">
                             <span><i class="far fa-clock"></i> 20:00 CET</span>
                             <span><i class="fas fa-route"></i> 5.891 km</span>
@@ -382,14 +327,14 @@
                     </div>
                 </div>
                 
-                <!-- Carrera 5 -->
-                <div class="event-item">
+                <!-- Course 5 -->
+                <div class="event-item scroll-reveal">
                     <div class="event-image" style="background-image: url('/assets/images/BCNGT3.jpg');">
-                        <div class="event-date">25 NOVIEMBRE 2025</div>
+                        <div class="event-date">25 NOVEMBRE 2025</div>
                     </div>
                     <div class="event-details">
-                        <h4>Ronda 5: Circuit de Barcelona-Catalunya</h4>
-                        <p>Barcelona - España</p>
+                        <h4>Manche 5: Circuit de Barcelona-Catalunya</h4>
+                        <p>Barcelone - Espagne • Le circuit technique espagnol de 4.655 km qui mettra à l'épreuve votre précision.</p>
                         <div class="event-meta">
                             <span><i class="far fa-clock"></i> 20:00 CET</span>
                             <span><i class="fas fa-route"></i> 4.655 km</span>
@@ -397,14 +342,14 @@
                     </div>
                 </div>
                 
-                <!-- Carrera 6 -->
-                <div class="event-item">
+                <!-- Course 6 -->
+                <div class="event-item scroll-reveal">
                     <div class="event-image" style="background-image: url('/assets/images/HungaroringGT3.jpg');">
-                        <div class="event-date">9 DICIEMBRE 2025</div>
+                        <div class="event-date">9 DÉCEMBRE 2025</div>
                     </div>
                     <div class="event-details">
-                        <h4>Ronda 6: Hungaroring</h4>
-                        <p>Hungaroring - Hungría</p>
+                        <h4>Manche 6: Hungaroring</h4>
+                        <p>Hungaroring - Hongrie • La finale du championnat sur le circuit sinueux de 4.381 km.</p>
                         <div class="event-meta">
                             <span><i class="far fa-clock"></i> 20:00 CET</span>
                             <span><i class="fas fa-route"></i> 4.381 km</span>
@@ -421,7 +366,7 @@
             <div class="footer-content">
                 <div class="footer-about">
                     <h3><span class="eb-text">EB</span> <span class="simracing-text">Simracing</span></h3>
-                    <p>Tu destino en Nivelles para el simracing y la diversión con amigos en un ambiente único.</p>
+                    <p>Votre destination à Nivelles pour le simracing et l'amusement entre amis dans une ambiance unique.</p>
                     <div class="social-links">
                         <a href="https://www.facebook.com/beracingkart/" target="_blank"><i class="fab fa-facebook-f"></i></a>
                         <a href="https://www.instagram.com/eb.racing.events/" target="_blank"><i class="fab fa-instagram"></i></a>
@@ -430,11 +375,11 @@
                     </div>
                 </div>
                 <div class="footer-links">
-                    <h4>HORARIO</h4>
+                    <h4>HORAIRES</h4>
                     <ul>
-                        <li>Lun-Vie: 16h - 00h</li>
-                        <li>Sáb-Dom: 14h - 02h</li>
-                        <li>Cerrado en días festivos</li>
+                        <li>Lun-Ven: 16h - 00h</li>
+                        <li>Sam-Dim: 14h - 02h</li>
+                        <li>Fermé les jours fériés</li>
                     </ul>
                 </div>
                 <div class="footer-contact">
@@ -449,15 +394,34 @@
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2025 EB Simracing. Todos los derechos reservados.</p>
+                <p>&copy; 2025 EB Simracing. Tous droits réservés.</p>
             </div>
         </div>
     </footer>
 
     <!-- Scripts -->
     <script>
-        // Menú móvil
-        document.querySelector('.menu-toggle').addEventListener('click', function() {
+        // Premium scroll reveal animation
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, observerOptions);
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const scrollRevealElements = document.querySelectorAll('.scroll-reveal');
+            scrollRevealElements.forEach(el => observer.observe(el));
+        });
+
+        // Menu mobile
+        document.querySelector('.menu-toggle')?.addEventListener('click', function() {
             document.querySelector('.main-nav').classList.toggle('active');
         });
     </script>
@@ -466,7 +430,7 @@
     <script src="/js/auth/auth.js"></script>
     <script src="/js/header.js"></script>
 
-    <!-- Sistema de seguridad -->
+    <!-- Système de sécurité -->
     <script src="/js/security.js"></script>
     
     <script>

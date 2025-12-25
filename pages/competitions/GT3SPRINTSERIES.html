@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="fr">
 <head>
     <!-- Security Headers -->
     <meta http-equiv="X-Content-Type-Options" content="nosniff">
@@ -8,7 +8,7 @@
     <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com; img-src 'self' data: https:; font-src 'self' https://cdnjs.cloudflare.com; connect-src 'self' http://localhost:3000;">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Detalles del Campeonato - EB Racing</title>
+    <title>Détails du Championnat - EB Racing</title>
     <link rel="icon" href="/assets/images/EB.png" type="image/png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="/css/styles.css">
@@ -28,7 +28,7 @@
                     <li><a href="/index.html#inicio">Accueil</a></li>
                     <li><a href="/index.html#servicios">Services</a></li>
                     <li><a href="/pages/info/galerie.html">Galerie</a></li>
-                    <li><a href="/pages/shop/merch.html">Boutique</a></li>
+                    <li><a href="#">Boutique</a></li>
                     <li><a href="/pages/info/contacto.html">Contact</a></li>
                     <li class="nav-user" id="navUser">
                         <div class="user-avatar" id="userMenuBtn">
@@ -36,14 +36,14 @@
                             <i class="fas fa-chevron-down"></i>
                         </div>
                         <div class="user-dropdown" id="userDropdown">
-                            <!-- Header del dropdown con info del usuario -->
+                            <!-- En-tête du dropdown avec info de l'utilisateur -->
                             <div class="user-info-header">
-                                <div class="user-name">Usuario</div>
+                                <div class="user-name">Utilisateur</div>
                                 <div class="user-email">user@example.com</div>
-                                <div class="user-status">Verificado</div>
+                                <div class="user-status">Vérifié</div>
                             </div>
                             
-                            <!-- Enlaces del menú -->
+                            <!-- Liens du menu -->
                             <a href="/pages/user/perfil.html">
                                 <i class="fas fa-user"></i> 
                                 <span>Mon Profil</span>
@@ -52,13 +52,15 @@
                                 <i class="fas fa-calendar-alt"></i> 
                                 <span>Mes Réservations</span>
                             </a>
-                            <a href="/pages/shop/cart.html">
+                            <a href="#">
                                 <i class="fas fa-shopping-cart"></i> 
                                 <span>Mon Panier</span>
+                                <span class="badge">Bientôt</span>
                             </a>
-                            <a href="/pages/shop/merch.html">
+                            <a href="#">
                                 <i class="fas fa-store"></i> 
                                 <span>Boutique</span>
+                                <span class="badge">Bientôt</span>
                             </a>
                             <a href="/pages/user/parametres.html">
                                 <i class="fas fa-cog"></i> 
@@ -91,19 +93,21 @@
     <!-- Hero Section -->
     <section class="championship-hero">
         <div class="container">
-            <h1>GT3 SPRINT SERIES</h1>
-            <p>Campeonato de GT3 en 6 circuitos diferentes</p>
-            <div class="championship-meta">
-                <span><i class="fas fa-calendar-alt"></i> Inicio: 30/09/2025</span>
-                <span><i class="fas fa-flag-checkered"></i> 6 Carreras</span>
-                <span><i class="fas fa-users"></i> 25 Pilotos</span>
+            <div class="scroll-reveal">
+                <h1>GT3 SPRINT SERIES</h1>
+                <p>Championnat GT3 sur 6 circuits différents</p>
+                <div class="championship-meta">
+                    <span><i class="fas fa-calendar-alt"></i> Début: 30/09/2025</span>
+                    <span><i class="fas fa-flag-checkered"></i> 6 Courses</span>
+                    <span><i class="fas fa-users"></i> 25 Pilotes</span>
+                </div>
             </div>
         </div>
     </section>
 
     <!-- Back Button -->
     <div class="container" style="margin: 20px auto;">
-        <a href="pages/events/competitions.html" class="back-button">
+        <a href="/pages/competitions/competitions.html" class="back-button">
             <i class="fas fa-arrow-left"></i> Retour aux Compétitions
         </a>
     </div>
@@ -111,157 +115,108 @@
     <!-- Championship Info -->
     <section class="championship-info">
         <div class="container">
-            <div class="section-header">
-                <h2>Información del Campeonato</h2>
-                <p>Todo lo que necesitas saber sobre la competición</p>
+            <div class="section-header scroll-reveal">
+                <h2>Informations sur le championnat</h2>
+                <p>Tout ce que vous devez savoir sur la compétition</p>
             </div>
             
             <div class="info-grid">
-                <div class="info-card">
-                    <h3><i class="fas fa-flag-checkered"></i> CIRCUITOS</h3>
-                    <p>Selecciona el circuito para ver más detalles:</p>
-                    <ul class="car-list">
-                        <li>
-                            <div class="tooltip-trigger">
-                                <i class="fas fa-map-marker-alt"></i>
-                                <strong class="car-tooltip">SPA-FRANCORCHAMPS</strong>
-                                <div class="tooltip-backdrop"></div>
-                                <span class="tooltip-image">
-                                    <img src="/img/CIRCUITOS/SPA.png" alt="Circuito de Zandvoort">
-                                </span>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="tooltip-trigger">
-                                <i class="fas fa-map-marker-alt"></i>
-                                <strong class="car-tooltip">NÜRBURGRING GP</strong>
-                                <div class="tooltip-backdrop"></div>
-                                <span class="tooltip-image">
-                                    <img src="/assets/images/CIRCUITOS/NURGP.png" alt="Circuito de Nürburgring GP">
-                                </span>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="tooltip-trigger">
-                                <i class="fas fa-map-marker-alt"></i>
-                                <strong class="car-tooltip">MONZA</strong>
-                                <div class="tooltip-backdrop"></div>
-                                <span class="tooltip-image">
-                                    <img src="/assets/images/CIRCUITOS/MONZA.png" alt="Autodromo Nazionale di Monza">
-                                </span>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="tooltip-trigger">
-                                <i class="fas fa-map-marker-alt"></i>
-                                <strong class="car-tooltip">SILVERSTONE</strong>
-                                <div class="tooltip-backdrop"></div>
-                                <span class="tooltip-image">
-                                    <img src="/assets/images/CIRCUITOS/SILVERSTONE.png" alt="Circuito de Silverstone">
-                                </span>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="tooltip-trigger">
-                                <i class="fas fa-map-marker-alt"></i>
-                                <strong class="car-tooltip">BARCELONA-CATALUNYA</strong>
-                                <div class="tooltip-backdrop"></div>
-                                <span class="tooltip-image">
-                                    <img src="/assets/images/CIRCUITOS/BCN.png" alt="Circuito de Barcelona-Cataluña">
-                                </span>
-                            </div>
-                        </li>
-                    </ul>
+                <div class="info-card scroll-reveal">
+                    <h3><i class="fas fa-flag-checkered"></i> CIRCUIT ACTUEL</h3>
+                    <p>Circuit de la session actuelle:</p>
+                    <div class="current-circuit">
+                        <img src="/img/CIRCUITOS/SPA.png" alt="Spa-Francorchamps" class="circuit-main-image">
+                        <div class="circuit-info">
+                            <h4>SPA-FRANCORCHAMPS</h4>
+                            <p><i class="fas fa-map-marker-alt"></i> Belgique</p>
+                            <p><i class="fas fa-route"></i> 7.004 km</p>
+                            <p><i class="fas fa-info-circle"></i> Le circuit le plus mythique du monde</p>
+                        </div>
+                    </div>
                 </div>
                 
-                <div class="info-card">
-                    <h3><i class="fas fa-car"></i> COCHES</h3>
-                    <p>Selecciona tu coche para la temporada:</p>
-                    <ul class="car-list">
-                        <li>
-                            <div class="tooltip-trigger">
-                                <i class="fas fa-car-side"></i>
-                                <strong class="car-tooltip">FERRARI 296 GT3</strong>
-                                <div class="tooltip-backdrop"></div>
-                                <span class="tooltip-image">
-                                    <img src="/assets/images/COCHES/F296GT3.jpg" alt="FERRARI 296 GT3">
-                                </span>
+                <div class="info-card scroll-reveal">
+                    <h3><i class="fas fa-car"></i> VOITURES GT3</h3>
+                    <p>Choisissez votre voiture pour la saison:</p>
+                    <div class="gt3-grid">
+                        <div class="gt3-item">
+                            <img src="/img/COCHES/F296GT3.jpg" alt="FERRARI 296 GT3" class="gt3-image">
+                            <div class="gt3-info">
+                                <h4>FERRARI 296 GT3</h4>
+                                <p><i class="fas fa-car-side"></i> V6 Biturbo</p>
+                                <p><i class="fas fa-tachometer-alt"></i> Puissance équilibrée</p>
+                                <p><i class="fas fa-flag-checkered"></i> Excellent en accélération</p>
                             </div>
-                        </li>
-                        <li>
-                            <div class="tooltip-trigger">
-                                <i class="fas fa-car-side"></i>
-                                <strong class="car-tooltip">PORSCHE 992 GT3 R</strong>
-                                <div class="tooltip-backdrop"></div>
-                                <span class="tooltip-image">
-                                    <img src="/assets/images/COCHES/P992GT3R.jpeg" alt="PORSCHE 992 GT3 R">
-                                </span>
+                        </div>
+                        <div class="gt3-item">
+                            <img src="/img/COCHES/P992GT3R.jpeg" alt="PORSCHE 992 GT3 R" class="gt3-image">
+                            <div class="gt3-info">
+                                <h4>PORSCHE 992 GT3 R</h4>
+                                <p><i class="fas fa-car-side"></i> 6 cylindres à plat</p>
+                                <p><i class="fas fa-tachometer-alt"></i> Très équilibré</p>
+                                <p><i class="fas fa-flag-checkered"></i> Polyvalent sur tous circuits</p>
                             </div>
-                        </li>
-                        <li>
-                            <div class="tooltip-trigger">
-                                <i class="fas fa-car-side"></i>
-                                <strong class="car-tooltip">BMW M4 GT3</strong>
-                                <div class="tooltip-backdrop"></div>
-                                <span class="tooltip-image">
-                                    <img src="/assets/images/COCHES/BMWM4GT3EVO.jpg" alt="BMW M4 GT3">
-                                </span>
+                        </div>
+                        <div class="gt3-item">
+                            <img src="/img/COCHES/BMWM4GT3EVO.jpg" alt="BMW M4 GT3" class="gt3-image">
+                            <div class="gt3-info">
+                                <h4>BMW M4 GT3</h4>
+                                <p><i class="fas fa-car-side"></i> 6 cylindres en ligne</p>
+                                <p><i class="fas fa-tachometer-alt"></i> Puissance élevée</p>
+                                <p><i class="fas fa-flag-checkered"></i> Excellent en lignes droites</p>
                             </div>
-                        </li>
-                        <li>
-                            <div class="tooltip-trigger">
-                                <i class="fas fa-car-side"></i>
-                                <strong class="car-tooltip">MCLAREN 720S GT3</strong>
-                                <div class="tooltip-backdrop"></div>
-                                <span class="tooltip-image">
-                                    <img src="/assets/images/COCHES/MCL720SGT3.jpg" alt="MCLAREN 720S GT3">
-                                </span>
+                        </div>
+                        <div class="gt3-item">
+                            <img src="/img/COCHES/MCL720SGT3.jpg" alt="MCLAREN 720S GT3" class="gt3-image">
+                            <div class="gt3-info">
+                                <h4>MCLAREN 720S GT3</h4>
+                                <p><i class="fas fa-car-side"></i> V8 Biturbo</p>
+                                <p><i class="fas fa-tachometer-alt"></i> Très rapide</p>
+                                <p><i class="fas fa-flag-checkered"></i> Aérodynamique supérieure</p>
                             </div>
-                        </li>
-                        <li>
-                            <div class="tooltip-trigger">
-                                <i class="fas fa-car-side"></i>
-                                <strong class="car-tooltip">MERCEDES-AMG GT3</strong>
-                                <div class="tooltip-backdrop"></div>
-                                <span class="tooltip-image">
-                                    <img src="/assets/images/COCHES/AMGGT3.jpg" alt="MERCEDES-AMG GT3">
-                                </span>
+                        </div>
+                        <div class="gt3-item">
+                            <img src="/img/COCHES/AMGGT3.jpg" alt="MERCEDES-AMG GT3" class="gt3-image">
+                            <div class="gt3-info">
+                                <h4>MERCEDES-AMG GT3</h4>
+                                <p><i class="fas fa-car-side"></i> V8 Biturbo</p>
+                                <p><i class="fas fa-tachometer-alt"></i> Très stable</p>
+                                <p><i class="fas fa-flag-checkered"></i> Facile à conduire</p>
                             </div>
-                        </li>
-                        <li>
-                            <div class="tooltip-trigger">
-                                <i class="fas fa-car-side"></i>
-                                <strong class="car-tooltip">LAMBORGHINI HURACÁN GT3</strong>
-                                <div class="tooltip-backdrop"></div>
-                                <span class="tooltip-image">
-                                    <img src="/assets/images/COCHES/LHGT3EVO2.jpg" alt="LAMBORGHINI HURACÁN GT3">
-                                </span>
+                        </div>
+                        <div class="gt3-item">
+                            <img src="/img/COCHES/LHGT3EVO2.jpg" alt="LAMBORGHINI HURACÁN GT3" class="gt3-image">
+                            <div class="gt3-info">
+                                <h4>LAMBORGHINI HURACÁN GT3</h4>
+                                <p><i class="fas fa-car-side"></i> V10 naturel</p>
+                                <p><i class="fas fa-tachometer-alt"></i> Son unique</p>
+                                <p><i class="fas fa-flag-checkered"></i> Très performant</p>
                             </div>
-                        </li>
-                    </ul>
+                        </div>
+                    </div>
                 </div>
                 
-                <div class="info-card full-width">
-                    <h3><i class="fas fa-cogs"></i> Reglamento y Sistema de Puntos</h3>
-                    <p>Normas detalladas y sistema de puntuación para la competición:</p>
+                <div class="info-card full-width scroll-reveal">
+                    <h3><i class="fas fa-cogs"></i> Règlement et système de points</h3>
+                    <p>Règles détaillées et système de notation de la compétition:</p>
                     
                     <div class="reglamento-grid">
                         <div class="reglamento-section">
-                            <h4><i class="fas fa-flag"></i> Formato de Carrera</h4>
+                            <h4><i class="fas fa-flag"></i> Format de carrière</h4>
                             <ul>
-                                <li><i class="fas fa-clock"></i> Duración: 30 minutos</li>
-                                <li><i class="fas fa-car"></i> Daños: 80%</li>
-                                <li><i class="fas fa-tachometer-alt"></i> Consumo de combustible: 1x</li>
-                                <li><i class="fas fa-tire"></i> Desgaste de neumáticos: 1x</li>
-                                <li><i class="fas fa-flag-checkered"></i> Bandera azul: Activada</li>
-                                <li><i class="fas fa-car-crash"></i> Colisiones: Activadas</li>
-                                <li><i class="fas fa-tools"></i> Repostajes: No permitidos</li>
-                                <li><i class="fas fa-tachometer-alt"></i> Ayudas al conductor: Permitidas (excepto control de tracción y ABS)</li>
+                                <li><i class="fas fa-clock"></i> Durée: 30 minutes</li>
+                                <li><i class="fas fa-car"></i> Dégâts: 80%</li>
+                                <li><i class="fas fa-tachometer-alt"></i> Consommation de carburant: 1x</li>
+                                <li><i class="fas fa-tire"></i> Usure des pneus: 1x</li>
+                                <li><i class="fas fa-flag-checkered"></i> Pavillon bleu: Activé</li>
+                                <li><i class="fas fa-car-crash"></i> Collisions: Activé</li>
+                                <li><i class="fas fa-tools"></i> Ravitaillement: Interdit</li>
+                                <li><i class="fas fa-tachometer-alt"></i> Assistance au conducteur: Autorisé (sauf antipatinage et ABS)</li>
                             </ul>
                         </div>
                         
                         <div class="puntos-section">
-                            <h4><i class="fas fa-trophy"></i> Sistema de Puntos</h4>
+                            <h4><i class="fas fa-trophy"></i> Système de points</h4>
                             <div class="puntos-grid">
                                 <div class="punto-item">
                                     <span class="puesto">1º</span>
@@ -325,42 +280,42 @@
                                 </div>
                             </div>
                             <div class="puntos-extra">
-                                <p><i class="fas fa-asterisk"></i> <strong>Puntos extra:</strong> +1 punto por vuelta rápida</p>
-                                <p><i class="fas fa-asterisk"></i> <strong>Pole Position:</strong> +3 puntos</p>
+                                <p><i class="fas fa-asterisk"></i> <strong>Points bonus:</strong> +1 point pour le tour le plus rapide</p>
+                                <p><i class="fas fa-asterisk"></i> <strong>Position de pôle:</strong> +3 points</p>
                             </div>
                         </div>
                     </div>
                     
                     <div class="normativa-completa">
-                        <h4><i class="fas fa-book"></i> Normativa Completa</h4>
+                        <h4><i class="fas fa-book"></i> Règlement complet</h4>
                         <div class="normativa-content">
-                            <h5>1. Comportamiento en Pista</h5>
+                            <h5>1. Comportement de suivi</h5>
                             <ul>
-                                <li>Se exige respeto entre pilotos en todo momento.</li>
-                                <li>Está prohibido el bloqueo intencionado.</li>
-                                <li>El piloto que cometa un error debe devolver la posición de forma segura.</li>
-                                <li>En caso de salida de pista, se debe reincorporar de forma segura sin perjudicar a otros pilotos.</li>
+                                <li>Le respect entre pilotes est requis en toutes circonstances.</li>
+                                <li>Le blocage intentionnel est interdit.</li>
+                                <li>Le pilote qui commet une erreur doit revenir en toute sécurité à sa position initiale.</li>
+                                <li>En cas de sortie de piste, vous devez la réintégrer en toute sécurité sans blesser les autres conducteurs.</li>
                             </ul>
                             
-                            <h5>2. Sanciones</h5>
+                            <h5>2. Sanctions</h5>
                             <ul>
-                                <li>Las salidas de pista repetitivas pueden ser sancionadas con penalizaciones de tiempo.</li>
-                                <li>Los choques intencionados pueden suponer la descalificación de la carrera.</li>
-                                <li>El incumplimiento reiterado del reglamento puede suponer la expulsión del campeonato.</li>
+                                <li>Les sorties de piste répétées peuvent être sanctionnées par des pénalités de temps.</li>
+                                <li>Les collisions intentionnelles peuvent entraîner la disqualification de la course.</li>
+                                <li>Les violations répétées du règlement peuvent entraîner l'exclusion du championnat.</li>
                             </ul>
                             
-                            <h5>3. Requisitos Técnicos</h5>
+                            <h5>3. Exigences techniques</h5>
                             <ul>
-                                <li>Conexión estable a internet obligatoria.</li>
-                                <li>Se recomienda el uso de volante, pero se permite el mando.</li>
-                                <li>El juego debe estar actualizado a la última versión disponible.</li>
+                                <li>Connexion internet stable requise.</li>
+                                <li>L'utilisation d'un volant est recommandée, mais une manette est autorisée.</li>
+                                <li>Le jeu doit être mis à jour avec la dernière version disponible.</li>
                             </ul>
                             
-                            <h5>4. Incidencias y Reclamaciones</h5>
+                            <h5>4. Incidents et plaintes</h5>
                             <ul>
-                                <li>Las reclamaciones deben presentarse en el plazo de 24h tras la carrera.</li>
-                                <li>Se requiere grabación del incidente para su revisión.</li>
-                                <li>El equipo organizador se reserva el derecho de decisión final en caso de disputa.</li>
+                                <li>Les réclamations doivent être soumises dans les 24 heures suivant la course.</li>
+                                <li>L'enregistrement de l'incident est nécessaire pour examen.</li>
+                                <li>L'équipe organisatrice se réserve le droit de prendre la décision finale en cas de litige.</li>
                             </ul>
                         </div>
                     </div>
@@ -372,20 +327,20 @@
     <!-- Calendar Section -->
     <section class="calendar-section">
         <div class="container">
-            <div class="section-header">
-                <h2>Calendario de Carreras</h2>
-                <p>Fechas y circuitos de la temporada</p>
+            <div class="section-header scroll-reveal">
+                <h2>Calendrier des courses</h2>
+                <p>Dates et circuits de la saison</p>
             </div>
             
             <div class="calendar-grid">
-                <!-- Carrera 1 -->
-                <div class="event-item">
+                <!-- Course 1 -->
+                <div class="event-item scroll-reveal">
                     <div class="event-image" style="background-image: url('/assets/images/SGT3SPA.jpg');">
-                        <div class="event-date">30 SEPTIEMBRE 2025</div>
+                        <div class="event-date">30 SEPTEMBRE 2025</div>
                     </div>
                     <div class="event-details">
-                        <h4>Ronda 1: Spa-Francorchamps</h4>
-                        <p>Circuito de Spa-Francorchamps - Bélgica</p>
+                        <h4>Manche 1: Spa-Francorchamps</h4>
+                        <p>Circuit de Spa-Francorchamps - Belgique</p>
                         <div class="event-meta">
                             <span><i class="far fa-clock"></i> 20:00 CEST</span>
                             <span><i class="fas fa-route"></i> 7.004 km</span>
@@ -393,14 +348,14 @@
                     </div>
                 </div>
                 
-                <!-- Carrera 2 -->
-                <div class="event-item">
+                <!-- Course 2 -->
+                <div class="event-item scroll-reveal">
                     <div class="event-image" style="background-image: url('/assets/images/6HGT3NUR.jpeg');">
-                        <div class="event-date">14 OCTUBRE 2025</div>
+                        <div class="event-date">14 OCTOBRE 2025</div>
                     </div>
                     <div class="event-details">
-                        <h4>Ronda 2: Nürburgring GP</h4>
-                        <p>Nürburgring - Alemania</p>
+                        <h4>Manche 2: Nürburgring GP</h4>
+                        <p>Nürburgring - Allemagne</p>
                         <div class="event-meta">
                             <span><i class="far fa-clock"></i> 20:00 CEST</span>
                             <span><i class="fas fa-route"></i> 5.148 km</span>
@@ -408,14 +363,14 @@
                     </div>
                 </div>
                 
-                <!-- Carrera 3 -->
-                <div class="event-item">
+                <!-- Course 3 -->
+                <div class="event-item scroll-reveal">
                     <div class="event-image" style="background-image: url('/assets/images/MONZAGT3.jpg');">
-                        <div class="event-date">28 OCTUBRE 2025</div>
+                        <div class="event-date">28 OCTOBRE 2025</div>
                     </div>
                     <div class="event-details">
-                        <h4>Ronda 3: Monza</h4>
-                        <p>Autodromo Nazionale Monza - Italia</p>
+                        <h4>Manche 3: Monza</h4>
+                        <p>Autodromo Nazionale Monza - Italie</p>
                         <div class="event-meta">
                             <span><i class="far fa-clock"></i> 20:00 CET</span>
                             <span><i class="fas fa-route"></i> 5.793 km</span>
@@ -423,14 +378,14 @@
                     </div>
                 </div>
                 
-                <!-- Carrera 4 -->
-                <div class="event-item">
+                <!-- Course 4 -->
+                <div class="event-item scroll-reveal">
                     <div class="event-image" style="background-image: url('/assets/images/SilverstoneGT3.jpg');">
-                        <div class="event-date">11 NOVIEMBRE 2025</div>
+                        <div class="event-date">11 NOVEMBRE 2025</div>
                     </div>
                     <div class="event-details">
-                        <h4>Ronda 4: Silverstone</h4>
-                        <p>Silverstone Circuit - Reino Unido</p>
+                        <h4>Manche 4: Silverstone</h4>
+                        <p>Silverstone Circuit - Royaume-Uni</p>
                         <div class="event-meta">
                             <span><i class="far fa-clock"></i> 20:00 CET</span>
                             <span><i class="fas fa-route"></i> 5.891 km</span>
@@ -438,14 +393,14 @@
                     </div>
                 </div>
                 
-                <!-- Carrera 5 -->
-                <div class="event-item">
+                <!-- Course 5 -->
+                <div class="event-item scroll-reveal">
                     <div class="event-image" style="background-image: url('/assets/images/BCNGT3.jpg');">
-                        <div class="event-date">25 NOVIEMBRE 2025</div>
+                        <div class="event-date">25 NOVEMBRE 2025</div>
                     </div>
                     <div class="event-details">
-                        <h4>Ronda 5: Circuit de Barcelona-Catalunya</h4>
-                        <p>Barcelona - España</p>
+                        <h4>Manche 5: Circuit de Barcelona-Catalunya</h4>
+                        <p>Barcelona - Espagne</p>
                         <div class="event-meta">
                             <span><i class="far fa-clock"></i> 20:00 CET</span>
                             <span><i class="fas fa-route"></i> 4.655 km</span>
@@ -453,14 +408,14 @@
                     </div>
                 </div>
                 
-                <!-- Carrera 6 -->
-                <div class="event-item">
+                <!-- Course 6 -->
+                <div class="event-item scroll-reveal">
                     <div class="event-image" style="background-image: url('/assets/images/HungaroringGT3.jpg');">
-                        <div class="event-date">9 DICIEMBRE 2025</div>
+                        <div class="event-date">9 DÉCEMBRE 2025</div>
                     </div>
                     <div class="event-details">
-                        <h4>Ronda 6: Hungaroring</h4>
-                        <p>Hungaroring - Hungría</p>
+                        <h4>Manche 6: Hungaroring</h4>
+                        <p>Hungaroring - Hongrie</p>
                         <div class="event-meta">
                             <span><i class="far fa-clock"></i> 20:00 CET</span>
                             <span><i class="fas fa-route"></i> 4.381 km</span>
@@ -477,7 +432,7 @@
             <div class="footer-content">
                 <div class="footer-about">
                     <h3><span class="eb-text">EB</span> <span class="simracing-text">Simracing</span></h3>
-                    <p>Tu destino en Nivelles para el simracing y la diversión con amigos en un ambiente único.</p>
+                    <p>Votre destination à Nivelles pour le simracing et l'amusement entre amis dans une ambiance unique.</p>
                     <div class="social-links">
                         <a href="https://www.facebook.com/beracingkart/" target="_blank"><i class="fab fa-facebook-f"></i></a>
                         <a href="https://www.instagram.com/eb.racing.events/" target="_blank"><i class="fab fa-instagram"></i></a>
@@ -486,11 +441,11 @@
                     </div>
                 </div>
                 <div class="footer-links">
-                    <h4>HORARIO</h4>
+                    <h4>HORAIRES</h4>
                     <ul>
-                        <li>Lun-Vie: 16h - 00h</li>
-                        <li>Sáb-Dom: 14h - 02h</li>
-                        <li>Cerrado en días festivos</li>
+                        <li>Lun-Ven: 16h - 00h</li>
+                        <li>Sam-Dim: 14h - 02h</li>
+                        <li>Fermé les jours fériés</li>
                     </ul>
                 </div>
                 <div class="footer-contact">
@@ -505,15 +460,34 @@
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2025 EB Simracing. Todos los derechos reservados.</p>
+                <p>&copy; 2025 EB Simracing. Tous droits réservés.</p>
             </div>
         </div>
     </footer>
 
     <!-- Scripts -->
     <script>
-        // Menú móvil
-        document.querySelector('.menu-toggle').addEventListener('click', function() {
+        // Premium scroll reveal animation
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, observerOptions);
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const scrollRevealElements = document.querySelectorAll('.scroll-reveal');
+            scrollRevealElements.forEach(el => observer.observe(el));
+        });
+
+        // Menu mobile
+        document.querySelector('.menu-toggle')?.addEventListener('click', function() {
             document.querySelector('.main-nav').classList.toggle('active');
         });
     </script>
@@ -522,7 +496,7 @@
     <script src="/js/auth/auth.js"></script>
     <script src="/js/header.js"></script>
 
-    <!-- Sistema de seguridad -->
+    <!-- Système de sécurité -->
     <script src="/js/security.js"></script>
     
     <script>
